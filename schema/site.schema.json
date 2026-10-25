@@ -1,5 +1,36 @@
 {
   "$defs": {
+    "Criterion": {
+      "additionalProperties": false,
+      "description": "One yardstick the worldview comparison scores every worldview on.",
+      "properties": {
+        "id": {
+          "pattern": "^[a-z]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 60,
+          "minLength": 2,
+          "title": "Name",
+          "type": "string"
+        },
+        "question": {
+          "description": "The question the score answers, in plain words.",
+          "maxLength": 300,
+          "minLength": 10,
+          "title": "Question",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "question"
+      ],
+      "title": "Criterion",
+      "type": "object"
+    },
     "HistoryFact": {
       "additionalProperties": false,
       "properties": {
@@ -113,8 +144,23 @@
     }
   },
   "additionalProperties": false,
-  "description": "Home-page data that is not a question or a claim: the scoreboard, the rubric legend\nand the historical-facts table behind 'the big question'.",
+  "description": "Home-page data that is not a question or a claim: the scoreboard, the rubric legend,\nthe historical-facts table behind 'the big question', and the worldview criteria.",
   "properties": {
+    "criteria": {
+      "items": {
+        "$ref": "#/$defs/Criterion"
+      },
+      "maxItems": 8,
+      "title": "Criteria",
+      "type": "array"
+    },
+    "evidence_note": {
+      "default": "",
+      "description": "How to read the evidence lists. No verdict.",
+      "maxLength": 800,
+      "title": "Evidence Note",
+      "type": "string"
+    },
     "history": {
       "items": {
         "$ref": "#/$defs/HistoryFact"
@@ -140,6 +186,13 @@
       "minItems": 1,
       "title": "Scoreboard",
       "type": "array"
+    },
+    "worldview_note": {
+      "default": "",
+      "description": "How to read the worldview comparison. No verdict.",
+      "maxLength": 800,
+      "title": "Worldview Note",
+      "type": "string"
     }
   },
   "required": [

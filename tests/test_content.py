@@ -4,7 +4,7 @@ import pytest
 from pydantic import ValidationError
 
 from referee import content
-from referee.content import Claim, Draft, HistoryEntry, Question, Sighting, Side, Verdict
+from referee.content import Claim, CriterionScore, Draft, Evidence, EvidenceSide, HistoryEntry, Question, Sighting, Side, Verdict, Worldview
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -170,3 +170,52 @@ def test_site_data_rejects_usernames_and_validate_tree_reads_site_json(tmp_path)
     assert content.validate_tree(tmp_path) == []
     (tmp_path / "content" / "site.json").write_text('{"scoreboard": [], "legend": []}', encoding="utf-8")
     assert any("site.json" in p for p in content.validate_tree(tmp_path))
+
+
+def evidence(**over):
+    base = dict(id="for-01", side=EvidenceSide.FOR, title="The universe had a beginning", summary="Whatever begins to exist has a cause, and the universe began.", strength=6, confidence=70, status="A live position, not an established finding.", best_objection="Quantum gravity may remove the boundary.", best_reply="The theorem still favours a boundary on average.")
+    base.update(over)
+    return Evidence(**base)
+
+
+def test_evidence_rejects_side_id_mismatch_and_usernames():
+    evidence()
+    with pytest.raises(ValidationError):
+        evidence(id="against-01")
+    with pytest.raises(ValidationError):
+        evidence(summary="As u/someone argued, the universe began to exist.")
+    with pytest.raises(ValidationError):
+        evidence(best_objection="See /u/someone on this, who put it well.")
+    with pytest.raises(ValidationError):
+        evidence(related_questions=["question-1"])
+
+
+def test_worldview_rejects_duplicate_criterion_and_usernames():
+    sc = CriterionScore(criterion="history", score=5, confidence=60, why="Mixed record on the founding claims.")
+    Worldview(id="deism", name="Deism", one_line="A creator who does not intervene.", core_claim="God made the world and left it to run.", scores=[sc])
+    with pytest.raises(ValidationError):
+        Worldview(id="deism", name="Deism", one_line="A creator who does not intervene.", core_claim="God made the world and left it to run.", scores=[sc, sc])
+    with pytest.raises(ValidationError):
+        CriterionScore(criterion="history", score=5, confidence=60, why="u/someone says the record is mixed.")
+
+
+def test_validate_tree_checks_evidence_links_and_worldview_criteria(tmp_path):
+    content.save_question(tmp_path, Question(id="q01", n=1, title="Did the universe begin?", confidence=90, short="Open.", verdict="Open question."))
+    content.save_claim(tmp_path, claim())
+    (tmp_path / "content" / "site.json").write_text(
+        '{"scoreboard": [{"argument": "The universe began", "as_posted": 4, "best_version": 6, "weakest_point": "A beginning is not settled.", "summary": "Open"}],'
+        ' "legend": [{"verdict": "OPEN", "meaning": "Unresolved."}],'
+        ' "criteria": [{"id": "history", "name": "Historical evidence", "question": "How well do its founding claims survive scrutiny?"},'
+        ' {"id": "coherence", "name": "Internal consistency", "question": "Do its core claims fit together?"}]}',
+        encoding="utf-8",
+    )
+    content.save_evidence(tmp_path, evidence(related_questions=["q09"], related_claims=["q01-c01", "q01-c09"]))
+    content.save_worldview(tmp_path, Worldview(id="deism", name="Deism", one_line="A creator who does not intervene.", core_claim="God made the world and left it to run.", scores=[CriterionScore(criterion="history", score=5, confidence=60, why="Mixed record on the founding claims."), CriterionScore(criterion="morals", score=5, confidence=60, why="Not one of the site criteria.")]))
+    problems = content.validate_tree(tmp_path)
+    assert any("unknown related question 'q09'" in p for p in problems)
+    assert any("unknown related claim 'q01-c09'" in p for p in problems)
+    assert any("missing a score for criterion 'coherence'" in p for p in problems)
+    assert any("scores unknown criterion 'morals'" in p for p in problems)
+    assert not any("q01-c01" in p for p in problems)
+    assert content.load_evidence(tmp_path)[0].id == "for-01" and content.load_worldviews(tmp_path)[0].id == "deism"
+    assert content.load_evidence(tmp_path / "nowhere") == [] and content.load_worldviews(tmp_path / "nowhere") == []

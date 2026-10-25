@@ -9,7 +9,7 @@ from pathlib import Path
 import pytest
 
 from referee import content
-from referee.content import Claim, Draft, Question, RunRecord, Sighting, Side, Status, Verdict
+from referee.content import Claim, CriterionScore, Draft, Evidence, EvidenceSide, Question, RunRecord, Sighting, Side, Status, Verdict, Worldview
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "site"))
@@ -37,7 +37,19 @@ def fixture_tree(root: Path, status: Status | None = None) -> None:
     content.save_sighting(root, Sighting(fullname="t1_aaa", permalink=PERMALINK + "1/", claim_id="q01-c02", match_confidence=0.92, matched_at="2026-10-25T10:01:00Z"))
     content.save_sighting(root, Sighting(fullname="t1_bbb", permalink=PERMALINK + "2/", claim_id="q01-c02", match_confidence=0.88, matched_at="2026-10-25T10:02:00Z"))
     content.save_sighting(root, Sighting(fullname="t1_ccc", permalink=PERMALINK + "3/", claim_id="q02-c02", match_confidence=0.81, matched_at="2026-10-20T10:02:00Z"))
-    (root / "content" / "site.json").write_text((ROOT / "content" / "site.json").read_text(encoding="utf-8"), encoding="utf-8")
+    site = json.loads((ROOT / "content" / "site.json").read_text(encoding="utf-8"))
+    site["criteria"] = [
+        {"id": "history", "name": "Historical evidence", "question": "How well do its founding claims survive historical scrutiny?"},
+        {"id": "coherence", "name": "Internal consistency", "question": "Do its core claims fit together without contradiction?"},
+        {"id": "testable", "name": "Testable claims", "question": "Does it make claims that could in principle be checked?"},
+    ]
+    site["evidence_note"] = "Sums are a reading aid, not a verdict."
+    site["worldview_note"] = "Totals are sums of criterion scores, not a ranking of truth."
+    (root / "content" / "site.json").write_text(json.dumps(site, indent=2), encoding="utf-8")
+    content.save_evidence(root, Evidence(id="for-01", side=EvidenceSide.FOR, title="The universe had a beginning", summary="Whatever begins to exist has a cause, and the universe began.", strength=6, confidence=70, status="A beginning is a live position in cosmology, not an established finding.", best_objection="Quantum gravity may remove the boundary <script>alert(1)</script>.", best_reply="The theorem still favours a boundary on average.", sources=["Borde, Guth and Vilenkin (2003)"], related_questions=["q01"], related_claims=["q01-c02"], body="A longer treatment.\n\nSecond paragraph."))
+    content.save_evidence(root, Evidence(id="against-01", side=EvidenceSide.AGAINST, title="The problem of evil", summary="Gratuitous suffering is hard to square with an all-good, all-powerful God.", strength=8, confidence=80, status="The logical version is widely thought answered; the evidential version is live.", best_objection="Skeptical theism says we cannot judge what reasons God might have.", best_reply="That reply also undercuts our ability to read God's goodness from anything.", related_questions=["q02"]))
+    content.save_worldview(root, Worldview(id="naturalism", name="Naturalism", one_line="Only the physical world exists; no gods.", core_claim="Nature is all there is and all explanations are ultimately physical.", scores=[CriterionScore(criterion="history", score=9, confidence=80, why="It makes no historical founding claims to defend."), CriterionScore(criterion="coherence", score=8, confidence=75, why="Internally consistent, though consciousness is a strain <script>alert(1)</script>."), CriterionScore(criterion="testable", score=9, confidence=85, why="Its claims are checkable in principle.")], sources=["Papineau, Naturalism (2020)"]))
+    content.save_worldview(root, Worldview(id="christianity", name="Christianity", one_line="Jesus of Nazareth rose from the dead and is God incarnate.", core_claim="One God, revealed in Jesus, whose resurrection vindicates his claims.", scores=[CriterionScore(criterion="history", score=6, confidence=70, why="Crucifixion and early belief in appearances are well attested; the rest is contested."), CriterionScore(criterion="coherence", score=6, confidence=60, why="Trinity and incarnation are coherent on some readings and strained on others."), CriterionScore(criterion="testable", score=4, confidence=65, why="Most claims are historical, a few are checkable.")]))
     if status is not None:
         content.save_status(root, status)
 
@@ -54,10 +66,10 @@ def test_every_page_type_renders(tmp_path):
     fixture_tree(tmp_path, success_status())
     out = tmp_path / "_site"
     pages = render.render(tmp_path, out, now=NOW)
-    for rel in ["index.html", "q/q01/index.html", "q/q02/index.html", "claims/q01-c01/index.html", "claims/q02-c02/index.html", "today/index.html", "about/index.html", "rubric/index.html", "404.html", "status.json", "static/tokens.css", ".nojekyll"]:
+    for rel in ["index.html", "q/q01/index.html", "q/q02/index.html", "claims/q01-c01/index.html", "claims/q02-c02/index.html", "today/index.html", "about/index.html", "rubric/index.html", "404.html", "status.json", "static/tokens.css", ".nojekyll", "evidence/for-01/index.html", "evidence/against-01/index.html", "worldviews/index.html", "worldviews/naturalism/index.html", "worldviews/christianity/index.html", "questions/index.html"]:
         assert (out / rel).exists(), rel
-    assert pages == 1 + 2 + 4 + 4
-    assert "Is there a God? Here's where every argument stands." in read(out, "index.html")
+    assert pages == 1 + 2 + 4 + 4 + 2 + 1 + 2 + 1
+    assert "Is there a God? Here is the evidence, both ways." in read(out, "index.html")
 
 
 def test_content_is_escaped(tmp_path):
@@ -179,7 +191,7 @@ def test_base_prefixes_links_and_assets(tmp_path):
     html = read(out, "index.html")
     assert 'href="/the-referee/static/tokens.css?v=' in html
     assert 'href="/the-referee/today/"' in html
-    assert 'href="/the-referee/claims/q01-c02/"' in html
+    assert 'href="/the-referee/claims/q01-c02/"' in read(out, "today/index.html")  # the home Today block is collapsed to a count + link
     assert 'href="/today/"' not in html and 'href="/static/' not in html
     claim = read(out, "claims/q01-c02/index.html")
     assert 'href="/the-referee/q/q01/"' in claim
@@ -226,3 +238,67 @@ def test_today_last_run_skips_noon_noops(tmp_path):
     render.render(tmp_path, out, now=NOW)
     html = read(out, "today/index.html")
     assert "Last run 2026-10-25 10:00 UTC: success" in html and "noop" not in html
+
+
+def test_home_shows_both_evidence_columns_with_sums(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    assert "Evidence for God" in html and "Evidence against God" in html
+    assert 'href="/evidence/for-01/"' in html and 'href="/evidence/against-01/"' in html
+    assert "The universe had a beginning" in html and "The problem of evil" in html
+    assert "Summed strength: <b>6 of 10</b>" in html and "Summed strength: <b>8 of 10</b>" in html
+    assert "Sums are a reading aid, not a verdict." in html
+    assert "Scoreboard: the main arguments" not in html  # moved to /questions/
+    assert "Scoreboard: the main arguments" in read(out, "questions/index.html")
+
+
+def test_matrix_sorted_by_total_with_right_totals(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    assert html.index("Naturalism") < html.index("Christianity")
+    assert "26/30" in html and "16/30" in html
+    full = read(out, "worldviews/index.html")
+    assert full.index('href="/worldviews/naturalism/"') < full.index('href="/worldviews/christianity/"')
+    assert "26/30" in full and "16/30" in full and "80%" in full  # avg confidence of naturalism
+    assert "Historical evidence" in full and "How well do its founding claims survive historical scrutiny?" in full
+    assert "Totals are sums of criterion scores" in full
+
+
+def test_evidence_and_worldview_pages_render_escaped(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    ev = read(out, "evidence/for-01/index.html")
+    assert "<script>alert(1)</script>" not in ev and "&lt;script&gt;alert(1)&lt;/script&gt;" in ev
+    assert "Strongest objection" in ev and "Best reply" in ev and "Where experts stand" in ev
+    assert 'href="/q/q01/"' in ev and 'href="/claims/q01-c02/"' in ev
+    assert "Second paragraph." in ev and "content/evidence/for-01.md" in ev
+    wv = read(out, "worldviews/naturalism/index.html")
+    assert "<script>alert(1)</script>" not in wv and "&lt;script&gt;alert(1)&lt;/script&gt;" in wv
+    assert "Total 26 of 30" in wv and "Nature is all there is" in wv and "content/worldviews/naturalism.md" in wv
+    assert "<script>alert(1)</script>" not in read(out, "index.html")
+
+
+def test_nav_links_carry_base(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, base_url="/the-referee/", now=NOW)
+    html = read(out, "index.html")
+    for href in ["/the-referee/#evidence", "/the-referee/worldviews/", "/the-referee/questions/", "/the-referee/today/", "/the-referee/evidence/for-01/", "/the-referee/worldviews/naturalism/"]:
+        assert f'href="{href}"' in html, href
+    assert 'href="/worldviews/"' not in html and 'href="/questions/"' not in html
+
+
+def test_home_without_evidence_or_worldviews_renders(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    for p in (tmp_path / "content" / "evidence").glob("*.md"):
+        p.unlink()
+    for p in (tmp_path / "content" / "worldviews").glob("*.md"):
+        p.unlink()
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    assert read(out, "index.html").count("None written yet.") == 3

@@ -95,6 +95,30 @@ def build_today(status: content.Status, sightings: list[content.Sighting], claim
     }
 
 
+class WorldviewView:
+    """A worldview plus the derived numbers the templates show."""
+
+    def __init__(self, w: content.Worldview, criteria: list) -> None:
+        self.id = w.id
+        self.name = w.name
+        self.one_line = w.one_line
+        self.core_claim = w.core_claim
+        self.scores = w.scores
+        self.sources = w.sources
+        self.body = w.body
+        self.by_criterion = {sc.criterion: sc for sc in w.scores}
+        scored = [self.by_criterion[c.id] for c in criteria if c.id in self.by_criterion]
+        self.total = sum(sc.score for sc in scored)
+        self.max_total = 10 * len(criteria)
+        self.avg_confidence = round(sum(sc.confidence for sc in scored) / len(scored)) if scored else 0
+
+
+def build_worldviews(worldviews: list, criteria: list) -> list:
+    """Sort by total descending; ties keep name order."""
+    views = [WorldviewView(w, criteria) for w in sorted(worldviews, key=lambda w: w.name)]
+    return sorted(views, key=lambda v: -v.total)
+
+
 def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] = None) -> int:
     now = now or datetime.now(timezone.utc)
     root = root.resolve()
@@ -104,6 +128,10 @@ def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] =
     sightings = content.load_sightings(root)
     status = content.load_status(root)
     site = content.load_site_data(root)
+    evidence = content.load_evidence(root)
+    worldviews = build_worldviews(content.load_worldviews(root), site.criteria)
+    evidence_for = sorted([e for e in evidence if e.side == "for"], key=lambda e: (-e.strength, e.id))
+    evidence_against = sorted([e for e in evidence if e.side == "against"], key=lambda e: (-e.strength, e.id))
 
     claims_by_id = {c.id: c for c in claims}
     claims_by_q: dict[str, list[content.Claim]] = defaultdict(list)
@@ -134,6 +162,8 @@ def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] =
         repo_url=REPO_URL,
         n_questions=len(questions),
         n_claims=len(claims),
+        n_evidence=len(evidence),
+        n_worldviews=len(worldviews),
         generated=now.strftime("%Y-%m-%d %H:%M UTC"),
         legend=site.legend,
     )
@@ -149,12 +179,28 @@ def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] =
     out.mkdir(parents=True)
     pages = 0
 
-    write("index.html", "index.html.j2", questions=questions, site=site, today=today, drafts=visible_drafts, claims_by_q=claims_by_q)
+    write("index.html", "index.html.j2", questions=questions, site=site, today=today, drafts=visible_drafts, claims_by_q=claims_by_q, evidence_for=evidence_for, evidence_against=evidence_against, worldviews=worldviews, criteria=site.criteria)
+    pages += 1
+    q_by_id = {q.id: q for q in questions}
+    for e in evidence:
+        write(
+            f"evidence/{e.id}/index.html",
+            "evidence.html.j2",
+            e=e,
+            related_questions=[q_by_id[q] for q in e.related_questions if q in q_by_id],
+            related_claims=[claims_by_id[c] for c in e.related_claims if c in claims_by_id],
+        )
+        pages += 1
+    write("worldviews/index.html", "worldviews.html.j2", worldviews=worldviews, criteria=site.criteria, site=site)
+    pages += 1
+    for w in worldviews:
+        write(f"worldviews/{w.id}/index.html", "worldview.html.j2", w=w, criteria=site.criteria)
+        pages += 1
+    write("questions/index.html", "questions.html.j2", questions=questions, site=site)
     pages += 1
     for q in questions:
         write(f"q/{q.id}/index.html", "question.html.j2", q=q, claims=claims_by_q.get(q.id, []), sightings_by_claim=sightings_by_claim)
         pages += 1
-    q_by_id = {q.id: q for q in questions}
     for c in claims:
         write(f"claims/{c.id}/index.html", "claim.html.j2", c=c, q=q_by_id.get(c.question), sightings=sightings_by_claim.get(c.id, []))
         pages += 1

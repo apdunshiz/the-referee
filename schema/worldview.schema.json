@@ -1,0 +1,99 @@
+{
+  "$defs": {
+    "CriterionScore": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "integer"
+        },
+        "criterion": {
+          "pattern": "^[a-z]+$",
+          "title": "Criterion",
+          "type": "string"
+        },
+        "score": {
+          "maximum": 10,
+          "minimum": 0,
+          "title": "Score",
+          "type": "integer"
+        },
+        "why": {
+          "maxLength": 600,
+          "minLength": 10,
+          "title": "Why",
+          "type": "string"
+        }
+      },
+      "required": [
+        "criterion",
+        "score",
+        "confidence",
+        "why"
+      ],
+      "title": "CriterionScore",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One religion or non-religious stance, scored on every site.json criterion.",
+  "properties": {
+    "body": {
+      "default": "",
+      "title": "Body",
+      "type": "string"
+    },
+    "core_claim": {
+      "maxLength": 400,
+      "minLength": 10,
+      "title": "Core Claim",
+      "type": "string"
+    },
+    "id": {
+      "maxLength": 40,
+      "pattern": "^[a-z-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 60,
+      "minLength": 2,
+      "title": "Name",
+      "type": "string"
+    },
+    "one_line": {
+      "maxLength": 200,
+      "minLength": 10,
+      "title": "One Line",
+      "type": "string"
+    },
+    "scores": {
+      "items": {
+        "$ref": "#/$defs/CriterionScore"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Scores",
+      "type": "array"
+    },
+    "sources": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 12,
+      "title": "Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "one_line",
+    "core_claim",
+    "scores"
+  ],
+  "title": "Worldview",
+  "type": "object"
+}

@@ -1,0 +1,52 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block title %}{{ e.title }} · The Referee{% endblock %}
+{% block description %}{{ e.summary }}{% endblock %}
+{% block content %}
+<p class="crumb"><a href="{{ base }}#evidence">Evidence {{ e.side }} God</a> › {{ e.id }}</p>
+<p class="label">Evidence {{ e.side }} God</p>
+<h1 class="claim-title">{{ e.title }}</h1>
+<div class="ruling-line">
+  {{ m.meter(e.strength) }}
+  {{ m.conf(e.confidence) }}
+</div>
+<p class="lede">{{ e.summary }}</p>
+{% for p in e.body | paragraphs %}<p>{{ p }}</p>{% endfor %}
+
+<section class="verdict">
+  <p class="label">Where experts stand</p>
+  <p>{{ e.status }}</p>
+</section>
+
+<div class="two">
+  <section class="box-objection">
+    <p class="label">Strongest objection</p>
+    {% for p in e.best_objection | paragraphs %}<p>{{ p }}</p>{% endfor %}
+  </section>
+  <section class="box-reply">
+    <p class="label">Best reply</p>
+    {% for p in e.best_reply | paragraphs %}<p>{{ p }}</p>{% endfor %}
+  </section>
+</div>
+
+<section>
+  <p class="label">Sources</p>
+  {% if e.sources %}
+  <ul class="sources">{% for s in e.sources %}<li>{{ s }}</li>{% endfor %}</ul>
+  {% else %}
+  <p class="small">No sources listed yet.</p>
+  {% endif %}
+</section>
+
+{% if related_questions or related_claims %}
+<section>
+  <p class="label">Deep dives on this evidence</p>
+  <ul class="sources">
+  {% for q in related_questions %}<li><a href="{{ base }}q/{{ q.id }}/">Q{{ q.n }} {{ q.title }}</a></li>{% endfor %}
+  {% for c in related_claims %}<li>{{ m.badge(c.verdict) }} <a href="{{ base }}claims/{{ c.id }}/">{{ c.text }}</a></li>{% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<p class="small">Disagree? <a href="{{ repo_url }}/blob/main/content/evidence/{{ e.id }}.md">Open a correction on GitHub</a>: edit the file and say why the score should move.</p>
+{% endblock %}

@@ -4,6 +4,8 @@
 /content/questions/    @apdunshiz
 /content/rubric.md     @apdunshiz
 /content/site.json     @apdunshiz
+/content/evidence/     @apdunshiz
+/content/worldviews/   @apdunshiz
 # The code and workflows that enforce the lock change only with review too.
 /referee/              @apdunshiz
 /scripts/              @apdunshiz
