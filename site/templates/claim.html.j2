@@ -1,0 +1,52 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block title %}{{ c.text }} · The Referee{% endblock %}
+{% block description %}{{ c.verdict }}: {{ c.text }}{% endblock %}
+{% block content %}
+<p class="crumb">{% if q %}<a href="{{ base }}q/{{ q.id }}/">Q{{ q.n }} {{ q.title }}</a> › {% endif %}Claim {{ c.id }}</p>
+<p class="label">Claim · made by the {{ 'original post' if c.side == 'theist' and c.strength is none else c.side + ' side' }}</p>
+<h1 class="claim-title">{{ c.text }}</h1>
+<div class="ruling-line">
+  {{ m.badge(c.verdict) }}
+  {{ m.conf(c.confidence) }}
+  {{ m.meter(c.strength) }}
+  {% if sightings %}
+  <span class="seen">seen {{ sightings | length }}× on r/DebateAChristian, latest: <a href="{{ sightings[0].permalink }}">{{ sightings[0].matched_at[:10] }}</a></span>
+  {% else %}
+  <span class="seen">Not yet seen on Reddit since launch.</span>
+  {% endif %}
+</div>
+
+<section class="why">
+  <p class="label">The ruling</p>
+  {% for p in c.why | paragraphs %}<p>{{ p }}</p>{% endfor %}
+</section>
+
+<section>
+  <p class="label">Sources</p>
+  {% if c.sources %}
+  <ul class="sources">{% for s in c.sources %}<li>{{ s }}</li>{% endfor %}</ul>
+  {% else %}
+  <p class="small">No sources listed yet for this ruling.</p>
+  {% endif %}
+</section>
+
+{% if sightings %}
+<section>
+  <p class="label">Where it came up</p>
+  <ul class="sightings">
+  {% for s in sightings[:20] %}<li><a href="{{ s.permalink }}">{{ s.matched_at[:10] }}</a> <span class="small">match {{ (s.match_confidence * 100) | round | int }}%</span></li>{% endfor %}
+  </ul>
+  {% if sightings | length > 20 %}<p class="small">and {{ sightings | length - 20 }} more.</p>{% endif %}
+</section>
+{% endif %}
+
+<section class="history">
+  <p class="label">History</p>
+  <ul>
+    {% for h in c.history | reverse %}<li>{{ h.date }}: v{{ h.version }}, {{ h.note }}</li>{% endfor %}
+    <li>Ruling version {{ c.version }}{% if c.version == 1 %}, from the October 2026 review{% endif %}.</li>
+  </ul>
+  <p class="small">Disagree? <a href="{{ repo_url }}/blob/main/content/claims/{{ c.id }}.md">Open a correction on GitHub</a>: edit the file, bump the version, add a history line.</p>
+</section>
+{% endblock %}

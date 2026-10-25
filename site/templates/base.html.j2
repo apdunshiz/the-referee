@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}The Referee{% endblock %}</title>
+<meta name="description" content="{% block description %}Arguments for and against God, graded the same way, with sources and a confidence % for every ruling.{% endblock %}">
+<link rel="stylesheet" href="{{ base }}static/fonts/local.css">
+<link rel="stylesheet" href="{{ base }}static/tokens.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <a class="brand" href="{{ base }}">The Referee</a>
+  <span class="tagline">Arguments for and against God, graded the same way</span>
+  <nav aria-label="Main">
+    <a href="{{ base }}#questions">Questions</a>
+    <a href="{{ base }}today/">Today</a>
+    <a href="{{ base }}rubric/">Rubric</a>
+    <a href="{{ base }}about/">About</a>
+    <a href="{{ repo_url }}">GitHub</a>
+  </nav>
+</header>
+<main id="main" class="wrap">
+{% block content %}{% endblock %}
+</main>
+<footer class="foot">
+  <p>{{ n_questions }} questions, {{ n_claims }} rated claims. Every ruling has sources and a confidence %. The daily job only matches new posts to existing rulings; it never invents a verdict. Built {{ generated }}.</p>
+  <p><a href="{{ repo_url }}">Source and corrections on GitHub</a>. Non-commercial; no content is used to train models.</p>
+</footer>
+</body>
+</html>

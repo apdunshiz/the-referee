@@ -1,0 +1,151 @@
+{
+  "$defs": {
+    "HistoryFact": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "maxLength": 400,
+          "minLength": 3,
+          "title": "Basis",
+          "type": "string"
+        },
+        "fact": {
+          "maxLength": 200,
+          "minLength": 3,
+          "title": "Fact",
+          "type": "string"
+        },
+        "pct": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Pct",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "fact",
+        "pct",
+        "basis"
+      ],
+      "title": "HistoryFact",
+      "type": "object"
+    },
+    "LegendRow": {
+      "additionalProperties": false,
+      "properties": {
+        "meaning": {
+          "maxLength": 300,
+          "minLength": 3,
+          "title": "Meaning",
+          "type": "string"
+        },
+        "verdict": {
+          "$ref": "#/$defs/Verdict"
+        }
+      },
+      "required": [
+        "verdict",
+        "meaning"
+      ],
+      "title": "LegendRow",
+      "type": "object"
+    },
+    "ScoreboardRow": {
+      "additionalProperties": false,
+      "properties": {
+        "argument": {
+          "maxLength": 120,
+          "minLength": 3,
+          "title": "Argument",
+          "type": "string"
+        },
+        "as_posted": {
+          "description": "Strength of the argument as usually stated, 0-10.",
+          "maximum": 10,
+          "minimum": 0,
+          "title": "As Posted",
+          "type": "integer"
+        },
+        "best_version": {
+          "description": "Strength of the best defensible version, 0-10.",
+          "maximum": 10,
+          "minimum": 0,
+          "title": "Best Version",
+          "type": "integer"
+        },
+        "summary": {
+          "maxLength": 80,
+          "minLength": 3,
+          "title": "Summary",
+          "type": "string"
+        },
+        "weakest_point": {
+          "maxLength": 400,
+          "minLength": 3,
+          "title": "Weakest Point",
+          "type": "string"
+        }
+      },
+      "required": [
+        "argument",
+        "as_posted",
+        "best_version",
+        "weakest_point",
+        "summary"
+      ],
+      "title": "ScoreboardRow",
+      "type": "object"
+    },
+    "Verdict": {
+      "enum": [
+        "TRUE",
+        "MOSTLY TRUE",
+        "MIXED",
+        "OVERSTATED",
+        "MOSTLY FALSE",
+        "FALSE",
+        "OPEN",
+        "STRAWMAN",
+        "NOTE"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Home-page data that is not a question or a claim: the scoreboard, the rubric legend\nand the historical-facts table behind 'the big question'.",
+  "properties": {
+    "history": {
+      "items": {
+        "$ref": "#/$defs/HistoryFact"
+      },
+      "maxItems": 12,
+      "title": "History",
+      "type": "array"
+    },
+    "legend": {
+      "items": {
+        "$ref": "#/$defs/LegendRow"
+      },
+      "maxItems": 12,
+      "minItems": 1,
+      "title": "Legend",
+      "type": "array"
+    },
+    "scoreboard": {
+      "items": {
+        "$ref": "#/$defs/ScoreboardRow"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Scoreboard",
+      "type": "array"
+    }
+  },
+  "required": [
+    "scoreboard",
+    "legend"
+  ],
+  "title": "SiteData",
+  "type": "object"
+}

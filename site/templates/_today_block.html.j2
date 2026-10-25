@@ -1,0 +1,39 @@
+{% import "_macros.html.j2" as m %}
+{% if today.paused %}
+<p class="banner banner-paused" role="status">Updates paused by the maintainer.</p>
+{% endif %}
+{% if today.stale %}
+<p class="banner banner-stale" role="status">No update since {{ today.last_success.strftime('%Y-%m-%d') }}.</p>
+{% endif %}
+{% if today.no_runs %}
+<p class="empty">No runs yet.</p>
+{% elif today.state == 'error' %}
+<p class="banner banner-error" role="alert">Reddit couldn't be reached around 06:00 ET; retrying at 12:00.{% if today.last_success %} Last update: {{ today.last_success.strftime('%Y-%m-%d %H:%M UTC') }}.{% endif %}</p>
+{% elif today.state == 'degraded' %}
+<p class="banner banner-degraded" role="status">{{ today.carried }} arguments carried to tomorrow.</p>
+{% endif %}
+{% if today.groups %}
+<ul class="today">
+{% for g in today.groups %}
+  <li class="today-row">
+    <div class="today-badges">{{ m.badge(g.claim.verdict) }} {{ m.conf(g.claim.confidence) }}</div>
+    <a class="claim-text" href="{{ base }}claims/{{ g.claim.id }}/">{{ g.claim.text }}</a>
+    <span class="seen">matched {{ g.sightings | length }}× today, <a href="{{ g.sightings[0].permalink }}">latest on Reddit</a></span>
+  </li>
+{% endfor %}
+</ul>
+{% elif today.state == 'empty' and not today.no_runs %}
+<p class="empty">Nothing new matched today. {{ today.off_topic }} posts were off-topic.</p>
+{% endif %}
+{% if drafts %}
+<h3>New arguments, not yet rated</h3>
+<ul class="today">
+{% for d in drafts %}
+  <li class="today-row">
+    <div class="today-badges"><span class="badge v-draft">DRAFT</span></div>
+    <span class="claim-text">{{ d.text }}</span>
+    <span class="seen">seen {{ d.sightings_count }}× since {{ d.first_seen }}; awaiting a human ruling</span>
+  </li>
+{% endfor %}
+</ul>
+{% endif %}

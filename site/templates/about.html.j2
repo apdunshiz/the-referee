@@ -1,0 +1,41 @@
+{% extends "base.html.j2" %}
+{% block title %}About · The Referee{% endblock %}
+{% block content %}
+<h1>About The Referee</h1>
+<p class="lede">One rubric, both sides, sources and a confidence % on every ruling. The maintainer believes Christianity is true and built this to find out which arguments hold up anyway.</p>
+
+<h2>How it's built</h2>
+<p>Every ruling is a file in a public GitHub repository. Twice a day a job reads new posts and comments on r/DebateAChristian through the official Reddit API, asks a language model which existing claim each comment repeats, and records only the comment's id and link against that claim. Nothing is quoted. The job never writes or changes a verdict: rulings change only when a person opens a pull request, bumps the version and adds a history line.</p>
+<p>A comment that matches no claim becomes a draft. Drafts carry no verdict and appear on the Today page only after they have been seen twice.</p>
+<p>The site is non-commercial, carries no advertising, and does not use Reddit content to train any model. The bot reads Reddit as the maintainer's own account.</p>
+
+<h2 id="history">What most historians grant</h2>
+<p>These are the historical facts behind "the big question", each with how confident the referee is that the mainstream view is right.</p>
+<table class="facts">
+  <thead><tr><th scope="col">Fact</th><th scope="col">Confidence</th><th scope="col">Basis</th></tr></thead>
+  <tbody>
+  {% for f in history_facts %}
+  <tr><td>{{ f.fact }}</td><td class="pct">{{ f.pct }}%</td><td class="small">{{ f.basis }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h2>Runs</h2>
+{% if status.runs %}
+<table class="runs">
+  <thead><tr><th scope="col">Started (UTC)</th><th scope="col">Outcome</th><th scope="col">Fetched</th><th scope="col">Matched</th><th scope="col">Drafted</th><th scope="col">Carried</th><th scope="col">Errors</th></tr></thead>
+  <tbody>
+  {% for r in status.runs | reverse %}
+  <tr class="run-{{ r.outcome }}"><td>{{ r.started_at[:16].replace('T', ' ') }}</td><td>{{ r.outcome }}</td><td>{{ r.fetched }}</td><td>{{ r.matched }}</td><td>{{ r.drafted }}</td><td>{{ r.carried }}</td><td>{{ r.errors | length }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+<p class="small">Token spend over these runs: {{ "{:,}".format(tokens_in) }} in, {{ "{:,}".format(tokens_out) }} out.</p>
+{% else %}
+<p class="empty">No runs yet.</p>
+{% endif %}
+{% if status.paused %}<p class="banner banner-paused" role="status">Updates paused by the maintainer.</p>{% endif %}
+
+<h2>Corrections and removal</h2>
+<p>To correct a ruling, <a href="{{ repo_url }}">open an issue or a pull request</a> on the claim's file. The site stores no comment text and no usernames, only public comment ids and links; a deleted comment drops off within a day.</p>
+{% endblock %}

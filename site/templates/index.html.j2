@@ -1,0 +1,58 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block content %}
+<h1>Is there a God? Here's where every argument stands.</h1>
+<p class="lede">{{ n_questions }} debate questions, {{ n_claims }} rated claims, updated daily from r/DebateAChristian. Every verdict has sources and a confidence %. The same rubric grades both sides.</p>
+
+<div class="grid">
+<div>
+  <section aria-labelledby="scoreboard-h">
+    <h2 id="scoreboard-h">Scoreboard: the main arguments</h2>
+    <table class="scoreboard">
+      <thead><tr><th scope="col">Argument</th><th scope="col">As usually stated</th><th scope="col">Best version</th><th scope="col">Weakest point</th><th scope="col">In short</th></tr></thead>
+      <tbody>
+      {% for row in site.scoreboard %}
+      <tr>
+        <td class="arg">{{ row.argument }}</td>
+        <td data-label="As usually stated">{{ m.meter(row.as_posted) }}</td>
+        <td data-label="Best version">{{ m.meter(row.best_version) }}</td>
+        <td class="weak" data-label="Weakest point">{{ row.weakest_point }}</td>
+        <td class="sum" data-label="In short">{{ row.summary }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="small">Both columns move only when a ruling changes, and every change is in the file history on GitHub.</p>
+  </section>
+
+  <section aria-labelledby="today-h">
+    <h2 id="today-h">Today from r/DebateAChristian <span class="tag">auto-matched</span></h2>
+    {% include "_today_block.html.j2" %}
+    <p class="small"><a href="{{ base }}today/">Full Today page</a></p>
+  </section>
+</div>
+
+<aside>
+  <section aria-labelledby="questions-h" id="questions">
+    <h2 id="questions-h">Browse by question</h2>
+    <ul class="qlist">
+    {% for q in questions %}
+      <li><a href="{{ base }}q/{{ q.id }}/"><span class="qn">Q{{ q.n }}</span> <span class="qt">{{ q.title }}</span></a> <span class="pct">{{ q.confidence }}%</span></li>
+    {% endfor %}
+    </ul>
+    <p class="small">% = how confident the referee is that the ruling is right, not that the claim is true.</p>
+  </section>
+
+  <section aria-labelledby="rubric-h">
+    <h2 id="rubric-h">How it's graded</h2>
+    <p class="badges">{% for row in legend %}{{ m.badge(row.verdict) }} {% endfor %}</p>
+    <p class="small">The rubric is public and fixed. The daily job only matches new posts to existing rulings; it never invents a verdict. <a href="{{ base }}rubric/">Read the rubric</a>.</p>
+  </section>
+
+  <section aria-labelledby="big-h" class="box">
+    <h2 id="big-h">The big question</h2>
+    <p><b>Was Jesus the Son of God?</b> No single number. It depends on three inputs you choose: how likely God is at all, how likely a resurrection is if God exists, and how likely divinity is if he rose. The historical facts most scholars grant are on the <a href="{{ base }}about/#history">About page</a>.</p>
+  </section>
+</aside>
+</div>
+{% endblock %}

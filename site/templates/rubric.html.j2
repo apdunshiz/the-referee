@@ -1,0 +1,24 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block title %}Rubric · The Referee{% endblock %}
+{% block content %}
+<h1>The rubric</h1>
+<p class="lede">Every claim, from either side, gets one of these labels, a strength score for how much work it does as an argument, and a confidence % for how sure the referee is that the ruling itself is right.</p>
+<table class="legend">
+  <thead><tr><th scope="col">Label</th><th scope="col">Meaning</th></tr></thead>
+  <tbody>
+  {% for row in site.legend %}
+  <tr><td>{{ m.badge(row.verdict) }}</td><td>{{ row.meaning }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h2>Strength</h2>
+<p>{{ m.meter(7) }} Strength is scored 0 to 10: how much the claim, as stated, actually moves the question. A TRUE claim can still be weak if it changes little; a MIXED one can be strong if the right part matters.</p>
+
+<h2>Confidence</h2>
+<p>{{ m.conf(85) }} The percentage rates the ruling, not the claim. 85% means the referee expects to be wrong about one ruling in seven at that level, and says so.</p>
+
+<h2>Who rules</h2>
+<p>People do. The daily job only matches new posts to rulings that already exist. It never invents a verdict, never changes a strength or a confidence, and a new argument it cannot match is published as an unrated draft after it has been seen twice.</p>
+{% endblock %}

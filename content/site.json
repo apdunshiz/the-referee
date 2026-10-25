@@ -1,0 +1,58 @@
+{
+  "scoreboard": [
+    {
+      "argument": "1. The universe began, so it has a cause",
+      "as_posted": 4,
+      "best_version": 6,
+      "weakest_point": "“The evidence points to a finite past” is open, and the cause being personal is asserted, not argued.",
+      "summary": "Respectable, not proof"
+    },
+    {
+      "argument": "2. Fine-tuning",
+      "as_posted": 5,
+      "best_version": 7,
+      "weakest_point": "Whether the constants could have been different, and so whether “improbable” is even defined.",
+      "summary": "The strongest premise"
+    },
+    {
+      "argument": "3. Objective morality",
+      "as_posted": 4,
+      "best_version": 6,
+      "weakest_point": "The step from objective morals to God, since most moral realists aren't theists.",
+      "summary": "Depends on the listener"
+    },
+    {
+      "argument": "4. The resurrection",
+      "as_posted": 5,
+      "best_version": 7,
+      "weakest_point": "Overstated supporting lines (legends, hallucination, martyrdom) and the missing step from “risen” to “divine.” The best-version score assumes God's existence is already on the table. If it isn't, critics would rate it 3–4.",
+      "summary": "Strong facts, contested conclusion"
+    },
+    {
+      "argument": "The cumulative method",
+      "as_posted": 5,
+      "best_version": 6,
+      "weakest_point": "Stacking helps only if each piece carries real weight on its own.",
+      "summary": "Valid method"
+    }
+  ],
+  "legend": [
+    {"verdict": "TRUE", "meaning": "Supported by the evidence and the mainstream expert view."},
+    {"verdict": "MOSTLY TRUE", "meaning": "Right in substance; a detail or the wording is off."},
+    {"verdict": "MIXED", "meaning": "Part right and part wrong, or a right point used the wrong way."},
+    {"verdict": "OVERSTATED", "meaning": "Has a real basis but claims more than the evidence gives."},
+    {"verdict": "MOSTLY FALSE", "meaning": "Mostly contradicted by the evidence or by expert consensus."},
+    {"verdict": "FALSE", "meaning": "Contradicted by the evidence or by expert consensus."},
+    {"verdict": "OPEN", "meaning": "Genuinely unresolved: experts disagree, or it depends on whether you already allow for God or miracles."},
+    {"verdict": "STRAWMAN", "meaning": "Answers something the original post didn't say."},
+    {"verdict": "NOTE", "meaning": "Not a truth claim, but worth knowing."}
+  ],
+  "history": [
+    {"fact": "Jesus existed", "pct": 99, "basis": "Virtually all historians agree, including the agnostic Bart Ehrman (Q6)."},
+    {"fact": "He was crucified under Pontius Pilate", "pct": 98, "basis": "Tacitus, Josephus and the Gospels name Pilate; Paul confirms the crucifixion (Q6)."},
+    {"fact": "His followers soon sincerely believed they had seen him alive", "pct": 95, "basis": "The early 1 Cor 15 tradition, accepted even by Lüdemann, a scholar who left Christianity (Q8)."},
+    {"fact": "Paul, a persecutor, converted after an experience he took to be the risen Jesus", "pct": 95, "basis": "Paul's own letters (Q11)."},
+    {"fact": "James, an unbeliever during Jesus' life, became a church leader", "pct": 80, "basis": "1 Cor 15:7, Mark 3:21, John 7:5, and Josephus on his death (Q11)."},
+    {"fact": "The tomb was found empty", "pct": 60, "basis": "Scholars are split. Paul implies it but never says “tomb” (Q8)."}
+  ]
+}
