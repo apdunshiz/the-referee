@@ -1,0 +1,24 @@
+---
+id: against-05
+side: against
+title: The universe is vast, old and almost entirely hostile to life
+summary: A cosmos of two trillion galaxies, empty and lethal nearly everywhere, running for 13.8 billion years before a brief window of life on one planet, looks like an accident rather than a home built for us.
+strength: 4
+confidence: 65
+status: A common intuition more than a developed argument; most philosophers on both sides consider it weak on its own, since nothing about theism predicts a small universe.
+best_objection: Theism never claimed the universe was built to be comfortable or compact; a vast cosmos is what you would expect from a creator of unlimited power, and the size of the universe is also what the physics of star formation requires for life to appear at all.
+best_reply: "The reply concedes the point: once any observation is compatible with God, the vastness is no evidence for him either, and the mismatch with how every scripture pictures the world, small, central and made for humans, is at least evidence against those scriptures."
+sources:
+  - "Carl Sagan, Pale Blue Dot (1994)"
+  - "Nicholas Everitt, The Non-Existence of God (2004), chapter 11"
+  - "Robin Collins, The teleological argument, in The Blackwell Companion to Natural Theology (2009), on why a life-permitting universe must be large"
+related_questions: [q03]
+related_claims: []
+---
+The scale argument is as much a feeling as a syllogism. Pascal felt it: the eternal silence of these infinite spaces frightened him. The modern version adds the numbers. Almost all of the universe is vacuum, radiation and dark matter. Of the matter that exists, almost none is in a form that could support life. Of the universe's history, life on Earth occupies a thin slice, and intelligent life a sliver of that. If a being made all this for creatures like us, it took a strange route.
+
+Everitt sharpens it: the scriptures of the major religions describe a small, young world with humanity at its centre, and that is roughly what theism as those scriptures understood it would predict. The universe we found is nothing like it. So the discovery counts against theism in the form it actually took.
+
+The theist's answer is that nothing in the idea of a creator fixes the size of the creation, and that physics requires a universe this large and this old to make the carbon we are built from. The deeper point many theists make is that the argument confuses "made for us" with "made only for us".
+
+What an outsider should take from it: a weak argument against God in general, a fair one against taking ancient cosmologies as literal revelation. It belongs on the list because people find it moving, not because philosophers rate it highly.
