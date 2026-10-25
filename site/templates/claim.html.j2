@@ -4,7 +4,7 @@
 {% block description %}{{ c.verdict }}: {{ c.text }}{% endblock %}
 {% block content %}
 <p class="crumb">{% if q %}<a href="{{ base }}q/{{ q.id }}/">Q{{ q.n }} {{ q.title }}</a> › {% endif %}Claim {{ c.id }}</p>
-<p class="label">Claim · made by the {{ 'original post' if c.side == 'theist' and c.strength is none else c.side + ' side' }}</p>
+<p class="label">Claim · {{ 'from the original post' if c.side == 'theist' and c.strength is none else ('theist side' if c.side == 'theist' else ('skeptic side' if c.side == 'skeptic' else 'side not stated')) }}</p>
 <h1 class="claim-title">{{ c.text }}</h1>
 <div class="ruling-line">
   {{ m.badge(c.verdict) }}
