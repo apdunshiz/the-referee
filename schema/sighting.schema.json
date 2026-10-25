@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "description": "A Reddit comment or post matched to a claim. Ids and a link only; no quote text (decision D27).",
+  "properties": {
+    "claim_id": {
+      "pattern": "^q\\d{2}-c\\d{2}$",
+      "title": "Claim Id",
+      "type": "string"
+    },
+    "fullname": {
+      "pattern": "^t[13]_[a-z0-9]+$",
+      "title": "Fullname",
+      "type": "string"
+    },
+    "match_confidence": {
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Match Confidence",
+      "type": "number"
+    },
+    "matched_at": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+      "title": "Matched At",
+      "type": "string"
+    },
+    "permalink": {
+      "pattern": "^https://(www\\.)?reddit\\.com/r/DebateAChristian/",
+      "title": "Permalink",
+      "type": "string"
+    }
+  },
+  "required": [
+    "fullname",
+    "permalink",
+    "claim_id",
+    "match_confidence",
+    "matched_at"
+  ],
+  "title": "Sighting",
+  "type": "object"
+}

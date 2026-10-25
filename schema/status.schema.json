@@ -1,0 +1,183 @@
+{
+  "$defs": {
+    "RunRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "carried": {
+          "default": 0,
+          "title": "Carried",
+          "type": "integer"
+        },
+        "drafted": {
+          "default": 0,
+          "title": "Drafted",
+          "type": "integer"
+        },
+        "duration_ms": {
+          "default": 0,
+          "title": "Duration Ms",
+          "type": "integer"
+        },
+        "errors": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Errors",
+          "type": "array"
+        },
+        "fetched": {
+          "default": 0,
+          "title": "Fetched",
+          "type": "integer"
+        },
+        "finished_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Finished At"
+        },
+        "invalid_match": {
+          "default": 0,
+          "title": "Invalid Match",
+          "type": "integer"
+        },
+        "matched": {
+          "default": 0,
+          "title": "Matched",
+          "type": "integer"
+        },
+        "model_refused": {
+          "default": 0,
+          "title": "Model Refused",
+          "type": "integer"
+        },
+        "outcome": {
+          "pattern": "^(success|degraded|failed|paused|skipped|noop)$",
+          "title": "Outcome",
+          "type": "string"
+        },
+        "quote_rejected": {
+          "default": 0,
+          "title": "Quote Rejected",
+          "type": "integer"
+        },
+        "recheck_dropped": {
+          "default": 0,
+          "title": "Recheck Dropped",
+          "type": "integer"
+        },
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "started_at": {
+          "title": "Started At",
+          "type": "string"
+        },
+        "tokens_in": {
+          "default": 0,
+          "title": "Tokens In",
+          "type": "integer"
+        },
+        "tokens_out": {
+          "default": 0,
+          "title": "Tokens Out",
+          "type": "integer"
+        },
+        "units": {
+          "default": 0,
+          "title": "Units",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "run_id",
+        "started_at",
+        "outcome"
+      ],
+      "title": "RunRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "carried": {
+      "description": "Unit fullnames to process first next run.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Carried",
+      "type": "array"
+    },
+    "degraded": {
+      "default": false,
+      "title": "Degraded",
+      "type": "boolean"
+    },
+    "errors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Errors",
+      "type": "array"
+    },
+    "last_step": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Last Step"
+    },
+    "last_success": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Last Success"
+    },
+    "paused": {
+      "default": false,
+      "title": "Paused",
+      "type": "boolean"
+    },
+    "runs": {
+      "items": {
+        "$ref": "#/$defs/RunRecord"
+      },
+      "maxItems": 30,
+      "title": "Runs",
+      "type": "array"
+    },
+    "watermark": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "created_utc (ISO) of the newest unit processed.",
+      "title": "Watermark"
+    }
+  },
+  "title": "Status",
+  "type": "object"
+}
