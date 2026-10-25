@@ -185,7 +185,7 @@ def test_base_prefixes_links_and_assets(tmp_path):
     assert 'href="/the-referee/q/q01/"' in claim
     # default base stays root-relative
     render.render(tmp_path, out, now=NOW)
-    assert 'href="/static/tokens.css"' in read(out, "index.html")
+    assert 'href="/static/tokens.css?v=' in read(out, "index.html")
 
 
 def test_about_history_and_runs(tmp_path):
