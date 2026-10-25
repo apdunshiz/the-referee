@@ -45,7 +45,7 @@ jobs:
           # The default persisted github.token is read-only; the App token (GH_TOKEN) does the pushing.
           persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
           cache: pip
