@@ -85,7 +85,7 @@ jobs:
       # Installation tokens live one hour; mint a fresh one right before the PR step.
       - name: Publish token
         id: publish-token
-        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ secrets.APP_ID }}
@@ -94,8 +94,9 @@ jobs:
           permission-pull-requests: write
           permission-issues: write
 
+      # Runs after a failed prepare too: status.json (with the error) still reaches main so the Today banner shows.
       - name: Publish (push, open PR, enable auto-merge)
-        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        if: ${{ !cancelled() && !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
         env:
           GH_TOKEN: ${{ steps.publish-token.outputs.token }}
         run: python -m referee.run publish --slot ${{ steps.slot.outputs.slot }}
