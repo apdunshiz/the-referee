@@ -285,9 +285,14 @@ class RedditClient:
                 stubs.extend(c for c in data.get("children", []) if re.match(r"^[a-z0-9]+$", str(c)))
 
     def info(self, fullnames: Iterable[str]) -> dict[str, bool]:
-        """fullname -> True when the thing still exists with a body. Absent or removed -> False."""
+        """fullname -> True when the thing still exists with a body, False when Reddit reports it removed.
+
+        Names Reddit did not answer for are left out, so a short or empty answer is
+        visible to the caller instead of reading as "everything was deleted".
+        """
         names = [n for n in fullnames]
-        present: dict[str, bool] = {n: False for n in names}
+        wanted = set(names)
+        present: dict[str, bool] = {}
         for i in range(0, len(names), INFO_BATCH):
             batch = names[i : i + INFO_BATCH]
             body = self._get("/api/info", {"id": ",".join(batch)})
@@ -298,7 +303,7 @@ class RedditClient:
             for ch in children:
                 data = ch.get("data", {})
                 name = data.get("name")
-                if name not in present:
+                if name not in wanted:
                     continue
                 text = data.get("body") if ch.get("kind") == "t1" else data.get("selftext")
                 removed = text in ("[removed]", "[deleted]") or data.get("removed_by_category") or data.get("author") == "[deleted]"

@@ -67,11 +67,11 @@ def test_bot_may_touch_sightings_only(repo):
     cwd, base = repo
     (cwd / "content" / "sightings" / "t1_abc.json").write_text("{}", encoding="utf-8")
     commit_all(cwd, "sighting")
-    rc, out = run_check(cwd, base, "the-referee[bot]")
+    rc, out = run_check(cwd, base, "the-referee[bot]", head_ref="bot/2026-10-24-morning")
     assert rc == 0 and "actor=bot" in out
     (cwd / "content" / "claims" / "q01-c01.md").write_text(CLAIM.format(version=2, history="[]"), encoding="utf-8")
     commit_all(cwd, "bot edits a ruling")
-    rc, out = run_check(cwd, base, "the-referee[bot]")
+    rc, out = run_check(cwd, base, "the-referee[bot]", head_ref="bot/2026-10-24-morning")
     assert rc == 1 and "may not change content/claims/q01-c01.md" in out
 
 
@@ -131,3 +131,11 @@ def test_bot_login_on_a_non_bot_branch_fails(repo):
     assert rc == 1 and "is not a bot/ branch" in out
     rc, out = run_check(cwd, base, "apdunshiz", head_ref="feature/x")
     assert rc == 0
+
+
+def test_bot_login_without_head_ref_fails_closed():
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+    from lock_check import actor_branch_problems
+
+    assert actor_branch_problems("the-referee[bot]", "", "the-referee[bot]")
+    assert actor_branch_problems("apdunshiz", "", "the-referee[bot]") == []

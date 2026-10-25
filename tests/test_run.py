@@ -469,14 +469,43 @@ def test_recheck_skipped_when_answer_is_short(content_root):
     assert rec.recheck_skipped == 1 and rec.recheck_dropped == 0
 
 
-def test_recheck_skipped_when_too_many_would_drop(content_root):
+def test_recheck_drops_every_explicit_deletion_even_when_many(content_root):
     _recent_sightings(content_root, 4)
     reddit = FakeReddit(posts=[], comments=[], present={"t1_r0": False, "t1_r1": False, "t1_r2": False})
     c = ctx(content_root, reddit=reddit)
     assert prepare(c) == 0
-    assert len(content.load_sightings(content_root)) == 4  # 3 of 4 would drop: implausible, kept
-    assert content.load_status(content_root).runs[-1].recheck_skipped == 1
-    reddit2 = FakeReddit(posts=[], comments=[], present={"t1_r0": False})
-    c2 = ctx(content_root, reddit=reddit2)
-    assert prepare(c2) == 0
-    assert len(content.load_sightings(content_root)) == 3  # 1 of 4: a normal deletion
+    assert len(content.load_sightings(content_root)) == 1  # a mod clearing a thread is a real deletion
+    rec = content.load_status(content_root).runs[-1]
+    assert rec.recheck_dropped == 3 and rec.recheck_skipped == 0
+
+
+def test_recheck_partial_answer_drops_only_what_was_answered(content_root):
+    _recent_sightings(content_root, 4)
+
+    class Partial(FakeReddit):
+        def info(self, fullnames):
+            return {"t1_r0": False, "t1_r1": True}  # two names never answered
+
+    c = ctx(content_root, reddit=Partial(posts=[], comments=[]))
+    assert prepare(c) == 0
+    assert len(content.load_sightings(content_root)) == 3
+    rec = content.load_status(content_root).runs[-1]
+    assert rec.recheck_dropped == 1 and rec.recheck_skipped == 1
+
+
+def test_publish_without_date_uses_the_checked_out_bot_branch(content_root):
+    class G(FakeGitOps):
+        def current_branch(self):
+            return "bot/2026-10-24-noon"
+
+    g = G()
+    out = []
+    assert publish(content_root, g, None, log_out=out.append, slot="noon") == 0
+    assert g.calls[-1][:2] == ("publish", "bot/2026-10-24-noon")
+    assert "2026-10-24" in g.calls[-1][2]
+
+    class H(FakeGitOps):
+        def current_branch(self):
+            return "main"
+
+    assert publish(content_root, H(), None, log_out=out.append) == 1

@@ -57,6 +57,8 @@ def actor_branch_problems(login: str, head_ref: str, bot_login: str = DEFAULT_BO
     """
     is_bot_branch = head_ref.startswith("bot/")
     is_bot_login = login == bot_login
+    if is_bot_login and not head_ref:
+        return [f"PR author {login!r} is the bot login but no head ref was given (HEAD_REF); refusing to classify"]
     if is_bot_branch and not is_bot_login:
         return [f"branch {head_ref} is a bot branch but the PR author is {login!r}, not the bot login {bot_login!r}; set the BOT_LOGIN variable to the App's login or use another branch name"]
     if is_bot_login and head_ref and not is_bot_branch:

@@ -21,8 +21,6 @@ MIN_UNIT_CHARS = 200
 MAX_UNIT_CHARS = 40_000
 WINDOW_DAYS = 7
 RECHECK_DAYS = 30
-RECHECK_MAX_DROP_RATIO = 0.5  # an /api/info answer that would drop more than this share is treated as broken, not as mass deletion
-RECHECK_RATIO_MIN_SAMPLE = 4  # the ratio rule needs a sample; one deleted comment out of one is just a deletion
 DRAFT_PUBLISH_SIGHTINGS = 2  # decision D28: a draft shows on Today after two sightings
 
 # Reddit

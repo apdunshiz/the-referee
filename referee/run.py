@@ -280,15 +280,16 @@ def step_recheck(ctx: Context) -> None:
         ctx.record.recheck_skipped = 1
         ctx.log("recheck", "skipped", error=type(e).__name__)
         return
-    to_drop = [s.fullname for s in recent if not present.get(s.fullname, False)]
-    # A short or empty /api/info answer must not read as "everything was deleted".
-    too_many = len(recent) >= config.RECHECK_RATIO_MIN_SAMPLE and len(to_drop) > config.RECHECK_MAX_DROP_RATIO * len(recent)
-    if len(present) < len(recent) or too_many:
-        ctx.record.recheck_skipped = 1
-        ctx.log("recheck", "skipped", reason="implausible answer", answered=len(present), asked=len(recent), would_drop=len(to_drop))
-        return
-    ctx.to_drop = to_drop
+    # Three states: answered-present, answered-removed, not answered. Only explicit removals are
+    # dropped; names Reddit did not answer for are left alone and the step is flagged, so a short
+    # or empty /api/info answer never reads as "everything was deleted".
+    missing = [s.fullname for s in recent if s.fullname not in present]
+    ctx.to_drop = [s.fullname for s in recent if present.get(s.fullname) is False]
     ctx.record.recheck_dropped = len(ctx.to_drop)
+    if missing:
+        ctx.record.recheck_skipped = 1
+        ctx.log("recheck", "partial", checked=len(recent), answered=len(present), unanswered=len(missing), dropped=len(ctx.to_drop))
+        return
     ctx.log("recheck", "ok", checked=len(recent), dropped=len(ctx.to_drop))
 
 
@@ -420,9 +421,17 @@ def prepare(ctx: Context) -> int:
         raise
 
 
-def publish(root: Path, gitops: Any, date: str, log_out: Callable[[str], None] = print, slot: str = "morning") -> int:
+def publish(root: Path, gitops: Any, date: Optional[str], log_out: Callable[[str], None] = print, slot: str = "morning") -> int:
     status = content.load_status(root)
-    branch = bot_branch(date, slot)
+    if date:
+        branch = bot_branch(date, slot)
+    else:
+        # Default to the branch prepare left checked out, so a run that crosses midnight still publishes.
+        branch = gitops.current_branch()
+        if not branch.startswith("bot/"):
+            log_out(json.dumps({"step": "publish", "outcome": "not-on-bot-branch", "branch": branch}))
+            return 1
+        date = branch[len("bot/"):].rsplit("-", 1)[0]
     if not gitops.has_unpushed_commits():
         log_out(json.dumps({"step": "publish", "outcome": "nothing-to-publish", "branch": branch, "slot": slot}))
         return 0
@@ -466,7 +475,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     q = sub.add_parser("publish")
     q.add_argument("--root", default=".")
     q.add_argument("--slot", choices=("morning", "noon"), default="morning", help="which scheduled slot this is; selects the bot/<date>-<slot> branch")
-    q.add_argument("--date", default=_utcnow().strftime("%Y-%m-%d"))
+    q.add_argument("--date", default=None, help="defaults to the bot/<date>-<slot> branch prepare left checked out")
     args = ap.parse_args(argv)
     if args.cmd == "prepare":
         ctx = _build_ctx(args)

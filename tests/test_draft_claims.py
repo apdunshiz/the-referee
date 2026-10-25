@@ -24,10 +24,10 @@ def test_handles_from_build_source_is_case_insensitive():
 def test_scan_finds_bare_handles_and_prefixed_forms(tmp_path):
     (tmp_path / "content" / "claims").mkdir(parents=True)
     (tmp_path / "content" / "claims" / "a.md").write_text("why: alpha_quokka answered directly.", encoding="utf-8")
-    (tmp_path / "content" / "claims" / "b.md").write_text("why: see /U/spezzy", encoding="utf-8")
+    (tmp_path / "content" / "claims" / "b.md").write_text("why: see /U/examplehandle", encoding="utf-8")
     (tmp_path / "content" / "claims" / "c.md").write_text("why: nothing here; beta-wombat77abc is not a handle mention", encoding="utf-8")
     hits = draft_claims.scan_content_for_handles(tmp_path, {"Alpha_Quokka", "beta-wombat77"})
-    assert hits == {"content/claims/a.md": ["Alpha_Quokka"], "content/claims/b.md": ["/U/spezzy"]}
+    assert hits == {"content/claims/a.md": ["Alpha_Quokka"], "content/claims/b.md": ["/U/examplehandle"]}
 
 
 def test_scrub_handles_possessive_and_sentence_start():

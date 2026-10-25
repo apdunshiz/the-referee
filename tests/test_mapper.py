@@ -130,9 +130,9 @@ def test_api_response_validation_error_is_bad_output(claims):
 
 
 def test_draft_with_slash_u_handle_is_scrubbed(claims):
-    m = mapper([Resp(MapResult(claim_id=None, match_confidence=0.0, is_new_argument=True, draft_text="As /u/spezzy argued, Bayesian priors make the resurrection a wash."))], claims)
+    m = mapper([Resp(MapResult(claim_id=None, match_confidence=0.0, is_new_argument=True, draft_text="As /u/examplehandle argued, Bayesian priors make the resurrection a wash."))], claims)
     out = m.map_unit(unit(TEXT))
-    assert out.outcome == "new_argument" and "spezzy" not in out.draft_text and "u/" not in out.draft_text
+    assert out.outcome == "new_argument" and "examplehandle" not in out.draft_text and "u/" not in out.draft_text
 
 
 def test_verbatim_draft_is_rejected(claims):

@@ -27,16 +27,31 @@ def test_auth_status_errors_are_classified():
         g2.preflight_auth()
 
 
-def test_open_bot_prs_filters_by_author_login_and_branch_prefix():
+def test_open_bot_prs_accepts_app_author_shape_and_rejects_forks_and_humans():
+    # gh's real JSON for an App author (verified against a Dependabot PR): {"is_bot": true, "login": "app/<slug>"}.
     rows = (
-        '[{"number": 7, "headRefName": "bot/2026-10-24-morning", "author": {"login": "the-referee[bot]"}},'
-        ' {"number": 8, "headRefName": "fix-typo", "author": {"login": "the-referee[bot]"}},'
-        ' {"number": 9, "headRefName": "bot/2026-10-24-morning", "author": {"login": "someone-else"}}]'
+        '[{"number": 7, "headRefName": "bot/2026-10-24-morning", "isCrossRepository": false, "author": {"is_bot": true, "login": "app/the-referee"}},'
+        ' {"number": 8, "headRefName": "fix-typo", "isCrossRepository": false, "author": {"is_bot": true, "login": "app/the-referee"}},'
+        ' {"number": 9, "headRefName": "bot/2026-10-24-noon", "isCrossRepository": true, "author": {"is_bot": true, "login": "app/the-referee"}},'
+        ' {"number": 10, "headRefName": "bot/2026-10-24-morning", "isCrossRepository": false, "author": {"is_bot": false, "login": "someone-else"}},'
+        ' {"number": 11, "headRefName": "bot/2026-10-23-noon", "isCrossRepository": false, "author": {"login": "the-referee[bot]"}}]'
     )
     g = GitOps(FakeRunner({("gh", "pr", "list"): Result(0, rows)}), bot_login="the-referee[bot]")
-    assert g.open_bot_prs() == [(7, "bot/2026-10-24-morning")]  # a fork's bot/ branch must not stall the run
+    assert g.open_bot_prs() == [(7, "bot/2026-10-24-morning"), (11, "bot/2026-10-23-noon")]
     call = g.run.calls[0]
-    assert "--search" in call and "head:bot/" in call and "@me" not in call and "author" in call[call.index("--json") + 1]
+    assert "--search" in call and "head:bot/" in call and "@me" not in call
+    assert "isCrossRepository" in call[call.index("--json") + 1]
+
+
+def test_discard_content_unstages_before_checkout():
+    r = FakeRunner()
+    GitOps(r).discard_content()
+    assert [c[:3] for c in r.calls] == [["git", "reset", "-q"], ["git", "checkout", "--"], ["git", "clean", "-fdq"]]
+    assert r.calls[0][-1] == "content/"
+
+
+def test_current_branch():
+    assert GitOps(FakeRunner({("git", "rev-parse"): Result(0, "bot/2026-10-24-noon\n")})).current_branch() == "bot/2026-10-24-noon"
 
 
 def test_bot_login_defaults_from_env(monkeypatch):

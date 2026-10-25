@@ -121,18 +121,18 @@ def test_committed_content_validates():
     "text",
     [
         "As u/someone argued, the universe began.",
-        "As /u/spezzy argued, the universe began.",
-        "See /user/spezzy for the thread.",
-        "See https://www.reddit.com/u/spezzy for the thread.",
-        "See reddit.com/user/spezzy for the thread.",
-        "As U/spezzy argued, the universe began.",
-        "As /U/spezzy argued, the universe began.",
-        "See Reddit.com/User/spezzy for the thread.",
+        "As /u/examplehandle argued, the universe began.",
+        "See /user/examplehandle for the thread.",
+        "See https://www.reddit.com/u/examplehandle for the thread.",
+        "See reddit.com/user/examplehandle for the thread.",
+        "As U/examplehandle argued, the universe began.",
+        "As /U/examplehandle argued, the universe began.",
+        "See Reddit.com/User/examplehandle for the thread.",
     ],
 )
 def test_find_usernames_catches_every_handle_form(text):
     assert content.find_usernames(text), text
-    assert "spezzy" not in content.scrub_usernames(text) and "someone" not in content.scrub_usernames(text)
+    assert "examplehandle" not in content.scrub_usernames(text) and "someone" not in content.scrub_usernames(text)
 
 
 def test_find_usernames_ignores_lookalikes():
@@ -143,27 +143,27 @@ def test_usernames_rejected_in_every_text_field():
     base = dict(id="q01", n=1, title="Did the universe begin?", confidence=90, short="Open.", verdict="Open question.")
     for fld in ("title", "short", "verdict", "reply", "body"):
         with pytest.raises(ValidationError):
-            Question(**{**base, fld: "Thanks /u/spezzy for the question"})
+            Question(**{**base, fld: "Thanks /u/examplehandle for the question"})
     with pytest.raises(ValidationError):
-        claim(sources=["Hume (1748)", "u/spezzy's comment"])
+        claim(sources=["Hume (1748)", "u/examplehandle's comment"])
     with pytest.raises(ValidationError):
-        claim(body="Notes from reddit.com/user/spezzy")
+        claim(body="Notes from reddit.com/user/examplehandle")
     with pytest.raises(ValidationError):
-        claim(history=[HistoryEntry(date="2026-10-24", version=1, note="per u/spezzy")], version=1)
+        claim(history=[HistoryEntry(date="2026-10-24", version=1, note="per u/examplehandle")], version=1)
     good = dict(slug="bayesian-priors-wash", text="Bayesian priors make the resurrection a wash.", first_seen="2026-10-24", sightings_count=2)
     with pytest.raises(ValidationError):
-        Draft(**good, body="raised by /u/spezzy")
+        Draft(**good, body="raised by /u/examplehandle")
 
 
 def test_site_data_rejects_usernames_and_validate_tree_reads_site_json(tmp_path):
     from referee.content import HistoryFact, LegendRow, ScoreboardRow, SiteData
 
     with pytest.raises(ValidationError):
-        ScoreboardRow(argument="Fine-tuning", as_posted=5, best_version=7, weakest_point="Whether the constants could differ", summary="u/spezzy's strongest")
+        ScoreboardRow(argument="Fine-tuning", as_posted=5, best_version=7, weakest_point="Whether the constants could differ", summary="u/examplehandle's strongest")
     with pytest.raises(ValidationError):
-        LegendRow(verdict=Verdict.TRUE, meaning="Supported, as /u/spezzy said.")
+        LegendRow(verdict=Verdict.TRUE, meaning="Supported, as /u/examplehandle said.")
     with pytest.raises(ValidationError):
-        HistoryFact(fact="Jesus existed", pct=99, basis="See reddit.com/user/spezzy")
+        HistoryFact(fact="Jesus existed", pct=99, basis="See reddit.com/user/examplehandle")
     good = SiteData(scoreboard=[ScoreboardRow(argument="Fine-tuning", as_posted=5, best_version=7, weakest_point="Whether the constants could differ", summary="Strongest")], legend=[LegendRow(verdict=Verdict.TRUE, meaning="Supported.")])
     content.save_question(tmp_path, Question(id="q01", n=1, title="Did the universe begin?", confidence=90, short="Open.", verdict="Open question."))
     (tmp_path / "content" / "site.json").write_text(good.model_dump_json(), encoding="utf-8")

@@ -107,7 +107,13 @@ def test_info_batches_by_100_and_marks_removed():
     gets = [call for call in c.session.calls if "/api/info" in call[1]]
     assert len(gets) == 2
     assert len(gets[0][2]["params"]["id"].split(",")) == 100
-    assert present["t1_x0"] is True and present["t1_x1"] is False and present["t1_x149"] is False
+    assert present["t1_x0"] is True and present["t1_x1"] is False
+    assert "t1_x149" not in present  # not answered: left out, never reported as deleted
+
+
+def test_info_empty_answer_reports_nothing_as_deleted():
+    c, _ = client([FakeResponse(200, {"data": {"children": []}})])
+    assert c.info(["t1_a", "t1_b"]) == {}
 
 
 def test_expired_token_refreshes_once_on_401():

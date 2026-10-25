@@ -87,17 +87,22 @@ class GitOps:
 
     def open_bot_prs(self) -> list[tuple[int, str]]:
         # Only the bot's own PRs count; a fork PR on a bot/ branch must not stall the daily run.
-        r = self._gh("pr", "list", "--state", "open", "--search", "head:bot/", "--json", "number,headRefName,author", "--limit", "50")
+        r = self._gh("pr", "list", "--state", "open", "--search", "head:bot/", "--json", "number,headRefName,author,isCrossRepository", "--limit", "50")
         try:
             rows = json.loads(r.stdout or "[]")
         except ValueError as e:
             raise GhUnavailable("gh pr list returned non-JSON") from e
+        # gh reports an App author as {"is_bot": true, "login": "app/<slug>"}; the REST/webhook form is "<slug>[bot]".
+        slug = self.bot_login[:-5] if self.bot_login.endswith("[bot]") else self.bot_login
+        accepted_logins = {self.bot_login, f"app/{slug}", slug}
         out = []
         for x in rows:
-            author = (x.get("author") or {}).get("login", "")
-            if author != self.bot_login:
-                continue
+            author = x.get("author") or {}
+            if x.get("isCrossRepository"):
+                continue  # a fork's bot/ branch must not stall the run
             if not str(x.get("headRefName", "")).startswith("bot/"):
+                continue
+            if not (author.get("is_bot") or author.get("login", "") in accepted_logins):
                 continue
             out.append((int(x["number"]), x["headRefName"]))
         return out
@@ -125,9 +130,18 @@ class GitOps:
         return url
 
     def discard_content(self) -> None:
-        """Throw away uncommitted changes under content/ (used when a run fails after the write step)."""
+        """Throw away uncommitted changes under content/ (used when a run fails after the write step).
+
+        commit_all stages everything first, so unstage before checking out: `git checkout --`
+        restores from the index, not from HEAD, and would keep the staged files.
+        """
+        self._git("reset", "-q", "--", "content/")
         self._git("checkout", "--", "content/")
         self._git("clean", "-fdq", "content/")
+
+    def current_branch(self) -> str:
+        r = self._git("rev-parse", "--abbrev-ref", "HEAD")
+        return (r.stdout or "").strip()
 
     def has_unpushed_commits(self) -> bool:
         r = self._git("rev-list", "--count", "origin/main..HEAD")
