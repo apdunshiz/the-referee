@@ -5,15 +5,16 @@
 
 The workflow runs ``prepare``, then mints a fresh GitHub App token, then runs
 ``publish`` (also after a failed prepare) so a failed run still publishes its
-status.json and the Today banner can show the error. The bot branch is created
-before any step can fail, so a failure never commits on main. Nothing under
-content/ is written before mapping completes; a failure at write or validate
-discards the content changes, restores status.json from the pre-write snapshot,
-and commits the failure record only. The watermark and last_success only move
-when validate passed.
+status.json and the Today banner can show the error. The bot branch
+(``bot/<date>-<slot>``, one per slot) is created before any step can fail, so a
+failure never commits on main. Nothing under content/ is written before mapping
+completes; a failure at write, validate or commit discards the content changes,
+restores status.json from the pre-write snapshot, and commits the failure record
+only. The watermark and last_success only move when validate and commit passed.
 
-Noon policy (``--slot noon``): a full run when the morning run failed, carried
-units only when it was degraded, and a no-op when it succeeded.
+Noon policy (``--slot noon``): a full run when the morning run failed or was
+skipped, carried units only when it was degraded, and a no-op when it succeeded
+or was paused.
 
 Log lines are JSON on stdout with run_id, step, fullname, outcome and ms. Quotes,
 unit text, headers and tokens are never logged.
@@ -117,10 +118,15 @@ class Context:
 # --------------------------------------------------------------------------- steps
 
 
+def bot_branch(date: str, slot: str) -> str:
+    """One branch per slot: the noon run must not collide with a morning PR that is still open."""
+    return f"bot/{date}-{slot}"
+
+
 def step_branch(ctx: Context) -> None:
-    """Create bot/<date> from origin/main before anything can fail, so a failure never commits on main."""
+    """Create bot/<date>-<slot> from origin/main before anything can fail, so a failure never commits on main."""
     ctx.date = ctx.now().strftime("%Y-%m-%d")
-    ctx.branch = f"bot/{ctx.date}"
+    ctx.branch = bot_branch(ctx.date, ctx.slot)
     if not ctx.dry_run:
         ctx.gitops.branch_from_main(ctx.branch)
         ctx.branch_ready = True
@@ -147,13 +153,15 @@ def step_preflight(ctx: Context) -> None:
         last = ctx.status.runs[-1] if ctx.status.runs else None
         if last is None or last.started_at[:10] != ctx.date:
             ctx.log("preflight", "no-morning-run", reason="no run recorded today; full run")
-        elif last.outcome in ("success", "noop", "skipped", "paused"):
+        elif last.outcome in ("success", "noop", "paused"):
             ctx.log("preflight", "noop", reason=f"morning run {last.outcome}")
             _end_early(ctx, "noop", f"Referee: {ctx.date} noon no-op")
             return
         elif last.outcome == "degraded":
             ctx.mode = "carried-only"
-        # failed -> full run
+        else:
+            # failed, or skipped because a bot PR was still open: the noon slot is the retry.
+            ctx.log("preflight", "full-run", reason=f"morning run {last.outcome}")
     ctx.gitops.preflight_auth()
     open_prs = ctx.gitops.open_bot_prs()
     if open_prs and not ctx.dry_run:
@@ -269,9 +277,17 @@ def step_recheck(ctx: Context) -> None:
     try:
         present = ctx.reddit.info([s.fullname for s in recent])
     except (RedditRateLimited, RedditUnavailable) as e:
+        ctx.record.recheck_skipped = 1
         ctx.log("recheck", "skipped", error=type(e).__name__)
         return
-    ctx.to_drop = [s.fullname for s in recent if not present.get(s.fullname, False)]
+    to_drop = [s.fullname for s in recent if not present.get(s.fullname, False)]
+    # A short or empty /api/info answer must not read as "everything was deleted".
+    too_many = len(recent) >= config.RECHECK_RATIO_MIN_SAMPLE and len(to_drop) > config.RECHECK_MAX_DROP_RATIO * len(recent)
+    if len(present) < len(recent) or too_many:
+        ctx.record.recheck_skipped = 1
+        ctx.log("recheck", "skipped", reason="implausible answer", answered=len(present), asked=len(recent), would_drop=len(to_drop))
+        return
+    ctx.to_drop = to_drop
     ctx.record.recheck_dropped = len(ctx.to_drop)
     ctx.log("recheck", "ok", checked=len(recent), dropped=len(ctx.to_drop))
 
@@ -291,7 +307,7 @@ def step_write(ctx: Context) -> None:
         if slug in existing:
             d = _add_sightings(existing[slug], links)
         else:
-            d = Draft(slug=slug, text=cand.text, first_seen=today, sightings_count=len(links), links=links[:20])
+            d = Draft(slug=slug, text=cand.text, first_seen=today, sightings_count=len(links), links=links)
         content.save_draft(ctx.root, d)
     for slug, units in ctx.to_existing.items():
         d = existing.get(slug)
@@ -347,7 +363,8 @@ def _add_sightings(d: Draft, permalinks: list) -> Draft:
     new_links = [p for p in _dedupe(permalinks) if p not in d.links]
     if not new_links:
         return d
-    return d.model_copy(update={"sightings_count": d.sightings_count + len(new_links), "links": (d.links + new_links)[:20]})
+    # Every counted link is kept (the model allows many); what a page shows is the template's business.
+    return d.model_copy(update={"sightings_count": d.sightings_count + len(new_links), "links": d.links + new_links})
 
 
 def _dedupe(items: list) -> list:
@@ -363,7 +380,9 @@ def _dedupe(items: list) -> list:
 def _finish_status(ctx: Context) -> None:
     ctx.record.finished_at = _iso(ctx.now())
     ctx.record.duration_ms = int((_parse_iso(ctx.record.finished_at) - _parse_iso(ctx.record.started_at)).total_seconds() * 1000)
-    ctx.status.runs = (ctx.status.runs + [ctx.record])[-config.RUNS_KEPT :]
+    # One record per run: a failure after write replaces the record the write step added.
+    others = [r for r in ctx.status.runs if r.run_id != ctx.record.run_id]
+    ctx.status.runs = (others + [ctx.record])[-config.RUNS_KEPT :]
     content.save_status(ctx.root, ctx.status)
 
 
@@ -385,7 +404,7 @@ def prepare(ctx: Context) -> int:
         ctx.log(step_name, "failed", error=type(e).__name__)
         if not ctx.dry_run:
             try:
-                if step_name in ("write", "validate"):
+                if step_name in ("write", "validate", "commit"):
                     ctx.gitops.discard_content()
                     if ctx.status_snapshot is not None:
                         ctx.status = ctx.status_snapshot  # watermark, carried and last_success as before the write
@@ -403,7 +422,7 @@ def prepare(ctx: Context) -> int:
 
 def publish(root: Path, gitops: Any, date: str, log_out: Callable[[str], None] = print, slot: str = "morning") -> int:
     status = content.load_status(root)
-    branch = f"bot/{date}"
+    branch = bot_branch(date, slot)
     if not gitops.has_unpushed_commits():
         log_out(json.dumps({"step": "publish", "outcome": "nothing-to-publish", "branch": branch, "slot": slot}))
         return 0
@@ -446,7 +465,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     p.add_argument("--only", help="process one fullname only")
     q = sub.add_parser("publish")
     q.add_argument("--root", default=".")
-    q.add_argument("--slot", choices=("morning", "noon"), default="morning", help="which scheduled slot this is (log line only)")
+    q.add_argument("--slot", choices=("morning", "noon"), default="morning", help="which scheduled slot this is; selects the bot/<date>-<slot> branch")
     q.add_argument("--date", default=_utcnow().strftime("%Y-%m-%d"))
     args = ap.parse_args(argv)
     if args.cmd == "prepare":

@@ -14,7 +14,7 @@ One Python toolchain (decision D32). The bot writes `content/` through a pull re
   └ .github/workflows/  ingest.yml  ci.yml  pages.yml  stale.yml
 
   cron 10:00 + 16:00 UTC ─► ingest.yml ─► python -m referee.run prepare ─► Reddit API (OAuth) + Claude API
-                                       ─► mint App token ─► python -m referee.run publish ─► PR (bot/<date>)
+                                       ─► mint App token ─► python -m referee.run publish ─► PR (bot/<date>-<slot>)
                                        ─► ci.yml (pytest, validate, schema check, render, lock check) ─► auto-merge
   on: push main ─► pages.yml ─► python site/render.py ─► upload-pages-artifact ─► deploy-pages ─► smoke test
   every 12 h    ─► stale.yml reads status.json.last_success; issue + banner after 36 h
@@ -26,7 +26,7 @@ One Python toolchain (decision D32). The bot writes `content/` through a pull re
   prepare:  preflight ─► fetch (7-day window, full comment trees, morechildren)
             ─► map (structured output over the closed claim-id enum; quote verified then discarded)
             ─► dedupe (second pass over this run's drafts) ─► recheck (last 30 days via /api/info)
-            ─► write sightings/drafts/status.json ─► validate ─► commit on bot/<date>
+            ─► write sightings/drafts/status.json ─► validate ─► commit on bot/<date>-<slot>
   publish:  push ─► gh pr create ─► gh pr merge --auto --squash
   The bot branch is created first, so a failure never commits on main. Nothing is written before
   mapping completes; a failure at write or validate discards the content changes, restores

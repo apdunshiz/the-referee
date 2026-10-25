@@ -28,7 +28,7 @@
       "items": {
         "type": "string"
       },
-      "maxItems": 20,
+      "maxItems": 1000,
       "title": "Links",
       "type": "array"
     },

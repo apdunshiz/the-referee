@@ -218,3 +218,11 @@ def test_static_copy_publishes_only_css_and_fonts(tmp_path):
     names = {p.name for p in (out / "static").rglob("*") if p.is_file()}
     assert "curl.cfg" not in names and "gf.css" not in names
     assert "tokens.css" in names and "local.css" in names and any(n.endswith(".woff2") for n in names)
+
+
+def test_today_last_run_skips_noon_noops(tmp_path):
+    fixture_tree(tmp_path, Status(last_success="2026-10-25T10:06:00Z", runs=[run(), run(run_id="n1", started_at="2026-10-25T16:00:00Z", outcome="noop", fetched=0, units=0, matched=0, drafted=0)]))
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "today/index.html")
+    assert "Last run 2026-10-25 10:00 UTC: success" in html and "noop" not in html

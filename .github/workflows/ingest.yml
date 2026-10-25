@@ -67,7 +67,8 @@ jobs:
           esac
           FLAGS=""
           [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$DRY_RUN" = "true" ] && FLAGS="$FLAGS --dry-run"
-          # Inputs are validated by argparse (ISO timestamp, fullname); they never reach the shell unquoted.
+          # Inputs reach the shell only through env and %q quoting. run.py parses --since as an ISO
+          # timestamp and treats --only as a fullname; a bad value fails the run, it cannot run commands.
           [ -n "$SINCE" ] && FLAGS="$FLAGS --since $(printf '%q' "$SINCE")"
           [ -n "$ONLY" ] && FLAGS="$FLAGS --only $(printf '%q' "$ONLY")"
           echo "flags=$FLAGS" >> "$GITHUB_OUTPUT"

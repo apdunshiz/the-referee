@@ -30,11 +30,15 @@ def git(cwd, *args):
     subprocess.run(["git", *args], cwd=cwd, check=True, capture_output=True, text=True)
 
 
-def run_check(cwd, base, actor, env_extra=None):
+def run_check(cwd, base, actor, env_extra=None, head_ref=None):
     import os
 
     env = {**os.environ, **(env_extra or {})}
-    p = subprocess.run([sys.executable, str(SCRIPT), "--base", base, "--actor", actor], cwd=cwd, capture_output=True, text=True, env=env)
+    env.pop("HEAD_REF", None)
+    args = [sys.executable, str(SCRIPT), "--base", base, "--actor", actor]
+    if head_ref is not None:
+        args += ["--head-ref", head_ref]
+    p = subprocess.run(args, cwd=cwd, capture_output=True, text=True, env=env)
     return p.returncode, p.stdout + p.stderr
 
 
@@ -106,3 +110,24 @@ def test_rename_into_new_is_seen_as_locked_change(repo):
     commit_all(cwd, "sneaky rename")
     rc, out = run_check(cwd, base, "the-referee[bot]")
     assert rc == 1 and "content/claims/q01-c01.md" in out
+
+
+def test_bot_branch_from_another_login_fails_closed(repo):
+    cwd, base = repo
+    (cwd / "content" / "sightings" / "t1_abc.json").write_text("{}", encoding="utf-8")
+    commit_all(cwd, "sighting")
+    # The App's real login differs from BOT_LOGIN: the PR must not get the human path.
+    rc, out = run_check(cwd, base, "the-referee-app[bot]", head_ref="bot/2026-10-24-morning")
+    assert rc == 1 and "is a bot branch but the PR author is" in out
+    rc, out = run_check(cwd, base, "the-referee-app[bot]", {"BOT_LOGIN": "the-referee-app[bot]"}, head_ref="bot/2026-10-24-morning")
+    assert rc == 0 and "actor=bot" in out
+
+
+def test_bot_login_on_a_non_bot_branch_fails(repo):
+    cwd, base = repo
+    (cwd / "content" / "sightings" / "t1_abc.json").write_text("{}", encoding="utf-8")
+    commit_all(cwd, "sighting")
+    rc, out = run_check(cwd, base, "the-referee[bot]", head_ref="feature/x")
+    assert rc == 1 and "is not a bot/ branch" in out
+    rc, out = run_check(cwd, base, "apdunshiz", head_ref="feature/x")
+    assert rc == 0

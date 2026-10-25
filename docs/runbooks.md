@@ -11,7 +11,7 @@ Cause: the script app's password grant failed. Reddit script apps cannot log in 
 
 ## 2. "Bot PR stuck" / PrExists
 
-Cause: yesterday's `bot/<date>` PR did not merge (a CI check failed or the ruleset blocked it).
+Cause: an earlier `bot/<date>-<slot>` PR did not merge (a CI check failed or the ruleset blocked it).
 1. Open the PR; read the failing check. A schema or lock failure means the bot produced a file the models reject: fix `referee/` and re-run, or close the PR.
 2. If every check is green and it still did not merge, the App is missing from a ruleset's bypass list or "Allow auto-merge" is off in repository settings.
 3. Close or merge the PR, then run `ingest` by hand.

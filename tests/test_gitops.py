@@ -27,10 +27,23 @@ def test_auth_status_errors_are_classified():
         g2.preflight_auth()
 
 
-def test_open_bot_prs_filters_by_branch_prefix():
-    g = GitOps(FakeRunner({("gh", "pr", "list"): Result(0, '[{"number": 7, "headRefName": "bot/2026-10-24"}, {"number": 8, "headRefName": "fix-typo"}]')}))
-    assert g.open_bot_prs() == [(7, "bot/2026-10-24")]
-    assert "--author" in g.run.calls[0] and "@me" in g.run.calls[0]  # a fork's bot/ branch must not stall the run
+def test_open_bot_prs_filters_by_author_login_and_branch_prefix():
+    rows = (
+        '[{"number": 7, "headRefName": "bot/2026-10-24-morning", "author": {"login": "the-referee[bot]"}},'
+        ' {"number": 8, "headRefName": "fix-typo", "author": {"login": "the-referee[bot]"}},'
+        ' {"number": 9, "headRefName": "bot/2026-10-24-morning", "author": {"login": "someone-else"}}]'
+    )
+    g = GitOps(FakeRunner({("gh", "pr", "list"): Result(0, rows)}), bot_login="the-referee[bot]")
+    assert g.open_bot_prs() == [(7, "bot/2026-10-24-morning")]  # a fork's bot/ branch must not stall the run
+    call = g.run.calls[0]
+    assert "--search" in call and "head:bot/" in call and "@me" not in call and "author" in call[call.index("--json") + 1]
+
+
+def test_bot_login_defaults_from_env(monkeypatch):
+    monkeypatch.setenv("BOT_LOGIN", "custom-app[bot]")
+    assert GitOps(FakeRunner()).bot_login == "custom-app[bot]"
+    monkeypatch.delenv("BOT_LOGIN")
+    assert GitOps(FakeRunner()).bot_login == "the-referee[bot]"
 
 
 def test_publish_order_push_then_create_then_automerge():

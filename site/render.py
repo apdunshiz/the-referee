@@ -51,7 +51,9 @@ def parse_ts(s: Optional[str]) -> Optional[datetime]:
 
 def build_today(status: content.Status, sightings: list[content.Sighting], claims_by_id: dict, now: datetime) -> dict:
     """Decide which Today state applies. One state wins; banners stack on top."""
-    last_run = status.runs[-1] if status.runs else None
+    # "Last run" means the last run that did work; noon no-ops, skips and pauses are not news.
+    real_runs = [r for r in status.runs if r.outcome not in ("noop", "skipped", "paused")]
+    last_run = real_runs[-1] if real_runs else (status.runs[-1] if status.runs else None)
     last_success = parse_ts(status.last_success)
     stale = last_success is not None and now - last_success > STALE_AFTER
     no_runs = last_run is None and last_success is None

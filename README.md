@@ -46,7 +46,7 @@ Environment (repository secrets in Actions; never printed): `REDDIT_CLIENT_ID`, 
 
 ```
 .venv/bin/python -m referee.run prepare --slot morning --dry-run   # fetch + map, write nothing, print the plan
-.venv/bin/python -m referee.run prepare --slot morning             # ... and commit on bot/<date>
+.venv/bin/python -m referee.run prepare --slot morning             # ... and commit on bot/<date>-morning
 .venv/bin/python -m referee.run publish                            # push, open the PR, enable auto-merge
 .venv/bin/python -m referee.run prepare --slot noon                # full run after a failed morning, carried-only after a degraded one, no-op otherwise
 .venv/bin/python -m referee.mapper eval evals/fixture.jsonl        # claim-level precision/recall per threshold (see evals/README.md)

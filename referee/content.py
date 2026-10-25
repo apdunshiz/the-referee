@@ -41,7 +41,7 @@ QUESTION_ID_RE = re.compile(r"^q\d{2}$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 # Reddit handles in any of the forms u/name, /u/name, /user/name, reddit.com/u/name,
 # reddit.com/user/name. The lookbehind stops "menu/x" from matching; a leading "/" is allowed.
-USERNAME_RE = re.compile(r"(?<![A-Za-z0-9_])(?:(?:https?://)?(?:www\.)?reddit\.com)?/?u(?:ser)?/[A-Za-z0-9_-]{3,}")
+USERNAME_RE = re.compile(r"(?<![A-Za-z0-9_])(?:(?:https?://)?(?:www\.)?reddit\.com)?/?u(?:ser)?/[A-Za-z0-9_-]{3,}", re.IGNORECASE)
 
 
 def find_usernames(text: str) -> list[str]:
@@ -165,7 +165,8 @@ class Draft(Strict):
     status: str = Field(default="new-unrated", pattern=r"^new-unrated$")
     first_seen: str = Field(pattern=r"^\d{4}-\d{2}-\d{2}$")
     sightings_count: int = Field(ge=1)
-    links: list[str] = Field(default_factory=list, max_length=20)
+    # Every permalink ever counted, so a re-processed comment is never counted twice; pages show only a few.
+    links: list[str] = Field(default_factory=list, max_length=1000)
     body: str = ""
 
     @field_validator("links")
@@ -207,6 +208,7 @@ class RunRecord(Strict):
     draft_rejected: int = 0
     carried: int = 0
     recheck_dropped: int = 0
+    recheck_skipped: int = 0
     duration_ms: int = 0
     tokens_in: int = 0
     tokens_out: int = 0
@@ -398,6 +400,11 @@ def validate_tree(root: Path) -> list[str]:
             load_status(root)
         except Exception as e:  # noqa: BLE001
             problems.append(f"status.json: {e}")
+    if (root / CONTENT_DIR_NAME / "site.json").exists():
+        try:
+            load_site_data(root)
+        except Exception as e:  # noqa: BLE001
+            problems.append(f"content/site.json: {e}")
     return problems
 
 
@@ -514,16 +521,31 @@ class ScoreboardRow(Strict):
     weakest_point: str = Field(min_length=3, max_length=400)
     summary: str = Field(min_length=3, max_length=80)
 
+    @field_validator("argument", "weakest_point", "summary")
+    @classmethod
+    def _row_no_usernames(cls, v):
+        return _no_usernames(v)
+
 
 class LegendRow(Strict):
     verdict: Verdict
     meaning: str = Field(min_length=3, max_length=300)
+
+    @field_validator("meaning")
+    @classmethod
+    def _legend_no_usernames(cls, v):
+        return _no_usernames(v)
 
 
 class HistoryFact(Strict):
     fact: str = Field(min_length=3, max_length=200)
     pct: int = Field(ge=0, le=100)
     basis: str = Field(min_length=3, max_length=400)
+
+    @field_validator("fact", "basis")
+    @classmethod
+    def _fact_no_usernames(cls, v):
+        return _no_usernames(v)
 
 
 class SiteData(Strict):

@@ -125,6 +125,9 @@ def test_committed_content_validates():
         "See /user/spezzy for the thread.",
         "See https://www.reddit.com/u/spezzy for the thread.",
         "See reddit.com/user/spezzy for the thread.",
+        "As U/spezzy argued, the universe began.",
+        "As /U/spezzy argued, the universe began.",
+        "See Reddit.com/User/spezzy for the thread.",
     ],
 )
 def test_find_usernames_catches_every_handle_form(text):
@@ -150,3 +153,20 @@ def test_usernames_rejected_in_every_text_field():
     good = dict(slug="bayesian-priors-wash", text="Bayesian priors make the resurrection a wash.", first_seen="2026-10-24", sightings_count=2)
     with pytest.raises(ValidationError):
         Draft(**good, body="raised by /u/spezzy")
+
+
+def test_site_data_rejects_usernames_and_validate_tree_reads_site_json(tmp_path):
+    from referee.content import HistoryFact, LegendRow, ScoreboardRow, SiteData
+
+    with pytest.raises(ValidationError):
+        ScoreboardRow(argument="Fine-tuning", as_posted=5, best_version=7, weakest_point="Whether the constants could differ", summary="u/spezzy's strongest")
+    with pytest.raises(ValidationError):
+        LegendRow(verdict=Verdict.TRUE, meaning="Supported, as /u/spezzy said.")
+    with pytest.raises(ValidationError):
+        HistoryFact(fact="Jesus existed", pct=99, basis="See reddit.com/user/spezzy")
+    good = SiteData(scoreboard=[ScoreboardRow(argument="Fine-tuning", as_posted=5, best_version=7, weakest_point="Whether the constants could differ", summary="Strongest")], legend=[LegendRow(verdict=Verdict.TRUE, meaning="Supported.")])
+    content.save_question(tmp_path, Question(id="q01", n=1, title="Did the universe begin?", confidence=90, short="Open.", verdict="Open question."))
+    (tmp_path / "content" / "site.json").write_text(good.model_dump_json(), encoding="utf-8")
+    assert content.validate_tree(tmp_path) == []
+    (tmp_path / "content" / "site.json").write_text('{"scoreboard": [], "legend": []}', encoding="utf-8")
+    assert any("site.json" in p for p in content.validate_tree(tmp_path))

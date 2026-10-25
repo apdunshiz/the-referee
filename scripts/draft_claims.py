@@ -54,15 +54,15 @@ def plain(s: str | None) -> str:
 
 def scrub_usernames(text: str) -> str:
     """Decision D15: no usernames in content. Replace mentions with a neutral phrase."""
-    text = re.sub(r"\(u/[A-Za-z0-9_-]{2,} went on to", "(One commenter went on to", text)
-    text = re.sub(r"(?<![A-Za-z0-9_])/?u/[A-Za-z0-9_-]{2,}'s\b", "another commenter's", text)
+    text = re.sub(r"\(u/[A-Za-z0-9_-]{2,} went on to", "(One commenter went on to", text, flags=re.IGNORECASE)
+    text = re.sub(r"(?<![A-Za-z0-9_])/?u/[A-Za-z0-9_-]{2,}'s\b", "another commenter's", text, flags=re.IGNORECASE)
     text = _scrub(text)
     text = re.sub(r"(^|[.!?]\s+|\(\s*)another commenter", lambda m: m.group(1) + "Another commenter", text)
     return text
 
 
 # Lookbehind keeps URL paths like "nd.edu/news" out: a handle mention starts at a word boundary.
-HANDLE_IN_BUILD_RE = re.compile(r"(?<![A-Za-z0-9_])u/([A-Za-z0-9_-]{3,})")
+HANDLE_IN_BUILD_RE = re.compile(r"(?<![A-Za-z0-9_])u/([A-Za-z0-9_-]{3,})", re.IGNORECASE)
 
 
 def handles_from_build(build_src: str) -> set[str]:
@@ -77,7 +77,7 @@ def scan_content_for_handles(root: Path, handles: set[str]) -> dict[str, list[st
         if not p.is_file():
             continue
         text = p.read_text(encoding="utf-8")
-        found = [h for h in sorted(handles) if re.search(r"(?<![A-Za-z0-9_])" + re.escape(h) + r"(?![A-Za-z0-9_])", text)]
+        found = [h for h in sorted(handles) if re.search(r"(?<![A-Za-z0-9_])" + re.escape(h) + r"(?![A-Za-z0-9_])", text, re.IGNORECASE)]
         found += find_usernames(text)
         if found:
             hits[str(p.relative_to(root))] = found

@@ -128,7 +128,7 @@ def test_happy_run_writes_after_mapping_and_commits(content_root):
     st = content.load_status(content_root)
     assert st.runs[-1].outcome == "success" and st.runs[-1].matched == 3 and st.runs[-1].model_refused == 1 and st.runs[-1].drafted == 1
     assert st.watermark == "2026-10-24T09:59:10Z" and st.errors == [] and st.degraded is False
-    assert c.gitops.calls[:2] == [("branch", "bot/2026-10-24"), "auth"] and c.gitops.calls[-1][0] == "commit"
+    assert c.gitops.calls[:2] == [("branch", "bot/2026-10-24-morning"), "auth"] and c.gitops.calls[-1][0] == "commit"
     assert content.validate_tree(content_root) == []
     # log lines never carry text
     for line in c._logs:
@@ -171,7 +171,7 @@ def test_paused_writes_status_and_exits_zero(content_root):
     assert prepare(c) == 0
     st = content.load_status(content_root)
     assert st.paused is True and st.runs[-1].outcome == "paused"
-    assert "window" not in c.reddit.calls and ("branch", "bot/2026-10-24") in c.gitops.calls
+    assert "window" not in c.reddit.calls and ("branch", "bot/2026-10-24-morning") in c.gitops.calls
 
 
 def test_open_bot_pr_skips_run(content_root):
@@ -191,7 +191,7 @@ def test_noon_after_success_is_noop(content_root):
     assert prepare(c) == 0
     assert c.reddit.calls == []
     # the no-op is recorded (and committed) so About and the next noon check can see it
-    assert c.gitops.calls == [("branch", "bot/2026-10-24"), ("commit", "Referee: 2026-10-24 noon no-op")]
+    assert c.gitops.calls == [("branch", "bot/2026-10-24-noon"), ("commit", "Referee: 2026-10-24 noon no-op")]
     assert content.load_status(content_root).runs[-1].outcome == "noop"
 
 
@@ -222,7 +222,7 @@ def test_preflight_failure_commits_on_bot_branch_never_main(content_root):
     with pytest.raises(RedditAuthError):
         prepare(c)
     calls = c.gitops.calls
-    assert calls[0] == ("branch", "bot/2026-10-24"), "the bot branch must exist before anything can fail"
+    assert calls[0] == ("branch", "bot/2026-10-24-morning"), "the bot branch must exist before anything can fail"
     assert ("commit", "Referee: 2026-10-24 morning failed at preflight") in calls
     st = content.load_status(content_root)
     assert st.runs[-1].outcome == "failed" and st.errors == ["RedditAuthError@preflight"]
@@ -372,10 +372,111 @@ def test_publish_opens_pr_with_summary(content_root):
     content.save_status(content_root, Status(runs=[RunRecord(run_id="r", started_at="2026-10-24T10:00:00Z", outcome="success", matched=3, drafted=1)]))
     g = FakeGitOps()
     assert publish(content_root, g, "2026-10-24", log_out=lambda s: None) == 0
-    assert g.calls == [("publish", "bot/2026-10-24", "Referee: 2026-10-24 (success)")]
+    assert g.calls == [("publish", "bot/2026-10-24-morning", "Referee: 2026-10-24 (success)")]
 
 
 def test_slugify_is_stable_and_short():
     s = slugify("Bayesian priors make the resurrection a wash, whatever the evidence says about it.")
     assert s.startswith("bayesian-priors-make-the-resurrection-a-wash-whatever-") and len(s) <= 67
     assert slugify("!!!") .startswith("argument-")
+
+
+def test_each_slot_has_its_own_branch_and_publish_matches(content_root):
+    seed_status(content_root, "failed")
+    c = ctx(content_root, slot="noon")
+    assert prepare(c) == 0
+    assert c.gitops.calls[0] == ("branch", "bot/2026-10-24-noon")
+    g = FakeGitOps()
+    assert publish(content_root, g, "2026-10-24", log_out=lambda s: None, slot="noon") == 0
+    assert g.calls[0][1] == "bot/2026-10-24-noon"
+
+
+def test_commit_failure_restores_status_and_records_once(content_root):
+    content.save_status(content_root, Status(watermark="2026-10-20T00:00:00Z", last_success="2026-10-20T06:00:00Z"))
+
+    class FlakyGit(FakeGitOps):
+        def __init__(self):
+            super().__init__()
+            self.failed_once = False
+
+        def commit_all(self, msg):
+            if not self.failed_once and "failed at" not in msg:
+                self.failed_once = True
+                raise RuntimeError("index.lock exists")
+            return super().commit_all(msg)
+
+    c = ctx(content_root, gitops=FlakyGit())
+    with pytest.raises(RuntimeError):
+        prepare(c)
+    st = content.load_status(content_root)
+    assert st.watermark == "2026-10-20T00:00:00Z" and st.last_success == "2026-10-20T06:00:00Z"
+    assert [r.run_id for r in st.runs].count(c.record.run_id) == 1 and st.runs[-1].outcome == "failed"
+    assert st.errors == ["RuntimeError@commit"] and "discard" in c.gitops.calls
+
+
+def test_noon_after_skipped_morning_is_full_run(content_root):
+    seed_status(content_root, "skipped")
+    c = ctx(content_root, slot="noon")
+    assert prepare(c) == 0
+    assert "window" in c.reddit.calls and len(content.load_sightings(content_root)) == 5
+
+
+def test_noon_after_paused_morning_stays_noop(content_root):
+    seed_status(content_root, "paused")
+    c = ctx(content_root, slot="noon")
+    assert prepare(c) == 0
+    assert c.reddit.calls == [] and content.load_status(content_root).runs[-1].outcome == "noop"
+
+
+def test_twenty_first_link_is_still_deduplicated(content_root):
+    links = [f"https://www.reddit.com/r/DebateAChristian/comments/p1/t/x{i}/" for i in range(20)]
+    content.save_draft(content_root, Draft(slug="hell-unjust-abc123", text="Hell is unjust punishment for finite sins.", first_seen="2026-10-20", sightings_count=20, links=links))
+    reddit = FakeReddit(posts=[post(1)], comments=[comment(1)])
+
+    class M(FakeMapper):
+        def dedupe_pass(self, candidates, existing):
+            return [], {"hell-unjust-abc123": [u for cnd in candidates for u in cnd.units]}
+
+    # first pass: the 21st link is counted once
+    c = ctx(content_root, reddit=reddit, mapper=M({"t1_c1": "new", "t3_p1": "new"}))
+    assert prepare(c) == 0
+    [d] = content.load_drafts(content_root)
+    assert d.sightings_count == 22 and len(d.links) == 22
+    # second pass over the same comment: nothing changes
+    content.save_status(content_root, Status())
+    c2 = ctx(content_root, reddit=reddit, mapper=M({"t1_c1": "new", "t3_p1": "new"}))
+    assert prepare(c2) == 0
+    [d2] = content.load_drafts(content_root)
+    assert d2.sightings_count == 22 and len(d2.links) == 22
+
+
+def _recent_sightings(root, n):
+    for i in range(n):
+        content.save_sighting(root, Sighting(fullname=f"t1_r{i}", permalink=f"https://www.reddit.com/r/DebateAChristian/comments/p0/t/r{i}/", claim_id="q01-c01", match_confidence=0.9, matched_at="2026-10-20T10:00:00Z"))
+
+
+def test_recheck_skipped_when_answer_is_short(content_root):
+    _recent_sightings(content_root, 4)
+
+    class Short(FakeReddit):
+        def info(self, fullnames):
+            return {}  # an empty 200 from /api/info
+
+    c = ctx(content_root, reddit=Short(posts=[], comments=[]))
+    assert prepare(c) == 0
+    assert len(content.load_sightings(content_root)) == 4
+    rec = content.load_status(content_root).runs[-1]
+    assert rec.recheck_skipped == 1 and rec.recheck_dropped == 0
+
+
+def test_recheck_skipped_when_too_many_would_drop(content_root):
+    _recent_sightings(content_root, 4)
+    reddit = FakeReddit(posts=[], comments=[], present={"t1_r0": False, "t1_r1": False, "t1_r2": False})
+    c = ctx(content_root, reddit=reddit)
+    assert prepare(c) == 0
+    assert len(content.load_sightings(content_root)) == 4  # 3 of 4 would drop: implausible, kept
+    assert content.load_status(content_root).runs[-1].recheck_skipped == 1
+    reddit2 = FakeReddit(posts=[], comments=[], present={"t1_r0": False})
+    c2 = ctx(content_root, reddit=reddit2)
+    assert prepare(c2) == 0
+    assert len(content.load_sightings(content_root)) == 3  # 1 of 4: a normal deletion

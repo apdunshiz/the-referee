@@ -243,3 +243,31 @@ def test_evaluate_precision_recall(claims):
     res = evaluate(m, rows, [0.5, 0.8])
     assert res[0] == {"threshold": 0.5, "precision": 0.5, "recall": 0.5, "tp": 1, "fp": 1, "fn": 1}
     assert res[1]["precision"] == 1.0 and res[1]["recall"] == 0.5
+
+
+class FakeBadRequest(anthropic.BadRequestError):
+    def __init__(self):  # bypass the SDK constructor; only the type matters
+        Exception.__init__(self, "400")
+        self.status_code = 400
+
+
+def test_dedupe_sdk_error_keeps_both(claims):
+    err = FakeBadRequest()  # not retryable, not a MapperError: it would have escaped dedupe_pass
+    assert _classify(err) is None
+    a = DraftCandidate("First argument text here.", [unit("a", "t1_a")])
+    b = DraftCandidate("Second argument text here.", [unit("b", "t1_b")])
+    m = mapper([err], claims)  # b vs [a] -> an unclassified SDK error (400-class) -> keep both, run continues
+    merged, _ = m.dedupe_pass([a, b], existing=None)
+    assert len(merged) == 2
+
+
+def test_norm_strips_markdown_and_curly_quotes():
+    text = "He wrote: **Prove** it \u2014 or don\u2019t, that\u2019s your call. " + "Padding. " * 10
+    assert quote_in("Prove it \u2014 or don't, that's your call", text)
+    assert quote_in("> Prove it \u2014 or don't, that\u2019s your call", text)
+
+
+def test_prompt_tells_the_model_the_quote_minimum(claims):
+    m = mapper([], claims)
+    assert "20 characters" in m.system[0]["text"] and "four words" in m.system[0]["text"]
+    assert "20 characters" in MapResult.model_fields["quote"].description

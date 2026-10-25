@@ -9,6 +9,7 @@ arrives as GH_TOKEN. This module never mints or logs tokens. The workflow calls
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 from dataclasses import dataclass
 from typing import Callable, Optional, Sequence
@@ -56,10 +57,15 @@ class PrExists(GitOpsError):
         self.branch = branch
 
 
+DEFAULT_BOT_LOGIN = "the-referee[bot]"
+
+
 class GitOps:
-    def __init__(self, run: Runner, author: str = "The Referee bot <referee-bot@users.noreply.github.com>"):
+    def __init__(self, run: Runner, author: str = "The Referee bot <referee-bot@users.noreply.github.com>", bot_login: Optional[str] = None):
         self.run = run
         self.author = author
+        # The App's login as GitHub reports it on PRs it opens; `--author @me` is not reliable under an installation token.
+        self.bot_login = bot_login or os.environ.get("BOT_LOGIN", DEFAULT_BOT_LOGIN)
 
     def _gh(self, *args: str) -> Result:
         r = self.run(["gh", *args])
@@ -81,12 +87,20 @@ class GitOps:
 
     def open_bot_prs(self) -> list[tuple[int, str]]:
         # Only the bot's own PRs count; a fork PR on a bot/ branch must not stall the daily run.
-        r = self._gh("pr", "list", "--state", "open", "--author", "@me", "--json", "number,headRefName", "--limit", "50")
+        r = self._gh("pr", "list", "--state", "open", "--search", "head:bot/", "--json", "number,headRefName,author", "--limit", "50")
         try:
             rows = json.loads(r.stdout or "[]")
         except ValueError as e:
             raise GhUnavailable("gh pr list returned non-JSON") from e
-        return [(int(x["number"]), x["headRefName"]) for x in rows if str(x.get("headRefName", "")).startswith("bot/")]
+        out = []
+        for x in rows:
+            author = (x.get("author") or {}).get("login", "")
+            if author != self.bot_login:
+                continue
+            if not str(x.get("headRefName", "")).startswith("bot/"):
+                continue
+            out.append((int(x["number"]), x["headRefName"]))
+        return out
 
     def comment_pr(self, number: int, body: str) -> None:
         self._gh("pr", "comment", str(number), "--body", body)

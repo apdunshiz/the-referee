@@ -77,6 +77,11 @@
           "title": "Recheck Dropped",
           "type": "integer"
         },
+        "recheck_skipped": {
+          "default": 0,
+          "title": "Recheck Skipped",
+          "type": "integer"
+        },
         "run_id": {
           "title": "Run Id",
           "type": "string"
