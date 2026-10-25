@@ -1,0 +1,45 @@
+name: stale
+
+# Watchdog (decision D24): fails and opens an issue when no run has succeeded in 36 hours,
+# which also catches "the cron never fired" and GitHub disabling schedules on quiet repos.
+
+on:
+  schedule:
+    - cron: "30 4,16 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Age of the last success
+        id: age
+        run: |
+          python - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json, datetime as dt, pathlib
+          st = json.loads(pathlib.Path("status.json").read_text()) if pathlib.Path("status.json").exists() else {}
+          if st.get("paused"):
+              print("stale=false"); print("reason=paused"); raise SystemExit
+          last = st.get("last_success")
+          if not last:
+              print("stale=true"); print("reason=no successful run recorded yet"); raise SystemExit
+          age = dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(last.replace("Z", "+00:00"))
+          hours = age.total_seconds() / 3600
+          print(f"stale={'true' if hours > 36 else 'false'}"); print(f"reason=last success {last}, {hours:.0f} h ago")
+          EOF
+      - name: Open or update the stale issue
+        if: steps.age.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="No successful run since $(python -c "import json;print(json.load(open('status.json')).get('last_success','never'))" 2>/dev/null || echo never)"
+          N=$(gh issue list --search "in:title \"No successful run since\"" --state open --json number --jq '.[0].number // empty')
+          BODY="${{ steps.age.outputs.reason }}. Check the Actions status page, then run the ingest workflow by hand. Runbook 3 in docs/runbooks.md."
+          if [ -n "$N" ]; then gh issue comment "$N" --body "$BODY"; else gh issue create --title "$TITLE" --body "$BODY" --label ingest; fi
+          echo "::error::${{ steps.age.outputs.reason }}"; exit 1

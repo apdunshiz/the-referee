@@ -1,0 +1,122 @@
+name: ingest
+
+on:
+  schedule:
+    - cron: "0 10 * * *"   # about 06:00 ET
+    - cron: "0 16 * * *"   # about 12:00 ET
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Fetch and map, write nothing, print the plan"
+        type: boolean
+        default: true
+      since:
+        description: "Override the watermark (ISO 8601 UTC)"
+        type: string
+        default: ""
+      only:
+        description: "Process one unit (Reddit fullname, e.g. t1_abc123)"
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      INGEST_ENABLED: ${{ vars.INGEST_ENABLED || 'true' }}
+      REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+      REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+      REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
+      REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Slot and flags
+        id: slot
+        run: |
+          case "${{ github.event.schedule }}" in
+            "0 16 * * *") echo "slot=noon" >> "$GITHUB_OUTPUT" ;;
+            *)            echo "slot=morning" >> "$GITHUB_OUTPUT" ;;
+          esac
+          FLAGS=""
+          [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="$FLAGS --dry-run"
+          [ -n "${{ inputs.since }}" ] && FLAGS="$FLAGS --since ${{ inputs.since }}"
+          [ -n "${{ inputs.only }}" ] && FLAGS="$FLAGS --only ${{ inputs.only }}"
+          echo "flags=$FLAGS" >> "$GITHUB_OUTPUT"
+
+      # First mint proves the App is installed and the key is valid before any fetch.
+      - name: Preflight token
+        id: preflight-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-issues: write
+
+      - name: Prepare (preflight, fetch, map, recheck, validate, commit locally)
+        env:
+          GH_TOKEN: ${{ steps.preflight-token.outputs.token }}
+          REFEREE_RUN_ID: ${{ github.run_id }}
+        run: |
+          git config user.name "the-referee[bot]"
+          git config user.email "the-referee[bot]@users.noreply.github.com"
+          python -m referee.run prepare --slot ${{ steps.slot.outputs.slot }} ${{ steps.slot.outputs.flags }}
+
+      # Installation tokens live one hour; mint a fresh one right before the PR step.
+      - name: Publish token
+        id: publish-token
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-issues: write
+
+      - name: Publish (push, open PR, enable auto-merge)
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.dry_run) }}
+        env:
+          GH_TOKEN: ${{ steps.publish-token.outputs.token }}
+        run: python -m referee.run publish --slot ${{ steps.slot.outputs.slot }}
+
+      - name: Upload run artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-${{ github.run_id }}
+          path: |
+            status.json
+            _run/
+          if-no-files-found: ignore
+          retention-days: 90
+
+      - name: Open or update the failure issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ steps.preflight-token.outputs.token || github.token }}
+        run: |
+          TITLE="Ingest failed $(date -u +%Y-%m-%d)"
+          BODY="Run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} failed at the ${{ steps.slot.outputs.slot }} slot. See docs/runbooks.md."
+          N=$(gh issue list --search "in:title \"$TITLE\"" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$N" ]; then gh issue comment "$N" --body "$BODY"; else gh issue create --title "$TITLE" --body "$BODY" --label ingest; fi

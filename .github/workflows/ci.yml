@@ -1,0 +1,49 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Tests
+        run: python -m pytest -q
+
+      - name: Content validates
+        run: python -m referee.content validate
+
+      - name: Exported schema is current
+        run: python -m referee.content export-schema --check
+
+      - name: Site renders
+        if: hashFiles('site/render.py') != ''
+        run: python site/render.py --out /tmp/site
+
+      - name: Lock check
+        if: github.event_name == 'pull_request'
+        env:
+          ACTOR: ${{ github.event.pull_request.user.login }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/lock_check.py --base "$BASE" --actor "$ACTOR"
+
+      - name: Links in drafts and sources resolve
+        if: hashFiles('scripts/check_links.py') != ''
+        run: python scripts/check_links.py

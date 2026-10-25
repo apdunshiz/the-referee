@@ -1,0 +1,6 @@
+# Rulings and questions change only with the maintainer's review (decision D12).
+# The daily bot never writes to these paths; CI's lock check enforces that.
+/content/claims/*.md   @apdunshiz
+/content/questions/    @apdunshiz
+/content/rubric.md     @apdunshiz
+/content/site.json     @apdunshiz
