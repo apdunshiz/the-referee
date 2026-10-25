@@ -1,0 +1,21 @@
+[project]
+name = "the-referee"
+version = "0.1.0"
+description = "Arguments for and against God, graded with one rubric, kept current from r/DebateAChristian."
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.11,<3",
+  "jinja2>=3.1,<4",
+  "python-frontmatter>=1.1,<2",
+  "requests>=2.32,<3",
+  "anthropic>=0.80",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "jsonschema>=4.23"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools]
+packages = ["referee"]
