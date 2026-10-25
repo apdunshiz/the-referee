@@ -1,0 +1,35 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block title %}Q{{ q.n }} {{ q.title }} · The Referee{% endblock %}
+{% block description %}{{ q.short }}{% endblock %}
+{% block content %}
+<p class="crumb"><a href="{{ base }}#questions">All questions</a></p>
+<div class="q-head">
+  <span class="q-num" aria-hidden="true">{{ q.n }}</span>
+  <h1>{{ q.title }}</h1>
+  {{ m.conf(q.confidence) }}
+</div>
+<p class="lede">{{ q.short }}</p>
+{% for p in q.body | paragraphs %}<p class="intro">{{ p }}</p>{% endfor %}
+
+<h2>Claims and rulings</h2>
+<ul class="claims">
+{% for c in claims %}
+  {{ m.claim_row(c, sightings_by_claim.get(c.id, [])) }}
+{% endfor %}
+</ul>
+
+<section class="verdict">
+  <p class="label">The ruling on this question</p>
+  {% for p in q.verdict | paragraphs %}<p>{{ p }}</p>{% endfor %}
+</section>
+{% if q.reply %}
+<section class="reply">
+  <p class="label">A fair reply for a Christian</p>
+  {% for p in q.reply | paragraphs %}<p>{{ p }}</p>{% endfor %}
+</section>
+{% endif %}
+{% if q.thread_url %}
+<p class="small">The claims above were first graded in <a href="{{ q.thread_url }}">this r/DebateAChristian thread</a>. Commenters are not named here.</p>
+{% endif %}
+{% endblock %}

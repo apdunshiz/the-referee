@@ -1,0 +1,10 @@
+{% extends "base.html.j2" %}
+{% block title %}Today from r/DebateAChristian · The Referee{% endblock %}
+{% block content %}
+<h1>Today from r/DebateAChristian</h1>
+<p class="lede">New comments matched to existing rulings{% if not today.no_runs %} for {{ today.date.strftime('%Y-%m-%d') }}{% endif %}. The bot never rules; a new argument is listed only after it has been seen twice, and waits for a human ruling.</p>
+{% include "_today_block.html.j2" %}
+{% if today.last_run %}
+<p class="small">Last run {{ today.last_run.started_at[:16].replace('T', ' ') }} UTC: {{ today.last_run.outcome }}, {{ today.last_run.fetched }} fetched, {{ today.last_run.units }} considered, {{ today.last_run.matched }} matched, {{ today.last_run.drafted }} drafted.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,85 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "body": {
+      "default": "",
+      "title": "Body",
+      "type": "string"
+    },
+    "confidence": {
+      "description": "How confident the referee is in this question's overall ruling.",
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "integer"
+    },
+    "id": {
+      "pattern": "^q\\d{2}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "n": {
+      "maximum": 99,
+      "minimum": 1,
+      "title": "N",
+      "type": "integer"
+    },
+    "reply": {
+      "anyOf": [
+        {
+          "maxLength": 1500,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "A fair reply a Christian could give; plain text.",
+      "title": "Reply"
+    },
+    "short": {
+      "description": "One-line verdict shown in lists.",
+      "maxLength": 400,
+      "minLength": 3,
+      "title": "Short",
+      "type": "string"
+    },
+    "thread_url": {
+      "anyOf": [
+        {
+          "pattern": "^https://(www\\.)?reddit\\.com/r/DebateAChristian/",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Thread Url"
+    },
+    "title": {
+      "maxLength": 120,
+      "minLength": 3,
+      "title": "Title",
+      "type": "string"
+    },
+    "verdict": {
+      "description": "The question-level ruling, plain text.",
+      "maxLength": 1200,
+      "minLength": 3,
+      "title": "Verdict",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "n",
+    "title",
+    "confidence",
+    "short",
+    "verdict"
+  ],
+  "title": "Question",
+  "type": "object"
+}

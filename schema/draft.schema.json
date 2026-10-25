@@ -1,0 +1,71 @@
+{
+  "$defs": {
+    "Side": {
+      "description": "Who makes the claim. 'theist' covers the original post and Christian commenters.",
+      "enum": [
+        "theist",
+        "skeptic",
+        "unstated"
+      ],
+      "title": "Side",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A new argument the mapper could not match. Carries no verdict (decision D28).",
+  "properties": {
+    "body": {
+      "default": "",
+      "title": "Body",
+      "type": "string"
+    },
+    "first_seen": {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "title": "First Seen",
+      "type": "string"
+    },
+    "links": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 1000,
+      "title": "Links",
+      "type": "array"
+    },
+    "side": {
+      "$ref": "#/$defs/Side",
+      "default": "unstated"
+    },
+    "sightings_count": {
+      "minimum": 1,
+      "title": "Sightings Count",
+      "type": "integer"
+    },
+    "slug": {
+      "maxLength": 80,
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "title": "Slug",
+      "type": "string"
+    },
+    "status": {
+      "default": "new-unrated",
+      "pattern": "^new-unrated$",
+      "title": "Status",
+      "type": "string"
+    },
+    "text": {
+      "maxLength": 400,
+      "minLength": 10,
+      "title": "Text",
+      "type": "string"
+    }
+  },
+  "required": [
+    "slug",
+    "text",
+    "first_seen",
+    "sightings_count"
+  ],
+  "title": "Draft",
+  "type": "object"
+}

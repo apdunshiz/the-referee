@@ -1,0 +1,156 @@
+{
+  "$defs": {
+    "HistoryEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "title": "Date",
+          "type": "string"
+        },
+        "note": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Note",
+          "type": "string"
+        },
+        "version": {
+          "minimum": 1,
+          "title": "Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "date",
+        "version",
+        "note"
+      ],
+      "title": "HistoryEntry",
+      "type": "object"
+    },
+    "Side": {
+      "description": "Who makes the claim. 'theist' covers the original post and Christian commenters.",
+      "enum": [
+        "theist",
+        "skeptic",
+        "unstated"
+      ],
+      "title": "Side",
+      "type": "string"
+    },
+    "Verdict": {
+      "enum": [
+        "TRUE",
+        "MOSTLY TRUE",
+        "MIXED",
+        "OVERSTATED",
+        "MOSTLY FALSE",
+        "FALSE",
+        "OPEN",
+        "STRAWMAN",
+        "NOTE"
+      ],
+      "title": "Verdict",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A canonical argument with a ruling. Locked claims change only by human PR.",
+  "properties": {
+    "body": {
+      "default": "",
+      "title": "Body",
+      "type": "string"
+    },
+    "confidence": {
+      "description": "How confident the referee is that this ruling is right.",
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "integer"
+    },
+    "history": {
+      "items": {
+        "$ref": "#/$defs/HistoryEntry"
+      },
+      "title": "History",
+      "type": "array"
+    },
+    "id": {
+      "pattern": "^q\\d{2}-c\\d{2}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "question": {
+      "pattern": "^q\\d{2}$",
+      "title": "Question",
+      "type": "string"
+    },
+    "side": {
+      "$ref": "#/$defs/Side"
+    },
+    "sources": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 12,
+      "title": "Sources",
+      "type": "array"
+    },
+    "status": {
+      "default": "locked",
+      "pattern": "^locked$",
+      "title": "Status",
+      "type": "string"
+    },
+    "strength": {
+      "anyOf": [
+        {
+          "maximum": 10,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "How strong the claim is as an argument, 0-10. None for the original post's lines.",
+      "title": "Strength"
+    },
+    "text": {
+      "description": "The claim in neutral words. No usernames, no verbatim quotes.",
+      "maxLength": 400,
+      "minLength": 10,
+      "title": "Text",
+      "type": "string"
+    },
+    "verdict": {
+      "$ref": "#/$defs/Verdict"
+    },
+    "version": {
+      "default": 1,
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "why": {
+      "description": "The ruling's reasoning, plain text; paragraphs separated by blank lines.",
+      "maxLength": 2000,
+      "minLength": 10,
+      "title": "Why",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "question",
+    "text",
+    "side",
+    "verdict",
+    "why",
+    "confidence"
+  ],
+  "title": "Claim",
+  "type": "object"
+}

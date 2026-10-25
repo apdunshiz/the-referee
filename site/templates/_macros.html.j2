@@ -1,0 +1,25 @@
+{% macro badge(verdict) -%}
+<span class="badge {{ verdict | vslug }}">{{ verdict }}</span>
+{%- endmacro %}
+
+{% macro meter(n) -%}
+{% if n is not none %}
+<span class="meter" aria-label="strength {{ n }} out of 10"><span class="segs" aria-hidden="true">{% for i in range(10) %}<i class="{{ 'on' if i < n else '' }}"></i>{% endfor %}</span><b>{{ n }}/10</b></span>
+{% endif %}
+{%- endmacro %}
+
+{% macro conf(pct) -%}
+<span class="conf" aria-label="{{ pct }} percent confidence in this ruling">{{ pct }}% confident</span>
+{%- endmacro %}
+
+{% macro claim_row(c, sightings) -%}
+<li class="claim-row">
+  <div class="claim-head">
+    {{ badge(c.verdict) }}
+    {{ meter(c.strength) }}
+    <span class="side">{{ 'original post' if c.side == 'theist' and c.strength is none else c.side }}</span>
+  </div>
+  <a class="claim-text" href="{{ base }}claims/{{ c.id }}/">{{ c.text }}</a>
+  {% if sightings %}<span class="seen">seen {{ sightings | length }}× on r/DebateAChristian</span>{% endif %}
+</li>
+{%- endmacro %}
