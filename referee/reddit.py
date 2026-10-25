@@ -114,6 +114,7 @@ class RedditClient:
         self.sleep = sleep
         self.now = now
         self._token: Optional[str] = None
+        self._token_expires_at: float = 0.0
         self.requests_made = 0
 
     # ------------------------------------------------------------------ auth
@@ -154,11 +155,14 @@ class RedditClient:
                 # Reddit answers 200 with {"error": "invalid_grant"} for bad credentials or 2FA.
                 raise RedditAuthError(f"token response: {body.get('error', 'no access_token')}")
             self._token = body["access_token"]
+            self._token_expires_at = self.now() + _f(body.get("expires_in"), 3600.0)
             return self._token
         raise RedditUnavailable(f"token endpoint unavailable after retries: {last}")
 
     def _headers(self) -> dict:
-        if not self._token:
+        # Tokens live about an hour; refresh when within a minute of expiry so a long run never trips a 401.
+        if not self._token or self.now() >= self._token_expires_at - 60:
+            self._token = None
             self.get_token()
         return {"Authorization": f"bearer {self._token}", "User-Agent": self.user_agent}
 
@@ -168,6 +172,7 @@ class RedditClient:
         """GET with rate-limit handling and retries. Returns parsed JSON."""
         url = API + path
         slept_for_reset = False
+        refreshed_token = False
         last: Optional[Exception] = None
         attempt = 0
         while attempt <= len(config.REDDIT_BACKOFF_S):
@@ -189,7 +194,13 @@ class RedditClient:
                 slept_for_reset = True
                 continue
             if status == 401:
-                raise RedditAuthError("401 on API call")
+                if refreshed_token:
+                    raise RedditAuthError("401 on API call after a token refresh")
+                # The token expired mid-run (or was revoked): fetch a new one once and retry the call.
+                refreshed_token = True
+                self._token = None
+                self.get_token()
+                continue
             if status == 403:
                 raise RedditForbidden(f"403 on {path}")
             if status == 404:

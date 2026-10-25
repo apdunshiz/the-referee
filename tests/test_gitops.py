@@ -30,6 +30,7 @@ def test_auth_status_errors_are_classified():
 def test_open_bot_prs_filters_by_branch_prefix():
     g = GitOps(FakeRunner({("gh", "pr", "list"): Result(0, '[{"number": 7, "headRefName": "bot/2026-10-24"}, {"number": 8, "headRefName": "fix-typo"}]')}))
     assert g.open_bot_prs() == [(7, "bot/2026-10-24")]
+    assert "--author" in g.run.calls[0] and "@me" in g.run.calls[0]  # a fork's bot/ branch must not stall the run
 
 
 def test_publish_order_push_then_create_then_automerge():

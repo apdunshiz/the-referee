@@ -39,6 +39,27 @@ PERMALINK_RE = re.compile(r"^https://(www\.)?reddit\.com/r/DebateAChristian/")
 CLAIM_ID_RE = re.compile(r"^q\d{2}-c\d{2}$")
 QUESTION_ID_RE = re.compile(r"^q\d{2}$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+# Reddit handles in any of the forms u/name, /u/name, /user/name, reddit.com/u/name,
+# reddit.com/user/name. The lookbehind stops "menu/x" from matching; a leading "/" is allowed.
+USERNAME_RE = re.compile(r"(?<![A-Za-z0-9_])(?:(?:https?://)?(?:www\.)?reddit\.com)?/?u(?:ser)?/[A-Za-z0-9_-]{3,}")
+
+
+def find_usernames(text: str) -> list[str]:
+    """Every Reddit handle mention in `text` (decision D15: none may appear in content)."""
+    return [m.group(0) for m in USERNAME_RE.finditer(text or "")]
+
+
+def scrub_usernames(text: str, replacement: str = "another commenter") -> str:
+    """Replace handle mentions with a neutral phrase; possessives keep their 's."""
+    return USERNAME_RE.sub(replacement, text or "")
+
+
+def _no_usernames(v):
+    items = v if isinstance(v, list) else [v]
+    for item in items:
+        if isinstance(item, str) and find_usernames(item):
+            raise ValueError("usernames are not allowed in content (decision D15)")
+    return v
 
 
 class Verdict(str, Enum):
@@ -70,6 +91,11 @@ class HistoryEntry(Strict):
     version: int = Field(ge=1)
     note: str = Field(min_length=1, max_length=300)
 
+    @field_validator("note")
+    @classmethod
+    def _note_no_usernames(cls, v: str) -> str:
+        return _no_usernames(v)
+
 
 class Question(Strict):
     id: str = Field(pattern=QUESTION_ID_RE.pattern)
@@ -81,6 +107,11 @@ class Question(Strict):
     reply: Optional[str] = Field(default=None, max_length=1500, description="A fair reply a Christian could give; plain text.")
     thread_url: Optional[str] = Field(default=None, pattern=PERMALINK_RE.pattern)
     body: str = ""
+
+    @field_validator("title", "short", "verdict", "reply", "body")
+    @classmethod
+    def _question_no_usernames(cls, v):
+        return _no_usernames(v)
 
     @model_validator(mode="after")
     def _id_matches_n(self) -> "Question":
@@ -106,11 +137,14 @@ class Claim(Strict):
     history: list[HistoryEntry] = Field(default_factory=list)
     body: str = ""
 
+    @field_validator("text", "why", "body", "sources")
+    @classmethod
+    def _claim_no_usernames(cls, v):
+        return _no_usernames(v)
+
     @field_validator("text", "why")
     @classmethod
-    def _no_usernames_or_html(cls, v: str) -> str:
-        if re.search(r"(^|[^\w/])u/[A-Za-z0-9_-]{3,}", v):
-            raise ValueError("usernames are not allowed in content (decision D15)")
+    def _no_html(cls, v: str) -> str:
         if re.search(r"<[a-zA-Z/][^>]*>", v):
             raise ValueError("HTML is not allowed; content is plain text")
         return v
@@ -142,12 +176,10 @@ class Draft(Strict):
                 raise ValueError(f"draft link must be an r/DebateAChristian permalink: {url}")
         return v
 
-    @field_validator("text")
+    @field_validator("text", "body")
     @classmethod
-    def _no_usernames(cls, v: str) -> str:
-        if re.search(r"(^|[^\w/])u/[A-Za-z0-9_-]{3,}", v):
-            raise ValueError("usernames are not allowed in content (decision D15)")
-        return v
+    def _draft_no_usernames(cls, v):
+        return _no_usernames(v)
 
 
 class Sighting(Strict):
@@ -172,6 +204,7 @@ class RunRecord(Strict):
     invalid_match: int = 0
     quote_rejected: int = 0
     model_refused: int = 0
+    draft_rejected: int = 0
     carried: int = 0
     recheck_dropped: int = 0
     duration_ms: int = 0

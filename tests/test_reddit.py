@@ -108,3 +108,29 @@ def test_info_batches_by_100_and_marks_removed():
     assert len(gets) == 2
     assert len(gets[0][2]["params"]["id"].split(",")) == 100
     assert present["t1_x0"] is True and present["t1_x1"] is False and present["t1_x149"] is False
+
+
+def test_expired_token_refreshes_once_on_401():
+    # token -> 401 -> fresh token -> 200: one refresh, then the call succeeds
+    listing = FakeResponse(200, {"data": {"children": [], "after": None}})
+    c, _ = client([FakeResponse(401, {}), token_ok(), listing])
+    assert c.fetch_window(7) == []
+    posts = [call for call in c.session.calls if call[0] == "POST"]
+    assert len(posts) == 2
+
+
+def test_second_401_after_refresh_is_auth_error():
+    c, _ = client([FakeResponse(401, {}), token_ok(), FakeResponse(401, {})])
+    with pytest.raises(RedditAuthError):
+        c.fetch_window(7)
+
+
+def test_token_refreshes_before_expiry():
+    clock = {"t": NOW}
+    sess = FakeSession([FakeResponse(200, {"access_token": "first", "expires_in": 3600}), FakeResponse(200, {"data": {"children": [], "after": None}}), FakeResponse(200, {"access_token": "second", "expires_in": 3600}), FakeResponse(200, {"data": {"children": [], "after": None}})])
+    c = RedditClient(CREDS, session=sess, sleep=lambda s: None, now=lambda: clock["t"])
+    c.fetch_window(7)
+    clock["t"] = NOW + 3600 - 30  # within the 60 s refresh margin
+    c.fetch_window(7)
+    gets = [call for call in sess.calls if call[0] == "GET"]
+    assert gets[0][2]["headers"]["Authorization"] == "bearer first" and gets[1][2]["headers"]["Authorization"] == "bearer second"

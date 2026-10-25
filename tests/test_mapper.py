@@ -82,9 +82,64 @@ def test_paraphrased_quote_is_rejected(claims):
 
 
 def test_quote_match_is_normalised():
-    assert quote_in("ACCEPTED   within\na week", "was accepted within a week.")
-    assert quote_in("girl who said “yes”", 'girl who said "yes"')
+    assert quote_in("the STORY was   ACCEPTED within\na week", "yes, the story was accepted within a week.")
+    assert quote_in("the girl who said “yes” to God", 'about the girl who said "yes" to God was')
     assert not quote_in("", "anything")
+
+
+def test_short_quotes_are_rejected():
+    # An injected comment can always contain "the"; a quote must pin a real span (>= 20 chars, >= 4 words).
+    assert not quote_in("the", TEXT)
+    assert not quote_in("a", TEXT)
+    assert not quote_in("legends argument fails", TEXT)  # 3 words
+    assert quote_in("the legends argument fails. The Columbine story", TEXT)
+
+
+def test_short_quote_is_quote_rejected_outcome(claims):
+    m = mapper([Resp(MapResult(claim_id="q09-c07", match_confidence=1.0, quote="the"))], claims)
+    out = m.map_unit(unit(TEXT))
+    assert out.outcome == "quote_rejected" and out.sighting is None
+
+
+def test_validation_error_from_sdk_is_bad_output_then_carried(claims):
+    from pydantic import ValidationError as VE
+
+    def ve():
+        try:
+            MapResult(claim_id=None, match_confidence=5.0)
+        except VE as e:
+            return e
+
+    m = mapper([ve(), ve()], claims)
+    with pytest.raises(MapperBadOutput):
+        m.map_unit(unit(TEXT))
+    assert len(m.client.messages.calls) == 2 and m.client.messages.calls[1]["messages"][-1]["content"].startswith("Return only JSON")
+    m2 = mapper([ve(), Resp(MapResult(claim_id=None, match_confidence=0.1))], claims)
+    assert m2.map_unit(unit(TEXT)).outcome == "null"
+
+
+def test_api_response_validation_error_is_bad_output(claims):
+    try:
+        import httpx2 as httpx  # the SDK vendors httpx under this name
+    except ImportError:  # pragma: no cover
+        import httpx
+
+    err = anthropic.APIResponseValidationError(response=httpx.Response(200, request=httpx.Request("POST", "https://api.anthropic.com/v1/messages")), body=None)
+    m = mapper([err, Resp(MapResult(claim_id=None, match_confidence=0.1))], claims)
+    assert m.map_unit(unit(TEXT)).outcome == "null"
+
+
+def test_draft_with_slash_u_handle_is_scrubbed(claims):
+    m = mapper([Resp(MapResult(claim_id=None, match_confidence=0.0, is_new_argument=True, draft_text="As /u/spezzy argued, Bayesian priors make the resurrection a wash."))], claims)
+    out = m.map_unit(unit(TEXT))
+    assert out.outcome == "new_argument" and "spezzy" not in out.draft_text and "u/" not in out.draft_text
+
+
+def test_verbatim_draft_is_rejected(claims):
+    copied = TEXT[:120]  # the model "paraphrased" by copying the comment
+    m = mapper([Resp(MapResult(claim_id=None, match_confidence=0.0, is_new_argument=True, draft_text=copied))], claims)
+    out = m.map_unit(unit(TEXT))
+    assert out.outcome == "draft_rejected" and out.draft_text is None
 
 
 def test_below_threshold_is_null(claims):

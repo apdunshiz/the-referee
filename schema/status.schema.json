@@ -8,6 +8,11 @@
           "title": "Carried",
           "type": "integer"
         },
+        "draft_rejected": {
+          "default": 0,
+          "title": "Draft Rejected",
+          "type": "integer"
+        },
         "drafted": {
           "default": 0,
           "title": "Drafted",

@@ -128,7 +128,7 @@ def test_happy_run_writes_after_mapping_and_commits(content_root):
     st = content.load_status(content_root)
     assert st.runs[-1].outcome == "success" and st.runs[-1].matched == 3 and st.runs[-1].model_refused == 1 and st.runs[-1].drafted == 1
     assert st.watermark == "2026-10-24T09:59:10Z" and st.errors == [] and st.degraded is False
-    assert c.gitops.calls[:2] == ["auth", ("branch", "bot/2026-10-24")] and c.gitops.calls[-1][0] == "commit"
+    assert c.gitops.calls[:2] == [("branch", "bot/2026-10-24"), "auth"] and c.gitops.calls[-1][0] == "commit"
     assert content.validate_tree(content_root) == []
     # log lines never carry text
     for line in c._logs:
@@ -189,7 +189,126 @@ def test_noon_after_success_is_noop(content_root):
     seed_status(content_root, "success")
     c = ctx(content_root, slot="noon")
     assert prepare(c) == 0
-    assert c.reddit.calls == [] and c.gitops.calls == []
+    assert c.reddit.calls == []
+    # the no-op is recorded (and committed) so About and the next noon check can see it
+    assert c.gitops.calls == [("branch", "bot/2026-10-24"), ("commit", "Referee: 2026-10-24 noon no-op")]
+    assert content.load_status(content_root).runs[-1].outcome == "noop"
+
+
+def test_noon_ignores_yesterdays_run(content_root):
+    st = Status(runs=[RunRecord(run_id="y", started_at="2026-10-23T06:00:00Z", outcome="success")], watermark="2026-10-23T05:00:00Z")
+    content.save_status(content_root, st)
+    c = ctx(content_root, slot="noon")
+    assert prepare(c) == 0
+    assert "window" in c.reddit.calls and len(content.load_sightings(content_root)) == 5
+
+
+def test_skipped_run_is_recorded(content_root):
+    c = ctx(content_root, gitops=FakeGitOps(open_prs=[(7, "bot/2026-10-23")]))
+    assert prepare(c) == 0
+    st = content.load_status(content_root)
+    assert st.runs[-1].outcome == "skipped"
+    assert any(isinstance(x, tuple) and x[0] == "commit" and "skipped" in x[1] for x in c.gitops.calls)
+
+
+def test_preflight_failure_commits_on_bot_branch_never_main(content_root):
+    from referee.reddit import RedditAuthError
+
+    class BadReddit(FakeReddit):
+        def get_token(self):
+            raise RedditAuthError("invalid_grant")
+
+    c = ctx(content_root, reddit=BadReddit())
+    with pytest.raises(RedditAuthError):
+        prepare(c)
+    calls = c.gitops.calls
+    assert calls[0] == ("branch", "bot/2026-10-24"), "the bot branch must exist before anything can fail"
+    assert ("commit", "Referee: 2026-10-24 morning failed at preflight") in calls
+    st = content.load_status(content_root)
+    assert st.runs[-1].outcome == "failed" and st.errors == ["RedditAuthError@preflight"]
+
+
+def test_branch_failure_never_commits(content_root):
+    class NoBranch(FakeGitOps):
+        def branch_from_main(self, b):
+            raise RuntimeError("git fetch failed")
+
+    c = ctx(content_root, gitops=NoBranch())
+    with pytest.raises(RuntimeError):
+        prepare(c)
+    assert not any(isinstance(x, tuple) and x[0] == "commit" for x in c.gitops.calls)
+
+
+def test_error_field_carries_no_message_text(content_root):
+    m = FakeMapper({f: MapperTimeout("the comment said: something private") for f in ("t3_p1", "t1_c1", "t1_c2", "t1_c3", "t1_c4")})
+    c = ctx(content_root, mapper=m)
+    with pytest.raises(RunFailed):
+        prepare(c)
+    st = content.load_status(content_root)
+    assert st.errors == ["RunFailed@map"]
+    assert "private" not in json.dumps(st.model_dump(mode="json"))
+
+
+def test_validate_failure_restores_status_and_records_once(content_root, monkeypatch):
+    content.save_status(content_root, Status(watermark="2026-10-20T00:00:00Z", last_success="2026-10-20T06:00:00Z", carried=["t1_old"]))
+    from referee import run as run_mod
+
+    monkeypatch.setattr(run_mod.content, "validate_tree", lambda root: ["content/claims/q01-c01.md: broken"])
+    c = ctx(content_root)
+    with pytest.raises(run_mod.ContentInvalid):
+        prepare(c)
+    st = content.load_status(content_root)
+    assert st.watermark == "2026-10-20T00:00:00Z" and st.last_success == "2026-10-20T06:00:00Z" and st.carried == ["t1_old"]
+    assert [r.run_id for r in st.runs].count(c.record.run_id) == 1 and st.runs[-1].outcome == "failed"
+    assert st.errors == ["ContentInvalid@validate"] and "discard" in c.gitops.calls
+
+
+def test_watermark_never_decreases(content_root):
+    # A degraded morning left t1_c1 carried; the noon run processes only that old unit.
+    content.save_status(content_root, Status(runs=[RunRecord(run_id="m", started_at="2026-10-24T06:00:00Z", outcome="degraded")], carried=["t1_c1"], watermark="2026-10-24T09:59:50Z"))
+    c = ctx(content_root, slot="noon")
+    assert prepare(c) == 0
+    assert c.mapper.seen == ["t1_c1"]
+    assert content.load_status(content_root).watermark == "2026-10-24T09:59:50Z"
+
+
+def test_reprocessed_unit_does_not_inflate_draft_count(content_root):
+    link = "https://www.reddit.com/r/DebateAChristian/comments/p1/t/c1/"
+    content.save_draft(content_root, Draft(slug="hell-unjust-abc123", text="Hell is unjust punishment for finite sins.", first_seen="2026-10-20", sightings_count=1, links=[link]))
+
+    class M(FakeMapper):
+        def dedupe_pass(self, candidates, existing):
+            return [], {"hell-unjust-abc123": [u for cnd in candidates for u in cnd.units]}
+
+    c = ctx(content_root, mapper=M({"t1_c1": "new"}))
+    assert prepare(c) == 0
+    [d] = content.load_drafts(content_root)
+    assert d.sightings_count == 1 and d.links == [link]
+
+
+def test_sdk_api_error_per_unit_is_carried(content_root):
+    import anthropic
+    try:
+        import httpx2 as httpx  # the SDK vendors httpx under this name
+    except ImportError:  # pragma: no cover
+        import httpx
+
+    err = anthropic.APIConnectionError(message="boom", request=httpx.Request("POST", "https://api.anthropic.com/v1/messages"))
+    c = ctx(content_root, mapper=FakeMapper({"t1_c2": err}))
+    assert prepare(c) == 0
+    st = content.load_status(content_root)
+    assert st.carried == ["t1_c2"] and st.runs[-1].outcome == "success"
+
+
+def test_publish_cli_accepts_workflow_argv(content_root, monkeypatch):
+    from referee import run as run_mod
+
+    g = FakeGitOps()
+    monkeypatch.setattr(run_mod, "_gitops_factory", lambda root: g)
+    content.save_status(content_root, Status(runs=[RunRecord(run_id="r", started_at="2026-10-24T10:00:00Z", outcome="success")]))
+    assert run_mod.main(["publish", "--slot", "morning", "--root", str(content_root), "--date", "2026-10-24"]) == 0
+    assert run_mod.main(["publish", "--slot", "noon", "--root", str(content_root), "--date", "2026-10-24"]) == 0
+    assert [x[0] for x in g.calls] == ["publish", "publish"]
 
 
 def test_noon_after_failure_is_full_run(content_root):

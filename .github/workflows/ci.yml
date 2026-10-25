@@ -42,6 +42,7 @@ jobs:
         env:
           ACTOR: ${{ github.event.pull_request.user.login }}
           BASE: ${{ github.event.pull_request.base.sha }}
+          BOT_LOGIN: ${{ vars.BOT_LOGIN || 'the-referee[bot]' }}
         run: python scripts/lock_check.py --base "$BASE" --actor "$ACTOR"
 
       - name: Links in drafts and sources resolve

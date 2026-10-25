@@ -25,7 +25,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from referee.content import Claim, Question, Side, Verdict, save_claim, save_question  # noqa: E402
+from referee.content import Claim, Question, Side, Verdict, find_usernames, save_claim, save_question  # noqa: E402
+from referee.content import scrub_usernames as _scrub  # noqa: E402
 
 THREAD_URL = "https://www.reddit.com/r/DebateAChristian/comments/1vzrkx7/"
 
@@ -51,16 +52,36 @@ def plain(s: str | None) -> str:
     return re.sub(r"[ \t]+", " ", s).strip()
 
 
-USERNAME_RE = re.compile(r"(?<![\w/])u/[A-Za-z0-9_-]{2,}")
-
-
 def scrub_usernames(text: str) -> str:
     """Decision D15: no usernames in content. Replace mentions with a neutral phrase."""
     text = re.sub(r"\(u/[A-Za-z0-9_-]{2,} went on to", "(One commenter went on to", text)
-    text = re.sub(r"(?<![\w/])u/[A-Za-z0-9_-]{2,}'s\b", "another commenter's", text)
-    text = USERNAME_RE.sub("another commenter", text)
+    text = re.sub(r"(?<![A-Za-z0-9_])/?u/[A-Za-z0-9_-]{2,}'s\b", "another commenter's", text)
+    text = _scrub(text)
     text = re.sub(r"(^|[.!?]\s+|\(\s*)another commenter", lambda m: m.group(1) + "Another commenter", text)
     return text
+
+
+# Lookbehind keeps URL paths like "nd.edu/news" out: a handle mention starts at a word boundary.
+HANDLE_IN_BUILD_RE = re.compile(r"(?<![A-Za-z0-9_])u/([A-Za-z0-9_-]{3,})")
+
+
+def handles_from_build(build_src: str) -> set[str]:
+    """Every handle named in build.py's `who` fields (the raw source text is enough)."""
+    return set(HANDLE_IN_BUILD_RE.findall(build_src))
+
+
+def scan_content_for_handles(root: Path, handles: set[str]) -> dict[str, list[str]]:
+    """Files under content/ that mention a known handle even without the u/ prefix."""
+    hits: dict[str, list[str]] = {}
+    for p in sorted((root / "content").rglob("*")):
+        if not p.is_file():
+            continue
+        text = p.read_text(encoding="utf-8")
+        found = [h for h in sorted(handles) if re.search(r"(?<![A-Za-z0-9_])" + re.escape(h) + r"(?![A-Za-z0-9_])", text)]
+        found += find_usernames(text)
+        if found:
+            hits[str(p.relative_to(root))] = found
+    return hits
 
 
 def side_for(who: str) -> Side:
@@ -153,13 +174,17 @@ def main() -> int:
             save_claim(args.root, c)
             n_claims += 1
 
+    hits = scan_content_for_handles(args.root, handles_from_build(args.build.read_text(encoding="utf-8")))
+    for path, found in hits.items():
+        print(f"handle in content: {path}: {', '.join(found)}", file=sys.stderr)
+
     if missing:
         out = args.root / "data" / "paraphrase-input.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(missing, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"{len(missing)} claims need a paraphrase: {out}", file=sys.stderr)
     print(f"wrote {n_claims} claims")
-    return 1 if missing else 0
+    return 1 if (missing or hits) else 0
 
 
 if __name__ == "__main__":

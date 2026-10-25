@@ -80,7 +80,8 @@ class GitOps:
         self._gh("auth", "status")
 
     def open_bot_prs(self) -> list[tuple[int, str]]:
-        r = self._gh("pr", "list", "--state", "open", "--json", "number,headRefName", "--limit", "50")
+        # Only the bot's own PRs count; a fork PR on a bot/ branch must not stall the daily run.
+        r = self._gh("pr", "list", "--state", "open", "--author", "@me", "--json", "number,headRefName", "--limit", "50")
         try:
             rows = json.loads(r.stdout or "[]")
         except ValueError as e:

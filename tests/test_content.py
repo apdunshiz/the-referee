@@ -115,3 +115,38 @@ def test_committed_content_validates():
     if not (ROOT / "content" / "questions").glob("*.md"):
         pytest.skip("no content yet")
     assert content.validate_tree(ROOT) == []
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "As u/someone argued, the universe began.",
+        "As /u/spezzy argued, the universe began.",
+        "See /user/spezzy for the thread.",
+        "See https://www.reddit.com/u/spezzy for the thread.",
+        "See reddit.com/user/spezzy for the thread.",
+    ],
+)
+def test_find_usernames_catches_every_handle_form(text):
+    assert content.find_usernames(text), text
+    assert "spezzy" not in content.scrub_usernames(text) and "someone" not in content.scrub_usernames(text)
+
+
+def test_find_usernames_ignores_lookalikes():
+    assert content.find_usernames("the menu/items list and r/DebateAChristian and https://www.reddit.com/r/DebateAChristian/comments/x/y/") == []
+
+
+def test_usernames_rejected_in_every_text_field():
+    base = dict(id="q01", n=1, title="Did the universe begin?", confidence=90, short="Open.", verdict="Open question.")
+    for fld in ("title", "short", "verdict", "reply", "body"):
+        with pytest.raises(ValidationError):
+            Question(**{**base, fld: "Thanks /u/spezzy for the question"})
+    with pytest.raises(ValidationError):
+        claim(sources=["Hume (1748)", "u/spezzy's comment"])
+    with pytest.raises(ValidationError):
+        claim(body="Notes from reddit.com/user/spezzy")
+    with pytest.raises(ValidationError):
+        claim(history=[HistoryEntry(date="2026-10-24", version=1, note="per u/spezzy")], version=1)
+    good = dict(slug="bayesian-priors-wash", text="Bayesian priors make the resurrection a wash.", first_seen="2026-10-24", sightings_count=2)
+    with pytest.raises(ValidationError):
+        Draft(**good, body="raised by /u/spezzy")

@@ -26,9 +26,12 @@ One Python toolchain (decision D32). The bot writes `content/` through a pull re
   prepare:  preflight ─► fetch (7-day window, full comment trees, morechildren)
             ─► map (structured output over the closed claim-id enum; quote verified then discarded)
             ─► dedupe (second pass over this run's drafts) ─► recheck (last 30 days via /api/info)
-            ─► validate ─► write sightings/drafts/status.json ─► commit on bot/<date>
+            ─► write sightings/drafts/status.json ─► validate ─► commit on bot/<date>
   publish:  push ─► gh pr create ─► gh pr merge --auto --squash
-  Nothing is written before mapping completes; a failure before `write` publishes nothing.
+  The bot branch is created first, so a failure never commits on main. Nothing is written before
+  mapping completes; a failure at write or validate discards the content changes, restores
+  status.json from the pre-write snapshot and commits only the failure record. The watermark and
+  last_success move only when validate passed.
   12:00 slot: full run if 06:00 recorded a fetch failure; carried-only if degraded; no-op if it succeeded.
 ```
 

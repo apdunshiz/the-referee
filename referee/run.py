@@ -4,10 +4,13 @@
     publish  push -> gh pr create -> gh pr merge --auto
 
 The workflow runs ``prepare``, then mints a fresh GitHub App token, then runs
-``publish`` with ``if: always()`` so a failed run still publishes its status.json
-(the Today banner reads it). Nothing under content/ is written before mapping
-completes; a failure after the write step discards the content changes and commits
-status.json only.
+``publish`` (also after a failed prepare) so a failed run still publishes its
+status.json and the Today banner can show the error. The bot branch is created
+before any step can fail, so a failure never commits on main. Nothing under
+content/ is written before mapping completes; a failure at write or validate
+discards the content changes, restores status.json from the pre-write snapshot,
+and commits the failure record only. The watermark and last_success only move
+when validate passed.
 
 Noon policy (``--slot noon``): a full run when the morning run failed, carried
 units only when it was degraded, and a no-op when it succeeded.
@@ -35,6 +38,11 @@ from . import config, content
 from .content import Draft, RunRecord, Sighting, Status
 from .mapper import BudgetExhausted, DraftCandidate, MapperBadOutput, MapperRateLimited, MapperTimeout
 from .reddit import RedditGone, RedditRateLimited, RedditUnavailable, Unit, units_from
+
+try:  # per-unit API errors are carried, not fatal; tests run without the SDK's network layer
+    import anthropic
+except ImportError:  # pragma: no cover
+    anthropic = None  # type: ignore[assignment]
 
 
 class RunFailed(Exception):
@@ -94,6 +102,8 @@ class Context:
     new_watermark: Optional[str] = None
     exit_code: Optional[int] = None  # set by a step that ends the run early
     current_unit: Optional[str] = None
+    branch_ready: bool = False  # the bot branch exists locally; only then may the handler commit
+    status_snapshot: Optional[Status] = None  # status.json as it was before step_write
 
     def log(self, step: str, outcome: str, **fields: Any) -> None:
         rec = {"ts": _iso(self.now()), "run_id": self.record.run_id if self.record else "", "step": step, "outcome": outcome}
@@ -107,29 +117,41 @@ class Context:
 # --------------------------------------------------------------------------- steps
 
 
-def step_preflight(ctx: Context) -> None:
+def step_branch(ctx: Context) -> None:
+    """Create bot/<date> from origin/main before anything can fail, so a failure never commits on main."""
     ctx.date = ctx.now().strftime("%Y-%m-%d")
     ctx.branch = f"bot/{ctx.date}"
+    if not ctx.dry_run:
+        ctx.gitops.branch_from_main(ctx.branch)
+        ctx.branch_ready = True
+
+
+def _end_early(ctx: Context, outcome: str, message: str) -> None:
+    """Record a run that stops before mapping (paused, noop, skipped) so the noon check and About page see it."""
+    ctx.record.outcome = outcome
+    ctx.exit_code = 0
+    if not ctx.dry_run:
+        _finish_status(ctx)
+        ctx.gitops.commit_all(message)
+
+
+def step_preflight(ctx: Context) -> None:
     ctx.status = content.load_status(ctx.root)
     if ctx.env.get("INGEST_ENABLED", "true").lower() == "false":
         ctx.status.paused = True
-        ctx.record.outcome = "paused"
         ctx.log("preflight", "paused")
-        if not ctx.dry_run:
-            ctx.gitops.branch_from_main(ctx.branch)
-            _finish_status(ctx)
-            ctx.gitops.commit_all(f"Referee: {ctx.date} paused")
-        ctx.exit_code = 0
+        _end_early(ctx, "paused", f"Referee: {ctx.date} paused")
         return
     ctx.status.paused = False
-    if ctx.slot == "noon" and ctx.status.runs:
-        last = ctx.status.runs[-1]
-        if last.outcome in ("success", "noop", "skipped", "paused"):
-            ctx.record.outcome = "noop"
+    if ctx.slot == "noon":
+        last = ctx.status.runs[-1] if ctx.status.runs else None
+        if last is None or last.started_at[:10] != ctx.date:
+            ctx.log("preflight", "no-morning-run", reason="no run recorded today; full run")
+        elif last.outcome in ("success", "noop", "skipped", "paused"):
             ctx.log("preflight", "noop", reason=f"morning run {last.outcome}")
-            ctx.exit_code = 0
+            _end_early(ctx, "noop", f"Referee: {ctx.date} noon no-op")
             return
-        if last.outcome == "degraded":
+        elif last.outcome == "degraded":
             ctx.mode = "carried-only"
         # failed -> full run
     ctx.gitops.preflight_auth()
@@ -137,13 +159,10 @@ def step_preflight(ctx: Context) -> None:
     if open_prs and not ctx.dry_run:
         number, branch = open_prs[0]
         ctx.gitops.comment_pr(number, f"Run {ctx.date} {ctx.slot} skipped: this bot PR is still open. Fix or close it; the next run will proceed.")
-        ctx.record.outcome = "skipped"
         ctx.log("preflight", "skipped", pr=number, branch=branch)
-        ctx.exit_code = 0
+        _end_early(ctx, "skipped", f"Referee: {ctx.date} {ctx.slot} skipped: bot PR #{number} still open")
         return
     ctx.reddit.get_token()
-    if not ctx.dry_run:
-        ctx.gitops.branch_from_main(ctx.branch)
     ctx.log("preflight", "ok", mode=ctx.mode)
 
 
@@ -179,7 +198,6 @@ def step_fetch(ctx: Context) -> None:
 
 
 def step_map(ctx: Context) -> None:
-    sightings_dir = ctx.root / "content" / "sightings"
     failures = 0
     processed_ts: list[float] = []
     remaining = list(ctx.units)
@@ -200,6 +218,13 @@ def step_map(ctx: Context) -> None:
             ctx.carried.append(u.fullname)
             ctx.log("map", "carried", fullname=u.fullname, error=type(e).__name__, ms=int((time.monotonic() - t0) * 1000))
             continue
+        except Exception as e:  # noqa: BLE001 - only the SDK's own errors are carried; anything else is a bug
+            if anthropic is None or not isinstance(e, anthropic.APIError):
+                raise
+            failures += 1
+            ctx.carried.append(u.fullname)
+            ctx.log("map", "carried", fullname=u.fullname, error=type(e).__name__, ms=int((time.monotonic() - t0) * 1000))
+            continue
         processed_ts.append(u.created_utc)
         ms = int((time.monotonic() - t0) * 1000)
         if out.outcome == "matched":
@@ -213,8 +238,9 @@ def step_map(ctx: Context) -> None:
             ctx.record.quote_rejected += 1
         elif out.outcome == "refused":
             ctx.record.model_refused += 1
+        elif out.outcome == "draft_rejected":
+            ctx.record.draft_rejected += 1
         ctx.log("map", out.outcome, fullname=u.fullname, claim_id=out.claim_id, confidence=round(out.match_confidence, 3), ms=ms)
-        assert not any(sightings_dir.glob("*.json")) or True  # writes happen in step_write only
     ctx.current_unit = None
     n = len(ctx.units)
     if n and failures == n:
@@ -254,6 +280,7 @@ def step_write(ctx: Context) -> None:
     if ctx.dry_run:
         ctx.log("write", "dry-run", sightings=len(ctx.sightings), drafts=len(ctx.merged), drop=len(ctx.to_drop))
         return
+    ctx.status_snapshot = ctx.status.model_copy(deep=True)
     for s in ctx.sightings:
         content.save_sighting(ctx.root, s)
     today = ctx.date
@@ -262,21 +289,20 @@ def step_write(ctx: Context) -> None:
         slug = slugify(cand.text)
         links = _dedupe([u.permalink for u in cand.units])
         if slug in existing:
-            d = existing[slug]
-            d = d.model_copy(update={"sightings_count": d.sightings_count + len(cand.units), "links": _dedupe(d.links + links)[:20]})
+            d = _add_sightings(existing[slug], links)
         else:
-            d = Draft(slug=slug, text=cand.text, first_seen=today, sightings_count=len(cand.units), links=links[:20])
+            d = Draft(slug=slug, text=cand.text, first_seen=today, sightings_count=len(links), links=links[:20])
         content.save_draft(ctx.root, d)
     for slug, units in ctx.to_existing.items():
         d = existing.get(slug)
         if d is None:
             continue
-        links = _dedupe(d.links + [u.permalink for u in units])[:20]
-        content.save_draft(ctx.root, d.model_copy(update={"sightings_count": d.sightings_count + len(units), "links": links}))
+        content.save_draft(ctx.root, _add_sightings(d, [u.permalink for u in units]))
     if ctx.to_drop:
         content.drop_sightings(ctx.root, ctx.to_drop)
     ctx.status.carried = _dedupe(ctx.carried)
-    if ctx.new_watermark:
+    # The watermark never moves backwards: a carried-only run processes old units.
+    if ctx.new_watermark and (ctx.status.watermark is None or ctx.new_watermark > ctx.status.watermark):
         ctx.status.watermark = ctx.new_watermark
     ctx.record.outcome = "degraded" if ctx.status.degraded else "success"
     ctx.status.last_success = _iso(ctx.now())
@@ -304,6 +330,7 @@ def step_commit(ctx: Context) -> None:
 
 
 STEPS = [
+    ("branch", step_branch),
     ("preflight", step_preflight),
     ("fetch", step_fetch),
     ("map", step_map),
@@ -313,6 +340,14 @@ STEPS = [
     ("validate", step_validate),
     ("commit", step_commit),
 ]
+
+
+def _add_sightings(d: Draft, permalinks: list) -> Draft:
+    """Count only links the draft has not seen; re-processing a comment never inflates sightings_count."""
+    new_links = [p for p in _dedupe(permalinks) if p not in d.links]
+    if not new_links:
+        return d
+    return d.model_copy(update={"sightings_count": d.sightings_count + len(new_links), "links": (d.links + new_links)[:20]})
 
 
 def _dedupe(items: list) -> list:
@@ -344,35 +379,40 @@ def prepare(ctx: Context) -> int:
         return 0
     except Exception as e:  # noqa: BLE001 - the one top-level handler
         ctx.record.outcome = "failed"
+        # Class and step only: exception messages can carry comment text, and status.json is public.
         err = f"{type(e).__name__}@{step_name}" + (f" unit={ctx.current_unit}" if ctx.current_unit else "")
         ctx.record.errors.append(err)
-        ctx.status.errors = [err, str(e)[:300]]
-        ctx.status.last_step = step_name
         ctx.log(step_name, "failed", error=type(e).__name__)
         if not ctx.dry_run:
             try:
                 if step_name in ("write", "validate"):
                     ctx.gitops.discard_content()
-                if step_name != "preflight" or ctx.branch:
+                    if ctx.status_snapshot is not None:
+                        ctx.status = ctx.status_snapshot  # watermark, carried and last_success as before the write
+                ctx.status.errors = [err]
+                ctx.status.last_step = step_name
+                if ctx.branch_ready:
                     _finish_status(ctx)
                     ctx.gitops.commit_all(f"Referee: {ctx.date} {ctx.slot} failed at {step_name}")
+                else:
+                    ctx.log(step_name, "status-not-committed", reason="bot branch not created")
             except Exception as inner:  # noqa: BLE001
                 ctx.log(step_name, "status-not-saved", error=type(inner).__name__)
         raise
 
 
-def publish(root: Path, gitops: Any, date: str, log_out: Callable[[str], None] = print) -> int:
+def publish(root: Path, gitops: Any, date: str, log_out: Callable[[str], None] = print, slot: str = "morning") -> int:
     status = content.load_status(root)
     branch = f"bot/{date}"
     if not gitops.has_unpushed_commits():
-        log_out(json.dumps({"step": "publish", "outcome": "nothing-to-publish", "branch": branch}))
+        log_out(json.dumps({"step": "publish", "outcome": "nothing-to-publish", "branch": branch, "slot": slot}))
         return 0
     last = status.runs[-1] if status.runs else None
     summary = f"{last.outcome}: {last.matched} matched, {last.drafted} drafted, {last.carried} carried, {last.recheck_dropped} dropped" if last else "no run record"
     title = f"Referee: {date} ({last.outcome if last else 'status'})"
     body = f"Automated daily run.\n\n{summary}\n\nErrors: {', '.join(status.errors) or 'none'}\n\nThe bot never changes a locked ruling; CI enforces it."
     url = gitops.push_and_open_pr(branch, title, body)
-    log_out(json.dumps({"step": "publish", "outcome": "ok", "branch": branch, "pr": url}))
+    log_out(json.dumps({"step": "publish", "outcome": "ok", "branch": branch, "slot": slot, "pr": url}))
     return 0
 
 
@@ -406,17 +446,23 @@ def main(argv: Optional[list[str]] = None) -> int:
     p.add_argument("--only", help="process one fullname only")
     q = sub.add_parser("publish")
     q.add_argument("--root", default=".")
+    q.add_argument("--slot", choices=("morning", "noon"), default="morning", help="which scheduled slot this is (log line only)")
     q.add_argument("--date", default=_utcnow().strftime("%Y-%m-%d"))
     args = ap.parse_args(argv)
     if args.cmd == "prepare":
         ctx = _build_ctx(args)
         return prepare(ctx)
     if args.cmd == "publish":
-        from .gitops import GitOps, subprocess_runner
-
         root = Path(args.root).resolve()
-        return publish(root, GitOps(subprocess_runner(str(root))), args.date)
+        return publish(root, _gitops_factory(root), args.date, slot=args.slot)
     return 2
+
+
+def _gitops_factory(root: Path) -> Any:
+    """Indirection so the CLI test can swap in a fake."""
+    from .gitops import GitOps, subprocess_runner
+
+    return GitOps(subprocess_runner(str(root)))
 
 
 if __name__ == "__main__":

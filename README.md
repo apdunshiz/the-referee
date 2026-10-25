@@ -2,7 +2,7 @@
 
 Arguments for and against God, graded with one public rubric and a confidence % per ruling, kept current from r/DebateAChristian by a daily bot that maps new comments onto locked rulings. The bot never rules; humans change rulings by pull request.
 
-Status: lane S1 (content models and drafted records). The site renderer, bot and workflows follow the plan in `docs/`.
+Status: v0.1 under review (content, site renderer, daily bot and workflows). The plan behind it is summarised in `docs/`.
 
 ## Run
 

@@ -210,3 +210,11 @@ def test_real_repo_content_renders_fast(tmp_path):
     assert len(list((out / "q").iterdir())) == n_q
     assert len(list((out / "claims").iterdir())) == n_c
     assert "rendered" in proc.stdout
+
+
+def test_static_copy_publishes_only_css_and_fonts(tmp_path):
+    out = tmp_path / "_site"
+    render.render(ROOT, out)
+    names = {p.name for p in (out / "static").rglob("*") if p.is_file()}
+    assert "curl.cfg" not in names and "gf.css" not in names
+    assert "tokens.css" in names and "local.css" in names and any(n.endswith(".woff2") for n in names)

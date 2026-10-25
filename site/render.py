@@ -23,7 +23,7 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoes
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from referee import content  # noqa: E402
+from referee import config, content  # noqa: E402
 
 SITE_DIR = Path(__file__).resolve().parent
 REPO_URL = "https://github.com/apdunshiz/the-referee"
@@ -113,7 +113,7 @@ def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] =
             sightings_by_claim[s.claim_id].append(s)
     for ss in sightings_by_claim.values():
         ss.sort(key=lambda s: s.matched_at, reverse=True)
-    visible_drafts = [d for d in drafts if d.sightings_count >= 2]
+    visible_drafts = [d for d in drafts if d.sightings_count >= config.DRAFT_PUBLISH_SIGHTINGS]
     today = build_today(status, sightings, claims_by_id, now)
     tokens_in = sum(r.tokens_in for r in status.runs)
     tokens_out = sum(r.tokens_out for r in status.runs)
@@ -167,9 +167,24 @@ def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] =
         shutil.copyfile(status_src, out / "status.json")
     else:
         (out / "status.json").write_text(status.model_dump_json(indent=2, exclude_none=True) + "\n", encoding="utf-8")
-    shutil.copytree(SITE_DIR / "static", out / "static")
+    shutil.copytree(SITE_DIR / "static", out / "static", ignore=_static_ignore)
     (out / ".nojekyll").write_text("", encoding="utf-8")
     return pages
+
+
+PUBLISHED_STATIC_SUFFIXES = (".css", ".woff2")
+UNPUBLISHED_STATIC_NAMES = {"curl.cfg", "gf.css"}  # font-fetch leftovers, not part of the site
+
+
+def _static_ignore(directory: str, names: list[str]) -> list[str]:
+    """copytree ignore callback: publish only stylesheets and font files."""
+    skip = []
+    for n in names:
+        if (Path(directory) / n).is_dir():
+            continue
+        if n in UNPUBLISHED_STATIC_NAMES or not n.endswith(PUBLISHED_STATIC_SUFFIXES):
+            skip.append(n)
+    return skip
 
 
 def main(argv: Optional[list[str]] = None) -> int:
