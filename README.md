@@ -21,4 +21,19 @@ uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
 - `content/sightings/<fullname>.json`: id, permalink, claim id, match confidence and time; nothing else.
 - `schema/*.json`: exported from the pydantic models in `referee/content.py`; CI fails when stale.
 
+## Site
+
+The site is static HTML rendered by Python; no Node toolchain.
+
+```
+.venv/bin/python site/render.py --out _site                      # local preview: open _site/index.html
+.venv/bin/python site/render.py --out _site --base /the-referee/ # as served at https://apdunshiz.github.io/the-referee/
+```
+
+- `site/render.py`: loads `content/` and `status.json` through the models and writes one page per question and claim plus `/today/`, `/about/`, `/rubric/`, `/404.html` and a copy of `status.json`.
+- `site/templates/*.html.j2`: Jinja2 templates with autoescaping on; no content field is ever marked safe.
+- `site/static/tokens.css`: the visual system (navy and gold, text badges, segmented meters), ported from the October 2026 review PDF; `site/static/fonts/` holds the local Inter and Source Serif 4 files.
+- `content/site.json`: the home-page scoreboard, the rubric legend and the historical-facts table (`SiteData` model).
+- `tests/test_render.py`: page rendering, escaping, every Today state, drafts rule, base-path prefixing, and a timed render of the real content.
+
 Correcting a ruling: edit the claim file, bump `version`, add a `history` line, open a PR.

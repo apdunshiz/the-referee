@@ -470,5 +470,45 @@ def main(argv: Optional[list[str]] = None) -> int:
     return 2
 
 
+
+# --------------------------------------------------------------------------- site data (lane S3, appended)
+
+
+class ScoreboardRow(Strict):
+    argument: str = Field(min_length=3, max_length=120)
+    as_posted: int = Field(ge=0, le=10, description="Strength of the argument as usually stated, 0-10.")
+    best_version: int = Field(ge=0, le=10, description="Strength of the best defensible version, 0-10.")
+    weakest_point: str = Field(min_length=3, max_length=400)
+    summary: str = Field(min_length=3, max_length=80)
+
+
+class LegendRow(Strict):
+    verdict: Verdict
+    meaning: str = Field(min_length=3, max_length=300)
+
+
+class HistoryFact(Strict):
+    fact: str = Field(min_length=3, max_length=200)
+    pct: int = Field(ge=0, le=100)
+    basis: str = Field(min_length=3, max_length=400)
+
+
+class SiteData(Strict):
+    """Home-page data that is not a question or a claim: the scoreboard, the rubric legend
+    and the historical-facts table behind 'the big question'."""
+
+    scoreboard: list[ScoreboardRow] = Field(min_length=1, max_length=8)
+    legend: list[LegendRow] = Field(min_length=1, max_length=12)
+    history: list[HistoryFact] = Field(default_factory=list, max_length=12)
+
+
+MODELS["site"] = SiteData
+
+
+def load_site_data(root: Path) -> SiteData:
+    p = root / CONTENT_DIR_NAME / "site.json"
+    return SiteData.model_validate_json(p.read_text(encoding="utf-8"))
+
+
 if __name__ == "__main__":
     raise SystemExit(main())
