@@ -6,7 +6,7 @@
 <title>{% block title %}The Referee{% endblock %}</title>
 <meta name="description" content="{% block description %}Arguments for and against God, graded the same way, with sources and a confidence % for every ruling.{% endblock %}">
 <link rel="stylesheet" href="{{ base }}static/fonts/local.css">
-<link rel="stylesheet" href="{{ base }}static/tokens.css">
+<link rel="stylesheet" href="{{ base }}static/tokens.css?v={{ generated | replace(' ', 'T') | replace(':', '') }}">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>

@@ -177,7 +177,7 @@ def test_base_prefixes_links_and_assets(tmp_path):
     out = tmp_path / "_site"
     render.render(tmp_path, out, base_url="/the-referee/", now=NOW)
     html = read(out, "index.html")
-    assert 'href="/the-referee/static/tokens.css"' in html
+    assert 'href="/the-referee/static/tokens.css?v=' in html
     assert 'href="/the-referee/today/"' in html
     assert 'href="/the-referee/claims/q01-c02/"' in html
     assert 'href="/today/"' not in html and 'href="/static/' not in html

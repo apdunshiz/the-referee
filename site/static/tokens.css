@@ -137,8 +137,9 @@ td { padding: .55rem .5rem .55rem 0; border-bottom: 1px solid var(--line); verti
   html { font-size: 15px; }
   .bar nav { margin-left: 0; width: 100%; }
   .scoreboard thead { display: none; }
+  .scoreboard, .scoreboard tbody { display: block; width: 100%; }
   .scoreboard tr { display: block; padding: .6rem 0; border-bottom: 1px solid var(--line); }
-  .scoreboard td { display: block; border: 0; padding: .2rem 0; width: auto; }
+  .scoreboard td { display: block; border: 0; padding: .2rem 0; width: auto !important; }
   .scoreboard td.arg, .scoreboard td.sum, .scoreboard td.weak { width: auto; max-width: none; white-space: normal; }
   .scoreboard td[data-label]::before { content: attr(data-label) ": "; font: 700 .7rem var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: block; }
   .today-row .today-badges { order: -1; }
