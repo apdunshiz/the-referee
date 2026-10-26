@@ -14,6 +14,10 @@
       <p class="small">A percentage of evidence weight is not a probability that God exists; one decisive line would outweigh several weak ones. Change any line's strength on GitHub and this number moves with it.</p>
     </div>
   </div>
+  <div class="proof-sides">
+    <p class="side-score side-for"><span class="side-num">{{ proof.pct_for }}%</span><span class="side-cap">Case for God: {{ proof.sum_for }} of {{ proof.max_for }} possible strength across {{ evidence_for | length }} lines</span></p>
+    <p class="side-score side-against"><span class="side-num">{{ proof.pct_against }}%</span><span class="side-cap">Case against God: {{ proof.sum_against }} of {{ proof.max_against }} possible strength across {{ evidence_against | length }} lines</span></p>
+  </div>
   <div class="proof-reasons">
     <div>
       <h3>Primary reasons for</h3>
@@ -34,7 +38,7 @@
   <div class="evidence-grid">
     {% for side, items, heading in [("for", evidence_for, "Evidence for God"), ("against", evidence_against, "Evidence against God")] %}
     <div class="ev-col ev-{{ side }}">
-      <h3>{{ heading }}</h3>
+      <h3>{{ heading }} <span class="col-pct">{{ (proof.pct_for if side == 'for' else proof.pct_against) ~ '%' if (proof.pct_for if side == 'for' else proof.pct_against) is not none else '' }}</span></h3>
       {% if items %}
       <ol class="ev-list">
       {% for e in items %}

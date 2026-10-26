@@ -135,6 +135,11 @@ def build_proof(evidence_for: list, evidence_against: list, top_n: int = 3) -> d
         "sum_for": sum_for,
         "sum_against": sum_against,
         "max_each": 10 * max(len(evidence_for), len(evidence_against)),
+        # Each side's own score: its summed strength as a share of the most it could have.
+        "pct_for": round(100 * sum_for / (10 * len(evidence_for))) if evidence_for else None,
+        "pct_against": round(100 * sum_against / (10 * len(evidence_against))) if evidence_against else None,
+        "max_for": 10 * len(evidence_for),
+        "max_against": 10 * len(evidence_against),
         "confidence": round(sum(e.confidence for e in lines) / len(lines)) if lines else None,
         "top_for": evidence_for[:top_n],
         "top_against": evidence_against[:top_n],
