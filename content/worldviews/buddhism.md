@@ -7,23 +7,23 @@ scores:
   - criterion: history
     score: 5
     confidence: 60
-    why: "The Buddha was a historical teacher in the fifth century BCE and the core teachings are consistent across early sources, which earns credit; the sources were transmitted orally for centuries before being written, and the miracle stories and cosmology around him are treated as legend by most scholars and many Buddhists, which cancels it. Five."
+    why: "Start at 5. Foundation that holds: a well-attested founder, a teacher of the fifth century BCE, with core teachings consistent across early sources (plus 1). Gone against: those sources were transmitted orally for centuries before being written, and the biographical material around him is treated as legend by most scholars and many Buddhists (minus 1). Five."
   - criterion: consistency
     score: 7
     confidence: 60
-    why: "A tight, almost clinical system with a clear diagnosis and prescription, starting at 8. One core doctrine needs careful definition: rebirth without a self that is reborn, which its schools address with sophistication but not to everyone's satisfaction. Seven."
+    why: "Start at 8. One core doctrine needs careful definition: rebirth without a self that is reborn, which its schools address with sophistication but not to everyone's satisfaction. Seven."
   - criterion: explanation
     score: 7
     confidence: 55
-    why: "Answers three of the four questions: minds, through a phenomenology of attention that psychology has partly confirmed and that counts as a distinctive resource; obligation, through compassion grounded in no-self; and suffering, its central diagnosis, also a distinctive resource. It declines the cosmos question as unhelpful, which is honest but is a gap. Two plus three plus two."
+    why: "Start at 2. Answers all four: a cosmos of cyclic world-systems, inherited and counted like everyone else's; minds, through a phenomenology of attention that psychology has partly confirmed; obligation, through compassion grounded in no-self; suffering, its central diagnosis: plus 4. The diagnosis of suffering is treated across the divide as a distinctive resource: plus 1. Seven."
   - criterion: testability
-    score: 5
+    score: 4
     confidence: 60
-    why: "Its central claims are about experience, that craving produces suffering and that disciplined attention reduces it, which practitioners can test, so the core is moderately exposed (3); clinical studies of meditation have partly supported them (plus 2). Rebirth and the full extent of liberation are not testable, and rebirth-memory cases are unconfirmed, which is neutral, as it is for Hinduism. Five."
+    why: "Exposure 3: its central claims are about experience, that craving produces suffering and disciplined attention reduces it, which practitioners can test. Held, plus 1: meditation research partly supports them. No failed kind: it promises no answered prayer, and rebirth-memory cases are unconfirmed, which is neutral for every tradition that makes the claim. Four."
   - criterion: moral
-    score: 7
+    score: 6
     confidence: 60
-    why: "Compassion for all sentient beings and non-violence extend to every creature, so it starts at 8. One off for the record of Buddhist states and movements: wars, nationalism and persecutions in its name, with no doctrine of divine mandate to point to but a record all the same. Critics also note a tendency toward withdrawal rather than reform. Seven."
+    why: "Start at 8: compassion for all sentient beings extends to every creature. Wars and nationalist violence in its name (minus 1); persecution of minorities by Buddhist movements and states in Myanmar and Sri Lanka (minus 1); no exclusion written into its structure. Six."
 sources:
   - "Walpola Rahula, What the Buddha Taught (1959)"
   - "Richard Gombrich, What the Buddha Thought (2009)"

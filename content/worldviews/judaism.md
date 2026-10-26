@@ -5,25 +5,25 @@ one_line: One God made a covenant with a people and gave them a law; living righ
 core_claim: The God of Abraham revealed himself in history and in the Torah; the covenant with Israel is permanent and the Messiah has not yet come.
 scores:
   - criterion: history
-    score: 5
+    score: 6
     confidence: 65
-    why: "Strong later footing: the kingdoms of Israel and Judah are attested from the ninth century BCE by the Tel Dan and Mesha stelae and Assyrian annals, the record from the exile onward is solid, and the community's continuity is among the longest unbroken anywhere. Debited here, and only here, for the founding claims: the patriarchs, Exodus and conquest have little or no archaeological support in the form the texts describe."
+    why: "Start at 5. Foundations that hold: a continuous, documented community of 2,500 years (plus 1); the kingdom of Israel attested from the ninth century BCE by the Tel Dan and Mesha stelae and Judah from the eighth by Assyrian annals (plus 1). Gone against: the patriarchs, Exodus and conquest have little or no archaeological support in the form the texts describe (minus 1). Six."
   - criterion: consistency
     score: 7
     confidence: 60
-    why: "Starts at 8. One tension needs careful definition: a universal creator who makes a covenant with one particular people. Rabbinic Judaism is comfortable with argument and multiple readings, which keeps the rest coherent."
+    why: "Start at 8. One tension needs careful definition: a universal creator who makes a covenant with one particular people. Seven."
   - criterion: explanation
-    score: 6
+    score: 5
     confidence: 60
-    why: "Answers all four questions: a lawful cosmos and moral obligation through a creator and lawgiver, minds through the soul, suffering through Job, which declines to explain and offers God instead. No distinctive resource beyond that, since the refusal is honest but is not an explanation. Two plus four."
+    why: "Start at 2. Answers a lawful cosmos and moral obligation through a creator and lawgiver, and minds through the soul: plus 3. On suffering, Job declines to explain and offers God instead, which is an honest refusal, not an answer. No distinctive-resource bonus. Five."
   - criterion: testability
-    score: 4
+    score: 3
     confidence: 60
-    why: "The central claim, a permanent covenant, is moderately exposed (3): the people's survival and return could have failed and have not, which counts as one held claim. Prayer trials count one failed claim against every theism that promises answered prayer. The failed founding claims are debited under history, not here. Four."
+    why: "Exposure 3: a permanent covenant could have failed visibly. Held, plus 1: the people's survival and return to the land, a promise rather than a foundation claim. Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer. Three."
   - criterion: moral
-    score: 6
+    score: 7
     confidence: 65
-    why: "The prophetic tradition of justice for the poor and the stranger extends to outsiders, so it starts at 8. One off for an ethic addressed to insiders first for most of its history; one off for the conquest commands in its own texts, done in its name. Six."
+    why: "Start at 8: the prophetic ethic of justice for the poor and the stranger extends to outsiders. Wars and conquest commanded in its own texts and carried out by its ancient states (minus 1); as a minority faith for most of its history it has little record of persecuting others, and no exclusion is written into its structure. Seven."
 sources:
   - "Israel Finkelstein and Neil Asher Silberman, The Bible Unearthed (2001)"
   - "Abraham Joshua Heschel, God in Search of Man (1955)"
@@ -35,6 +35,6 @@ Judaism is the root of the two largest religions and is oddly absent from most d
 
 Its historical footing is split. The later history is well documented and the survival of the community through exile, dispersion and attempted extermination is a fact that even skeptics find remarkable. The founding stories are another matter; mainstream archaeology finds no trace of a large Exodus or a conquest of Canaan, and the texts reached their present form centuries after the events they narrate.
 
-Its treatment of suffering is more honest than most. Job gets no explanation; he gets God. Whether that is an answer or a refusal of one is something an outsider has to decide.
+Its treatment of suffering is distinctive. Job gets no explanation; he gets God. Whether that is an answer or a refusal of one is something an outsider has to decide.
 
 An outsider notices that Judaism makes the smallest claims of the three Abrahamic faiths, that much of its scholarship has made its peace with modern biblical criticism, and that its moral tradition is the part of it that the rest of the world adopted.

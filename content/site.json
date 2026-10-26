@@ -111,31 +111,31 @@
       "id": "history",
       "name": "Historical footing",
       "question": "Do the events, texts and origins the worldview rests on hold up to ordinary historical and scientific scrutiny?",
-      "rule": "Each tradition is judged on the foundations it actually rests on: founding events and texts where it has them, the scientific record where it rests on that. Having no checkable foundation is neutral (5). A failed historical claim is debited here and nowhere else."
+      "rule": "Start at 5. Add 1 for each kind of foundation that holds under ordinary scrutiny: a well-attested founder or founding event; an early, stable text; a continuous, documented community; the scientific record where the worldview rests on it. Subtract 1 for each kind of foundational claim that scrutiny has gone against: founding events without support; biographical sources written late with legend; claims that conflict with the record. Miracle narratives are beyond history's reach and neither count nor cost. Popular claims, such as science read into scripture, are not scored."
     },
     {
       "id": "consistency",
       "name": "Internal consistency",
       "question": "Do its core claims fit together without special pleading, and does it say the same thing about the same question?",
-      "rule": "Start at 8 for a system whose core claims fit together; subtract one for each core doctrine that needs careful definition to avoid contradiction, judged on the tradition's own best statement (the Trinity, no-self with rebirth, divine mercy with eternal punishment, binding obligation in a world of particles). Disagreements between texts are a history matter, not scored here."
+      "rule": "Start at 8 for a system whose core claims fit together; subtract 1 for each core doctrine that needs careful definition to avoid contradiction, judged on the tradition's own best statement (the Trinity, no-self with rebirth, divine mercy with eternal punishment, binding obligation in a world of particles). Disagreements between texts are a history matter, not scored here."
     },
     {
       "id": "explanation",
       "name": "Explanatory reach",
       "question": "How much of what we find, a lawlike cosmos, conscious minds, moral obligation, suffering, does it explain, and how well?",
-      "rule": "Four questions: a lawful cosmos, conscious minds, moral obligation, and suffering. Start at 2, add one per question the tradition answers, and one more for an answer that philosophers across the divide treat as a distinctive resource. An inherited cosmology neither credits nor debits anyone."
+      "rule": "Four questions: a lawful cosmos, conscious minds, moral obligation, suffering. Start at 2; add 1 for each question the worldview gives an answer to (an honest refusal to answer is not an answer; an inherited cosmology counts as an answer for everyone who has one). Add 1 more, once, if any of its answers is treated by philosophers across the divide as a distinctive resource."
     },
     {
       "id": "testability",
       "name": "Testable claims",
       "question": "Does it make claims that could have turned out false, and how have those claims fared?",
-      "rule": "Two parts, scored the same for everyone: how exposed the central claim is to refutation (0 to 5), then one point added for each kind of checkable claim that has held and one subtracted for each that has failed. A failed historical claim already debited under history is not counted again."
+      "rule": "Exposure of the central claim, 0 to 5. Then add 1 for each kind of checkable claim that has held and subtract 1 for each kind that has failed. Each kind is scored once: foundation claims already scored under history are not scored again; prayer trials count once against every tradition that promises answered prayer; meditation and rebirth-memory research count the same way for every tradition that makes those claims."
     },
     {
       "id": "moral",
       "name": "Moral fruit",
       "question": "Does it produce a livable, humane ethic for insiders and outsiders alike, judged by its best expression and its record?",
-      "rule": "Best expression and record, for all seven: start at 8 for an ethic that extends to outsiders, subtract one for each class of coercion, exclusion or atrocity done in the tradition's name or by states built on it (atheist states count against naturalism), and one for an ethic addressed to insiders first. Influence on the wider world is not scored."
+      "rule": "Start at 8 for an ethic that, in its best expression, extends to outsiders. Subtract 1 for each of three classes present in the record of the tradition or of states built on it: wars and conquest in its name; persecution or legal coercion of dissenters, apostates or a subordinate group; an exclusion written into its structure (caste, slavery sanctioned from its texts). Opposition from within does not restore a point. A stance with no communities and no record scores 5. Influence on the wider world is not scored."
     }
   ],
   "evidence_note": "Strength is how much weight the best version of each item carries as evidence, 0 to 10, judged by one referee with one rubric; confidence is how sure the referee is of that score. The two columns are not meant to be added up: one decisive item would outweigh several weak ones, and reasonable people weigh suffering against fine-tuning differently. What the lists show is that neither side is empty, and where the real disagreements sit.",

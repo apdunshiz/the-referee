@@ -7,23 +7,23 @@ scores:
   - criterion: history
     score: 6
     confidence: 65
-    why: "It stakes everything on a datable event and the core is unusually well attested: Jesus lived, was crucified, and his followers very soon claimed to have seen him alive. The miracle itself is beyond what history can show, the gospels were written decades later by believers, and traditional authorship and some details are doubted by most scholars. Six."
+    why: "Start at 5. Foundations that hold: a well-attested founder and founding event, since Jesus lived, was crucified, and his followers very soon claimed to have seen him alive (plus 1); a continuous, documented community (plus 1). Gone against: the gospels were written decades later by believers and their traditional authorship is doubted by most scholars (minus 1). The resurrection itself is beyond history's reach and neither counts nor costs. Six."
   - criterion: consistency
     score: 5
     confidence: 60
-    why: "Starts at 8. Three core doctrines need careful definition to avoid contradiction: the Trinity, the incarnation, and eternal punishment alongside a God defined as love. Each has split the tradition. Five. Disagreements between the gospels are a history matter and are not counted here."
+    why: "Start at 8. Three core doctrines need careful definition to avoid contradiction: the Trinity, the incarnation, and eternal punishment alongside a God defined as love; each has split the tradition. Five. Disagreements between the gospels are a history matter and are not counted here."
   - criterion: explanation
     score: 7
     confidence: 60
-    why: "Answers all four questions: a lawful cosmos and moral obligation through a creator, minds through a soul made in God's image, and suffering through a God who undergoes it, which philosophers on both sides treat as a distinctive resource. Its account of animal pain across deep time is weak but the question is answered. Two plus four plus one."
+    why: "Start at 2. Answers all four: a lawful cosmos and moral obligation through a creator, minds through a soul made in God's image, suffering through a God who undergoes it: plus 4. That last answer is treated by philosophers across the divide as a distinctive resource: plus 1. Its account of animal pain across deep time is weak, but the question is answered. Seven."
   - criterion: testability
-    score: 5
-    confidence: 60
-    why: "The central claim is the most exposed of any major faith (4): a body or a confession could have refuted the resurrection and did not, and the surrounding facts have held (plus 1). Against that, the apparent prediction of a return within a generation did not happen, and prayer trials count against every theism that promises answered prayer (minus 2). Five."
+    score: 2
+    confidence: 55
+    why: "Exposure 4: a body or a confession could have refuted the resurrection, the most exposed central claim of any major faith. Its surrounding facts are foundation claims scored under history, not again here. Failed, minus 1 each: the apparent prediction of a return within a generation; prayer trials, counted once against every tradition that promises answered prayer. Two."
   - criterion: moral
-    score: 6
+    score: 5
     confidence: 65
-    why: "Love of enemies and the dignity of every person extend to outsiders, so it starts at 8. Two off for the record of coercion and atrocity done in its name or by states built on it: crusades, inquisitions, support for slavery and persecution of dissenters, usually opposed from within by appeal to the same texts. Six."
+    why: "Start at 8: love of enemies and the dignity of every person extend to outsiders. Wars and conquest in its name, the crusades (minus 1); persecution of dissenters, the inquisitions (minus 1); slavery sanctioned from its texts for centuries (minus 1), each opposed from within by appeal to the same texts, which the rule does not restore. Five."
 sources:
   - "Bart Ehrman, How Jesus Became God (2014)"
   - "N. T. Wright, The Resurrection of the Son of God (2003)"
@@ -34,7 +34,7 @@ sources:
 
 Christianity is the religion the deep dives on this site examine most closely, because it was the subject of the Reddit thread they came from and because it makes the most checkable claim of any major faith: that a particular man rose from the dead in a particular decade. That exposure is its strength and its risk. If the resurrection happened, the rest follows and the other criteria matter less. If it did not, Christianity is a moral tradition with a false founding story.
 
-Historians of every stripe grant more of the core than outsiders expect: the crucifixion, the early appearance claims, the conversion of Paul and the leadership of James, who had not followed Jesus during his life. They divide sharply on what caused the appearance beliefs, and that division follows their prior views about God almost exactly, which tells you where the real argument is.
+Historians of every stripe grant more of the core than outsiders expect: the crucifixion, the early appearance claims, the conversion of Paul and the leadership of James, whose earlier unbelief many historians accept and some doubt. They divide sharply on what caused the appearance beliefs, and that division follows their prior views about God almost exactly, which tells you where the real argument is.
 
 Its explanatory story is rich. It says why there is a world, why it is ordered, why we feel obliged, why things are wrong, and it answers suffering not with a theory but with a God who undergoes it. It pays for that with doctrines, the Trinity, the incarnation, hell, that have strained its own best minds for two thousand years.
 

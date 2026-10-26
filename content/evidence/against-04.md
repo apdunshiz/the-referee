@@ -2,7 +2,7 @@
 id: against-04
 side: against
 title: The world's religions contradict each other, and belief follows birthplace
-summary: Thousands of religions make incompatible claims about God, each backed by scripture, miracle reports and sincere experience; where you are born predicts which one you hold; at most one can be right, and the evidence each offers is the same kind the others offer.
+summary: Thousands of religions make incompatible claims about God, each backed by scripture, miracle reports and sincere experience; where you are born predicts which one you hold; on their own terms at most one can be right, and the evidence each offers is the same kind the others offer.
 strength: 5
 confidence: 80
 status: The facts are undisputed; theists answer that one revelation can be true while others are partial or mistaken, and that the geography of belief is a fact about people, not about God.
@@ -21,6 +21,6 @@ If you were born in Riyadh you are very likely a Muslim; in Varanasi, very likel
 
 There are three ways to respond. The exclusivist says one religion is true and the others are wrong, and that the accident of birth affects what people believe about everything, not just religion, without making those beliefs false. The pluralist, following Hick, says the religions are different cultural responses to the same ultimate reality, so none is simply wrong. The skeptic says the pattern is exactly what you would expect if the religions are human products and none is a channel to anything real.
 
-Plantinga's point stands: being born somewhere does not make your beliefs false. But the comparison with science is unflattering. Scientific disagreement narrows as evidence comes in; religious disagreement, after thousands of years, has not.
+Plantinga's point stands: being born somewhere does not make your beliefs false. But the comparison with science cuts against the exclusivist. Scientific disagreement narrows as evidence comes in; religious disagreement, after thousands of years, has not.
 
 What an outsider should take from it: this is the strongest argument against any particular religion, more than against God in general. It is the reason the worldview comparison on this site scores every tradition on the same criteria instead of taking any one's own account of itself.

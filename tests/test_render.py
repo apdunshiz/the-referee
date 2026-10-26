@@ -39,7 +39,7 @@ def fixture_tree(root: Path, status: Status | None = None) -> None:
     content.save_sighting(root, Sighting(fullname="t1_ccc", permalink=PERMALINK + "3/", claim_id="q02-c02", match_confidence=0.81, matched_at="2026-10-20T10:02:00Z"))
     site = json.loads((ROOT / "content" / "site.json").read_text(encoding="utf-8"))
     site["criteria"] = [
-        {"id": "history", "name": "Historical evidence", "question": "How well do its founding claims survive historical scrutiny?"},
+        {"id": "history", "name": "Historical evidence", "question": "How well do its founding claims survive historical scrutiny?", "rule": "Start at 5; add 1 per foundation that holds."},
         {"id": "coherence", "name": "Internal consistency", "question": "Do its core claims fit together without contradiction?"},
         {"id": "testable", "name": "Testable claims", "question": "Does it make claims that could in principle be checked?"},
     ]
@@ -336,3 +336,12 @@ def test_home_without_evidence_or_worldviews_renders(tmp_path):
     out = tmp_path / "_site"
     render.render(tmp_path, out, now=NOW)
     assert read(out, "index.html").count("None written yet.") == 3
+
+
+def test_criterion_rules_render_on_both_worldview_pages(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    assert "How it is scored: Start at 5; add 1 per foundation that holds." in read(out, "worldviews/index.html")
+    wv = sorted((out / "worldviews").glob("*/index.html"))[0]
+    assert "How it is scored: Start at 5; add 1 per foundation that holds." in wv.read_text(encoding="utf-8")

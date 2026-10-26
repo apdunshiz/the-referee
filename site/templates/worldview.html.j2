@@ -23,7 +23,7 @@
   <tbody>
   {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}
   <tr>
-    <td class="crit"><b>{{ c.name }}</b><br><span class="small">{{ c.question }}</span></td>
+    <td class="crit"><b>{{ c.name }}</b><br><span class="small">{{ c.question }}</span>{% if c.rule %}<br><span class="small">How it is scored: {{ c.rule }}</span>{% endif %}</td>
     <td data-label="Score">{{ m.meter(sc.score, 'score') }}</td>
     <td data-label="Confidence">{{ sc.confidence }}%</td>
     <td class="why-cell" data-label="Why">{% for p in sc.why | paragraphs %}<p>{{ p }}</p>{% endfor %}</td>

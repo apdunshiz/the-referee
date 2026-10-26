@@ -194,6 +194,8 @@ def test_model_limits_reject_bad_ids_sources_and_duplicate_links():
     sc = CriterionScore(criterion="history", score=5, confidence=60, why="Mixed record on the founding claims.")
     kw = dict(name="Deism", one_line="A creator who does not intervene.", core_claim="God made the world and left it to run.", scores=[sc])
     Worldview(id="deism", **kw)
+    for good in ("ab", "ab-cd", "the-referee"):
+        Worldview(id=good, **kw)
     for bad in ("-", "a", "-deism", "deism-", "De-ism", "a--b"):
         with pytest.raises(ValidationError):
             Worldview(id=bad, **kw)
@@ -238,3 +240,10 @@ def test_validate_tree_checks_evidence_links_and_worldview_criteria(tmp_path):
     assert not any("q01-c01" in p for p in problems)
     assert content.load_evidence(tmp_path)[0].id == "for-01" and content.load_worldviews(tmp_path)[0].id == "deism"
     assert content.load_evidence(tmp_path / "nowhere") == [] and content.load_worldviews(tmp_path / "nowhere") == []
+
+
+def test_criterion_rule_rejects_usernames():
+    from referee.content import Criterion
+    Criterion(id="history", name="History", question="Does it hold up?", rule="Start at 5.")
+    with pytest.raises(ValidationError):
+        Criterion(id="history", name="History", question="Does it hold up?", rule="As u/someone argued.")

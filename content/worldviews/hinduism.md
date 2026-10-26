@@ -5,25 +5,25 @@ one_line: One ultimate reality shows itself as many gods; every being lives thro
 core_claim: Brahman, the ultimate reality, underlies everything; the self is in some sense identical with or dependent on it; karma and rebirth govern each life, and liberation comes through knowledge, devotion or disciplined action.
 scores:
   - criterion: history
-    score: 5
+    score: 6
     confidence: 55
-    why: "No founder and no founding event, which is neutral under the rule. The Vedas are among the oldest religious texts and the tradition has been continuous for three millennia; its stories of gods and ages are treated as myth in much of its own tradition and as history in some of it, and modern claims of a Vedic golden age of science are not supported, which cancels the credit. Five."
+    why: "Start at 5. It has no founder and no founding event. Foundation that holds: the Vedas are among the oldest religious texts and the tradition is continuous for three millennia (plus 1). Its stories of gods and ages are treated as myth in much of its own tradition and as history in some, which is not a failed claim; modern claims of a Vedic golden age of science are popular claims and are not scored. Six."
   - criterion: consistency
     score: 5
     confidence: 50
-    why: "Less a system than a family of systems, from strict monism to personal theism to near-atheism, that disagree about the most basic questions. Starting at 8, three core matters need careful definition before Hinduism can be held to any one account: whether there is a personal God, whether the self is real, and how karma relates to grace. Five."
+    why: "Start at 8. Less a system than a family of systems, from strict monism to personal theism to near-atheism; three core matters need careful definition before Hinduism can be held to any one account: whether there is a personal God, whether the self is real, and how karma relates to grace. Five."
   - criterion: explanation
     score: 7
     confidence: 55
-    why: "Answers all four questions: a lawful cosmos through cyclic creation, minds through consciousness as fundamental in its monist strand, which philosophers of mind treat as a distinctive resource, obligation through dharma, and suffering through karma, which gives every case a cause at the price of making every victim responsible. Two plus four plus one."
+    why: "Start at 2. Answers all four: a lawful cosmos through cyclic creation, minds through consciousness as fundamental in its monist strand, obligation through dharma, suffering through karma, which gives every case a cause at the price of making every victim responsible: plus 4. Karma's completeness as an account of suffering is treated across the divide as a distinctive resource: plus 1. Seven."
   - criterion: testability
-    score: 3
+    score: 1
     confidence: 55
-    why: "Its central claims, Brahman, karma and rebirth, are not exposed to refutation (1); no experience is framed to count against them. Its contemplative claims about attention and the self can be tested by practice and yoga research partly supports them (plus 2). Rebirth-memory cases have not been confirmed under controlled study, which is neutral, as it is for Buddhism. Three."
+    why: "Exposure 1: Brahman, karma and rebirth are framed so that no experience counts against them. Held, plus 1: contemplative claims about attention and the self, which practice can test and research partly supports. Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer, which its devotional strands do. Rebirth-memory cases are unconfirmed, which is neutral for every tradition that makes the claim. One."
   - criterion: moral
     score: 6
     confidence: 55
-    why: "Non-violence, hospitality and a deep tradition of devotion and self-discipline extend to outsiders in its best expression, so it starts at 8. Two off for caste, an exclusion written into the tradition and justified from its texts, which reformers have fought from within. Six."
+    why: "Start at 8: non-violence, hospitality and devotion extend to outsiders in its best expression. Communal violence and conquest in its name by nationalist movements (minus 1); caste, an exclusion written into its structure and justified from its texts (minus 1); reformers have fought both from within, which the rule does not restore. Six."
 sources:
   - "Wendy Doniger, The Hindus: An Alternative History (2009)"
   - "Gavin Flood, An Introduction to Hinduism (1996)"

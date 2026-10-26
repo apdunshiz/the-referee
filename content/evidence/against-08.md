@@ -7,7 +7,7 @@ strength: 5
 confidence: 75
 status: The historical pattern is real and theists mostly agree that "God of the gaps" reasoning is bad; they deny that the main arguments for God are gap arguments.
 best_objection: The best arguments for God are not about gaps in science but about things science presupposes, such as why there are laws at all, why they are mathematical, and why anything exists; a complete physics would leave those questions exactly where they are.
-best_reply: Every past retreat was defended in the same words at the time, and the questions now called "beyond science" are the ones science has not yet reached; the honest induction from four centuries is that waiting works better than invoking.
+best_reply: Every past retreat was defended in the same words at the time, and the questions now called "beyond science" are the ones science has not yet reached; the induction from four centuries is that waiting works better than invoking.
 sources:
   - "Henry Drummond, The Ascent of Man (1894), and Charles Coulson, Science and Christian Belief (1955), on the phrase God of the gaps"
   - "Richard Dawkins, The God Delusion (2006), chapter 4"

@@ -2,7 +2,7 @@
 id: against-06
 side: against
 title: Where God's action should be detectable, it is not
-summary: Controlled studies of intercessory prayer find no effect, no miracle claim has been confirmed to the satisfaction of skeptical investigators, and no physical event has ever required a supernatural explanation; a God who acts in the world should leave traces, and none have been found.
+summary: Controlled studies of intercessory prayer find no effect, no miracle claim has been confirmed to the satisfaction of skeptical investigators, and no physical event has yet required a supernatural explanation; a God who acts in the world should leave traces, and none have been found.
 strength: 5
 confidence: 70
 status: "The large prayer trials found no aggregate effect; small earlier studies claiming benefits are disputed. Whether any miracle has been verified is disputed: skeptics find none confirmed, some scholars catalogue well-attested cases. Whether God would show up in tests is the contested premise."
@@ -25,4 +25,4 @@ Theists reply that the studies test a caricature: a vending-machine God who answ
 
 Skeptics answer that an effect which only appears when it cannot be checked is not an effect, and that Hume's point still holds: a mistaken or exaggerated report is always more likely than a suspension of nature.
 
-What an outsider should take from it: the evidence is solidly against the kind of God who intervenes visibly and often. It leaves untouched the kind who does not, which is the kind most philosophical theists now defend; skeptics read that as a retreat, theists as a correction of a crude picture.
+What an outsider should take from it: the evidence weighs against the kind of God who intervenes visibly and often. It leaves untouched the kind who does not, which is the kind most philosophical theists now defend; skeptics read that as a retreat, theists as a correction of a crude picture.
