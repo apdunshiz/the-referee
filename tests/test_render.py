@@ -347,3 +347,25 @@ def test_criterion_rules_render_on_both_worldview_pages(tmp_path):
     assert pages
     for wv in pages:
         assert "How it is scored: Start at 5; add 1 per foundation that holds." in wv.read_text(encoding="utf-8")
+
+
+def test_proof_percentage_and_primary_reasons(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    # fixture: for 6, against 8 -> 43% of the weight points to God
+    assert "Proof of God, as a percentage" in html
+    assert 'aria-label="43 percent">43%</span>' in html
+    assert "(6 for, 8 against)" in html
+    assert "Primary reasons for" in html and "Primary reasons against" in html
+    assert html.index("The universe had a beginning</a> <span class=\"pct\">6/10") > html.index("Primary reasons for")
+
+
+def test_proof_is_fifty_when_columns_weigh_the_same():
+    from types import SimpleNamespace as N
+    pf = [N(strength=6, confidence=70, id="for-01", title="a")]
+    pa = [N(strength=6, confidence=80, id="against-01", title="b")]
+    proof = render.build_proof(pf, pa)
+    assert proof["pct"] == 50 and proof["confidence"] == 75 and proof["top_for"] == pf
+    assert render.build_proof([], [])["pct"] is None
