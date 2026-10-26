@@ -7,23 +7,23 @@ scores:
   - criterion: history
     score: 5
     confidence: 65
-    why: The kingdoms of Israel and Judah are attested from the ninth century BCE by the Tel Dan and Mesha stelae and Assyrian annals, the record from the Babylonian exile onward is solid, and the community's continuity across 2,500 years is unmatched. The founding events, the patriarchs, the Exodus and the conquest, have little or no archaeological support in the form the texts describe, and most scholars treat them as later national memory.
+    why: "Strong later footing: the kingdoms of Israel and Judah are attested from the ninth century BCE by the Tel Dan and Mesha stelae and Assyrian annals, the record from the exile onward is solid, and the community's continuity is among the longest unbroken anywhere. Debited here, and only here, for the founding claims: the patriarchs, Exodus and conquest have little or no archaeological support in the form the texts describe."
   - criterion: consistency
-    score: 6
+    score: 7
     confidence: 60
-    why: Rabbinic Judaism is unusually comfortable with argument and multiple readings, which is a strength for coherence and a weakness for clarity. The tension between a universal creator and a particular chosen people is acknowledged rather than resolved.
+    why: "Starts at 8. One tension needs careful definition: a universal creator who makes a covenant with one particular people. Rabbinic Judaism is comfortable with argument and multiple readings, which keeps the rest coherent."
   - criterion: explanation
     score: 6
     confidence: 60
-    why: Explains order, moral obligation and purpose through a creator and lawgiver; the Book of Job faces suffering more honestly than most scriptures by refusing to explain it. Says little about cosmology or consciousness and does not try to.
+    why: "Answers all four questions: a lawful cosmos and moral obligation through a creator and lawgiver, minds through the soul, suffering through Job, which declines to explain and offers God instead. No distinctive resource beyond that, since the refusal is honest but is not an explanation. Two plus four."
   - criterion: testability
     score: 4
     confidence: 60
-    why: The covenant promise of the land and the people's survival are the kind of claims that could have failed and, in a sense, have not. Specific prophecies are read flexibly enough that no outcome counts against them. The Messiah's arrival remains open-ended.
+    why: "The central claim, a permanent covenant, is moderately exposed (3): the people's survival and return could have failed and have not, which counts as one held claim. Prayer trials count one failed claim against every theism that promises answered prayer. The failed founding claims are debited under history, not here. Four."
   - criterion: moral
-    score: 7
+    score: 6
     confidence: 65
-    why: The prophetic tradition of justice for the poor and the stranger shaped Western ethics, and the law's emphasis on practice over belief produces communities that function. Its record includes an ethic that was for most of its history addressed to insiders first.
+    why: "The prophetic tradition of justice for the poor and the stranger extends to outsiders, so it starts at 8. One off for an ethic addressed to insiders first for most of its history; one off for the conquest commands in its own texts, done in its name. Six."
 sources:
   - "Israel Finkelstein and Neil Asher Silberman, The Bible Unearthed (2001)"
   - "Abraham Joshua Heschel, God in Search of Man (1955)"

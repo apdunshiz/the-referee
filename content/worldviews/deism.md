@@ -7,23 +7,23 @@ scores:
   - criterion: history
     score: 5
     confidence: 60
-    why: "It rests on no events or texts at all, which on the rule used here is neutral: nothing to refute and nothing to support. Its historical weakness is that almost nobody has held it as a living tradition; it was a position of eighteenth-century intellectuals and tends to dissolve into theism or naturalism within a generation."
+    why: "Rests on no events or texts, which is neutral under the rule: nothing to refute and nothing to support. The cosmological arguments it draws on are arguments, not a historical foundation, and are credited under explanation."
   - criterion: consistency
     score: 7
     confidence: 60
-    why: "Coherent and spare. Its one strain is motivational: why would a mind that cared enough to create not care enough to communicate, and if it does not care, why call it God?"
+    why: "Coherent and spare, starting at 8. One tension needs careful definition: why a mind that cared enough to create would not care enough to communicate, and if it does not care, why call it God."
   - criterion: explanation
-    score: 6
+    score: 4
     confidence: 60
-    why: Takes the cosmological and fine-tuning evidence at face value and explains why there is a lawful universe. Explains nothing about consciousness, morality or suffering beyond what naturalism already says, since the creator is absent after the first moment.
+    why: "Answers one of the four questions, a lawful cosmos, taking the origin and fine-tuning evidence at face value, with a distinctive resource in explaining the frame that naturalism leaves brute. Says nothing about minds, obligation or suffering, since the creator is absent after the first moment. Two plus one plus one."
   - criterion: testability
     score: 3
     confidence: 70
-    why: Deliberately makes no claims that could be checked after the creation. That protects it from refutation and also from support; it is compatible with every possible observation.
+    why: "The central claim is barely exposed (2): a creator could be disconfirmed only by showing the universe necessary. It makes no checkable claims after the creation, so nothing has held or failed (plus 1 for the one exposure it allows). Three."
   - criterion: moral
     score: 5
     confidence: 55
-    why: Historically it inspired a serious ethic of reason and tolerance and underwrote the language of natural rights. As a lived tradition it has no community, no practice and no record to judge, so it inherits secular ethics with a cosmic sanction attached.
+    why: "Its best expression is an ethic of reason and tolerance that underwrote natural rights, but it has no distinct ethic beyond what it borrows, so it starts at 6; no community, no practice and no record to debit or credit. Five is the no-record neutral used for history, less one for borrowed content."
 sources:
   - "Antony Flew, There Is a God (2007)"
   - "Thomas Paine, The Age of Reason (1794)"

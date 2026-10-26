@@ -15,7 +15,7 @@
       {% for e in items %}
         <li class="ev-item">
           <a class="ev-title" href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a>
-          <div class="ev-meta">{{ m.meter(e.strength) }} {{ m.conf(e.confidence) }}</div>
+          <div class="ev-meta">{{ m.meter(e.strength) }} {{ m.conf(e.confidence, 'this score') }}</div>
           <p class="ev-summary">{{ e.summary }}</p>
         </li>
       {% endfor %}
@@ -40,7 +40,7 @@
     {% for w in worldviews %}
     <tr>
       <th scope="row"><a href="{{ base }}worldviews/{{ w.id }}/">{{ w.name }}</a></th>
-      {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}<td class="score" title="{{ c.question }}"><b>{{ sc.score }}</b><span class="cell-conf">{{ sc.confidence }}%</span></td>{% endfor %}
+      {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}<td class="score" title="{{ c.question }}"><b>{{ sc.score }}</b><span class="cell-conf"><span class="vh">confidence </span>{{ sc.confidence }}%</span></td>{% endfor %}
       <td class="total">{{ w.total }}/{{ w.max_total }}</td>
     </tr>
     {% endfor %}

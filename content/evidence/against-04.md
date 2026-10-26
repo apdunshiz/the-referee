@@ -17,7 +17,7 @@ related_questions: [q12]
 related_claims: []
 ---
 
-If you were born in Riyadh you are very likely a Muslim; in Varanasi, very likely a Hindu; in rural Alabama, very likely a Baptist. The religion a person holds is predicted by their parents and their map coordinates far better than by any argument. That is awkward for every religion that claims to be the one true revelation, because each of them offers the same kinds of support: holy books, reported miracles, transformed lives, and the inner conviction of believers. Whatever that evidence proves for one, it proves equally for the others, and they cannot all be right.
+If you were born in Riyadh you are very likely a Muslim; in Varanasi, very likely a Hindu; in rural Alabama, very likely a Protestant. The religion a person holds is predicted by their parents and their map coordinates far better than by any argument. That is awkward for every religion that claims to be the one true revelation, because each of them offers the same kinds of support: holy books, reported miracles, transformed lives, and the inner conviction of believers. The argument holds that whatever that evidence proves for one, it proves equally for the others, and they cannot all be right.
 
 There are three ways to respond. The exclusivist says one religion is true and the others are wrong, and that the accident of birth affects what people believe about everything, not just religion, without making those beliefs false. The pluralist, following Hick, says the religions are different cultural responses to the same ultimate reality, so none is simply wrong. The skeptic says the pattern is exactly what you would expect if the religions are human products and none is a channel to anything real.
 

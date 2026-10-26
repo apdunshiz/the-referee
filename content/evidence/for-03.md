@@ -23,4 +23,4 @@ Critics attack the demand for explanation. Russell's answer to Copleston was blu
 
 Defenders answer that accepting brute facts is the end of inquiry, and that nothing in physics looks necessary; the laws and constants are described as contingent by the same scientists who study them.
 
-What an outsider should take from it: the argument is tight and the disagreement is about one premise. If you grant that everything contingent needs an explanation, you get a necessary being. Whether that being is a mind, let alone a particular God, is a further step the argument does not take by itself.
+What an outsider should take from it: the argument is valid in form and the disagreement is about one premise. If you grant that everything contingent needs an explanation, you get a necessary being. Whether that being is a mind, let alone a particular God, is a further step the argument does not take by itself.

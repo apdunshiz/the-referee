@@ -21,6 +21,13 @@
           "minLength": 10,
           "title": "Question",
           "type": "string"
+        },
+        "rule": {
+          "default": "",
+          "description": "How the score is assigned, stated once and applied to every worldview.",
+          "maxLength": 600,
+          "title": "Rule",
+          "type": "string"
         }
       },
       "required": [

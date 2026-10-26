@@ -86,7 +86,6 @@ td { padding: .55rem .5rem .55rem 0; border-bottom: 1px solid var(--line); verti
 .ev-title:hover { text-decoration: underline; }
 .ev-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
 .ev-summary { font: 400 .95rem/1.5 var(--serif); color: var(--ink); margin: .1rem 0 0; }
-.ev-sum { font: 500 .9rem var(--sans); color: var(--muted); margin: .6rem 0 0; }
 .note { font: 400 .95rem/1.55 var(--serif); color: var(--muted); border-left: 3px solid var(--gold); padding: .3rem .9rem; margin: 1rem 0 0; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
 .box-objection, .box-reply { border-radius: 6px; padding: .6rem 1rem .8rem; }
@@ -102,6 +101,7 @@ td { padding: .55rem .5rem .55rem 0; border-bottom: 1px solid var(--line); verti
 .matrix th[scope="col"] { text-align: center; }
 .matrix th[scope="col"]:first-child { text-align: left; position: sticky; left: 0; background: #fff; }
 .matrix td.score { text-align: center; font: 600 1rem var(--sans); color: var(--navy); line-height: 1.15; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .matrix td.score .cell-conf { display: block; font: 400 .72rem var(--sans); color: var(--muted); }
 .matrix caption, .scores caption { caption-side: top; text-align: left; font: .82rem/1.4 var(--sans); color: var(--muted); padding: 0 0 .4rem; }
 .matrix td.total, .matrix th.total { text-align: center; font-weight: 800; }

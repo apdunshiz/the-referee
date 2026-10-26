@@ -7,23 +7,23 @@ scores:
   - criterion: history
     score: 5
     confidence: 60
-    why: The Buddha was a historical teacher in the fifth century BCE and the core teachings are consistent across early sources. Those sources were transmitted orally for centuries before being written, and the miracle stories and cosmology around him are treated as legend by most scholars and by many Buddhists.
+    why: "The Buddha was a historical teacher in the fifth century BCE and the core teachings are consistent across early sources, which earns credit; the sources were transmitted orally for centuries before being written, and the miracle stories and cosmology around him are treated as legend by most scholars and many Buddhists, which cancels it. Five."
   - criterion: consistency
     score: 7
     confidence: 60
-    why: A tight, almost clinical system with a clear diagnosis and prescription. Its known tension is rebirth without a self that is reborn, which its schools address with sophistication but not to everyone's satisfaction.
+    why: "A tight, almost clinical system with a clear diagnosis and prescription, starting at 8. One core doctrine needs careful definition: rebirth without a self that is reborn, which its schools address with sophistication but not to everyone's satisfaction. Seven."
   - criterion: explanation
-    score: 5
+    score: 7
     confidence: 55
-    why: The best account of suffering as experienced, and a serious phenomenology of mind that modern psychology has partly confirmed. It does not try to explain why there is a universe or why it is lawful, and it treats those questions as unhelpful, which is honest but is still a gap.
+    why: "Answers three of the four questions: minds, through a phenomenology of attention that psychology has partly confirmed and that counts as a distinctive resource; obligation, through compassion grounded in no-self; and suffering, its central diagnosis, also a distinctive resource. It declines the cosmos question as unhelpful, which is honest but is a gap. Two plus three plus two."
   - criterion: testability
     score: 5
     confidence: 60
-    why: Its central claims about attention, craving and suffering are claims about experience that practitioners can test and that clinical studies of meditation have partly supported. Rebirth and the full extent of liberation are not testable.
+    why: "Its central claims are about experience, that craving produces suffering and that disciplined attention reduces it, which practitioners can test, so the core is moderately exposed (3); clinical studies of meditation have partly supported them (plus 2). Rebirth and the full extent of liberation are not testable, and rebirth-memory cases are unconfirmed, which is neutral, as it is for Hinduism. Five."
   - criterion: moral
     score: 7
     confidence: 60
-    why: Compassion for all sentient beings and non-violence are central, and it has no doctrine of a divine mandate for coercion, which has meant fewer religious wars than the Abrahamic traditions, though Buddhist societies have had their wars, their nationalism and their persecutions. Critics note a tendency toward withdrawal rather than reform.
+    why: "Compassion for all sentient beings and non-violence extend to every creature, so it starts at 8. One off for the record of Buddhist states and movements: wars, nationalism and persecutions in its name, with no doctrine of divine mandate to point to but a record all the same. Critics also note a tendency toward withdrawal rather than reform. Seven."
 sources:
   - "Walpola Rahula, What the Buddha Taught (1959)"
   - "Richard Gombrich, What the Buddha Thought (2009)"

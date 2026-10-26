@@ -7,23 +7,23 @@ scores:
   - criterion: history
     score: 5
     confidence: 55
-    why: It has no founder and no founding event to check, which on the rule used here is neutral. The Vedas are among the oldest religious texts and the tradition is continuous for three millennia; its stories of gods and ages are mythic by its own account, and modern claims of a Vedic golden age of science are not supported.
+    why: "No founder and no founding event, which is neutral under the rule. The Vedas are among the oldest religious texts and the tradition has been continuous for three millennia; its stories of gods and ages are treated as myth in much of its own tradition and as history in some of it, and modern claims of a Vedic golden age of science are not supported, which cancels the credit. Five."
   - criterion: consistency
     score: 5
     confidence: 50
-    why: Less a system than a family of systems, from strict monism to personal theism to near-atheism, that disagree about the most basic questions. That is tolerant and also means "Hinduism" cannot be held to any one account of God.
+    why: "Less a system than a family of systems, from strict monism to personal theism to near-atheism, that disagree about the most basic questions. Starting at 8, three core matters need careful definition before Hinduism can be held to any one account: whether there is a personal God, whether the self is real, and how karma relates to grace. Five."
   - criterion: explanation
+    score: 7
+    confidence: 55
+    why: "Answers all four questions: a lawful cosmos through cyclic creation, minds through consciousness as fundamental in its monist strand, which philosophers of mind treat as a distinctive resource, obligation through dharma, and suffering through karma, which gives every case a cause at the price of making every victim responsible. Two plus four plus one."
+  - criterion: testability
+    score: 3
+    confidence: 55
+    why: "Its central claims, Brahman, karma and rebirth, are not exposed to refutation (1); no experience is framed to count against them. Its contemplative claims about attention and the self can be tested by practice and yoga research partly supports them (plus 2). Rebirth-memory cases have not been confirmed under controlled study, which is neutral, as it is for Buddhism. Three."
+  - criterion: moral
     score: 6
     confidence: 55
-    why: Karma gives suffering a reason that neither Abrahamic theodicy nor naturalism can match in scope, at the cost of making every victim responsible. The monist strand has a serious account of consciousness as fundamental. Its cosmology of endless cycles fits a vast and old universe better than a single creation does.
-  - criterion: testability
-    score: 4
-    confidence: 55
-    why: Its contemplative claims about attention and the self can be tested by practice, as Buddhism's can, and yoga research partly supports them. Rebirth and karma are not observable, rebirth-memory cases have not survived controlled study, and its metaphysical claims are framed so that no experience counts against them.
-  - criterion: moral
-    score: 5
-    confidence: 55
-    why: Non-violence, hospitality and a deep tradition of devotion and self-discipline; Gandhi drew from it. Its record is marked by caste, which the texts have been used to justify and reformers have fought from within.
+    why: "Non-violence, hospitality and a deep tradition of devotion and self-discipline extend to outsiders in its best expression, so it starts at 8. Two off for caste, an exclusion written into the tradition and justified from its texts, which reformers have fought from within. Six."
 sources:
   - "Wendy Doniger, The Hindus: An Alternative History (2009)"
   - "Gavin Flood, An Introduction to Hinduism (1996)"

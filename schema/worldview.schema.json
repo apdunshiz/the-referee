@@ -53,7 +53,7 @@
     },
     "id": {
       "maxLength": 40,
-      "pattern": "^[a-z][a-z-]*[a-z]$",
+      "pattern": "^[a-z]{2,}(-[a-z]+)*$",
       "title": "Id",
       "type": "string"
     },

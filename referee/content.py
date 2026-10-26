@@ -559,8 +559,9 @@ class Criterion(Strict):
     id: str = Field(pattern=r"^[a-z]+$")
     name: str = Field(min_length=2, max_length=60)
     question: str = Field(min_length=10, max_length=300, description="The question the score answers, in plain words.")
+    rule: str = Field(default="", max_length=600, description="How the score is assigned, stated once and applied to every worldview.")
 
-    @field_validator("name", "question")
+    @field_validator("name", "question", "rule")
     @classmethod
     def _criterion_no_usernames(cls, v):
         return _no_usernames(v)
@@ -602,7 +603,7 @@ def load_site_data(root: Path) -> SiteData:
 
 EVIDENCE_ID_RE = re.compile(r"^(for|against)-\d{2}$")
 CRITERION_ID_RE = re.compile(r"^[a-z]+$")
-WORLDVIEW_ID_RE = re.compile(r"^[a-z][a-z-]*[a-z]$")
+WORLDVIEW_ID_RE = re.compile(r"^[a-z]{2,}(-[a-z]+)*$")
 
 
 class EvidenceSide(str, Enum):

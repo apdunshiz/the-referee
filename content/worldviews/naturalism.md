@@ -7,23 +7,23 @@ scores:
   - criterion: history
     score: 7
     confidence: 70
-    why: "It rests on no founding events; its footing is the scientific account of cosmic history, evolution and the brain, which is the best-attested body of knowledge there is. Scored on one rule for every worldview: a tradition is judged on the foundations it actually rests on, and having none to refute is neutral, not a merit. It loses a point where it treats open questions, such as the origin of life, as settled."
+    why: "Rests on no founding events; its footing is the scientific account of cosmic history, evolution and the brain, the best-attested body of knowledge there is, which earns credit under the rule. One point off for treating open questions, such as the origin of life, as settled."
   - criterion: consistency
-    score: 7
+    score: 6
     confidence: 65
-    why: "A simple ontology with one kind of stuff. Its tensions are real but not contradictions: how consciousness and binding moral obligation fit into a world of particles, and why the universe is lawful and knowable at all."
+    why: "A spare system with one kind of stuff, so it starts at 8. Two core tensions need careful definition: how conscious experience arises in a world of particles, and how binding moral obligation does. Six."
   - criterion: explanation
     score: 5
     confidence: 65
-    why: "Unmatched at explaining how things work and why the world looks as it does from the inside. Thin at the edges: why there is anything, why the constants permit life, why there is experience, and what grounds right and wrong. It answers those with \"brute fact\" or \"not yet\"."
+    why: "Answers two of the four questions: suffering, which an indifferent nature explains completely, and moral obligation, through secular realism, with a distinctive resource in predicting the actual texture of suffering. It leaves a lawful cosmos and conscious minds to brute fact or future science. Two plus two plus one."
   - criterion: testability
     score: 8
     confidence: 70
-    why: "It makes risky predictions all the time, through the sciences it endorses, and they have held where they can be checked: no confirmed miracle, mind tracking brain in every detail, no lawlike event needing a supernatural cause. Its claims about origins, consciousness and the grounding of morality are open, and its own completeness cannot be tested."
+    why: "Its central claim is exposed: one confirmed miracle or one lawlike event needing a supernatural cause would refute it (4). Its checkable claims have held: no confirmed miracle, mind tracking brain in every detail, no gap that stayed open, a prayer-trial null result (plus 4). Its own completeness cannot be tested."
   - criterion: moral
     score: 6
     confidence: 60
-    why: "Secular ethics has produced humane, self-correcting moral traditions and most of the modern expansion of rights. Its weakness is foundational: it has no agreed account of why anyone is obliged, and its own thinkers disagree about whether morality is real."
+    why: "Humanist ethics extends to every person, so it starts at 8. One off for the record of states built on it, the Soviet, Maoist and Khmer Rouge regimes; one off because its own thinkers disagree about whether anyone is obliged at all. Credit for the modern expansion of rights is contested and not scored."
 sources:
   - "Graham Oppy, Naturalism and Religion (2018)"
   - "Sean Carroll, The Big Picture (2016)"

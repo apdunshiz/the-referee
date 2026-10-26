@@ -5,7 +5,7 @@ title: Where God's action should be detectable, it is not
 summary: Controlled studies of intercessory prayer find no effect, no miracle claim has been confirmed to the satisfaction of skeptical investigators, and no physical event has ever required a supernatural explanation; a God who acts in the world should leave traces, and none have been found.
 strength: 5
 confidence: 70
-status: The prayer studies are not disputed; whether any miracle has been verified is disputed, with skeptical investigators finding none confirmed and some scholars cataloguing cases they consider well attested; whether a God would be expected to show up in such tests is the contested premise.
+status: "The large prayer trials found no aggregate effect; small earlier studies claiming benefits are disputed. Whether any miracle has been verified is disputed: skeptics find none confirmed, some scholars catalogue well-attested cases. Whether God would show up in tests is the contested premise."
 best_objection: A God is not a lab effect to be summoned by a protocol; the studies test whether God grants anonymous requests on demand, which almost no theology predicts, and the absence of proof of miracles is not proof of their absence.
 best_reply: Believers do claim that prayer heals and that miracles happen, and when such claims are checked by investigators without a stake in the outcome they have not held up; a God whose actions are indistinguishable from chance is, for every practical purpose, indistinguishable from no God.
 sources:
@@ -25,4 +25,4 @@ Theists reply that the studies test a caricature: a vending-machine God who answ
 
 Skeptics answer that an effect which only appears when it cannot be checked is not an effect, and that Hume's point still holds: a mistaken or exaggerated report is always more likely than a suspension of nature.
 
-What an outsider should take from it: the evidence is solidly against the kind of God who intervenes visibly and often. It leaves untouched the kind who does not, which is the kind most philosophical theists now defend, and that retreat is itself something to notice.
+What an outsider should take from it: the evidence is solidly against the kind of God who intervenes visibly and often. It leaves untouched the kind who does not, which is the kind most philosophical theists now defend; skeptics read that as a retreat, theists as a correction of a crude picture.

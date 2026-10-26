@@ -194,7 +194,7 @@ def test_model_limits_reject_bad_ids_sources_and_duplicate_links():
     sc = CriterionScore(criterion="history", score=5, confidence=60, why="Mixed record on the founding claims.")
     kw = dict(name="Deism", one_line="A creator who does not intervene.", core_claim="God made the world and left it to run.", scores=[sc])
     Worldview(id="deism", **kw)
-    for bad in ("-", "a", "-deism", "deism-", "De-ism"):
+    for bad in ("-", "a", "-deism", "deism-", "De-ism", "a--b"):
         with pytest.raises(ValidationError):
             Worldview(id=bad, **kw)
     with pytest.raises(ValidationError):

@@ -43,7 +43,7 @@ def fixture_tree(root: Path, status: Status | None = None) -> None:
         {"id": "coherence", "name": "Internal consistency", "question": "Do its core claims fit together without contradiction?"},
         {"id": "testable", "name": "Testable claims", "question": "Does it make claims that could in principle be checked?"},
     ]
-    site["evidence_note"] = "Sums are a reading aid, not a verdict."
+    site["evidence_note"] = "The columns are not meant to be added up."
     site["worldview_note"] = "Totals are sums of criterion scores, not a ranking of truth."
     (root / "content" / "site.json").write_text(json.dumps(site, indent=2), encoding="utf-8")
     content.save_evidence(root, Evidence(id="for-01", side=EvidenceSide.FOR, title="The universe had a beginning", summary="Whatever begins to exist has a cause, and the universe began.", strength=6, confidence=70, status="A beginning is a live position in cosmology, not an established finding.", best_objection="Quantum gravity may remove the boundary <script>alert(1)</script>.", best_reply="The theorem still favours a boundary on average.", sources=["Borde, Guth and Vilenkin (2003)"], related_questions=["q01"], related_claims=["q01-c02"], body="A longer treatment.\n\nSecond paragraph."))
@@ -253,7 +253,7 @@ def test_home_shows_both_evidence_columns_ordered_by_strength(tmp_path):
     assert "Summed strength" not in html  # the note says the columns are not to be added up
     assert html.index("Fine-tuning of the constants") < html.index("The universe had a beginning")  # 7 before 6
     assert html.index("The problem of evil") < html.index("Divine hiddenness")  # 8 before 6
-    assert "Sums are a reading aid, not a verdict." in html
+    assert "The columns are not meant to be added up." in html
     assert "Scoreboard: the main arguments" not in html  # moved to /questions/
     assert "Scoreboard: the main arguments" in read(out, "questions/index.html")
 
@@ -269,7 +269,8 @@ def test_matrix_sorted_by_total_with_right_totals(tmp_path):
     assert full.index('href="/worldviews/naturalism/"') < full.index('href="/worldviews/christianity/"')
     assert "26/30" in full and "16/30" in full and "80%" in full  # avg confidence of naturalism
     # confidence is visible in every matrix cell, not only in a title attribute
-    assert '<b>9</b><span class="cell-conf">80%</span>' in html and '<b>9</b><span class="cell-conf">80%</span>' in full
+    cell = '<b>9</b><span class="cell-conf"><span class="vh">confidence </span>80%</span>'
+    assert cell in html and cell in full
     assert "<caption>" in html and "<caption>" in full and "<caption>" in read(out, "worldviews/naturalism/index.html")
     assert 'aria-label="score 9 out of 10"' in read(out, "worldviews/naturalism/index.html")
     assert 'percent confidence in this score' in read(out, "evidence/for-01/index.html")

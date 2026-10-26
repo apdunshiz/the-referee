@@ -24,4 +24,4 @@ The difficulties are also well known. Hindus experience Hindu deities, Catholics
 
 Defenders answer that disagreement at the level of interpretation does not show that nothing was perceived, and that drugs can trigger real perceptions as well as hallucinations.
 
-What an outsider should take from it: the experiences are real and widespread; what they are experiences of is exactly what is in question. This counts for a little, more if you have had such an experience yourself, and it tells heavily against any one religion's claim to be the only valid channel.
+What an outsider should take from it: the experiences are real and widespread; what they are experiences of is exactly what is in question. This counts for a little, more if you have had such an experience yourself, and it sits uneasily with any one religion's claim to be the only valid channel.

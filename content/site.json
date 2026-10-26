@@ -110,29 +110,34 @@
     {
       "id": "history",
       "name": "Historical footing",
-      "question": "Do the events, texts and origins the worldview rests on hold up to ordinary historical and scientific scrutiny?"
+      "question": "Do the events, texts and origins the worldview rests on hold up to ordinary historical and scientific scrutiny?",
+      "rule": "Each tradition is judged on the foundations it actually rests on: founding events and texts where it has them, the scientific record where it rests on that. Having no checkable foundation is neutral (5). A failed historical claim is debited here and nowhere else."
     },
     {
       "id": "consistency",
       "name": "Internal consistency",
-      "question": "Do its core claims fit together without special pleading, and does it say the same thing about the same question?"
+      "question": "Do its core claims fit together without special pleading, and does it say the same thing about the same question?",
+      "rule": "Start at 8 for a system whose core claims fit together; subtract one for each core doctrine that needs careful definition to avoid contradiction, judged on the tradition's own best statement (the Trinity, no-self with rebirth, divine mercy with eternal punishment, binding obligation in a world of particles). Disagreements between texts are a history matter, not scored here."
     },
     {
       "id": "explanation",
       "name": "Explanatory reach",
-      "question": "How much of what we find, a lawlike cosmos, conscious minds, moral obligation, suffering, does it explain, and how well?"
+      "question": "How much of what we find, a lawlike cosmos, conscious minds, moral obligation, suffering, does it explain, and how well?",
+      "rule": "Four questions: a lawful cosmos, conscious minds, moral obligation, and suffering. Start at 2, add one per question the tradition answers, and one more for an answer that philosophers across the divide treat as a distinctive resource. An inherited cosmology neither credits nor debits anyone."
     },
     {
       "id": "testability",
       "name": "Testable claims",
-      "question": "Does it make claims that could have turned out false, and how have those claims fared?"
+      "question": "Does it make claims that could have turned out false, and how have those claims fared?",
+      "rule": "Two parts, scored the same for everyone: how exposed the central claim is to refutation (0 to 5), then one point added for each kind of checkable claim that has held and one subtracted for each that has failed. A failed historical claim already debited under history is not counted again."
     },
     {
       "id": "moral",
       "name": "Moral fruit",
-      "question": "Does it produce a livable, humane ethic for insiders and outsiders alike, judged by its best expression and its record?"
+      "question": "Does it produce a livable, humane ethic for insiders and outsiders alike, judged by its best expression and its record?",
+      "rule": "Best expression and record, for all seven: start at 8 for an ethic that extends to outsiders, subtract one for each class of coercion, exclusion or atrocity done in the tradition's name or by states built on it (atheist states count against naturalism), and one for an ethic addressed to insiders first. Influence on the wider world is not scored."
     }
   ],
   "evidence_note": "Strength is how much weight the best version of each item carries as evidence, 0 to 10, judged by one referee with one rubric; confidence is how sure the referee is of that score. The two columns are not meant to be added up: one decisive item would outweigh several weak ones, and reasonable people weigh suffering against fine-tuning differently. What the lists show is that neither side is empty, and where the real disagreements sit.",
-  "worldview_note": "Each tradition is scored on the same five questions, from the outside, on its best scholarly presentation rather than its popular one. Totals weight the criteria equally, which is a choice: if you think moral fruit matters more than testable claims, reweigh them. A high score means a worldview answers the questions well, not that it is true; the evidence lists above are the place to judge that."
+  "worldview_note": "Each tradition is scored on the same five questions, from the outside, on its best scholarly presentation rather than its popular one, by one written rule per criterion that is applied to all seven and printed on the full comparison. Totals weight the criteria equally, which is a choice: if you think moral fruit matters more than testable claims, reweigh them. A high score means a worldview answers the questions well, not that it is true; the evidence lists above are the place to judge that."
 }

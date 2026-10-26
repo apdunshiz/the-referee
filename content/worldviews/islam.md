@@ -7,23 +7,23 @@ scores:
   - criterion: history
     score: 6
     confidence: 60
-    why: Muhammad is a well-attested historical figure and the Quranic text was fixed early and transmitted with unusual stability; the Birmingham folios support an early written text, while the Sanaa palimpsest shows that a variant version also circulated before the standard text won out. The biographical traditions were written down over a century later and contain much that historians treat as legend; the Quran's accounts of earlier prophets conflict with the historical record where it exists.
+    why: "Muhammad is a well-attested historical figure and the Quranic text was fixed within about a generation and transmitted with unusual stability; the Birmingham folios support an early written text, while the Sanaa palimpsest shows that a variant version also circulated before the standard text won out. Debited here, and only here, because the biographical traditions were written down over a century later with much that historians treat as legend, and the Quran's accounts of earlier prophets conflict with the record where one exists. Six."
   - criterion: consistency
-    score: 6
+    score: 5
     confidence: 55
-    why: A rigorous monotheism with fewer metaphysical knots than Christianity. Its tensions are between divine determination and human responsibility, which its own schools debated for centuries, and between earlier and later verses that it resolves by abrogation.
+    why: "Starts at 8. Three core doctrines need careful definition: divine determination alongside human responsibility, which its own schools debated for centuries; abrogation, where later verses override earlier ones; and a God named the Compassionate and Merciful alongside eternal punishment. Five."
   - criterion: explanation
     score: 6
     confidence: 55
-    why: Explains order, moral law and purpose through a creator and judge, as Christianity and Judaism also do, and treats suffering as test and recompense, which is clear but leaves animal and infant suffering unaddressed. It inherited its cosmology and, like Christianity, has no distinctive account of mind; the point it lacks against Christianity is a distinctive answer to suffering itself.
+    why: "Answers all four questions: a lawful cosmos and moral obligation through a creator and judge, minds through the soul, and suffering as test with recompense in the next life, including for children and animals. No distinctive resource beyond that. Two plus four."
   - criterion: testability
     score: 4
     confidence: 55
-    why: "Same rule as Christianity, how exposed is the central claim and how have checkable claims fared. The Quran's divine origin is argued from its literary inimitability, which no one who disputes the premise can test, so the central claim is less exposed than a resurrection. Its checkable claims fare mixed, since its accounts of earlier prophets conflict with the record where one exists, readings of modern science into it are after the fact, and Muhammad's prophecies are general or fulfilled by his own followers."
+    why: "The central claim, that the Quran is God's own speech, is argued from its literary inimitability, which no one who disputes the premise can test, so it is little exposed (2). Its checkable claims: the early fixing of the text has held (plus 1); claims that it anticipates modern science belong to popular rather than scholarly presentation and are not scored; prayer trials count against every theism that promises answered prayer (minus 1). The earlier-prophets conflicts are debited under history, not here. Four."
   - criterion: moral
     score: 6
     confidence: 55
-    why: Obligatory charity, radical equality before God, hospitality and sobriety are real and visible in Muslim societies. Its best-known tension with outsiders' ethics concerns the status of women, apostasy and penal law, where reformers and traditionalists read the same sources differently.
+    why: "Obligatory charity, equality before God and hospitality extend to outsiders in its best expression, so it starts at 8. Two off for coercion done in its name or by states built on it: conquest, and the traditional penalties for apostasy and the legal status of women, which reformers and traditionalists read the same sources differently about. Six."
 sources:
   - "Fred Donner, Muhammad and the Believers (2010)"
   - "Jonathan Brown, Misquoting Muhammad (2014)"
