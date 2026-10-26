@@ -358,6 +358,9 @@ def test_proof_percentage_and_primary_reasons(tmp_path):
     assert "Proof of God, as a percentage" in html
     assert 'aria-label="43 percent">43%</span>' in html
     assert "(6 for, 8 against)" in html
+    # each side's own score: strength over the most it could have (one line each in the fixture)
+    assert '<span class="side-num">60%</span>' in html and '<span class="side-num">80%</span>' in html
+    assert 'Evidence for God <span class="col-pct">60%</span>' in html
     assert "Primary reasons for" in html and "Primary reasons against" in html
     assert html.index("The universe had a beginning</a> <span class=\"pct\">6/10") > html.index("Primary reasons for")
 
@@ -368,4 +371,5 @@ def test_proof_is_fifty_when_columns_weigh_the_same():
     pa = [N(strength=6, confidence=80, id="against-01", title="b")]
     proof = render.build_proof(pf, pa)
     assert proof["pct"] == 50 and proof["confidence"] == 75 and proof["top_for"] == pf
+    assert proof["pct_for"] == 60 and proof["pct_against"] == 60 and proof["max_for"] == 10
     assert render.build_proof([], [])["pct"] is None
