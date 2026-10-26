@@ -1,0 +1,111 @@
+{
+  "$defs": {
+    "EvidenceSide": {
+      "enum": [
+        "for",
+        "against"
+      ],
+      "title": "EvidenceSide",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One line of evidence for or against God, weighed by the same referee and rubric.",
+  "properties": {
+    "best_objection": {
+      "maxLength": 600,
+      "minLength": 10,
+      "title": "Best Objection",
+      "type": "string"
+    },
+    "best_reply": {
+      "maxLength": 600,
+      "minLength": 10,
+      "title": "Best Reply",
+      "type": "string"
+    },
+    "body": {
+      "default": "",
+      "title": "Body",
+      "type": "string"
+    },
+    "confidence": {
+      "description": "How confident the referee is in that strength.",
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "integer"
+    },
+    "id": {
+      "pattern": "^(for|against)-\\d{2}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "related_claims": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Related Claims",
+      "type": "array"
+    },
+    "related_questions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Related Questions",
+      "type": "array"
+    },
+    "side": {
+      "$ref": "#/$defs/EvidenceSide"
+    },
+    "sources": {
+      "items": {
+        "minLength": 3,
+        "type": "string"
+      },
+      "maxItems": 12,
+      "title": "Sources",
+      "type": "array"
+    },
+    "status": {
+      "description": "Where experts stand, one or two sentences.",
+      "maxLength": 300,
+      "minLength": 10,
+      "title": "Status",
+      "type": "string"
+    },
+    "strength": {
+      "description": "Weight of the best defensible version as evidence, 0-10.",
+      "maximum": 10,
+      "minimum": 0,
+      "title": "Strength",
+      "type": "integer"
+    },
+    "summary": {
+      "description": "The argument in neutral words.",
+      "maxLength": 400,
+      "minLength": 10,
+      "title": "Summary",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 120,
+      "minLength": 3,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "side",
+    "title",
+    "summary",
+    "strength",
+    "confidence",
+    "status",
+    "best_objection",
+    "best_reply"
+  ],
+  "title": "Evidence",
+  "type": "object"
+}

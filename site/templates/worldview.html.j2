@@ -1,0 +1,47 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block title %}{{ w.name }} · The Referee{% endblock %}
+{% block description %}{{ w.one_line }}{% endblock %}
+{% block content %}
+<p class="crumb"><a href="{{ base }}worldviews/">All worldviews</a> › {{ w.name }}</p>
+<h1>{{ w.name }}</h1>
+<p class="lede">{{ w.one_line }}</p>
+<div class="ruling-line">
+  <span class="conf">Total {{ w.total }} of {{ w.max_total }}</span>
+  <span class="conf" aria-label="average confidence {{ w.avg_confidence }} percent">{{ w.avg_confidence }}% average confidence</span>
+</div>
+
+<section class="verdict">
+  <p class="label">Core claim</p>
+  <p>{{ w.core_claim }}</p>
+</section>
+
+<h2>Scores</h2>
+<table class="scores">
+  <caption>{{ w.name }} scored 0–10 on each criterion, with the referee's confidence and reasoning.</caption>
+  <thead><tr><th scope="col">Criterion</th><th scope="col">Score</th><th scope="col">Confidence</th><th scope="col">Why</th></tr></thead>
+  <tbody>
+  {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}
+  <tr>
+    <td class="crit"><b>{{ c.name }}</b><br><span class="small">{{ c.question }}</span>{% if c.rule %}<br><span class="small">How it is scored: {{ c.rule }}</span>{% endif %}</td>
+    <td data-label="Score">{{ m.meter(sc.score, 'score') }}</td>
+    <td data-label="Confidence">{{ sc.confidence }}%</td>
+    <td class="why-cell" data-label="Why">{% for p in sc.why | paragraphs %}<p>{{ p }}</p>{% endfor %}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% for p in w.body | paragraphs %}<p>{{ p }}</p>{% endfor %}
+
+<section>
+  <p class="label">Sources</p>
+  {% if w.sources %}
+  <ul class="sources">{% for s in w.sources %}<li>{{ s }}</li>{% endfor %}</ul>
+  {% else %}
+  <p class="small">No sources listed yet.</p>
+  {% endif %}
+</section>
+
+<p class="small">Disagree? <a href="{{ repo_url }}/blob/main/content/worldviews/{{ w.id }}.md">Open a correction on GitHub</a>: edit the file and say why a score should move.</p>
+{% endblock %}

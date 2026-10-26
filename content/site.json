@@ -37,22 +37,107 @@
     }
   ],
   "legend": [
-    {"verdict": "TRUE", "meaning": "Supported by the evidence and the mainstream expert view."},
-    {"verdict": "MOSTLY TRUE", "meaning": "Right in substance; a detail or the wording is off."},
-    {"verdict": "MIXED", "meaning": "Part right and part wrong, or a right point used the wrong way."},
-    {"verdict": "OVERSTATED", "meaning": "Has a real basis but claims more than the evidence gives."},
-    {"verdict": "MOSTLY FALSE", "meaning": "Mostly contradicted by the evidence or by expert consensus."},
-    {"verdict": "FALSE", "meaning": "Contradicted by the evidence or by expert consensus."},
-    {"verdict": "OPEN", "meaning": "Genuinely unresolved: experts disagree, or it depends on whether you already allow for God or miracles."},
-    {"verdict": "STRAWMAN", "meaning": "Answers something the original post didn't say."},
-    {"verdict": "NOTE", "meaning": "Not a truth claim, but worth knowing."}
+    {
+      "verdict": "TRUE",
+      "meaning": "Supported by the evidence and the mainstream expert view."
+    },
+    {
+      "verdict": "MOSTLY TRUE",
+      "meaning": "Right in substance; a detail or the wording is off."
+    },
+    {
+      "verdict": "MIXED",
+      "meaning": "Part right and part wrong, or a right point used the wrong way."
+    },
+    {
+      "verdict": "OVERSTATED",
+      "meaning": "Has a real basis but claims more than the evidence gives."
+    },
+    {
+      "verdict": "MOSTLY FALSE",
+      "meaning": "Mostly contradicted by the evidence or by expert consensus."
+    },
+    {
+      "verdict": "FALSE",
+      "meaning": "Contradicted by the evidence or by expert consensus."
+    },
+    {
+      "verdict": "OPEN",
+      "meaning": "Genuinely unresolved: experts disagree, or it depends on whether you already allow for God or miracles."
+    },
+    {
+      "verdict": "STRAWMAN",
+      "meaning": "Answers something the original post didn't say."
+    },
+    {
+      "verdict": "NOTE",
+      "meaning": "Not a truth claim, but worth knowing."
+    }
   ],
   "history": [
-    {"fact": "Jesus existed", "pct": 99, "basis": "Virtually all historians agree, including the agnostic Bart Ehrman (Q6)."},
-    {"fact": "He was crucified under Pontius Pilate", "pct": 98, "basis": "Tacitus, Josephus and the Gospels name Pilate; Paul confirms the crucifixion (Q6)."},
-    {"fact": "His followers soon sincerely believed they had seen him alive", "pct": 95, "basis": "The early 1 Cor 15 tradition, accepted even by Lüdemann, a scholar who left Christianity (Q8)."},
-    {"fact": "Paul, a persecutor, converted after an experience he took to be the risen Jesus", "pct": 95, "basis": "Paul's own letters (Q11)."},
-    {"fact": "James, an unbeliever during Jesus' life, became a church leader", "pct": 80, "basis": "1 Cor 15:7, Mark 3:21, John 7:5, and Josephus on his death (Q11)."},
-    {"fact": "The tomb was found empty", "pct": 60, "basis": "Scholars are split. Paul implies it but never says “tomb” (Q8)."}
-  ]
+    {
+      "fact": "Jesus existed",
+      "pct": 99,
+      "basis": "Virtually all historians agree, including the agnostic Bart Ehrman (Q6)."
+    },
+    {
+      "fact": "He was crucified under Pontius Pilate",
+      "pct": 98,
+      "basis": "Tacitus, Josephus and the Gospels name Pilate; Paul confirms the crucifixion (Q6)."
+    },
+    {
+      "fact": "His followers soon sincerely believed they had seen him alive",
+      "pct": 95,
+      "basis": "The early 1 Cor 15 tradition, accepted even by Lüdemann, a scholar who left Christianity (Q8)."
+    },
+    {
+      "fact": "Paul, a persecutor, converted after an experience he took to be the risen Jesus",
+      "pct": 95,
+      "basis": "Paul's own letters (Q11)."
+    },
+    {
+      "fact": "James, an unbeliever during Jesus' life, became a church leader",
+      "pct": 80,
+      "basis": "1 Cor 15:7, Mark 3:21, John 7:5, and Josephus on his death (Q11)."
+    },
+    {
+      "fact": "The tomb was found empty",
+      "pct": 60,
+      "basis": "Scholars are split. Paul implies it but never says “tomb” (Q8)."
+    }
+  ],
+  "criteria": [
+    {
+      "id": "history",
+      "name": "Historical footing",
+      "question": "Do the events, texts and origins the worldview rests on hold up to ordinary historical and scientific scrutiny?",
+      "rule": "Start at 5. Add 1 for each kind of foundation that holds under ordinary scrutiny: a well-attested founder or founding event; an early, stable text; a continuous, documented community; the scientific record where the worldview rests on it. Subtract 1 for each kind of foundational claim that scrutiny has gone against: founding events without support; biographical sources written late with legend; claims that conflict with the record. Miracle narratives are beyond history's reach and neither count nor cost. Popular claims, such as science read into scripture, are not scored."
+    },
+    {
+      "id": "consistency",
+      "name": "Internal consistency",
+      "question": "Do its core claims fit together without special pleading, and does it say the same thing about the same question?",
+      "rule": "Start at 8 for a system whose core claims fit together; subtract 1 for each core doctrine that needs careful definition to avoid contradiction, judged on the tradition's own best statement (the Trinity, no-self with rebirth, divine mercy with eternal punishment, binding obligation in a world of particles). Disagreements between texts are a history matter, not scored here."
+    },
+    {
+      "id": "explanation",
+      "name": "Explanatory reach",
+      "question": "How much of what we find, a lawlike cosmos, conscious minds, moral obligation, suffering, does it explain, and how well?",
+      "rule": "Four questions: a lawful cosmos, conscious minds, moral obligation, suffering. Start at 2; add 1 for each question the worldview gives an answer to (an honest refusal to answer is not an answer; an inherited cosmology counts as an answer for everyone who has one). Add 1 more, once, if any of its answers is treated by philosophers across the divide as a distinctive resource."
+    },
+    {
+      "id": "testability",
+      "name": "Testable claims",
+      "question": "Does it make claims that could have turned out false, and how have those claims fared?",
+      "rule": "Exposure of the central claim, 0 to 5. Then add 1 for each kind of checkable claim that has held and subtract 1 for each kind that has failed. Each kind is scored once: foundation claims already scored under history are not scored again; prayer trials count once against every tradition that promises answered prayer; meditation and rebirth-memory research count the same way for every tradition that makes those claims."
+    },
+    {
+      "id": "moral",
+      "name": "Moral fruit",
+      "question": "Does it produce a livable, humane ethic for insiders and outsiders alike, judged by its best expression and its record?",
+      "rule": "Start at 8 for an ethic that, in its best expression, extends to outsiders. Subtract 1 for each of three classes present in the record of the tradition or of states built on it: wars and conquest in its name; persecution or legal coercion of dissenters, apostates or a subordinate group; an exclusion written into its structure (caste, slavery sanctioned from its texts). Opposition from within does not restore a point. A stance with no communities and no record scores 5. Influence on the wider world is not scored."
+    }
+  ],
+  "evidence_note": "Strength is how much weight the best version of each item carries as evidence, 0 to 10, judged by one referee with one rubric; confidence is how sure the referee is of that score. The two columns are not meant to be added up: one decisive item would outweigh several weak ones, and reasonable people weigh suffering against fine-tuning differently. What the lists show is that neither side is empty, and where the real disagreements sit.",
+  "worldview_note": "Each tradition is scored on the same five questions, from the outside, on its best scholarly presentation rather than its popular one, by one written rule per criterion that is applied to all seven and printed on the full comparison. Totals weight the criteria equally, which is a choice: if you think moral fruit matters more than testable claims, reweigh them. A high score means a worldview answers the questions well, not that it is true; the evidence lists above are the place to judge that."
 }

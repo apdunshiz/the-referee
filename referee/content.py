@@ -12,6 +12,8 @@ Layout (flat, see decision D22):
     content/claims/q01-c01.md           Locked claim (ruling) frontmatter + body
     content/claims/new/<slug>.md        Draft (new-unrated) claim
     content/sightings/<fullname>.json   One sighting per Reddit fullname
+    content/evidence/<for|against>-NN.md  One line of evidence for or against God
+    content/worldviews/<id>.md          One religion or stance, scored on site.json criteria
     status.json                         Bot status (watermark, counts, last runs)
 """
 
@@ -27,7 +29,7 @@ import unicodedata
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Annotated, Iterable, Optional
 
 import frontmatter
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -130,7 +132,7 @@ class Claim(Strict):
     verdict: Verdict
     strength: Optional[int] = Field(default=None, ge=0, le=10, description="How strong the claim is as an argument, 0-10. None for the original post's lines.")
     why: str = Field(min_length=10, max_length=2000, description="The ruling's reasoning, plain text; paragraphs separated by blank lines.")
-    sources: list[str] = Field(default_factory=list, max_length=12)
+    sources: list[Annotated[str, Field(min_length=3)]] = Field(default_factory=list, max_length=12)
     confidence: int = Field(ge=0, le=100, description="How confident the referee is that this ruling is right.")
     status: str = Field(default="locked", pattern=r"^locked$")
     version: int = Field(default=1, ge=1)
@@ -405,6 +407,7 @@ def validate_tree(root: Path) -> list[str]:
             load_site_data(root)
         except Exception as e:  # noqa: BLE001
             problems.append(f"content/site.json: {e}")
+    problems += validate_evidence_and_worldviews(root, set(questions), claim_ids)
     return problems
 
 
@@ -505,7 +508,9 @@ def main(argv: Optional[list[str]] = None) -> int:
             print(pr, file=sys.stderr)
         n_q = len(list((root / CONTENT_DIR_NAME / "questions").glob("*.md")))
         n_c = len(list((root / CONTENT_DIR_NAME / "claims").glob("*.md")))
-        print(f"{n_q} questions, {n_c} claims, {len(problems)} problems")
+        n_e = len(list((root / CONTENT_DIR_NAME / "evidence").glob("*.md"))) if (root / CONTENT_DIR_NAME / "evidence").is_dir() else 0
+        n_w = len(list((root / CONTENT_DIR_NAME / "worldviews").glob("*.md"))) if (root / CONTENT_DIR_NAME / "worldviews").is_dir() else 0
+        print(f"{n_q} questions, {n_c} claims, {n_e} evidence, {n_w} worldviews, {len(problems)} problems")
         return 1 if problems else 0
     return 2
 
@@ -548,13 +553,42 @@ class HistoryFact(Strict):
         return _no_usernames(v)
 
 
+class Criterion(Strict):
+    """One yardstick the worldview comparison scores every worldview on."""
+
+    id: str = Field(pattern=r"^[a-z]+$")
+    name: str = Field(min_length=2, max_length=60)
+    question: str = Field(min_length=10, max_length=300, description="The question the score answers, in plain words.")
+    rule: str = Field(default="", max_length=600, description="How the score is assigned, stated once and applied to every worldview.")
+
+    @field_validator("name", "question", "rule")
+    @classmethod
+    def _criterion_no_usernames(cls, v):
+        return _no_usernames(v)
+
+
 class SiteData(Strict):
-    """Home-page data that is not a question or a claim: the scoreboard, the rubric legend
-    and the historical-facts table behind 'the big question'."""
+    """Home-page data that is not a question or a claim: the scoreboard, the rubric legend,
+    the historical-facts table behind 'the big question', and the worldview criteria."""
 
     scoreboard: list[ScoreboardRow] = Field(min_length=1, max_length=8)
     legend: list[LegendRow] = Field(min_length=1, max_length=12)
     history: list[HistoryFact] = Field(default_factory=list, max_length=12)
+    criteria: list[Criterion] = Field(default_factory=list, max_length=8)
+    evidence_note: str = Field(default="", max_length=800, description="How to read the evidence lists. No verdict.")
+    worldview_note: str = Field(default="", max_length=800, description="How to read the worldview comparison. No verdict.")
+
+    @field_validator("evidence_note", "worldview_note")
+    @classmethod
+    def _notes_no_usernames(cls, v):
+        return _no_usernames(v)
+
+    @model_validator(mode="after")
+    def _criteria_unique(self) -> "SiteData":
+        ids = [c.id for c in self.criteria]
+        if len(ids) != len(set(ids)):
+            raise ValueError("criteria ids must be unique")
+        return self
 
 
 MODELS["site"] = SiteData
@@ -563,6 +597,179 @@ MODELS["site"] = SiteData
 def load_site_data(root: Path) -> SiteData:
     p = root / CONTENT_DIR_NAME / "site.json"
     return SiteData.model_validate_json(p.read_text(encoding="utf-8"))
+
+
+# --------------------------------------------------------------------------- evidence + worldviews
+
+EVIDENCE_ID_RE = re.compile(r"^(for|against)-\d{2}$")
+CRITERION_ID_RE = re.compile(r"^[a-z]+$")
+WORLDVIEW_ID_RE = re.compile(r"^[a-z]{2,}(-[a-z]+)*$")
+
+
+class EvidenceSide(str, Enum):
+    FOR = "for"
+    AGAINST = "against"
+
+
+class Evidence(Strict):
+    """One line of evidence for or against God, weighed by the same referee and rubric."""
+
+    id: str = Field(pattern=EVIDENCE_ID_RE.pattern)
+    side: EvidenceSide
+    title: str = Field(min_length=3, max_length=120)
+    summary: str = Field(min_length=10, max_length=400, description="The argument in neutral words.")
+    strength: int = Field(ge=0, le=10, description="Weight of the best defensible version as evidence, 0-10.")
+    confidence: int = Field(ge=0, le=100, description="How confident the referee is in that strength.")
+    status: str = Field(min_length=10, max_length=300, description="Where experts stand, one or two sentences.")
+    best_objection: str = Field(min_length=10, max_length=600)
+    best_reply: str = Field(min_length=10, max_length=600)
+    sources: list[Annotated[str, Field(min_length=3)]] = Field(default_factory=list, max_length=12)
+    related_questions: list[str] = Field(default_factory=list)
+    related_claims: list[str] = Field(default_factory=list)
+    body: str = ""
+
+    @field_validator("title", "summary", "status", "best_objection", "best_reply", "sources", "body")
+    @classmethod
+    def _evidence_no_usernames(cls, v):
+        return _no_usernames(v)
+
+    @field_validator("related_questions")
+    @classmethod
+    def _questions_shape(cls, v: list[str]) -> list[str]:
+        for q in v:
+            if not QUESTION_ID_RE.match(q):
+                raise ValueError(f"related question id {q!r} is not qNN")
+        if len(set(v)) != len(v):
+            raise ValueError("related_questions must be unique")
+        return v
+
+    @field_validator("related_claims")
+    @classmethod
+    def _claims_shape(cls, v: list[str]) -> list[str]:
+        for c in v:
+            if not CLAIM_ID_RE.match(c):
+                raise ValueError(f"related claim id {c!r} is not qNN-cNN")
+        if len(set(v)) != len(v):
+            raise ValueError("related_claims must be unique")
+        return v
+
+    @model_validator(mode="after")
+    def _id_matches_side(self) -> "Evidence":
+        if not self.id.startswith(self.side + "-"):
+            raise ValueError(f"evidence id {self.id!r} does not match side {self.side!r}")
+        return self
+
+
+class CriterionScore(Strict):
+    criterion: str = Field(pattern=CRITERION_ID_RE.pattern)
+    score: int = Field(ge=0, le=10)
+    confidence: int = Field(ge=0, le=100)
+    why: str = Field(min_length=10, max_length=600)
+
+    @field_validator("why")
+    @classmethod
+    def _score_no_usernames(cls, v):
+        return _no_usernames(v)
+
+
+class Worldview(Strict):
+    """One religion or non-religious stance, scored on every site.json criterion."""
+
+    id: str = Field(pattern=WORLDVIEW_ID_RE.pattern, max_length=40)
+    name: str = Field(min_length=2, max_length=60)
+    one_line: str = Field(min_length=10, max_length=200)
+    core_claim: str = Field(min_length=10, max_length=400)
+    scores: list[CriterionScore] = Field(min_length=1, max_length=8)
+    sources: list[Annotated[str, Field(min_length=3)]] = Field(default_factory=list, max_length=12)
+    body: str = ""
+
+    @field_validator("name", "one_line", "core_claim", "sources", "body")
+    @classmethod
+    def _worldview_no_usernames(cls, v):
+        return _no_usernames(v)
+
+    @model_validator(mode="after")
+    def _scores_unique(self) -> "Worldview":
+        ids = [sc.criterion for sc in self.scores]
+        if len(ids) != len(set(ids)):
+            raise ValueError("each criterion may be scored once")
+        return self
+
+
+MODELS["evidence"] = Evidence
+MODELS["worldview"] = Worldview
+
+
+def evidence_path(root: Path, evidence_id: str) -> Path:
+    return root / CONTENT_DIR_NAME / "evidence" / f"{evidence_id}.md"
+
+
+def worldview_path(root: Path, worldview_id: str) -> Path:
+    return root / CONTENT_DIR_NAME / "worldviews" / f"{worldview_id}.md"
+
+
+def load_evidence(root: Path) -> list[Evidence]:
+    d = root / CONTENT_DIR_NAME / "evidence"
+    if not d.is_dir():
+        return []
+    return [_read_markdown(p, Evidence) for p in sorted(d.glob("*.md"))]  # type: ignore[misc]
+
+
+def load_worldviews(root: Path) -> list[Worldview]:
+    d = root / CONTENT_DIR_NAME / "worldviews"
+    if not d.is_dir():
+        return []
+    return [_read_markdown(p, Worldview) for p in sorted(d.glob("*.md"))]  # type: ignore[misc]
+
+
+def save_evidence(root: Path, e: Evidence) -> Path:
+    p = evidence_path(root, e.id)
+    _write_markdown(p, e)
+    return p
+
+
+def save_worldview(root: Path, w: Worldview) -> Path:
+    p = worldview_path(root, w.id)
+    _write_markdown(p, w)
+    return p
+
+
+def validate_evidence_and_worldviews(root: Path, question_ids: set[str], claim_ids: set[str]) -> list[str]:
+    """Problems in content/evidence and content/worldviews; called from validate_tree."""
+    problems: list[str] = []
+    for p in sorted((root / CONTENT_DIR_NAME / "evidence").glob("*.md")) if (root / CONTENT_DIR_NAME / "evidence").is_dir() else []:
+        try:
+            e = _read_markdown(p, Evidence)
+            if p.stem != e.id:  # type: ignore[attr-defined]
+                problems.append(f"{p}: file name does not match id {e.id!r}")  # type: ignore[attr-defined]
+            for q in e.related_questions:  # type: ignore[attr-defined]
+                if q not in question_ids:
+                    problems.append(f"{p}: unknown related question {q!r}")
+            for c in e.related_claims:  # type: ignore[attr-defined]
+                if c not in claim_ids:
+                    problems.append(f"{p}: unknown related claim {c!r}")
+        except Exception as ex:  # noqa: BLE001
+            problems.append(f"{p}: {ex}")
+    criteria: Optional[set[str]] = None
+    if (root / CONTENT_DIR_NAME / "site.json").exists():
+        try:
+            criteria = {c.id for c in load_site_data(root).criteria}
+        except Exception:  # noqa: BLE001 - reported by validate_tree already
+            criteria = None
+    for p in sorted((root / CONTENT_DIR_NAME / "worldviews").glob("*.md")) if (root / CONTENT_DIR_NAME / "worldviews").is_dir() else []:
+        try:
+            w = _read_markdown(p, Worldview)
+            if p.stem != w.id:  # type: ignore[attr-defined]
+                problems.append(f"{p}: file name does not match id {w.id!r}")  # type: ignore[attr-defined]
+            if criteria is not None:
+                scored = {sc.criterion for sc in w.scores}  # type: ignore[attr-defined]
+                for extra in sorted(scored - criteria):
+                    problems.append(f"{p}: scores unknown criterion {extra!r}")
+                for missing in sorted(criteria - scored):
+                    problems.append(f"{p}: missing a score for criterion {missing!r}")
+        except Exception as ex:  # noqa: BLE001
+            problems.append(f"{p}: {ex}")
+    return problems
 
 
 if __name__ == "__main__":

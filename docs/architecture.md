@@ -6,6 +6,8 @@ One Python toolchain (decision D32). The bot writes `content/` through a pull re
   GitHub repo (public), branch main
   ├ content/questions/*.md             ◄── human PRs (CODEOWNERS: maintainer)
   ├ content/claims/*.md (locked)       ◄── human PRs; CI lock check (version bump + history line)
+  ├ content/evidence/*.md              ◄── human PRs (evidence for / against God, strength + confidence)
+  ├ content/worldviews/*.md            ◄── human PRs (religions scored on site.json criteria)
   ├ content/claims/new/*.md (drafts)   ◄── bot PR   (no verdict, D28)
   ├ content/sightings/<fullname>.json  ◄── bot PR   {fullname, permalink, claim_id, match_confidence, matched_at}
   ├ content/site.json, status.json, schema/*.json (exported), evals/fixture.jsonl

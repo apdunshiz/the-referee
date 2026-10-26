@@ -2,14 +2,14 @@
 <span class="badge {{ verdict | vslug }}">{{ verdict }}</span>
 {%- endmacro %}
 
-{% macro meter(n) -%}
+{% macro meter(n, label='strength') -%}
 {% if n is not none %}
-<span class="meter" aria-label="strength {{ n }} out of 10"><span class="segs" aria-hidden="true">{% for i in range(10) %}<i class="{{ 'on' if i < n else '' }}"></i>{% endfor %}</span><b>{{ n }}/10</b></span>
+<span class="meter" aria-label="{{ label }} {{ n }} out of 10"><span class="segs" aria-hidden="true">{% for i in range(10) %}<i class="{{ 'on' if i < n else '' }}"></i>{% endfor %}</span><b>{{ n }}/10</b></span>
 {% endif %}
 {%- endmacro %}
 
-{% macro conf(pct) -%}
-<span class="conf" aria-label="{{ pct }} percent confidence in this ruling">{{ pct }}% confident</span>
+{% macro conf(pct, noun='this ruling') -%}
+<span class="conf" aria-label="{{ pct }} percent confidence in {{ noun }}">{{ pct }}% confident</span>
 {%- endmacro %}
 
 {% macro claim_row(c, sightings) -%}

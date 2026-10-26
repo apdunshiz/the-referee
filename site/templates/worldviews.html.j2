@@ -1,0 +1,39 @@
+{% extends "base.html.j2" %}
+{% import "_macros.html.j2" as m %}
+{% block title %}Which religion makes the most sense? · The Referee{% endblock %}
+{% block description %}Religions and non-religious stances scored on the same criteria, with the reasoning behind every number.{% endblock %}
+{% block content %}
+<p class="crumb"><a href="{{ base }}">Home</a> › Worldviews</p>
+<h1>Which religion makes the most sense?</h1>
+<p class="lede">Each worldview is scored 0–10 on the same {{ criteria | length }} criteria by the same referee, with a confidence % for every score. The total is a sum, not a verdict: read the reasoning before you trust a number.</p>
+
+{% if worldviews %}
+<div class="scroll">
+<table class="matrix">
+  <caption>Worldviews scored 0–10 on {{ criteria | length }} criteria; totals weight them equally. Each cell shows the score and, below it, the referee's confidence in that score.</caption>
+  <thead><tr><th scope="col">Worldview</th>{% for c in criteria %}<th scope="col">{{ c.name }}</th>{% endfor %}<th scope="col" class="total">Total</th><th scope="col">Avg. confidence</th></tr></thead>
+  <tbody>
+  {% for w in worldviews %}
+  <tr>
+    <th scope="row"><a href="{{ base }}worldviews/{{ w.id }}/">{{ w.name }}</a><span class="small"> {{ w.one_line }}</span></th>
+    {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}<td class="score" title="{{ sc.why }}"><b>{{ sc.score }}</b><span class="cell-conf"><span class="vh">confidence </span>{{ sc.confidence }}%</span></td>{% endfor %}
+    <td class="total">{{ w.total }}/{{ w.max_total }}</td>
+    <td class="score">{{ w.avg_confidence }}%</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% else %}
+<p class="empty">None written yet.</p>
+{% endif %}
+{% if site.worldview_note %}<p class="note">{{ site.worldview_note }}</p>{% endif %}
+
+<h2>The criteria</h2>
+<table class="legend">
+  <tbody>
+  {% for c in criteria %}<tr><td><b>{{ c.name }}</b></td><td>{{ c.question }}{% if c.rule %}<br><span class="small">How it is scored: {{ c.rule }}</span>{% endif %}</td></tr>{% endfor %}
+  </tbody>
+</table>
+{% if not criteria %}<p class="empty">None written yet.</p>{% endif %}
+{% endblock %}

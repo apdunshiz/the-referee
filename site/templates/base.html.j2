@@ -14,7 +14,9 @@
   <a class="brand" href="{{ base }}">The Referee</a>
   <span class="tagline">Arguments for and against God, graded the same way</span>
   <nav aria-label="Main">
-    <a href="{{ base }}#questions">Questions</a>
+    <a href="{{ base }}#evidence">Evidence</a>
+    <a href="{{ base }}worldviews/">Religions</a>
+    <a href="{{ base }}questions/">Deep dives</a>
     <a href="{{ base }}today/">Today</a>
     <a href="{{ base }}rubric/">Rubric</a>
     <a href="{{ base }}about/">About</a>
@@ -25,7 +27,7 @@
 {% block content %}{% endblock %}
 </main>
 <footer class="foot">
-  <p>{{ n_questions }} questions, {{ n_claims }} rated claims. Every ruling has sources and a confidence %. The daily job only matches new posts to existing rulings; it never invents a verdict. Built {{ generated }}.</p>
+  <p>{{ n_evidence }} lines of evidence, {{ n_worldviews }} worldviews, {{ n_questions }} questions, {{ n_claims }} rated claims. Every ruling has sources and a confidence %. The daily job only matches new posts to existing rulings; it never invents a verdict. Built {{ generated }}.</p>
   <p><a href="{{ repo_url }}">Source and corrections on GitHub</a>. Non-commercial; no content is used to train models.</p>
 </footer>
 </body>

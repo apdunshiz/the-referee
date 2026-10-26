@@ -19,6 +19,8 @@ uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
 - `content/claims/qNN-cNN.md`: one locked ruling per claim. The first claims under each question are the original post's own lines; the rest are commenter claims, paraphrased with no usernames (decision D15) and no stored quotes (D27).
 - `content/claims/new/`: drafts the bot could not match; they carry no verdict (D28).
 - `content/sightings/<fullname>.json`: id, permalink, claim id, match confidence and time; nothing else.
+- `content/evidence/<for|against>-NN.md`: one line of evidence for or against God. `strength` (0–10) weighs the best defensible version of the argument as evidence; `confidence` (%) is how sure the referee is of that weight. The two columns are not summed; the note on the home page says why.
+- `content/worldviews/<id>.md`: one religion or non-religious stance, scored 0–10 with a confidence % on every criterion in `content/site.json` (`criteria`). The comparison page sorts by the summed score; the reasoning behind each number is on the worldview's page. These records change only by human PR, like rulings.
 - `schema/*.json`: exported from the pydantic models in `referee/content.py`; CI fails when stale.
 
 ## Site
@@ -30,10 +32,10 @@ The site is static HTML rendered by Python; no Node toolchain.
 .venv/bin/python site/render.py --out _site --base /the-referee/ # as served at https://apdunshiz.github.io/the-referee/
 ```
 
-- `site/render.py`: loads `content/` and `status.json` through the models and writes one page per question and claim plus `/today/`, `/about/`, `/rubric/`, `/404.html` and a copy of `status.json`.
+- `site/render.py`: loads `content/` and `status.json` through the models and writes one page per question, claim, line of evidence and worldview plus `/worldviews/`, `/questions/`, `/today/`, `/about/`, `/rubric/`, `/404.html` and a copy of `status.json`.
 - `site/templates/*.html.j2`: Jinja2 templates with autoescaping on; no content field is ever marked safe.
 - `site/static/tokens.css`: the visual system (navy and gold, text badges, segmented meters), ported from the October 2026 review PDF; `site/static/fonts/` holds the local Inter and Source Serif 4 files.
-- `content/site.json`: the home-page scoreboard, the rubric legend and the historical-facts table (`SiteData` model).
+- `content/site.json`: the scoreboard (now shown on `/questions/`), the rubric legend, the historical-facts table, the five worldview criteria and the two reading notes for the evidence and worldview sections (`SiteData` model).
 - `tests/test_render.py`: page rendering, escaping, every Today state, drafts rule, base-path prefixing, and a timed render of the real content.
 
 Correcting a ruling: edit the claim file, bump `version`, add a `history` line, open a PR.
