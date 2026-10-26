@@ -179,7 +179,7 @@ def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] =
     out.mkdir(parents=True)
     pages = 0
 
-    write("index.html", "index.html.j2", questions=questions, site=site, today=today, drafts=visible_drafts, claims_by_q=claims_by_q, evidence_for=evidence_for, evidence_against=evidence_against, worldviews=worldviews, criteria=site.criteria)
+    write("index.html", "index.html.j2", questions=questions, site=site, today=today, evidence_for=evidence_for, evidence_against=evidence_against, worldviews=worldviews, criteria=site.criteria)
     pages += 1
     q_by_id = {q.id: q for q in questions}
     for e in evidence:

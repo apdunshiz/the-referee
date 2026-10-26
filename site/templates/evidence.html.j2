@@ -8,7 +8,7 @@
 <h1 class="claim-title">{{ e.title }}</h1>
 <div class="ruling-line">
   {{ m.meter(e.strength) }}
-  {{ m.conf(e.confidence) }}
+  {{ m.conf(e.confidence, 'this score') }}
 </div>
 <p class="lede">{{ e.summary }}</p>
 {% for p in e.body | paragraphs %}<p>{{ p }}</p>{% endfor %}

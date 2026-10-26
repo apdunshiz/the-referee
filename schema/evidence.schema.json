@@ -60,6 +60,7 @@
     },
     "sources": {
       "items": {
+        "minLength": 3,
         "type": "string"
       },
       "maxItems": 12,

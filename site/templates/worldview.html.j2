@@ -18,12 +18,13 @@
 
 <h2>Scores</h2>
 <table class="scores">
+  <caption>{{ w.name }} scored 0–10 on each criterion, with the referee's confidence and reasoning.</caption>
   <thead><tr><th scope="col">Criterion</th><th scope="col">Score</th><th scope="col">Confidence</th><th scope="col">Why</th></tr></thead>
   <tbody>
   {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}
   <tr>
     <td class="crit"><b>{{ c.name }}</b><br><span class="small">{{ c.question }}</span></td>
-    <td data-label="Score">{{ m.meter(sc.score) }}</td>
+    <td data-label="Score">{{ m.meter(sc.score, 'score') }}</td>
     <td data-label="Confidence">{{ sc.confidence }}%</td>
     <td class="why-cell" data-label="Why">{% for p in sc.why | paragraphs %}<p>{{ p }}</p>{% endfor %}</td>
   </tr>

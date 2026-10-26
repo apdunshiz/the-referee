@@ -20,7 +20,6 @@
         </li>
       {% endfor %}
       </ol>
-      <p class="ev-sum">Summed strength: <b>{{ items | sum(attribute='strength') }} of {{ items | length * 10 }}</b></p>
       {% else %}
       <p class="empty">None written yet.</p>
       {% endif %}
@@ -35,19 +34,20 @@
   {% if worldviews %}
   <div class="scroll">
   <table class="matrix">
+    <caption>Worldviews scored 0–10 on {{ criteria | length }} criteria; totals weight them equally. Each cell shows the score and, below it, the referee's confidence in that score.</caption>
     <thead><tr><th scope="col">Worldview</th>{% for c in criteria %}<th scope="col" title="{{ c.question }}">{{ c.name }}</th>{% endfor %}<th scope="col" class="total">Total</th></tr></thead>
     <tbody>
     {% for w in worldviews %}
     <tr>
       <th scope="row"><a href="{{ base }}worldviews/{{ w.id }}/">{{ w.name }}</a></th>
-      {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}<td class="score" title="{{ c.question }} Score {{ sc.score }}/10, {{ sc.confidence }}% confident.">{{ sc.score }}</td>{% endfor %}
+      {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}<td class="score" title="{{ c.question }}"><b>{{ sc.score }}</b><span class="cell-conf">{{ sc.confidence }}%</span></td>{% endfor %}
       <td class="total">{{ w.total }}/{{ w.max_total }}</td>
     </tr>
     {% endfor %}
     </tbody>
   </table>
   </div>
-  <p class="small">Scores are 0–10 per criterion; hover or open a worldview for the reasoning and the confidence behind each number. <a href="{{ base }}worldviews/">Full comparison with the criteria explained</a>.</p>
+  <p class="small">Scores are 0–10 per criterion with the confidence % under each; open a worldview for the reasoning behind every number. <a href="{{ base }}worldviews/">Full comparison with the criteria explained</a>.</p>
   {% else %}
   <p class="empty">None written yet.</p>
   {% endif %}

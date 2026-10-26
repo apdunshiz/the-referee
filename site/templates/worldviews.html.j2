@@ -10,12 +10,13 @@
 {% if worldviews %}
 <div class="scroll">
 <table class="matrix">
+  <caption>Worldviews scored 0–10 on {{ criteria | length }} criteria; totals weight them equally. Each cell shows the score and, below it, the referee's confidence in that score.</caption>
   <thead><tr><th scope="col">Worldview</th>{% for c in criteria %}<th scope="col">{{ c.name }}</th>{% endfor %}<th scope="col" class="total">Total</th><th scope="col">Avg. confidence</th></tr></thead>
   <tbody>
   {% for w in worldviews %}
   <tr>
     <th scope="row"><a href="{{ base }}worldviews/{{ w.id }}/">{{ w.name }}</a><span class="small"> {{ w.one_line }}</span></th>
-    {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}<td class="score" title="{{ sc.confidence }}% confident. {{ sc.why }}">{{ sc.score }}</td>{% endfor %}
+    {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}<td class="score" title="{{ sc.why }}"><b>{{ sc.score }}</b><span class="cell-conf">{{ sc.confidence }}%</span></td>{% endfor %}
     <td class="total">{{ w.total }}/{{ w.max_total }}</td>
     <td class="score">{{ w.avg_confidence }}%</td>
   </tr>

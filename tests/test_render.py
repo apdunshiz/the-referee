@@ -240,15 +240,19 @@ def test_today_last_run_skips_noon_noops(tmp_path):
     assert "Last run 2026-10-25 10:00 UTC: success" in html and "noop" not in html
 
 
-def test_home_shows_both_evidence_columns_with_sums(tmp_path):
+def test_home_shows_both_evidence_columns_ordered_by_strength(tmp_path):
     fixture_tree(tmp_path, success_status())
+    content.save_evidence(tmp_path, Evidence(id="for-02", side=EvidenceSide.FOR, title="Fine-tuning of the constants", summary="The constants sit in a narrow life-permitting range.", strength=7, confidence=80, status="The sensitivity is mainstream physics; its meaning is unresolved.", best_objection="No probability distribution over the constants is known.", best_reply="Physicists use the ranges their theories treat as natural."))
+    content.save_evidence(tmp_path, Evidence(id="against-02", side=EvidenceSide.AGAINST, title="Divine hiddenness", summary="A loving God would make himself known to every open seeker.", strength=6, confidence=75, status="Taken seriously by theists; not accepted as decisive by either side.", best_objection="God may keep a distance so belief stays free.", best_reply="Clear evidence does not coerce love."))
     out = tmp_path / "_site"
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
     assert "Evidence for God" in html and "Evidence against God" in html
-    assert 'href="/evidence/for-01/"' in html and 'href="/evidence/against-01/"' in html
-    assert "The universe had a beginning" in html and "The problem of evil" in html
-    assert "Summed strength: <b>6 of 10</b>" in html and "Summed strength: <b>8 of 10</b>" in html
+    for href in ['href="/evidence/for-01/"', 'href="/evidence/for-02/"', 'href="/evidence/against-01/"', 'href="/evidence/against-02/"']:
+        assert href in html, href
+    assert "Summed strength" not in html  # the note says the columns are not to be added up
+    assert html.index("Fine-tuning of the constants") < html.index("The universe had a beginning")  # 7 before 6
+    assert html.index("The problem of evil") < html.index("Divine hiddenness")  # 8 before 6
     assert "Sums are a reading aid, not a verdict." in html
     assert "Scoreboard: the main arguments" not in html  # moved to /questions/
     assert "Scoreboard: the main arguments" in read(out, "questions/index.html")
@@ -264,6 +268,11 @@ def test_matrix_sorted_by_total_with_right_totals(tmp_path):
     full = read(out, "worldviews/index.html")
     assert full.index('href="/worldviews/naturalism/"') < full.index('href="/worldviews/christianity/"')
     assert "26/30" in full and "16/30" in full and "80%" in full  # avg confidence of naturalism
+    # confidence is visible in every matrix cell, not only in a title attribute
+    assert '<b>9</b><span class="cell-conf">80%</span>' in html and '<b>9</b><span class="cell-conf">80%</span>' in full
+    assert "<caption>" in html and "<caption>" in full and "<caption>" in read(out, "worldviews/naturalism/index.html")
+    assert 'aria-label="score 9 out of 10"' in read(out, "worldviews/naturalism/index.html")
+    assert 'percent confidence in this score' in read(out, "evidence/for-01/index.html")
     assert "Historical evidence" in full and "How well do its founding claims survive historical scrutiny?" in full
     assert "Totals are sums of criterion scores" in full
 
@@ -291,6 +300,30 @@ def test_nav_links_carry_base(tmp_path):
     for href in ["/the-referee/#evidence", "/the-referee/worldviews/", "/the-referee/questions/", "/the-referee/today/", "/the-referee/evidence/for-01/", "/the-referee/worldviews/naturalism/"]:
         assert f'href="{href}"' in html, href
     assert 'href="/worldviews/"' not in html and 'href="/questions/"' not in html
+    for rel in ["evidence/for-01/index.html", "worldviews/naturalism/index.html", "worldviews/index.html"]:
+        page = read(out, rel)
+        assert 'href="/the-referee/' in page and 'href="/"' not in page and 'href="/q/' not in page and 'href="/static/' not in page, rel
+    ev = read(out, "evidence/for-01/index.html")
+    assert 'href="/the-referee/q/q01/"' in ev and 'href="/the-referee/claims/q01-c02/"' in ev
+    assert 'href="/the-referee/worldviews/"' in read(out, "worldviews/naturalism/index.html")
+
+
+def test_validate_tree_flags_misnamed_files_and_missing_criterion(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    content.evidence_path(tmp_path, "for-01").rename(content.evidence_path(tmp_path, "for-09"))
+    content.worldview_path(tmp_path, "naturalism").rename(content.worldview_path(tmp_path, "physicalism"))
+    wv = content.worldview_path(tmp_path, "christianity")
+    text = wv.read_text(encoding="utf-8")
+    cut = text.replace("- criterion: testable\n", "- criterion: history\n", 1) if "- criterion: testable\n" in text else text
+    assert cut != text
+    wv.write_text(cut, encoding="utf-8")
+    problems = content.validate_tree(tmp_path)
+    assert any("for-09.md: file name does not match id 'for-01'" in p for p in problems)
+    assert any("physicalism.md: file name does not match id 'naturalism'" in p for p in problems)
+    assert any("christianity.md" in p and "each criterion may be scored once" in p for p in problems)
+    wv.write_text(text.replace("- criterion: testable\n  score: 4\n  confidence: 65\n  why: Most claims are historical, a few are checkable.\n", ""), encoding="utf-8")
+    problems = content.validate_tree(tmp_path)
+    assert any("christianity.md: missing a score for criterion 'testable'" in p for p in problems)
 
 
 def test_home_without_evidence_or_worldviews_renders(tmp_path):

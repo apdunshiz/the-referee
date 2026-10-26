@@ -80,7 +80,7 @@ td { padding: .55rem .5rem .55rem 0; border-bottom: 1px solid var(--line); verti
 /* evidence lists */
 .evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
 .ev-col h3 { font-size: 1.05rem; margin: .4rem 0 .2rem; padding-bottom: .3rem; border-bottom: 2px solid var(--navy); }
-.ev-list { list-style: none; padding: 0; margin: 0; counter-reset: ev; }
+.ev-list { list-style: none; padding: 0; margin: 0; }
 .ev-item { display: grid; grid-template-columns: 1fr; gap: .2rem; padding: .7rem 0; border-bottom: 1px solid var(--line); }
 .ev-title { font: 600 1rem/1.4 var(--sans); color: var(--navy); text-decoration: none; display: inline-block; min-height: 1.6rem; }
 .ev-title:hover { text-decoration: underline; }
@@ -101,7 +101,9 @@ td { padding: .55rem .5rem .55rem 0; border-bottom: 1px solid var(--line); verti
 .matrix th[scope="row"] .small { display: block; font-weight: 400; }
 .matrix th[scope="col"] { text-align: center; }
 .matrix th[scope="col"]:first-child { text-align: left; position: sticky; left: 0; background: #fff; }
-.matrix td.score { text-align: center; font: 600 1rem var(--sans); color: var(--navy); }
+.matrix td.score { text-align: center; font: 600 1rem var(--sans); color: var(--navy); line-height: 1.15; }
+.matrix td.score .cell-conf { display: block; font: 400 .72rem var(--sans); color: var(--muted); }
+.matrix caption, .scores caption { caption-side: top; text-align: left; font: .82rem/1.4 var(--sans); color: var(--muted); padding: 0 0 .4rem; }
 .matrix td.total, .matrix th.total { text-align: center; font-weight: 800; }
 .scores td.crit { width: 28%; }
 .scores td.why-cell p { font: 400 .92rem/1.5 var(--serif); margin: 0 0 .4rem; }
@@ -163,15 +165,15 @@ td { padding: .55rem .5rem .55rem 0; border-bottom: 1px solid var(--line); verti
   .grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
+  html { font-size: 15px; }
   .evidence-grid, .two { grid-template-columns: 1fr; }
   .scores thead { display: none; }
   .scores, .scores tbody { display: block; width: 100%; }
   .scores tr { display: block; padding: .6rem 0; border-bottom: 1px solid var(--line); }
   .scores td { display: block; border: 0; padding: .2rem 0; width: auto !important; }
   .scores td[data-label]::before { content: attr(data-label) ": "; font: 700 .7rem var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: block; }
-}
-@media (max-width: 640px) {
-  html { font-size: 15px; }
+  .matrix th[scope="row"] { max-width: 11rem; }
+  .matrix th[scope="row"] .small { display: none; }
   .bar nav { margin-left: 0; width: 100%; }
   .scoreboard thead { display: none; }
   .scoreboard, .scoreboard tbody { display: block; width: 100%; }

@@ -190,6 +190,25 @@ def test_evidence_rejects_side_id_mismatch_and_usernames():
         evidence(related_questions=["question-1"])
 
 
+def test_model_limits_reject_bad_ids_sources_and_duplicate_links():
+    sc = CriterionScore(criterion="history", score=5, confidence=60, why="Mixed record on the founding claims.")
+    kw = dict(name="Deism", one_line="A creator who does not intervene.", core_claim="God made the world and left it to run.", scores=[sc])
+    Worldview(id="deism", **kw)
+    for bad in ("-", "a", "-deism", "deism-", "De-ism"):
+        with pytest.raises(ValidationError):
+            Worldview(id=bad, **kw)
+    with pytest.raises(ValidationError):
+        Worldview(id="deism", sources=[""], **kw)
+    with pytest.raises(ValidationError):
+        evidence(sources=["x"])
+    with pytest.raises(ValidationError):
+        claim(sources=[""])
+    with pytest.raises(ValidationError):
+        evidence(related_questions=["q01", "q01"])
+    with pytest.raises(ValidationError):
+        evidence(related_claims=["q01-c01", "q01-c01"])
+
+
 def test_worldview_rejects_duplicate_criterion_and_usernames():
     sc = CriterionScore(criterion="history", score=5, confidence=60, why="Mixed record on the founding claims.")
     Worldview(id="deism", name="Deism", one_line="A creator who does not intervene.", core_claim="God made the world and left it to run.", scores=[sc])

@@ -29,7 +29,7 @@ import unicodedata
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Annotated, Iterable, Optional
 
 import frontmatter
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -132,7 +132,7 @@ class Claim(Strict):
     verdict: Verdict
     strength: Optional[int] = Field(default=None, ge=0, le=10, description="How strong the claim is as an argument, 0-10. None for the original post's lines.")
     why: str = Field(min_length=10, max_length=2000, description="The ruling's reasoning, plain text; paragraphs separated by blank lines.")
-    sources: list[str] = Field(default_factory=list, max_length=12)
+    sources: list[Annotated[str, Field(min_length=3)]] = Field(default_factory=list, max_length=12)
     confidence: int = Field(ge=0, le=100, description="How confident the referee is that this ruling is right.")
     status: str = Field(default="locked", pattern=r"^locked$")
     version: int = Field(default=1, ge=1)
@@ -508,7 +508,9 @@ def main(argv: Optional[list[str]] = None) -> int:
             print(pr, file=sys.stderr)
         n_q = len(list((root / CONTENT_DIR_NAME / "questions").glob("*.md")))
         n_c = len(list((root / CONTENT_DIR_NAME / "claims").glob("*.md")))
-        print(f"{n_q} questions, {n_c} claims, {len(problems)} problems")
+        n_e = len(list((root / CONTENT_DIR_NAME / "evidence").glob("*.md"))) if (root / CONTENT_DIR_NAME / "evidence").is_dir() else 0
+        n_w = len(list((root / CONTENT_DIR_NAME / "worldviews").glob("*.md"))) if (root / CONTENT_DIR_NAME / "worldviews").is_dir() else 0
+        print(f"{n_q} questions, {n_c} claims, {n_e} evidence, {n_w} worldviews, {len(problems)} problems")
         return 1 if problems else 0
     return 2
 
@@ -600,7 +602,7 @@ def load_site_data(root: Path) -> SiteData:
 
 EVIDENCE_ID_RE = re.compile(r"^(for|against)-\d{2}$")
 CRITERION_ID_RE = re.compile(r"^[a-z]+$")
-WORLDVIEW_ID_RE = re.compile(r"^[a-z-]+$")
+WORLDVIEW_ID_RE = re.compile(r"^[a-z][a-z-]*[a-z]$")
 
 
 class EvidenceSide(str, Enum):
@@ -620,7 +622,7 @@ class Evidence(Strict):
     status: str = Field(min_length=10, max_length=300, description="Where experts stand, one or two sentences.")
     best_objection: str = Field(min_length=10, max_length=600)
     best_reply: str = Field(min_length=10, max_length=600)
-    sources: list[str] = Field(default_factory=list, max_length=12)
+    sources: list[Annotated[str, Field(min_length=3)]] = Field(default_factory=list, max_length=12)
     related_questions: list[str] = Field(default_factory=list)
     related_claims: list[str] = Field(default_factory=list)
     body: str = ""
@@ -636,6 +638,8 @@ class Evidence(Strict):
         for q in v:
             if not QUESTION_ID_RE.match(q):
                 raise ValueError(f"related question id {q!r} is not qNN")
+        if len(set(v)) != len(v):
+            raise ValueError("related_questions must be unique")
         return v
 
     @field_validator("related_claims")
@@ -644,6 +648,8 @@ class Evidence(Strict):
         for c in v:
             if not CLAIM_ID_RE.match(c):
                 raise ValueError(f"related claim id {c!r} is not qNN-cNN")
+        if len(set(v)) != len(v):
+            raise ValueError("related_claims must be unique")
         return v
 
     @model_validator(mode="after")
@@ -673,7 +679,7 @@ class Worldview(Strict):
     one_line: str = Field(min_length=10, max_length=200)
     core_claim: str = Field(min_length=10, max_length=400)
     scores: list[CriterionScore] = Field(min_length=1, max_length=8)
-    sources: list[str] = Field(default_factory=list, max_length=12)
+    sources: list[Annotated[str, Field(min_length=3)]] = Field(default_factory=list, max_length=12)
     body: str = ""
 
     @field_validator("name", "one_line", "core_claim", "sources", "body")

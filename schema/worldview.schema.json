@@ -53,7 +53,7 @@
     },
     "id": {
       "maxLength": 40,
-      "pattern": "^[a-z-]+$",
+      "pattern": "^[a-z][a-z-]*[a-z]$",
       "title": "Id",
       "type": "string"
     },
@@ -80,6 +80,7 @@
     },
     "sources": {
       "items": {
+        "minLength": 3,
         "type": "string"
       },
       "maxItems": 12,
