@@ -58,5 +58,5 @@ jobs:
             code=$(curl -s -o /tmp/page -w '%{http_code}' "$BASE$p")
             echo "$BASE$p -> $code"; [ "$code" = "200" ]
           done
-          curl -s "$BASE" | grep -q "where every argument stands"
+          curl -s "$BASE" | grep -q "Here is the evidence, both ways"
           ! curl -s "${BASE}today/" | grep -q "<script>alert"
