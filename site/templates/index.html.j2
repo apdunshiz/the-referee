@@ -4,6 +4,31 @@
 <h1>Is there a God? Here is the evidence, both ways.</h1>
 <p class="lede">Every line below is weighed with the same rubric by the same referee: a strength from 0 to 10 for the best defensible version of the argument, and a confidence % in that score. Disagree with any line and you can open it to see exactly why it was scored that way, then argue with it on GitHub.</p>
 
+<section id="proof" class="proof" aria-labelledby="proof-h">
+  <h2 id="proof-h">Proof of God, as a percentage</h2>
+  {% if proof.pct is not none %}
+  <div class="proof-row">
+    <p class="proof-pct"><span class="proof-num" aria-label="{{ proof.pct }} percent">{{ proof.pct }}%</span><span class="proof-cap">of the evidence weight points to God</span></p>
+    <div class="proof-how">
+      <p>How it is made: every line below gets a strength from 0 to 10 for its best version; this number is the "for" total divided by both totals ({{ proof.sum_for }} for, {{ proof.sum_against }} against). 50% means the two columns weigh the same. The referee's average confidence across the lines is {{ proof.confidence }}%.</p>
+      <p class="small">A percentage of evidence weight is not a probability that God exists; one decisive line would outweigh several weak ones. Change any line's strength on GitHub and this number moves with it.</p>
+    </div>
+  </div>
+  <div class="proof-reasons">
+    <div>
+      <h3>Primary reasons for</h3>
+      <ol>{% for e in proof.top_for %}<li><a href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a> <span class="pct">{{ e.strength }}/10</span></li>{% endfor %}</ol>
+    </div>
+    <div>
+      <h3>Primary reasons against</h3>
+      <ol>{% for e in proof.top_against %}<li><a href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a> <span class="pct">{{ e.strength }}/10</span></li>{% endfor %}</ol>
+    </div>
+  </div>
+  {% else %}
+  <p class="empty">No evidence written yet.</p>
+  {% endif %}
+</section>
+
 <section id="evidence" aria-labelledby="evidence-h">
   <h2 id="evidence-h">The evidence</h2>
   <div class="evidence-grid">

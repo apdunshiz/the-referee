@@ -119,6 +119,28 @@ def build_worldviews(worldviews: list, criteria: list) -> list:
     return sorted(views, key=lambda v: -v.total)
 
 
+def build_proof(evidence_for: list, evidence_against: list, top_n: int = 3) -> dict:
+    """The home page's single number: the share of evidence weight that points to God.
+
+    pct = 100 * sum(strength for) / (sum for + sum against). Equal columns read 50%.
+    Confidence is the mean confidence of every line. The primary reasons are the
+    strongest lines on each side. The method is stated on the page next to the number.
+    """
+    sum_for = sum(e.strength for e in evidence_for)
+    sum_against = sum(e.strength for e in evidence_against)
+    total = sum_for + sum_against
+    lines = list(evidence_for) + list(evidence_against)
+    return {
+        "pct": round(100 * sum_for / total) if total else None,
+        "sum_for": sum_for,
+        "sum_against": sum_against,
+        "max_each": 10 * max(len(evidence_for), len(evidence_against)),
+        "confidence": round(sum(e.confidence for e in lines) / len(lines)) if lines else None,
+        "top_for": evidence_for[:top_n],
+        "top_against": evidence_against[:top_n],
+    }
+
+
 def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] = None) -> int:
     now = now or datetime.now(timezone.utc)
     root = root.resolve()
@@ -132,6 +154,7 @@ def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] =
     worldviews = build_worldviews(content.load_worldviews(root), site.criteria)
     evidence_for = sorted([e for e in evidence if e.side == "for"], key=lambda e: (-e.strength, e.id))
     evidence_against = sorted([e for e in evidence if e.side == "against"], key=lambda e: (-e.strength, e.id))
+    proof = build_proof(evidence_for, evidence_against)
 
     claims_by_id = {c.id: c for c in claims}
     claims_by_q: dict[str, list[content.Claim]] = defaultdict(list)
@@ -179,7 +202,7 @@ def render(root: Path, out: Path, base_url: str = "/", now: Optional[datetime] =
     out.mkdir(parents=True)
     pages = 0
 
-    write("index.html", "index.html.j2", questions=questions, site=site, today=today, evidence_for=evidence_for, evidence_against=evidence_against, worldviews=worldviews, criteria=site.criteria)
+    write("index.html", "index.html.j2", questions=questions, site=site, today=today, evidence_for=evidence_for, evidence_against=evidence_against, proof=proof, worldviews=worldviews, criteria=site.criteria)
     pages += 1
     q_by_id = {q.id: q for q in questions}
     for e in evidence:
