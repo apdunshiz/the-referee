@@ -343,5 +343,7 @@ def test_criterion_rules_render_on_both_worldview_pages(tmp_path):
     out = tmp_path / "_site"
     render.render(tmp_path, out, now=NOW)
     assert "How it is scored: Start at 5; add 1 per foundation that holds." in read(out, "worldviews/index.html")
-    wv = sorted((out / "worldviews").glob("*/index.html"))[0]
-    assert "How it is scored: Start at 5; add 1 per foundation that holds." in wv.read_text(encoding="utf-8")
+    pages = sorted((out / "worldviews").glob("*/index.html"))
+    assert pages
+    for wv in pages:
+        assert "How it is scored: Start at 5; add 1 per foundation that holds." in wv.read_text(encoding="utf-8")

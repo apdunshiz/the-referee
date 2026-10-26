@@ -5,9 +5,9 @@ one_line: One ultimate reality shows itself as many gods; every being lives thro
 core_claim: Brahman, the ultimate reality, underlies everything; the self is in some sense identical with or dependent on it; karma and rebirth govern each life, and liberation comes through knowledge, devotion or disciplined action.
 scores:
   - criterion: history
-    score: 6
+    score: 7
     confidence: 55
-    why: "Start at 5. It has no founder and no founding event. Foundation that holds: the Vedas are among the oldest religious texts and the tradition is continuous for three millennia (plus 1). Its stories of gods and ages are treated as myth in much of its own tradition and as history in some, which is not a failed claim; modern claims of a Vedic golden age of science are popular claims and are not scored. Six."
+    why: "Start at 5. It has no founder and no founding event. Foundations that hold: the Vedas are among the oldest religious texts (plus 1) and the tradition is a continuous, documented community for three millennia (plus 1). Its stories of gods and ages are treated as myth in much of its own tradition and as history in some, which is not a failed claim; modern claims of a Vedic golden age of science are popular claims and are not scored. Seven."
   - criterion: consistency
     score: 5
     confidence: 50

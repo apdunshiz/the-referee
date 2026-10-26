@@ -38,4 +38,4 @@ Historians of every stripe grant more of the core than outsiders expect: the cru
 
 Its explanatory story is rich. It says why there is a world, why it is ordered, why we feel obliged, why things are wrong, and it answers suffering not with a theory but with a God who undergoes it. It pays for that with doctrines, the Trinity, the incarnation, hell, that have strained its own best minds for two thousand years.
 
-An outsider notices that Christianity's history and testability scores come from one event, that its moral influence is larger than its current believers' share of the world, and that its defenders divide between an evidential claim, that the historical case stands on its own, and a conditional one, that if there is a God this is what he did.
+An outsider notices that Christianity's case rests on one event more than any other tradition's does, that its moral influence is larger than its current believers' share of the world, and that its defenders divide between an evidential claim, that the historical case stands on its own, and a conditional one, that if there is a God this is what he did.
