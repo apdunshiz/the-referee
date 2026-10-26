@@ -17,6 +17,7 @@ sources:
 related_questions: []
 related_claims: []
 ---
+
 Physics describes the world in terms of structure and function: what things do and how they relate. Experience, the redness of red or the ache of a headache, is not obviously a matter of structure or function at all. That is the hard problem, and it is recognised as a problem by philosophers on every side. Nagel, an atheist, argued that it signals something missing from the scientific picture of the world.
 
 The theistic version of the argument says that if consciousness cannot be built out of non-conscious ingredients, then mind is a fundamental feature of reality, and a reality whose ground is a mind explains that better than one whose ground is matter.

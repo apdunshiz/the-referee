@@ -3,7 +3,7 @@ id: against-08
 side: against
 title: Natural explanations keep winning, and God keeps retreating
 summary: Lightning, disease, the diversity of life, the motion of the planets and the origin of species were all once explained by God and are now explained without him; the pattern suggests that the remaining gaps will close the same way, and that God was never the explanation.
-strength: 6
+strength: 5
 confidence: 75
 status: The historical pattern is real and theists mostly agree that "God of the gaps" reasoning is bad; they deny that the main arguments for God are gap arguments.
 best_objection: The best arguments for God are not about gaps in science but about things science presupposes, such as why there are laws at all, why they are mathematical, and why anything exists; a complete physics would leave those questions exactly where they are.
@@ -16,7 +16,8 @@ sources:
 related_questions: [q01, q02, q03]
 related_claims: []
 ---
-In 1700 the regular motion of the planets was evidence for God; Newton thought God had to adjust the orbits now and then. Laplace removed the adjustments. In 1800 the fit between creatures and their environments was the best evidence for a designer; Darwin removed the designer. Disease was divine judgment until germs; mental illness was possession until psychiatry. The argument is inductive: every time God has been offered as the explanation for a natural fact, a better explanation has arrived, and nothing has gone the other way.
+
+In 1700 the regular motion of the planets was evidence for God; Newton thought God had to adjust the orbits now and then. Laplace removed the adjustments. In 1800 the fit between creatures and their environments was the best evidence for a designer; Darwin removed the designer. Disease was widely read as divine judgment before germ theory, and mental illness as possession before psychiatry. The argument is inductive: every time God has been offered as the explanation for a natural fact, a better explanation has arrived, and nothing has gone the other way.
 
 From that pattern the skeptic draws two conclusions. The remaining puzzles, the origin of the universe, of life and of consciousness, will probably close the same way. And a hypothesis that has only ever lost ground was probably never doing any explaining.
 

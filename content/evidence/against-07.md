@@ -3,7 +3,7 @@ id: against-07
 side: against
 title: Minds depend on brains in every detail
 summary: Damage, drugs, disease and ageing change personality, memory and morality in step with physical changes in the brain; if the mind were a soul that survives the body, it should not be this fragile, and most religions need a mind that does survive.
-strength: 6
+strength: 5
 confidence: 75
 status: The dependence of mental life on the brain is as well established as anything in neuroscience; theists either accept it and locate survival in resurrection rather than a soul, or argue that dependence shows correlation, not identity.
 best_objection: A radio depends on its circuitry in every detail and still only receives a signal from elsewhere; dependence does not show that the brain produces the mind rather than channels it, and many theologies never needed an immaterial soul in the first place.
@@ -16,6 +16,7 @@ sources:
 related_questions: []
 related_claims: []
 ---
+
 Phineas Gage took an iron rod through his frontal lobe in 1848 and his friends said he was no longer Gage. Since then neuroscience has filled in the picture: a lesion here removes the ability to recognise faces, a tumour there turns a gentle man into a predator, a drug lifts depression, dementia erases the self a little at a time. Everything we call the mind tracks the brain.
 
 The argument against God comes in two steps. First, this is what we would expect if the mind is what the brain does, and not what we would expect if the mind is an immaterial soul merely using the brain. Second, most religions need the person to survive death, and the soul was the standard way of getting that. If there is no soul, the afterlife needs a miracle, and the religions that promised it on the strength of the soul lose a foundation.

@@ -16,6 +16,7 @@ sources:
 related_questions: []
 related_claims: []
 ---
+
 Wigner, a Nobel laureate with no theological agenda, called it unreasonable: mathematical structures invented for their own sake keep turning out to describe physical reality, often decades later and with astonishing precision. Why should a universe be like that? And why should creatures evolved to find food be able to follow the description?
 
 The theistic answer is that both facts are what you would expect if the world and the minds in it come from the same rational source. Nature is intelligible because it was made to be understood.

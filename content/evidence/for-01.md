@@ -16,6 +16,7 @@ sources:
 related_questions: [q01, q02]
 related_claims: []
 ---
+
 The argument runs in three steps. Whatever begins to exist has a cause. The universe began to exist. So the universe has a cause, and since that cause produced space, time and matter, it is not itself made of them.
 
 The second step is where the real dispute lives. The standard Big Bang model starts from a hot, dense state about 13.8 billion years ago, and the Borde-Guth-Vilenkin theorem says that a universe that has been expanding on average cannot have an infinite past. That is suggestive, not decisive: the theorem assumes classical spacetime, and several quantum-gravity proposals (bounces, eternal inflation with a different geometry, no-boundary models) are built precisely to avoid a first moment. None of them is confirmed either.

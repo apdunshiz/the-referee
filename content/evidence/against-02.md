@@ -16,6 +16,7 @@ sources:
 related_questions: []
 related_claims: []
 ---
+
 Schellenberg put the argument in a tight form. If a perfectly loving God exists, every person capable of a relationship with God and not resisting one would believe that God exists, because belief is the minimum needed for the relationship to begin. But there are such people, non-resistant non-believers, who have looked and not found. So a perfectly loving God does not exist.
 
 The force of the argument comes from the comparison with human love. A parent who could easily make their existence known to a child who was looking for them, and chose not to, would not be called loving. Theists have to explain why the analogy fails.

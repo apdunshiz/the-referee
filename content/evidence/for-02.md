@@ -17,6 +17,7 @@ sources:
 related_questions: [q03]
 related_claims: []
 ---
+
 The cosmological constant, the strength of the strong nuclear force, the mass ratio of protons and neutrons, the initial smoothness of the early universe: change any of these by a small amount and you get a universe with no stars, no chemistry heavier than hydrogen, or no stable matter at all. This is not an apologist's claim. It is in the textbooks and is defended by physicists who have no religious interest in it, several of whom prefer a multiverse precisely because they find the tuning real and in need of explanation.
 
 The live question is what to make of it. Three answers are on the table. A designer chose the values. There are very many universes with different values and we are, unsurprisingly, in a habitable one. Or a deeper theory will one day show the values could not have been otherwise. Each answer has costs: a designer is a large and unexplained addition; a multiverse is unobserved and the mechanisms that generate it tend to need tuning themselves; a deeper theory is a promissory note.

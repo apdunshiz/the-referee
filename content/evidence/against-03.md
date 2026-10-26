@@ -17,6 +17,7 @@ sources:
 related_questions: [q12, q15]
 related_claims: []
 ---
+
 Human minds come fitted with a hair-trigger for detecting agents, a habit of reading purpose into events, and a readiness to accept what trusted elders say. These traits are useful: it is cheaper to mistake a branch for a snake than the reverse. They also generate spirits, ancestors and gods in every society ever studied. Add the social facts, that religions bind groups, enforce cooperation and spread with conquest and trade, and you have an account of religion that needs no gods in it.
 
 The argument against God is that if this account is complete, religious belief is explained as an output of the machinery, and outputs of machinery that fires regardless of whether gods exist cannot be evidence that they do.

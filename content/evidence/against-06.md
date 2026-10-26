@@ -2,12 +2,12 @@
 id: against-06
 side: against
 title: Where God's action should be detectable, it is not
-summary: Controlled studies of intercessory prayer find no effect, miracle claims never survive close examination, and no physical event has ever required a supernatural explanation; a God who acts in the world should leave traces, and none have been found.
+summary: Controlled studies of intercessory prayer find no effect, no miracle claim has been confirmed to the satisfaction of skeptical investigators, and no physical event has ever required a supernatural explanation; a God who acts in the world should leave traces, and none have been found.
 strength: 5
 confidence: 70
-status: The prayer studies and the absence of verified miracles are not disputed; whether a God would be expected to show up in such tests is the contested premise.
+status: The prayer studies are not disputed; whether any miracle has been verified is disputed, with skeptical investigators finding none confirmed and some scholars cataloguing cases they consider well attested; whether a God would be expected to show up in such tests is the contested premise.
 best_objection: A God is not a lab effect to be summoned by a protocol; the studies test whether God grants anonymous requests on demand, which almost no theology predicts, and the absence of proof of miracles is not proof of their absence.
-best_reply: Believers do claim that prayer heals and that miracles happen, and every time such a claim is checked carefully it dissolves; a God whose actions are indistinguishable from chance is, for every practical purpose, indistinguishable from no God.
+best_reply: Believers do claim that prayer heals and that miracles happen, and when such claims are checked by investigators without a stake in the outcome they have not held up; a God whose actions are indistinguishable from chance is, for every practical purpose, indistinguishable from no God.
 sources:
   - "Herbert Benson and others, Study of the Therapeutic Effects of Intercessory Prayer (STEP), American Heart Journal (2006)"
   - "David Hume, Of Miracles, in An Enquiry Concerning Human Understanding (1748)"
@@ -16,6 +16,7 @@ sources:
 related_questions: [q12]
 related_claims: []
 ---
+
 The largest controlled trial of intercessory prayer, with 1,800 cardiac patients, found no benefit; patients who knew they were being prayed for did slightly worse. Decades of investigation into reported miracles, at Lourdes and elsewhere, have produced cures that are rare and unexplained but never one that is clearly impossible for a natural process. In four centuries of science, no observation has required a supernatural cause.
 
 The argument from this is straightforward. If God acts in the world in response to prayer, as most believers hold, that action should be visible in aggregate. It is not. So either God does not act, or God does not exist.

@@ -17,6 +17,7 @@ sources:
 related_questions: [q05]
 related_claims: []
 ---
+
 The old version of the argument said God and evil cannot both exist. Plantinga's free-will defence is generally thought to have shown that they can: a world with free creatures might contain evil that God permits for the sake of freedom. The version that matters now is different. It says the actual world looks the way we would expect if there were no God and not the way we would expect if there were one. Fawns burning slowly in forest fires, children with bone cancer, predation and parasitism built into the structure of life for hundreds of millions of years before any being could learn from it: these are not what a loving designer would obviously choose.
 
 Theists reply in two ways. Some offer reasons, called theodicies: free will, the value of a stable world with real consequences, the soul-making that hardship produces, or a fall that corrupted creation. Others, the "skeptical theists", argue that we are in no position to judge what an infinite mind might permit, so our failure to see a reason tells us little.

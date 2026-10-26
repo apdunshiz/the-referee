@@ -5,9 +5,9 @@ one_line: A creator made the universe and its laws and does not intervene; no re
 core_claim: The arguments from cosmic order and existence point to a creating mind, but nothing reliable points to that mind acting in history or speaking through any scripture.
 scores:
   - criterion: history
-    score: 7
+    score: 5
     confidence: 60
-    why: It rests on no contested events. Its historical weakness is that almost nobody has held it as a living tradition; it was a position of eighteenth-century intellectuals and tends to dissolve into either theism or naturalism within a generation.
+    why: "It rests on no events or texts at all, which on the rule used here is neutral: nothing to refute and nothing to support. Its historical weakness is that almost nobody has held it as a living tradition; it was a position of eighteenth-century intellectuals and tends to dissolve into theism or naturalism within a generation."
   - criterion: consistency
     score: 7
     confidence: 60
@@ -29,6 +29,7 @@ sources:
   - "Thomas Paine, The Age of Reason (1794)"
   - "Peter Byrne, Natural Religion and the Nature of Religion (1989)"
 ---
+
 Deism is where the evidence "for" lists point if you accept them and the evidence "against" lists point if you accept those too: a creator, because something has to explain the order and the existence of things, who does not intervene, because intervention is exactly what the world fails to show. Flew, the best-known atheist philosopher of his generation, ended up here on the strength of the fine-tuning and origin-of-life arguments.
 
 Its appeal to an outsider is that it takes both columns seriously. Its problem is that it explains the beginning and then goes quiet. It has no answer to suffering except that the creator is not involved, no account of why consciousness exists, and no reason to think the creator is good, personal or interested.

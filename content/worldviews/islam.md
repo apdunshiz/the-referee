@@ -7,7 +7,7 @@ scores:
   - criterion: history
     score: 6
     confidence: 60
-    why: Muhammad is a well-attested historical figure and the Quranic text was fixed early and transmitted with unusual stability, which the Birmingham and Sanaa manuscripts support. The biographical traditions were written down over a century later and contain much that historians treat as legend; the Quran's accounts of earlier prophets conflict with the historical record where it exists.
+    why: Muhammad is a well-attested historical figure and the Quranic text was fixed early and transmitted with unusual stability; the Birmingham folios support an early written text, while the Sanaa palimpsest shows that a variant version also circulated before the standard text won out. The biographical traditions were written down over a century later and contain much that historians treat as legend; the Quran's accounts of earlier prophets conflict with the historical record where it exists.
   - criterion: consistency
     score: 6
     confidence: 55
@@ -15,11 +15,11 @@ scores:
   - criterion: explanation
     score: 6
     confidence: 55
-    why: Explains order, moral law and purpose through a creator and judge, and treats suffering as test and recompense, which is clear but leaves animal and infant suffering unaddressed. It inherited its cosmology and has no distinctive account of mind.
+    why: Explains order, moral law and purpose through a creator and judge, as Christianity and Judaism also do, and treats suffering as test and recompense, which is clear but leaves animal and infant suffering unaddressed. It inherited its cosmology and, like Christianity, has no distinctive account of mind; the point it lacks against Christianity is a distinctive answer to suffering itself.
   - criterion: testability
     score: 4
     confidence: 55
-    why: Its central claim, that the Quran is of divine origin, is argued from the book's literary inimitability, which cannot be tested by anyone who disputes the premise. Claims that the Quran anticipates modern science are read into it after the fact. Muhammad's prophecies are either general or fulfilled by his own followers.
+    why: "Same rule as Christianity, how exposed is the central claim and how have checkable claims fared. The Quran's divine origin is argued from its literary inimitability, which no one who disputes the premise can test, so the central claim is less exposed than a resurrection. Its checkable claims fare mixed, since its accounts of earlier prophets conflict with the record where one exists, readings of modern science into it are after the fact, and Muhammad's prophecies are general or fulfilled by his own followers."
   - criterion: moral
     score: 6
     confidence: 55
@@ -27,9 +27,10 @@ scores:
 sources:
   - "Fred Donner, Muhammad and the Believers (2010)"
   - "Jonathan Brown, Misquoting Muhammad (2014)"
-  - "Shabir Ally and others, debates on the Quran's inimitability"
+  - "Navid Kermani, God Is Beautiful: The Aesthetic Experience of the Quran (2015)"
   - "Behnam Sadeghi and Mohsen Goudarzi, Sanaa 1 and the origins of the Quran, Der Islam (2012)"
 ---
+
 Islam is the second-largest religion and the one whose central claim is most like a single, checkable object: a book. Muslims hold that the Quran is not inspired writing about God but God's own words, preserved without alteration. Manuscript evidence supports the preservation better than skeptics once expected. Whether the words are God's is a different question, and the traditional argument for it, that no human could produce such a text, convinces those who already read it as scripture and few others.
 
 Its monotheism is cleaner than Christianity's and its practice is more unified than Judaism's; five daily prayers and a shared law give it a coherence of life that outsiders often find impressive. Its intellectual tradition produced serious philosophy and serious science for several centuries.

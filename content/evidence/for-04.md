@@ -17,6 +17,7 @@ sources:
 related_questions: [q04, q05]
 related_claims: []
 ---
+
 The argument starts from a conviction almost everyone shares: some acts are wrong, full stop, not merely disapproved of by a given society. The 2020 survey of professional philosophers found most lean toward moral realism, the view that there are moral facts independent of opinion. The theist's next step is that such facts fit badly into a world of nothing but particles and forces, and fit naturally into a world made by a good mind.
 
 The weak point is that second step. Most moral realists are atheists or agnostics and think moral facts stand on their own, like mathematical truths, or follow from facts about harm and flourishing. The ancient Euthyphro problem presses the theist too: is something good because God wills it, which looks arbitrary, or does God will it because it is good, which makes goodness independent of God? The standard theist reply, that goodness is God's own nature, is coherent but is itself a further claim.

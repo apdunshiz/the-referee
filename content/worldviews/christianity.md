@@ -15,11 +15,11 @@ scores:
   - criterion: explanation
     score: 7
     confidence: 60
-    why: Explains a lawful universe, moral obligation and the sense of a broken world, and offers a God who suffers rather than one who explains suffering. Its account of animal pain across deep time, before any human fall, is weak, and it inherited its cosmology rather than predicting it.
+    why: Explains a lawful universe, moral obligation and the sense of a broken world, as Islam and Judaism also do; the one point of difference, scored here, is its answer to suffering, a God who undergoes it, which philosophers on both sides treat as a distinctive resource. Its account of animal pain across deep time, before any human fall, is weak, it has no distinctive account of mind, and it inherited its cosmology rather than predicting it.
   - criterion: testability
     score: 5
     confidence: 60
-    why: The resurrection is a claim that could in principle have been refuted by a body or a confession and was not, which is more exposure than most religions accept. Against that, Jesus' apparent prediction of his return within a generation did not happen, and prayer and miracle claims fail controlled tests.
+    why: Scored on the same rule as Islam, how exposed is the central claim and how have the checkable claims fared. The resurrection could in principle have been refuted by a body or a confession and was not, which is more exposure than most religions accept. Against that, Jesus' apparent prediction of his return within a generation did not happen, and prayer and miracle claims fail controlled tests.
   - criterion: moral
     score: 7
     confidence: 65
@@ -31,6 +31,7 @@ sources:
   - "Tom Holland, Dominion (2019)"
   - "David Bentley Hart, That All Shall Be Saved (2019)"
 ---
+
 Christianity is the religion the deep dives on this site examine most closely, because it was the subject of the Reddit thread they came from and because it makes the most checkable claim of any major faith: that a particular man rose from the dead in a particular decade. That exposure is its strength and its risk. If the resurrection happened, the rest follows and the other criteria matter less. If it did not, Christianity is a moral tradition with a false founding story.
 
 Historians of every stripe grant more of the core than outsiders expect: the crucifixion, the early appearance claims, the conversions of Paul and James. They divide sharply on what caused the appearance beliefs, and that division follows their prior views about God almost exactly, which tells you where the real argument is.

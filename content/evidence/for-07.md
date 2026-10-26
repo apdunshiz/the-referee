@@ -13,13 +13,14 @@ sources:
   - "Richard Swinburne, The Existence of God (2nd edition, 2004), chapter 13"
   - "William Alston, Perceiving God (1991)"
   - "Michael Persinger, Neuropsychological Bases of God Beliefs (1987)"
-  - "Pew Research Center, Religious Landscape Study (2014): about 60% of US adults report a regular sense of spiritual peace"
+  - "Pehr Granqvist and others, Sensed presence and mystical experiences are predicted by suggestibility, not by the application of transcranial weak complex magnetic fields, Neuroscience Letters (2005)"
 related_questions: [q15]
 related_claims: []
 ---
+
 The principle behind the argument is modest: if it seems to you that something is the case, that is some reason to believe it, unless you have specific grounds for doubt. We run our lives on that principle for ordinary perception. Swinburne and Alston argue that it applies to religious experience too, and that the sheer number and cross-cultural spread of such experiences gives them cumulative weight.
 
-The difficulties are also well known. Hindus experience Hindu deities, Catholics experience Mary, and so on, which fits a cultural origin at least as well as a divine one. Temporal lobe stimulation, psilocybin and sleep paralysis can produce experiences that feel sacred. And unlike seeing a tree, religious experience cannot be checked by walking round it.
+The difficulties are also well known. Hindus experience Hindu deities, Catholics experience Mary, and so on, which fits a cultural origin at least as well as a divine one. Psilocybin and sleep paralysis can produce experiences that feel sacred; the claim that weak magnetic stimulation of the temporal lobe does so rests on one laboratory and failed a double-blind replication. And unlike seeing a tree, religious experience cannot be checked by walking round it.
 
 Defenders answer that disagreement at the level of interpretation does not show that nothing was perceived, and that drugs can trigger real perceptions as well as hallucinations.
 

@@ -2,7 +2,7 @@
 id: against-05
 side: against
 title: The universe is vast, old and almost entirely hostile to life
-summary: A cosmos of two trillion galaxies, empty and lethal nearly everywhere, running for 13.8 billion years before a brief window of life on one planet, looks like an accident rather than a home built for us.
+summary: A cosmos of hundreds of billions to trillions of galaxies, empty and lethal nearly everywhere, running for 13.8 billion years before a brief window of life on one planet, looks like an accident rather than a home built for us.
 strength: 4
 confidence: 65
 status: A common intuition more than a developed argument; most philosophers on both sides consider it weak on its own, since nothing about theism predicts a small universe.
@@ -15,6 +15,7 @@ sources:
 related_questions: [q03]
 related_claims: []
 ---
+
 The scale argument is as much a feeling as a syllogism. Pascal felt it: the eternal silence of these infinite spaces frightened him. The modern version adds the numbers. Almost all of the universe is vacuum, radiation and dark matter. Of the matter that exists, almost none is in a form that could support life. Of the universe's history, life on Earth occupies a thin slice, and intelligent life a sliver of that. If a being made all this for creatures like us, it took a strange route.
 
 Everitt sharpens it: the scriptures of the major religions describe a small, young world with humanity at its centre, and that is roughly what theism as those scriptures understood it would predict. The universe we found is nothing like it. So the discovery counts against theism in the form it actually took.

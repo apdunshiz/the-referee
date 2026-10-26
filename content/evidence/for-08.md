@@ -17,7 +17,8 @@ sources:
 related_questions: [q06, q08, q09, q10, q11, q13]
 related_claims: []
 ---
-This is the one piece of evidence on the "for" side that points to a particular religion rather than to a creator in general, and it is where this site's deep dives spend most of their time. The facts most historians grant are these: Jesus existed and was crucified under Pilate; within a few years a creed was circulating that listed appearances to Peter, the Twelve, five hundred people, James and Paul; Paul had persecuted the movement before his experience; James had not believed during Jesus' life.
+
+This is the one piece of evidence on the "for" side that points to a particular religion rather than to a creator in general, and it is where this site's deep dives spend most of their time. The facts most historians grant are these: Jesus existed and was crucified under Pilate; within a few years a creed was circulating that listed appearances to Peter, the Twelve, five hundred people and James, to which Paul added his own; Paul had persecuted the movement before his experience; the gospels of Mark and John report that James did not believe during Jesus' life, which many historians accept and some doubt.
 
 The dispute is about explanation. Christians say the best explanation is that Jesus rose. Non-Christian historians mostly say the disciples had experiences they took to be Jesus, as bereaved people often do, and that the stories grew from there. Each side has to pay a price: the Christian must accept a miracle, which on any ordinary prior is enormously improbable; the skeptic must accept that several independent people, including two who had no wish to believe, had such experiences in a short span and that an empty tomb story arose alongside them.
 

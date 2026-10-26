@@ -5,9 +5,9 @@ one_line: One ultimate reality shows itself as many gods; every being lives thro
 core_claim: Brahman, the ultimate reality, underlies everything; the self is in some sense identical with or dependent on it; karma and rebirth govern each life, and liberation comes through knowledge, devotion or disciplined action.
 scores:
   - criterion: history
-    score: 4
+    score: 5
     confidence: 55
-    why: It has no founder and no founding event to check, which spares it refutation but gives it nothing to stand on either. The Vedas are among the oldest religious texts and the tradition is continuous for three millennia; its stories of gods and ages are mythic by its own account, and claims of a Vedic golden age of science are not supported.
+    why: It has no founder and no founding event to check, which on the rule used here is neutral. The Vedas are among the oldest religious texts and the tradition is continuous for three millennia; its stories of gods and ages are mythic by its own account, and modern claims of a Vedic golden age of science are not supported.
   - criterion: consistency
     score: 5
     confidence: 50
@@ -17,9 +17,9 @@ scores:
     confidence: 55
     why: Karma gives suffering a reason that neither Abrahamic theodicy nor naturalism can match in scope, at the cost of making every victim responsible. The monist strand has a serious account of consciousness as fundamental. Its cosmology of endless cycles fits a vast and old universe better than a single creation does.
   - criterion: testability
-    score: 2
-    confidence: 60
-    why: Rebirth and karma are not observable and rebirth-memory cases have not survived controlled study. Its philosophical claims are framed so that no experience counts against them.
+    score: 4
+    confidence: 55
+    why: Its contemplative claims about attention and the self can be tested by practice, as Buddhism's can, and yoga research partly supports them. Rebirth and karma are not observable, rebirth-memory cases have not survived controlled study, and its metaphysical claims are framed so that no experience counts against them.
   - criterion: moral
     score: 5
     confidence: 55
@@ -30,6 +30,7 @@ sources:
   - "Sarvepalli Radhakrishnan, The Hindu View of Life (1927)"
   - "Ian Stevenson, Twenty Cases Suggestive of Reincarnation (1966), and critiques by Paul Edwards, Reincarnation: A Critical Examination (1996)"
 ---
+
 Hinduism is hard to score because it is not one thing. It includes philosophers who hold that only one impersonal reality exists, devotees of a personal God not far from the Christian picture, and ritual traditions that take no position on either. What they share is the frame: a cyclical universe, many lives, actions that carry forward, and release as the goal.
 
 That frame explains some things well. Suffering has a cause in every case, the universe's age and scale are no surprise, and consciousness is treated as basic rather than as a late product of matter. It explains them at a price: a child born into misery is paying for something, and the moral order it posits is as unobservable as any heaven.

@@ -21,15 +21,16 @@ scores:
     confidence: 60
     why: Its central claims about attention, craving and suffering are claims about experience that practitioners can test and that clinical studies of meditation have partly supported. Rebirth and the full extent of liberation are not testable.
   - criterion: moral
-    score: 8
+    score: 7
     confidence: 60
-    why: Compassion for all sentient beings, non-violence and the absence of a persecuting God give it the cleanest record among the major traditions, though Buddhist societies have had their wars and their nationalism. Critics note a tendency toward withdrawal rather than reform.
+    why: Compassion for all sentient beings and non-violence are central, and it has no doctrine of a divine mandate for coercion, which has meant fewer religious wars than the Abrahamic traditions, though Buddhist societies have had their wars, their nationalism and their persecutions. Critics note a tendency toward withdrawal rather than reform.
 sources:
   - "Walpola Rahula, What the Buddha Taught (1959)"
   - "Richard Gombrich, What the Buddha Thought (2009)"
   - "Evan Thompson, Why I Am Not a Buddhist (2020)"
   - "Robert Wright, Why Buddhism Is True (2017)"
 ---
+
 Buddhism is the one major tradition that does not need God and does not argue for one. It begins from an observation anyone can check, that wanting things to be other than they are is painful, and builds a practice on it. Much of what it says about attention and craving has been borrowed wholesale by secular psychology, which is a kind of confirmation.
 
 Its metaphysics is more demanding than its practice. There is no enduring self, yet there is rebirth; there are gods, but they are in the cycle too and cannot help. The no-self doctrine is defended with real rigour and sits uneasily with everyday experience and with the moral weight Buddhism itself puts on individual action.

@@ -16,7 +16,8 @@ sources:
 related_questions: [q01, q02]
 related_claims: []
 ---
-This is the oldest form of the cosmological argument and it does not depend on the universe having a beginning. Even an eternal universe would be a collection of things that could have been otherwise: different laws, different particles, or nothing at all. Why is there this rather than that, or rather than nothing? If every explanation points to something else that also needs explaining, nothing has been explained. The argument concludes that there is at least one thing that exists of necessity, whose existence needs no further explanation, and on which everything else depends.
+
+This is the classic form of the cosmological argument that does not depend on the universe having a beginning. Even an eternal universe would be a collection of things that could have been otherwise: different laws, different particles, or nothing at all. Why is there this rather than that, or rather than nothing? If every explanation points to something else that also needs explaining, nothing has been explained. The argument concludes that there is at least one thing that exists of necessity, whose existence needs no further explanation, and on which everything else depends.
 
 Critics attack the demand for explanation. Russell's answer to Copleston was blunt: the universe is just there, and that is all. Modern versions say the universe as a whole may be necessary, or that the principle "every contingent fact has an explanation" is not self-evident and may fail for the totality.
 
