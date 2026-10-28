@@ -77,7 +77,7 @@ td { padding: .55rem .5rem .55rem 0; border-bottom: 1px solid var(--line); verti
 .pct { font: 800 1.05rem var(--sans); color: var(--navy); white-space: nowrap; }
 
 /* home: verdict, evidence, ranking */
-.step { font: 700 .72rem var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 2.4rem 0 0; }
+.step { font: 700 .72rem var(--sans); letter-spacing: .14em; text-transform: uppercase; color: #8a5f12; margin: 2.4rem 0 0; }
 .step + h2 { margin-top: .25rem; }
 .proof { border: 1px solid var(--line); border-top: 3px solid var(--gold); padding: 1rem 1.4rem 1.2rem; margin: 1.2rem 0 1.6rem; }
 .proof .step { margin-top: 0; }
@@ -92,7 +92,8 @@ td { padding: .55rem .5rem .55rem 0; border-bottom: 1px solid var(--line); verti
 .bar-track, .rank-track { display: block; height: 10px; background: #e6e8ee; border-radius: 5px; overflow: hidden; }
 .bar-track i, .rank-track i { display: block; height: 100%; background: var(--navy-2); }
 .case-against .bar-track i { background: #8c4a2a; }
-.case .bar-track { margin: .4rem 0 .7rem; }
+.case .bar-track { margin: .4rem 0 .3rem; }
+.side-cap { margin: 0 0 .7rem; font: 400 .8rem/1.35 var(--sans); color: var(--muted); }
 .case h3 { font: 700 .78rem var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 .25rem; }
 .case ol { margin: 0; padding-left: 1.2rem; }
 .case li { margin: .3rem 0; font: 400 .98rem/1.45 var(--serif); }
@@ -105,8 +106,8 @@ details.how p { margin: .6rem 0 0; font: 400 .95rem/1.55 var(--serif); }
 .ev-item { border-bottom: 1px solid var(--line); }
 .ev-item summary { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1rem; padding: .75rem 0 .75rem 1.3rem; cursor: pointer; list-style: none; position: relative; }
 .ev-item summary::-webkit-details-marker { display: none; }
-.ev-item summary::before { content: "+"; position: absolute; left: 0; top: .7rem; font: 700 1rem/1 var(--sans); color: var(--gold); }
-.ev-item[open] summary::before { content: "\2013"; }
+.ev-item summary::before { content: "+" / ""; position: absolute; left: 0; top: .7rem; font: 700 1rem/1 var(--sans); color: var(--gold); }
+.ev-item[open] summary::before { content: "\2013" / ""; }
 .ev-title { font: 600 1rem/1.4 var(--sans); color: var(--navy); flex: 1 1 16rem; }
 .ev-item summary:hover .ev-title { text-decoration: underline; }
 .ev-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
@@ -194,11 +195,15 @@ details.how p { margin: .6rem 0 0; font: 400 .95rem/1.55 var(--serif); }
 .legend td:first-child { width: 9rem; }
 
 /* responsive */
+@media (max-width: 900px) {
+  .more { grid-template-columns: 1fr; }
+}
 @media (max-width: 640px) {
   .proof-row, .proof-sides, .more { grid-template-columns: 1fr; }
   .proof-num { font-size: 3.2rem; }
   .rank li { grid-template-columns: 1fr 4rem; }
-  .rank-track { grid-column: 1 / -1; }
+  .rank-total { grid-column: 2; grid-row: 1; }
+  .rank-track { grid-column: 1 / -1; grid-row: 2; }
   html { font-size: 15px; }
   .evidence-grid, .two { grid-template-columns: 1fr; }
   .scores thead { display: none; }

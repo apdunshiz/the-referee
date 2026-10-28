@@ -366,6 +366,32 @@ def test_proof_percentage_and_primary_reasons(tmp_path):
     assert 'Evidence for God <span class="col-pct">60%</span>' in html
     assert "Primary reasons for" in html and "Primary reasons against" in html
     assert "The two sides weigh about the same." in html and "How these numbers are made" in html
+    assert "6 of 10 possible strength" in html and "8 of 10 possible strength" in html
+
+
+def test_verdict_call_follows_the_share_of_weight(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    out = tmp_path / "_site"
+    strong = dict(summary="A strong line used to tilt the share.", confidence=70, status="Accepted by both sides for the test.", best_objection="There is no real objection here.", best_reply="There is no reply needed here.")
+    content.save_evidence(tmp_path, Evidence(id="for-02", side=EvidenceSide.FOR, title="Extra for", strength=10, **strong))
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    assert 'aria-label="67 percent">67%</span>' in html and "The evidence leans toward God." in html  # 16 of 24
+    content.save_evidence(tmp_path, Evidence(id="against-02", side=EvidenceSide.AGAINST, title="Extra against", strength=10, **strong))
+    content.save_evidence(tmp_path, Evidence(id="against-03", side=EvidenceSide.AGAINST, title="More against", strength=10, **strong))
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    assert 'aria-label="36 percent">36%</span>' in html and "The evidence leans against God." in html  # 16 of 44
+
+
+def test_home_handles_one_empty_side(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    (tmp_path / "content" / "evidence" / "against-01.md").unlink()
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    assert "None%" not in html and "width:None" not in html
+    assert '<span class="side-num">60%</span>' in html and "1 line of evidence" in html
     assert html.index("The universe had a beginning</a> <span class=\"pct\">6/10") > html.index("Primary reasons for")
 
 

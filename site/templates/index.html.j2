@@ -2,7 +2,7 @@
 {% import "_macros.html.j2" as m %}
 {% block content %}
 <h1>Is there a God? Here is the evidence, both ways.</h1>
-<p class="lede">{{ evidence_for | length + evidence_against | length }} lines of evidence and {{ worldviews | length }} worldviews, each scored 0 to 10 by one referee with one public rubric. Open any line to see exactly why it got its number.</p>
+{% set n_lines = evidence_for | length + evidence_against | length %}<p class="lede">{{ n_lines }} line{{ "s" if n_lines != 1 }} of evidence and {{ worldviews | length }} worldviews, each scored 0 to 10 by one referee with one public rubric. Open any line to see exactly why it got its number.</p>
 
 <section id="proof" class="proof" aria-labelledby="proof-h">
   <p class="step">Step 1 · The verdict so far</p>
@@ -12,10 +12,16 @@
     <p class="proof-pct"><span class="proof-num" aria-label="{{ proof.pct }} percent">{{ proof.pct }}%</span><span class="proof-cap">of the evidence weight points to God</span></p>
     <div class="proof-sides">
       <p class="verdict-call">{% if proof.pct >= 58 %}The evidence leans toward God.{% elif proof.pct <= 42 %}The evidence leans against God.{% else %}The two sides weigh about the same.{% endif %}</p>
-      {% for side, pct, items, heading in [("for", proof.pct_for, proof.top_for, "Case for God"), ("against", proof.pct_against, proof.top_against, "Case against God")] %}
+      {% for side, pct, items, heading, got, most in [("for", proof.pct_for, proof.top_for, "Case for God", proof.sum_for, proof.max_for), ("against", proof.pct_against, proof.top_against, "Case against God", proof.sum_against, proof.max_against)] %}
       <div class="case case-{{ side }}">
+        {% if pct is not none %}
         <p class="side-head"><span>{{ heading }}</span><span class="side-num">{{ pct }}%</span></p>
         <div class="bar-track" aria-hidden="true"><i style="width:{{ pct }}%"></i></div>
+        <p class="side-cap">{{ got }} of {{ most }} possible strength; the big number is the share of all the weight</p>
+        {% else %}
+        <p class="side-head"><span>{{ heading }}</span></p>
+        <p class="empty">None written yet.</p>
+        {% endif %}
         <h3>Primary reasons {{ side }}</h3>
         <ol>{% for e in items %}<li><a href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a> <span class="pct">{{ e.strength }}/10</span></li>{% endfor %}</ol>
       </div>
@@ -62,7 +68,7 @@
   <h2 id="worldviews-h">Which religion makes the most sense?</h2>
   {% if worldviews %}
   <p class="small">Each worldview is scored 0 to 10 on the same {{ criteria | length }} criteria ({% for c in criteria %}{{ c.name | lower }}{{ ", " if not loop.last }}{% endfor %}), ranked by total. <a href="{{ base }}worldviews/">See every score and how the criteria work</a>.</p>
-  <ol class="rank">
+  <ol class="rank" role="list">
     {% for w in worldviews %}
     <li>
       <a href="{{ base }}worldviews/{{ w.id }}/">{{ w.name }}</a>
