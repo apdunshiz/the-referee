@@ -106,8 +106,8 @@ details.how p { margin: .6rem 0 0; font: 400 .95rem/1.55 var(--serif); }
 .ev-item { border-bottom: 1px solid var(--line); }
 .ev-item summary { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1rem; padding: .75rem 0 .75rem 1.3rem; cursor: pointer; list-style: none; position: relative; }
 .ev-item summary::-webkit-details-marker { display: none; }
-.ev-item summary::before { content: "+" / ""; position: absolute; left: 0; top: .7rem; font: 700 1rem/1 var(--sans); color: var(--gold); }
-.ev-item[open] summary::before { content: "\2013" / ""; }
+.ev-item summary::before { content: "+"; content: "+" / ""; position: absolute; left: 0; top: .7rem; font: 700 1rem/1 var(--sans); color: var(--gold); }
+.ev-item[open] summary::before { content: "\2013"; content: "\2013" / ""; }
 .ev-title { font: 600 1rem/1.4 var(--sans); color: var(--navy); flex: 1 1 16rem; }
 .ev-item summary:hover .ev-title { text-decoration: underline; }
 .ev-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }

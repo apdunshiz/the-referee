@@ -2,7 +2,7 @@
 {% import "_macros.html.j2" as m %}
 {% block content %}
 <h1>Is there a God? Here is the evidence, both ways.</h1>
-{% set n_lines = evidence_for | length + evidence_against | length %}<p class="lede">{{ n_lines }} line{{ "s" if n_lines != 1 }} of evidence and {{ worldviews | length }} worldviews, each scored 0 to 10 by one referee with one public rubric. Open any line to see exactly why it got its number.</p>
+{% set n_lines = evidence_for | length + evidence_against | length %}<p class="lede">{{ n_lines }} line{{ "s" if n_lines != 1 }} of evidence and {{ worldviews | length }} worldview{{ "s" if worldviews | length != 1 }}, each scored 0 to 10 by one referee with one public rubric. Open any line to see exactly why it got its number.</p>
 
 <section id="proof" class="proof" aria-labelledby="proof-h">
   <p class="step">Step 1 · The verdict so far</p>
@@ -17,13 +17,15 @@
         {% if pct is not none %}
         <p class="side-head"><span>{{ heading }}</span><span class="side-num">{{ pct }}%</span></p>
         <div class="bar-track" aria-hidden="true"><i style="width:{{ pct }}%"></i></div>
-        <p class="side-cap">{{ got }} of {{ most }} possible strength; the big number is the share of all the weight</p>
+        <p class="side-cap">{{ got }} of {{ most }} possible strength; the headline percentage is the share of all the weight</p>
         {% else %}
         <p class="side-head"><span>{{ heading }}</span></p>
         <p class="empty">None written yet.</p>
         {% endif %}
+        {% if items %}
         <h3>Primary reasons {{ side }}</h3>
         <ol>{% for e in items %}<li><a href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a> <span class="pct">{{ e.strength }}/10</span></li>{% endfor %}</ol>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
