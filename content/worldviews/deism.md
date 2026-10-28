@@ -23,7 +23,7 @@ scores:
   - criterion: moral
     score: 7
     confidence: 55
-    why: "Start at 8: an ethic of reason, benevolence and tolerance, from Herbert to Paine, extends to everyone. Its canonical statements command no war, no coercion and no exclusion. The one state that professed it by decree, the French republic under the decree of 18 Floréal 1794, ran the Great Terror under the Law of 22 Prairial six weeks later, which counts for coercion only (minus 1). Nothing to reverse, so no reform credit. Seven."
+    why: "Start at 8: an ethic of reason, benevolence and tolerance, from Herbert to Paine, extends to everyone. Its canonical statements command no war, no coercion and no exclusion. The one state that professed it by decree, the French republic under the decree of 18 Floréal 1794, ran the Great Terror under the Law of 22 Prairial five weeks later, which counts for coercion only (minus 1). Nothing to reverse, so no reform credit. Seven."
 sources:
   - "Antony Flew, There Is a God (2007)"
   - "Thomas Paine, The Age of Reason (1794)"

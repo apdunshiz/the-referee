@@ -42,4 +42,4 @@ Its historical footing is split. The later history is well documented and the su
 
 Its treatment of suffering has two voices. Job gets no explanation; he gets God. The rabbis, Saadia and Maimonides do explain, as trial, recompense and privation, and it is their answers that the score counts.
 
-An outsider notices that Judaism makes the smallest claims of the three Abrahamic faiths, that much of its scholarship has made its peace with modern biblical criticism, and that its moral tradition, including the rabbis' own retirement of holy war, is the part of it that the rest of the world adopted.
+An outsider notices that Judaism makes the smallest claims of the three Abrahamic faiths, that much of its scholarship has made its peace with modern biblical criticism, and that its moral tradition, including the rabbis' own neutralisation of holy war, is the part of it that the rest of the world adopted.

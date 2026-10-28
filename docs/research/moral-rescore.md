@@ -1,6 +1,6 @@
 # Moral fruit: rescore under the new rule (proposal, 2026-10-28)
 
-Rule applied, verbatim: "Start at 8 for an ethic that, in its best expression, extends to outsiders. Subtract 1 for each of three classes its authoritative texts or traditional law command or sanction: war or conquest; coercion of dissenters, apostates or a subordinate group; an exclusion written into its structure (caste, slavery, a subordinate class). What states did on their own account is not scored. Add 1, once, if the tradition reversed one of those classes from within, by appeal to its own sources, and the reversal holds in its mainstream. A stance with no texts is tested on its canonical statements; a state that professed it by decree counts for coercion only."
+Rule as shipped in content/site.json (the report was researched under a longer draft with the same meaning): "Start at 8 for an ethic that, at its best, extends to outsiders. Subtract 1 for each of three classes its authoritative texts or traditional law sanction: war or conquest; coercion of dissenters, apostates or a subordinate group; an exclusion written into its structure, such as caste or slavery. What states did on their own is not scored. Add 1, once, if the tradition reversed one of those classes from within, by its own sources, and the reversal holds in its mainstream. For a stance with no texts, test its canonical statements and count a state that professed it by decree for coercion only."
 
 How the classes were read, so the same fact costs the same point everywhere:
 

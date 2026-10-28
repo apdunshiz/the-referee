@@ -134,8 +134,8 @@
     {
       "id": "moral",
       "name": "Moral fruit",
-      "question": "Does it produce a livable, humane ethic for insiders and outsiders alike, judged by its best expression and its record?",
-      "rule": "Start at 8 for an ethic that, at its best, extends to outsiders. Subtract 1 for each of three classes its authoritative texts or traditional law sanction: war or conquest; coercion of dissenters, apostates or a subordinate group; an exclusion written into its structure, such as caste or slavery. What states did on their own is not scored. Add 1, once, if the tradition reversed one of those classes from within, by its own sources, and the reversal holds in its mainstream. A stance with no texts is tested on its canonical statements; a state that professed it by decree counts for coercion only."
+      "question": "Does it produce a livable, humane ethic for insiders and outsiders alike, judged by its best expression and by what its own texts and law sanction?",
+      "rule": "Start at 8 for an ethic that, at its best, extends to outsiders. Subtract 1 for each of three classes its authoritative texts or traditional law sanction: war or conquest; coercion of dissenters, apostates or a subordinate group; an exclusion written into its structure, such as caste or slavery. What states did on their own is not scored. Add 1, once, if the tradition reversed one of those classes from within, by its own sources, and the reversal holds in its mainstream. For a stance with no texts, test its canonical statements and count a state that professed it by decree for coercion only."
     }
   ],
   "evidence_note": "Strength is how much weight the best version of each item carries as evidence, 0 to 10, judged by one referee with one rubric; confidence is how sure the referee is of that score. The two columns are not meant to be added up: one decisive item would outweigh several weak ones, and reasonable people weigh suffering against fine-tuning differently. What the lists show is that neither side is empty, and where the real disagreements sit.",
