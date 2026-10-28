@@ -17,9 +17,9 @@ scores:
     confidence: 60
     why: "Start at 2. Answers all four: a lawful cosmos and moral obligation through a creator and judge, minds through the soul, suffering as a test with recompense in the next life, including for children and animals: plus 4. Its answer to the lawful cosmos, the kalam and contingency arguments of al-Ghazali and Ibn Sina, is debated by philosophers across the divide as a distinctive resource: plus 1. Seven."
   - criterion: testability
-    score: 2
-    confidence: 45
-    why: "Exposure 3: the Quran's divine origin is argued from its literary inimitability, which no one who disputes the premise can test, but its claim to be preserved unaltered was exposed to refutation by the Sanaa palimpsest and held in substance. Claims that it anticipates modern science belong to popular presentation and are not scored. Held and failed cancel: the Rome prophecy (plus 1) against the imminent Hour (minus 1). Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer. Two."
+    score: 3
+    confidence: 50
+    why: "Exposure 4: a historical finding, a different seventh-century Quran, could have refuted the preservation claim and the Sanaa palimpsest did not; a controlled experiment bears on its promise of answered prayer; its text makes dated predictions; a logical demonstration of discrepancy is a test the Quran itself invites. Inimitability has no test a doubter can run, so no observation reaches it. Held and failed cancel: the Rome prophecy against the imminent Hour. Failed, minus 1: prayer trials, once against every tradition promising answered prayer. Three."
   - criterion: moral
     score: 6
     confidence: 50
@@ -33,6 +33,7 @@ sources:
   - "Frank Griffel, al-Ghazali, Stanford Encyclopedia of Philosophy"
   - "Jonathan A. C. Brown, Slavery and Islam (2019)"
   - "Rudolph Peters, Jihad in Classical and Modern Islam (1996)"
+  - "Tommaso Tesei, The Romans Will Win! Q 30:2-7 in Light of 7th c. Political Eschatology, Der Islam 95 (2018)"
 ---
 
 Islam is the second-largest religion and the one whose central claim is most like a single, checkable object: a book. Muslims hold that the Quran is not inspired writing about God but God's own words, preserved without alteration. Manuscript evidence supports the preservation better than skeptics once expected. Whether the words are God's is a different question, and the traditional argument for it, that no human could produce such a text, convinces those who already read it as scripture and few others.
