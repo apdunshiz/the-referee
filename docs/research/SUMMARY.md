@@ -8,7 +8,7 @@ Seven reports, one per worldview, each applying the five written rules to source
 |---|---|---|---|
 | Naturalism | 30 | 29 | −1 |
 | Deism | 22 | 29 (floor 25) | +7 (+3) |
-| Christianity | 25 | 26 | +1 |
+| Christianity | 25 | 25 | 0 |
 | Buddhism | 29 | 27 | −2 |
 | Islam | 22 | 25 | +3 |
 | Judaism | 28 | 24 | −4 |
@@ -16,8 +16,9 @@ Seven reports, one per worldview, each applying the five written rules to source
 
 ## The 22 proposed changes, by worldview
 
-**Christianity (25 → 26)** [christianity.md](christianity.md)
+**Christianity (25 → 25)** [christianity.md](christianity.md)
 - history 6→7: early, stable text (1 Cor 15 creed, Paul's letters, manuscript record) is the same kind of fact that earned Islam and Hinduism +1.
+- consistency 5→4: foreknowledge beside free choice is charged to Judaism and Islam, so it is charged here too (Alex's ruling, 2026-10-28). Islam keeps the kalam bonus (same ruling): the arguments originated in Islamic thought and borrowers do not get the originator's credit.
 - testability stays 2: the proposed held-promise credit (the church's endurance) is the continuous community already credited under history, the same double count removed from Judaism below. The "return within a generation" deduction stays (Ehrman, Allison, Fredriksen; the preterist reading is a minority and does not cover Paul).
 
 **Buddhism (29 → 27)** [buddhism.md](buddhism.md)

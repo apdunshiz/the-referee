@@ -9,9 +9,9 @@ scores:
     confidence: 60
     why: "Start at 5. Foundations that hold: a well-attested founder and founding event, since Jesus lived, was crucified, and his followers very soon claimed to have seen him alive (plus 1); a continuous, documented community (plus 1); an early, stable text, a creed Paul received within a few years of the crucifixion, letters from the 50s, and a catalogued manuscript record (plus 1). Gone against: the gospels were written decades later by believers and carry legend (minus 1). The resurrection itself is beyond history's reach and neither counts nor costs. Seven."
   - criterion: consistency
-    score: 5
+    score: 4
     confidence: 60
-    why: "Start at 8. Three core doctrines need careful definition to avoid contradiction: the Trinity, the incarnation, and eternal punishment alongside a God defined as love; each has split the tradition. Five. Disagreements between the gospels are a history matter and are not counted here."
+    why: "Start at 8. Four core doctrines need careful definition to avoid contradiction: the Trinity, the incarnation, eternal punishment alongside a God defined as love, and divine foreknowledge alongside free choice, the Augustine and Calvin debate, charged to Judaism and Islam on the same terms; each has split the tradition. Four. Disagreements between the gospels are a history matter and are not counted here."
   - criterion: explanation
     score: 7
     confidence: 60
@@ -37,6 +37,6 @@ Christianity is the religion the deep dives on this site examine most closely, b
 
 Historians of every stripe grant more of the core than outsiders expect: the crucifixion, the early appearance claims, the conversion of Paul and the leadership of James, whose earlier unbelief many historians accept and some doubt. They divide sharply on what caused the appearance beliefs, and that division follows their prior views about God almost exactly, which tells you where the real argument is.
 
-Its explanatory story is rich. It says why there is a world, why it is ordered, why we feel obliged, why things are wrong, and it answers suffering not with a theory but with a God who undergoes it. It pays for that with doctrines, the Trinity, the incarnation, hell, that have strained its own best minds for two thousand years.
+Its explanatory story is rich. It says why there is a world, why it is ordered, why we feel obliged, why things are wrong, and it answers suffering not with a theory but with a God who undergoes it. It pays for that with doctrines, the Trinity, the incarnation, hell, foreknowledge beside free will, that have strained its own best minds for two thousand years.
 
 An outsider notices that Christianity's case rests on one event more than any other tradition's does, that its moral influence is larger than its current believers' share of the world, and that its defenders divide between an evidential claim, that the historical case stands on its own, and a conditional one, that if there is a God this is what he did.
