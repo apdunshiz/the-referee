@@ -21,9 +21,9 @@ scores:
     confidence: 55
     why: "Exposure 3: a permanent covenant could have failed visibly. Held: none that is not a foundation claim already scored under history or a conditional, undated promise; the people's survival is the continuous community credited there, and the rule forbids scoring it twice. Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer. Two."
   - criterion: moral
-    score: 5
+    score: 6
     confidence: 60
-    why: "Start at 8: the prophetic ethic of justice for the poor and the stranger extends to outsiders. Wars and conquest commanded in its own texts and carried out by its ancient and modern states (minus 1); persecution or legal coercion by states built on it, the Hasmonean forced circumcisions, Himyar, and the military government over Arab citizens of Israel from 1948 to 1966 (minus 1); permanent slavery of foreigners sanctioned from Leviticus 25 and the subordinate legal status of women in halakha, exclusions written into its structure (minus 1). Five."
+    why: "Start at 8: the prophetic ethic of justice for the poor and the stranger extends to outsiders. Its texts and halakha command war, the herem of Deuteronomy 20 codified as obligatory war (minus 1); coercion, death for the enticer and the idolater in Deuteronomy 13 and 17 and Maimonides on heretics (minus 1); and permanent slavery of foreigners in Leviticus 25 and the Shulchan Aruch (minus 1). The rabbis neutralised herem from within, ruling the seven nations lost and peace terms owed to all, and that holds across the mainstream (plus 1). Six."
 sources:
   - "Israel Finkelstein and Neil Asher Silberman, The Bible Unearthed (2001)"
   - "Abraham Joshua Heschel, God in Search of Man (1955)"
@@ -32,6 +32,8 @@ sources:
   - "Moses Maimonides, The Guide for the Perplexed, Part III"
   - "Flavius Josephus, Antiquities of the Jews 13"
   - "Shira Robinson, Citizen Strangers (2013)"
+  - "Moses Maimonides, Mishneh Torah, Laws of Kings and Wars 5-6"
+  - "Catherine Hezser, Jewish Slavery in Antiquity (2005)"
 ---
 
 Judaism is the root of the two largest religions and is oddly absent from most debates about God, partly because it does not seek converts and partly because its claims are about a people rather than about everyone. Scored on its own terms it is a religion of practice: what you do matters more than what you believe, and the arguments that fill Christian and Muslim apologetics barely appear.
@@ -40,4 +42,4 @@ Its historical footing is split. The later history is well documented and the su
 
 Its treatment of suffering has two voices. Job gets no explanation; he gets God. The rabbis, Saadia and Maimonides do explain, as trial, recompense and privation, and it is their answers that the score counts.
 
-An outsider notices that Judaism makes the smallest claims of the three Abrahamic faiths, that much of its scholarship has made its peace with modern biblical criticism, and that its moral tradition is the part of it that the rest of the world adopted.
+An outsider notices that Judaism makes the smallest claims of the three Abrahamic faiths, that much of its scholarship has made its peace with modern biblical criticism, and that its moral tradition, including the rabbis' own retirement of holy war, is the part of it that the rest of the world adopted.

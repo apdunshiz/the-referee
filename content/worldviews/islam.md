@@ -21,9 +21,9 @@ scores:
     confidence: 45
     why: "Exposure 3: the Quran's divine origin is argued from its literary inimitability, which no one who disputes the premise can test, but its claim to be preserved unaltered was exposed to refutation by the Sanaa palimpsest and held in substance. Claims that it anticipates modern science belong to popular presentation and are not scored. Held and failed cancel: the Rome prophecy (plus 1) against the imminent Hour (minus 1). Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer. Two."
   - criterion: moral
-    score: 5
-    confidence: 60
-    why: "Start at 8: obligatory charity, equality before God and hospitality extend to outsiders in its best expression. Wars and conquest in its name (minus 1); legal coercion of apostates and dissenters under traditional law (minus 1); slavery sanctioned from its texts, abolished in Muslim states only in the twentieth century (minus 1), each contested by reformers reading the same sources, which the rule does not restore. Five."
+    score: 6
+    confidence: 50
+    why: "Start at 8: obligatory charity, equality before God and hospitality extend to outsiders. Its texts and classical law sanction war, the sword and jizya verses and offensive jihad as a collective duty (minus 1); coercion, the death penalty for apostasy in all four Sunni schools and dhimmi status (minus 1); and slavery, permitted in the Quran and regulated in fiqh (minus 1). Abolition was argued from the Quran's emancipation verses by its scholars and now holds by consensus, as the 2014 letter to Baghdadi states (plus 1). Six."
 sources:
   - "Fred Donner, Muhammad and the Believers (2010)"
   - "Jonathan Brown, Misquoting Muhammad (2014)"
@@ -31,6 +31,8 @@ sources:
   - "Behnam Sadeghi and Mohsen Goudarzi, Sanaa 1 and the origins of the Quran, Der Islam (2012)"
   - "Nicolai Sinai, When did the consonantal skeleton of the Quran reach closure?, BSOAS 77 (2014)"
   - "Frank Griffel, al-Ghazali, Stanford Encyclopedia of Philosophy"
+  - "Jonathan A. C. Brown, Slavery and Islam (2019)"
+  - "Rudolph Peters, Jihad in Classical and Modern Islam (1996)"
 ---
 
 Islam is the second-largest religion and the one whose central claim is most like a single, checkable object: a book. Muslims hold that the Quran is not inspired writing about God but God's own words, preserved without alteration. Manuscript evidence supports the preservation better than skeptics once expected. Whether the words are God's is a different question, and the traditional argument for it, that no human could produce such a text, convinces those who already read it as scripture and few others.

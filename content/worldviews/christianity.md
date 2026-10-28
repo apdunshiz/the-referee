@@ -21,9 +21,9 @@ scores:
     confidence: 55
     why: "Exposure 4: a body or a confession could have refuted the resurrection, the most exposed central claim of any major faith. Its surrounding facts, including the church's survival, are foundation claims scored under history, not again here. Failed, minus 1 each: the apparent prediction of a return within a generation, which most critical scholars read as unfulfilled; prayer trials, counted once against every tradition that promises answered prayer. Two."
   - criterion: moral
-    score: 5
-    confidence: 65
-    why: "Start at 8: love of enemies and the dignity of every person extend to outsiders. Wars and conquest in its name, the crusades (minus 1); persecution of dissenters, the inquisitions (minus 1); slavery sanctioned from its texts for centuries (minus 1), each opposed from within by appeal to the same texts, which the rule does not restore. Five."
+    score: 6
+    confidence: 80
+    why: "Start at 8: love of enemies and the dignity of every person extend to outsiders. Its texts and canon law sanction war, from the conquest commands it inherits to the crusade indulgence of Lateran IV (minus 1); coercion of heretics, handed to the secular arm by the same council and by Ad extirpanda (minus 1); and slavery, regulated in both testaments and canon law (minus 1). Abolition was argued from the same scriptures by Quakers and evangelicals, then taught by Rome, and holds everywhere (plus 1). Six."
 sources:
   - "Bart Ehrman, How Jesus Became God (2014)"
   - "N. T. Wright, The Resurrection of the Son of God (2003)"
@@ -31,6 +31,8 @@ sources:
   - "Tom Holland, Dominion (2019)"
   - "David Bentley Hart, That All Shall Be Saved (2019)"
   - "Christopher M. Hays (ed.), When the Son of Man Didn't Come (2016)"
+  - "Fourth Lateran Council, canon 3, On Heretics (1215)"
+  - "Mark Noll, The Civil War as a Theological Crisis (2006)"
 ---
 
 Christianity is the religion the deep dives on this site examine most closely, because it was the subject of the Reddit thread they came from and because it makes the most checkable claim of any major faith: that a particular man rose from the dead in a particular decade. That exposure is its strength and its risk. If the resurrection happened, the rest follows and the other criteria matter less. If it did not, Christianity is a moral tradition with a false founding story.

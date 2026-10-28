@@ -21,9 +21,9 @@ scores:
     confidence: 60
     why: "Exposure 4: one confirmed miracle or one lawlike event needing a supernatural cause would refute it. Held claims, plus 1 each: no supernatural or paranormal effect confirmed under controlled conditions; the prayer trials' null result. Mind tracking brain is the scientific record already scored under history and is not scored again. No failed kind. Six."
   - criterion: moral
-    score: 6
-    confidence: 60
-    why: "Start at 8: humanist ethics extends to every person. Wars and conquest by states built on it, the Soviet and Maoist regimes (minus 1); persecution of dissenters and believers by those states (minus 1); no exclusion written into its structure. Six."
+    score: 7
+    confidence: 65
+    why: "Start at 8: humanist ethics extends to every person. Its canonical statements, the humanist manifestos and the naturalism of Oppy and Carroll, command no war, no coercion and no exclusion. The one state that professed it by decree, the Soviet Union under its 1918 decree and 1936 constitution, coerced believers and clergy, which counts for coercion only (minus 1). Nothing to reverse, so no reform credit. Seven."
 sources:
   - "Graham Oppy, Naturalism and Religion (2018)"
   - "Sean Carroll, The Big Picture (2016)"
@@ -31,6 +31,8 @@ sources:
   - "Erik Wielenberg, Robust Ethics (2014)"
   - "Alvin Plantinga, Where the Conflict Really Lies (2011)"
   - "Paul Draper, Pain and Pleasure: An Evidential Problem for Theists, Nous 23 (1989)"
+  - "American Humanist Association, Humanist Manifesto III (2003)"
+  - "Paul Froese, The Plot to Kill God (2008)"
 ---
 
 Naturalism is the view an outsider lands on by default if none of the religions persuades them, so it has to be on the table and scored by the same questions. It is not the absence of a worldview. It makes claims: that the physical is all there is, that minds are what brains do, that morality is a human achievement rather than a cosmic fact.
