@@ -39,4 +39,4 @@ What it does best is explain the texture of the world. The age and scale of the 
 
 What it does worst is explain the frame. Why is there a universe at all, and why one with these constants? Why does any arrangement of matter feel like something from the inside? Why does "you must not" bind anyone? Naturalists answer with brute facts, future science, or a redefinition of the question. Those are legitimate moves but they are costs, and they are exactly the places where the evidence "for" lists live.
 
-An outsider notices that naturalism scores well because the criteria reward testability, where it is strongest, and that the theisms match or beat it on explanatory reach. Which of those matters more is the choice the reader has to make.
+An outsider notices that naturalism scores well because the criteria reward testability, where it is strongest, and that the religions match or beat it on explanatory reach. Which of those matters more is the choice the reader has to make.

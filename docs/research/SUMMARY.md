@@ -7,14 +7,14 @@ Seven reports, one per worldview, each applying the five written rules to source
 | Worldview | Now | Proposed | Change |
 |---|---|---|---|
 | Naturalism | 30 | 29 | −1 |
-| Deism | 22 | 29 (floor 25) | +7 (+3) |
+| Deism | 22 | 25 (29 if the two refused moves were applied) | +3 |
 | Christianity | 25 | 25 | 0 |
 | Buddhism | 29 | 27 | −2 |
 | Islam | 22 | 25 | +3 |
 | Judaism | 28 | 24 | −4 |
 | Hinduism | 26 | 24 | −2 |
 
-## The 22 proposed changes, by worldview
+## The proposed changes, by worldview (23 score lines after the review rounds)
 
 **Christianity (25 → 25)** [christianity.md](christianity.md)
 - history 6→7: early, stable text (1 Cor 15 creed, Paul's letters, manuscript record) is the same kind of fact that earned Islam and Hinduism +1.

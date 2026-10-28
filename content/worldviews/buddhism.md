@@ -37,6 +37,6 @@ Buddhism is the one major tradition that does not need God and does not argue fo
 
 Its metaphysics is more demanding than its practice. There is no enduring self, yet there is rebirth; there are gods, but they are in the cycle too and cannot help. The no-self doctrine is defended with real rigour and sits uneasily with everyday experience and with the moral weight Buddhism itself puts on individual action.
 
-On the questions the rest of this site cares about, why anything exists, why it is ordered, whether there is a creator, Buddhism declines to answer and says the questions do not lead to the end of suffering. An outsider can admire the discipline of that and still count it as silence; the score credits only the cyclic cosmology it inherited, as every tradition's inherited cosmology is credited.
+On the questions the rest of this site cares about, why anything exists, why it is ordered, whether there is a creator, Buddhism declines to answer and says the questions do not lead to the end of suffering. An outsider can admire the discipline of that and still count it as silence; on these questions the score credits only the cyclic cosmology it inherited, as every tradition's inherited cosmology is credited.
 
 An outsider notices that Buddhism scores well on the criteria that reward explanation and a testable practice, that its monastic code carries an exclusion of its own, and that it competes with naturalism more than with the theisms: both say the universe has no author, and they differ on whether the self and its rebirth are real.

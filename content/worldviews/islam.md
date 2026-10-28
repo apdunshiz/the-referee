@@ -11,7 +11,7 @@ scores:
   - criterion: consistency
     score: 5
     confidence: 60
-    why: "Start at 8. Three core doctrines need careful definition: divine determination alongside human responsibility, debated by its own schools for centuries; the eternal, uncreated speech of God in a book revealed in time; and a God named the Compassionate and Merciful alongside eternal punishment. Abrogation, where later verses override earlier ones, is a texts matter and is not scored here. Five."
+    why: "Start at 8. Three core doctrines need careful definition: divine determination and foreknowledge alongside human responsibility, debated by its own schools for centuries; the eternal, uncreated speech of God in a book revealed in time; and a God named the Compassionate and Merciful alongside eternal punishment. Abrogation, where later verses override earlier ones, is a texts matter and is not scored here. Five."
   - criterion: explanation
     score: 7
     confidence: 60
