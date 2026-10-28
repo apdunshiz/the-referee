@@ -28,13 +28,13 @@ sources:
   - "Antony Flew, There Is a God (2007)"
   - "Thomas Paine, The Age of Reason (1794)"
   - "Peter Byrne, Natural Religion and the Nature of Religion (1989)"
-  - "Thomas Paine, The Age of Reason (1794)"
   - "Matthew Tindal, Christianity as Old as the Creation (1730)"
+  - "Edward Herbert of Cherbury, De Veritate (1624)"
 ---
 
 Deism is where the evidence "for" lists point if you accept them and the evidence "against" lists point if you accept those too: a creator, because something has to explain the order and the existence of things, who does not intervene, because intervention is exactly what the world fails to show. Flew, the best-known atheist philosopher of his generation, ended up here on the strength of the fine-tuning and origin-of-life arguments.
 
-Its appeal to an outsider is that it takes both columns seriously. Its problem is that it explains the beginning and then goes quiet. It has no answer to suffering except that the creator is not involved, no account of why consciousness exists, and no reason to think the creator is good, personal or interested.
+Its appeal to an outsider is that it takes both columns seriously. Its problem is that it explains the beginning and then goes quiet. Its answer to suffering is only that a lawful world is not suspended for anyone, it has no account of why consciousness exists, and no reason to think the creator is good, personal or interested.
 
 It also has a sociological weakness that the scoring cannot capture. Few people are raised as deists, organised deist communities are small, and in practice people who reach this position drift toward a religion that gives the creator a face or toward naturalism that removes the creator as an idle wheel.
 

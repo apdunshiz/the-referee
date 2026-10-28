@@ -8,17 +8,17 @@ Seven reports, one per worldview, each applying the five written rules to source
 |---|---|---|---|
 | Naturalism | 30 | 29 | −1 |
 | Deism | 22 | 29 (floor 25) | +7 (+3) |
-| Christianity | 25 | 27 | +2 |
+| Christianity | 25 | 26 | +1 |
 | Buddhism | 29 | 27 | −2 |
 | Islam | 22 | 25 | +3 |
-| Judaism | 28 | 25 | −3 |
+| Judaism | 28 | 24 | −4 |
 | Hinduism | 26 | 24 | −2 |
 
 ## The 22 proposed changes, by worldview
 
-**Christianity (25 → 27)** [christianity.md](christianity.md)
+**Christianity (25 → 26)** [christianity.md](christianity.md)
 - history 6→7: early, stable text (1 Cor 15 creed, Paul's letters, manuscript record) is the same kind of fact that earned Islam and Hinduism +1.
-- testability 2→3: the church's promised endurance and spread is a held promise of the same kind as Judaism's survival credit. The "return within a generation" deduction stays (Ehrman, Allison, Fredriksen; the preterist reading is a minority and does not cover Paul).
+- testability stays 2: the proposed held-promise credit (the church's endurance) is the continuous community already credited under history, the same double count removed from Judaism below. The "return within a generation" deduction stays (Ehrman, Allison, Fredriksen; the preterist reading is a minority and does not cover Paul).
 
 **Buddhism (29 → 27)** [buddhism.md](buddhism.md)
 - history 5→6: the sangha is a continuous, documented community from Ashoka's edicts; the other traditions got this point.
@@ -35,12 +35,12 @@ Seven reports, one per worldview, each applying the five written rules to source
 - explanation 6→7: the kalam and contingency arguments (al-Ghazali, Ibn Sina) are the distinctive-resource bonus the other traditions received.
 - testability 1→2: the "uncorrupted text" claim was exposed by the Sanaa palimpsest and held.
 
-**Judaism (28 → 25)** [judaism.md](judaism.md)
+**Judaism (28 → 24)** [judaism.md](judaism.md)
 - consistency 7→6: foreknowledge versus free choice (Avot 3:15, Maimonides) is the tension that cost Islam a point. Alternative: drop Islam's charge instead.
 - explanation 5→6: Job is one voice; Saadia, the Talmud and Maimonides give the test and recompense answers Islam was credited for.
 - testability 3→2: "survival of the people" is the continuous community already credited under history; the rule forbids scoring it twice.
 - moral 7→5: persecution by states built on it (Hasmonean forced circumcision, Himyar, Israel's 1948–66 military government) and exclusion in its structure (Lev 25:44–46 slavery, the verses that cost Christianity).
-- history stays 6, but with the arithmetic restated (+1 early stable text, −1 late legendary founder biography).
+- history 6→5: the restated arithmetic (+1 community, +1 early stable text, −1 Exodus and conquest unsupported, −1 late legendary founder biography) reaches 5; the report's "keep 6" miscounted.
 
 **Naturalism (30 → 29)** [naturalism.md](naturalism.md)
 - consistency 6→5: truth-tracking reason from fitness-tracking selection (Nagel, Plantinga) is a third doctrine needing careful definition.

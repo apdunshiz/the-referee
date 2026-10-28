@@ -5,9 +5,9 @@ one_line: One God made a covenant with a people and gave them a law; living righ
 core_claim: The God of Abraham revealed himself in history and in the Torah; the covenant with Israel is permanent and the Messiah has not yet come.
 scores:
   - criterion: history
-    score: 6
+    score: 5
     confidence: 55
-    why: "Start at 5. Foundations that hold: a continuous, documented community of 2,500 years (plus 1); an early, stable text, complete by the Persian period and transmitted without change since (plus 1). The kingdoms of Israel and Judah are attested from the ninth century BCE by the Tel Dan and Mesha stelae, so the Kings narrative draws no deduction. Gone against: the patriarchs, Exodus and conquest have little or no archaeological support in the form the texts describe (minus 1); the founder and patriarchs are known only from texts written centuries later with legend (minus 1). Six."
+    why: "Start at 5. Foundations that hold: a continuous, documented community of 2,500 years (plus 1); an early, stable text, complete by the Persian period and unchanged since (plus 1). The kingdoms are attested from the ninth century BCE by the Tel Dan and Mesha stelae, so the Kings narrative draws no deduction. Gone against: the Exodus and conquest have little or no archaeological support in the form the texts describe (minus 1); Moses and the patriarchs are known only from texts written centuries later with legend, the kind charged to every tradition with a late biography (minus 1). Five."
   - criterion: consistency
     score: 6
     confidence: 50
@@ -38,6 +38,6 @@ Judaism is the root of the two largest religions and is oddly absent from most d
 
 Its historical footing is split. The later history is well documented and the survival of the community through exile, dispersion and attempted extermination is a fact that even skeptics find remarkable. The founding stories are another matter; mainstream archaeology finds no trace of a large Exodus or a conquest of Canaan, and the texts reached their present form centuries after the events they narrate.
 
-Its treatment of suffering is distinctive. Job gets no explanation; he gets God. Whether that is an answer or a refusal of one is something an outsider has to decide.
+Its treatment of suffering has two voices. Job gets no explanation; he gets God. The rabbis, Saadia and Maimonides do explain, as trial, recompense and privation, and it is their answers that the score counts.
 
 An outsider notices that Judaism makes the smallest claims of the three Abrahamic faiths, that much of its scholarship has made its peace with modern biblical criticism, and that its moral tradition is the part of it that the rest of the world adopted.

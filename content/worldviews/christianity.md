@@ -17,9 +17,9 @@ scores:
     confidence: 60
     why: "Start at 2. Answers all four: a lawful cosmos and moral obligation through a creator, minds through a soul made in God's image, suffering through a God who undergoes it: plus 4. That last answer is treated by philosophers across the divide as a distinctive resource: plus 1. Its account of animal pain across deep time is weak, but the question is answered. Seven."
   - criterion: testability
-    score: 3
-    confidence: 50
-    why: "Exposure 4: a body or a confession could have refuted the resurrection, the most exposed central claim of any major faith. Its surrounding facts are foundation claims scored under history, not again here. Held, plus 1: the promise that the community would endure and spread, a promise rather than a foundation claim, scored as it is for Judaism. Failed, minus 1 each: the apparent prediction of a return within a generation, which most critical scholars read as unfulfilled; prayer trials, counted once against every tradition that promises answered prayer. Three."
+    score: 2
+    confidence: 55
+    why: "Exposure 4: a body or a confession could have refuted the resurrection, the most exposed central claim of any major faith. Its surrounding facts, including the church's survival, are foundation claims scored under history, not again here. Failed, minus 1 each: the apparent prediction of a return within a generation, which most critical scholars read as unfulfilled; prayer trials, counted once against every tradition that promises answered prayer. Two."
   - criterion: moral
     score: 5
     confidence: 65
