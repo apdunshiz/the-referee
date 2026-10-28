@@ -17,9 +17,9 @@ scores:
     confidence: 60
     why: "Start at 2. Answers all four: a lawful cosmos and moral obligation through a creator, minds through a soul made in God's image, suffering through a God who undergoes it: plus 4. That last answer is treated by philosophers across the divide as a distinctive resource: plus 1. Its account of animal pain across deep time is weak, but the question is answered. Seven."
   - criterion: testability
-    score: 2
+    score: 4
     confidence: 55
-    why: "Exposure 4: a body or a confession could have refuted the resurrection, the most exposed central claim of any major faith. Its surrounding facts, including the church's survival, are foundation claims scored under history, not again here. Failed, minus 1 each: the apparent prediction of a return within a generation, which most critical scholars read as unfulfilled; prayer trials, counted once against every tradition that promises answered prayer. Two."
+    why: "Exposure 5: a historical finding, a body or a contemporary refutation, could have shown the resurrection false; a controlled experiment bears on its promise of answered prayer; its texts fix a date, the return within a generation; the church failing is an observation open to anyone, and it promised not to; a logical demonstration could show the incarnation incoherent. Held, plus 1: the temple's destruction predicted in Mark 13, credited as Islam's Rome prophecy is. Failed, minus 1 each: the return within a generation; prayer trials, once against every tradition promising answered prayer. Four."
   - criterion: moral
     score: 6
     confidence: 80
@@ -33,9 +33,10 @@ sources:
   - "Christopher M. Hays (ed.), When the Son of Man Didn't Come (2016)"
   - "Fourth Lateran Council, canon 3, On Heretics (1215)"
   - "Mark Noll, The Civil War as a Theological Crisis (2006)"
+  - "Dale Tuggy, Trinity, Stanford Encyclopedia of Philosophy (2024)"
 ---
 
-Christianity is the religion the deep dives on this site examine most closely, because it was the subject of the Reddit thread they came from and because it makes the most checkable claim of any major faith: that a particular man rose from the dead in a particular decade. That exposure is its strength and its risk. If the resurrection happened, the rest follows and the other criteria matter less. If it did not, Christianity is a moral tradition with a false founding story.
+Christianity is the religion the deep dives on this site examine most closely, because it was the subject of the Reddit thread they came from and because it makes one of the most checkable claims of any major faith: that a particular man rose from the dead in a particular decade. That exposure is its strength and its risk. If the resurrection happened, the rest follows and the other criteria matter less. If it did not, Christianity is a moral tradition with a false founding story.
 
 Historians of every stripe grant more of the core than outsiders expect: the crucifixion, the early appearance claims, the conversion of Paul and the leadership of James, whose earlier unbelief many historians accept and some doubt. They divide sharply on what caused the appearance beliefs, and that division follows their prior views about God almost exactly, which tells you where the real argument is.
 

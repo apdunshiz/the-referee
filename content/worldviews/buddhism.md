@@ -13,13 +13,13 @@ scores:
     confidence: 60
     why: "Start at 8. Two core doctrines need careful definition: rebirth and karma without a self that is reborn, which its schools address with sophistication but not to everyone's satisfaction (minus 1); compassion and obligation grounded in no-self, where its best defenders have not agreed how a doctrine that denies persons grounds a duty to them (minus 1). Six."
   - criterion: explanation
-    score: 7
-    confidence: 55
-    why: "Start at 2. Answers all four: a cosmos of cyclic world-systems, inherited and counted like everyone else's; minds, through a phenomenology of attention that psychology has partly confirmed; obligation, through compassion grounded in no-self; suffering, its central diagnosis: plus 4. The diagnosis of suffering is treated across the divide as a distinctive resource: plus 1. Seven."
+    score: 6
+    confidence: 65
+    why: "Start at 2. Answers minds, through a beginningless stream of consciousness that its Abhidharma analyses and its teachers still assert; obligation, through karma and compassion grounded in no-self; suffering, its central diagnosis: plus 3. On a lawful cosmos it refuses: the Buddha set the question aside in MN 63, a first point of the cycle is declared undiscoverable, and the world-system cosmology its texts inherited is disowned by the Dalai Lama, so no point. The diagnosis of suffering is treated across the divide as a distinctive resource: plus 1. Six."
   - criterion: testability
     score: 3
-    confidence: 65
-    why: "Exposure 3: its central claims are about experience, that craving produces suffering and disciplined attention reduces it, which practitioners can test. Held, plus 1: meditation research partly supports them, with weaker effects after the replication critiques. Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer, which its devotional scriptures and the common religion of Japan do. Rebirth-memory cases are unconfirmed, which is neutral for every tradition that makes the claim. Three."
+    confidence: 60
+    why: "Exposure 4: a controlled experiment on meditation, the Vinaya's dated limit on the teaching, an observation open to anyone today of whether craving produces suffering, and a logical demonstration that rebirth without a self is incoherent each reach it; no historical finding does, since the teaching stands whoever taught it. Held, plus 1: meditation research partly supports its attention claims. Failed, minus 1 each: the five-hundred-year limit; prayer trials, once against every tradition promising answered prayer, as its devotional texts do. Three."
   - criterion: moral
     score: 7
     confidence: 60
@@ -33,12 +33,15 @@ sources:
   - "Bhikkhu Analayo, The Revival of the Bhikkhuni Order and the Decline of the Sasana, Journal of Buddhist Ethics 20 (2013)"
   - "Peter Harvey, An Introduction to Buddhist Ethics (2000)"
   - "Stephen Jenkins, Making Merit through Warfare, in Buddhist Warfare (2010)"
+  - "Jan Nattier, Once Upon a Future Time: Studies in a Buddhist Prophecy of Decline (1991)"
+  - "Donald S. Lopez Jr., Buddhism and Science: A Guide for the Perplexed (2008)"
+  - "Dalai Lama XIV, The Universe in a Single Atom (2005)"
 ---
 
 Buddhism is the one major tradition that does not need God and does not argue for one. It begins from an observation anyone can check, that wanting things to be other than they are is painful, and builds a practice on it. Much of what it says about attention and craving has been borrowed wholesale by secular psychology, which is a kind of confirmation.
 
 Its metaphysics is more demanding than its practice. There is no enduring self, yet there is rebirth; there are gods, but they are in the cycle too and cannot help. The no-self doctrine is defended with real rigour and sits uneasily with everyday experience and with the moral weight Buddhism itself puts on individual action.
 
-On the questions the rest of this site cares about, why anything exists, why it is ordered, whether there is a creator, Buddhism declines to answer and says the questions do not lead to the end of suffering. An outsider can admire the discipline of that and still count it as silence; on these questions the score credits only the cyclic cosmology it inherited, as every tradition's inherited cosmology is credited.
+On the questions the rest of this site cares about, why anything exists, why it is ordered, whether there is a creator, Buddhism declines to answer and says the questions do not lead to the end of suffering. An outsider can admire the discipline of that and still count it as silence; on these questions the score gives no credit, since a refusal is not an answer under the explanation rule, and the world-system cosmology its texts inherited is disowned by its own modern teachers.
 
 An outsider notices that Buddhism scores well on the criteria that reward explanation and a testable practice, that its monastic code carries an exclusion of its own, and that it competes with naturalism more than with the theisms: both say the universe has no author, and they differ on whether the self and its rebirth are real.

@@ -17,9 +17,9 @@ scores:
     confidence: 50
     why: "Start at 2. Answers a lawful cosmos by taking the origin and fine-tuning evidence at face value (plus 1); moral obligation through a creator whose law reason can read, which every classic deist text from Herbert to Paine states (plus 1); suffering through a lawful world the creator does not suspend (plus 1). Says nothing about minds. No answer is treated across the divide as distinctive. Five."
   - criterion: testability
-    score: 2
-    confidence: 70
-    why: "Exposure 2: a creator could be disconfirmed only by showing the universe necessary. It makes no checkable claims after the creation, so nothing has held or failed. Two."
+    score: 3
+    confidence: 50
+    why: "Exposure 4: a historical finding of reliable divine action, a controlled experiment showing an answered prayer, or an observation open to anyone today of a public miracle would refute the no-intervention half; a logical demonstration that the universe is necessary would refute the creator half; it makes no dated prediction. Held: none, by the owner's ruling that absences such as null prayer trials and unconfirmed miracles earn it no credit. Failed, minus 1: a historical finding, the fossil and genetic record, answered Paine's claim that no organism could make itself. Three."
   - criterion: moral
     score: 7
     confidence: 55

@@ -111,7 +111,7 @@
       "id": "history",
       "name": "Historical footing",
       "question": "Do the events, texts and origins the worldview rests on hold up to ordinary historical and scientific scrutiny?",
-      "rule": "Start at 5. Add 1 for each kind of foundation that holds under ordinary scrutiny: a well-attested founder or founding event; an early, stable text; a continuous, documented community; the scientific record where the worldview rests on it. Subtract 1 for each kind of foundational claim that scrutiny has gone against: founding events without support; biographical sources written late with legend; claims that conflict with the record. Miracle narratives are beyond history's reach and neither count nor cost. Popular claims, such as science read into scripture, are not scored."
+      "rule": "Start at 5. Add 1 for each kind of foundation that holds: a well-attested founder or founding event; an early, stable text, fixed within two generations of the founder or founding events and unchanged in substance since (with no founder, the oldest stratum of its canon if stably transmitted); a continuous, documented community; the scientific record where it rests on one. Subtract 1 for each kind of claim scrutiny has gone against: founding events without support; late biography with legend; conflict with the record. Miracles neither count nor cost; popular claims are not scored."
     },
     {
       "id": "consistency",
@@ -123,13 +123,13 @@
       "id": "explanation",
       "name": "Explanatory reach",
       "question": "How much of what we find, a lawlike cosmos, conscious minds, moral obligation, suffering, does it explain, and how well?",
-      "rule": "Four questions: a lawful cosmos, conscious minds, moral obligation, suffering. Start at 2; add 1 for each question the worldview gives an answer to (an honest refusal to answer is not an answer; an inherited cosmology counts as an answer for everyone who has one). Add 1 more, once, if any of its answers is treated by philosophers across the divide as a distinctive resource."
+      "rule": "Four questions: a lawful cosmos, conscious minds, moral obligation, suffering. Start at 2; add 1 for each question the worldview answers. An answer names a cause, a mechanism or a necessity that the tradition's own best statement still asserts; a refusal to answer, however principled, is not one, and an inherited cosmology counts only where the tradition still asserts it. Add 1 more, once, if any of its answers is treated by philosophers across the divide as a distinctive resource."
     },
     {
       "id": "testability",
       "name": "Testable claims",
       "question": "Does it make claims that could have turned out false, and how have those claims fared?",
-      "rule": "Exposure of the central claim, 0 to 5. Then add 1 for each kind of checkable claim that has held and subtract 1 for each kind that has failed. Each kind is scored once: foundation claims already scored under history are not scored again; prayer trials count once against every tradition that promises answered prayer; meditation and rebirth-memory research count the same way for every tradition that makes those claims."
+      "rule": "Exposure is the number of kinds of refuter the central claim admits, 0 to 5: a historical finding; a controlled experiment; a dated public prediction; an observation anyone can make today; a logical demonstration. Add 1 for each kind of checkable claim that has held, subtract 1 for each kind that has failed. Each kind is scored once: foundation claims scored under history are not scored again; prayer trials count once, as a failed kind for every tradition promising answered prayer and never as held; meditation and rebirth research count the same way for every tradition making the claim."
     },
     {
       "id": "moral",

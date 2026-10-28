@@ -56,6 +56,6 @@ Seven reports, one per worldview, each applying the five written rules to source
 
 ## Rule problems every report flagged (not scored)
 1. The moral rule punishes traditions that held state power longer (scale bias); stateless stances get a free pass or a flat 5. Fixed 2026-10-28: the rule now scores what a tradition's texts and law sanction, with one credit for a reversal from within; see MORAL-RULE.md and moral-rescore.md.
-2. "Inherited cosmology counts as an answer for everyone" gives the lawful-cosmos point to traditions that explicitly refuse the question (Buddhism's unanswered questions).
-3. Testability rewards exposure and then takes it back for every failed kind, so the most checkable tradition can score lowest.
-4. History credits and debits the same facts across files inconsistently; each report found the same kind of fact scored differently in another file.
+2. "Inherited cosmology counts as an answer for everyone" gives the lawful-cosmos point to traditions that explicitly refuse the question (Buddhism's unanswered questions). Fixed 2026-10-28: an answer must be a cause, mechanism or necessity the tradition still asserts; see RUBRIC-FIXES.md and explanation-history-rescore.md.
+3. Testability rewards exposure and then takes it back for every failed kind, so the most checkable tradition can score lowest. Fixed 2026-10-28: exposure is now the count of five named refuter kinds and the prayer trials count once; see testability-rescore.md.
+4. History credits and debits the same facts across files inconsistently; each report found the same kind of fact scored differently in another file. Partly fixed 2026-10-28: an early text now means fixed within two generations of the founder; see explanation-history-rescore.md.

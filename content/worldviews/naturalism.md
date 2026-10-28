@@ -15,11 +15,11 @@ scores:
   - criterion: explanation
     score: 6
     confidence: 55
-    why: "Start at 2. Answers suffering (an indifferent nature explains it completely), moral obligation (secular realism) and conscious minds (physicalism, minds are what brains do, the same kind of answer as a soul): plus 3. Leaves a lawful cosmos to brute fact, an honest refusal that is not an answer. Its prediction of the actual texture of suffering is treated across the divide as a distinctive resource: plus 1. Six."
+    why: "Start at 2. Answers suffering (an indifferent nature explains it completely), moral obligation (secular realism) and conscious minds (physicalism, minds are what brains do, the same kind of answer as a soul): plus 3. Leaves a lawful cosmos to brute fact, a refusal that is not an answer. Its prediction of the actual texture of suffering is treated across the divide as a distinctive resource: plus 1. Six."
   - criterion: testability
-    score: 6
-    confidence: 60
-    why: "Exposure 4: one confirmed miracle or one lawlike event needing a supernatural cause would refute it. Held claims, plus 1 each: no supernatural or paranormal effect confirmed under controlled conditions; the prayer trials' null result. Mind tracking brain is the scientific record already scored under history and is not scored again. No failed kind. Six."
+    score: 5
+    confidence: 55
+    why: "Exposure 4: a historical finding, a fossil out of sequence; a controlled experiment showing a paranormal effect; an observation open to anyone today, a public miracle; or a logical demonstration that it defeats itself would each refute it. It makes no dated prediction. Held, plus 1: no supernatural or paranormal effect confirmed under controlled conditions, in psi and near-death studies. Prayer trials count once, against traditions promising answered prayer, and credit no one. Mind tracking brain is scored under history. Five."
   - criterion: moral
     score: 7
     confidence: 65
@@ -33,6 +33,8 @@ sources:
   - "Paul Draper, Pain and Pleasure: An Evidential Problem for Theists, Nous 23 (1989)"
   - "American Humanist Association, Humanist Manifesto III (2003)"
   - "Paul Froese, The Plot to Kill God (2008)"
+  - "Peter Godfrey-Smith, Theory and Reality (2003)"
+  - "Stuart Ritchie, Richard Wiseman and Christopher French, Failing the Future, PLoS ONE 7 (2012)"
 ---
 
 Naturalism is the view an outsider lands on by default if none of the religions persuades them, so it has to be on the table and scored by the same questions. It is not the absence of a worldview. It makes claims: that the physical is all there is, that minds are what brains do, that morality is a human achievement rather than a cosmic fact.
