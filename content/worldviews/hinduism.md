@@ -22,8 +22,8 @@ scores:
     why: "Exposure 1: Brahman, karma and rebirth are framed so that no experience counts against them. Held, plus 1: contemplative claims about attention and the self, which practice can test and research partly supports. Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer, which its devotional strands do. Rebirth-memory cases are unconfirmed, which is neutral for every tradition that makes the claim. One."
   - criterion: moral
     score: 5
-    confidence: 65
-    why: "Start at 8: non-violence, hospitality and devotion extend to outsiders in its best expression. Communal violence and conquest in its name by nationalist movements (minus 1); legal coercion of converts and dissenters by states built on it, Nepal's conversion ban and Indian anti-conversion laws (minus 1); caste, an exclusion written into its structure and justified from its texts (minus 1); reformers have fought all three from within, which the rule does not restore. Five."
+    confidence: 55
+    why: "Start at 8: non-violence, hospitality and equal regard for all beings extend to outsiders in its best expression. Its own law sanctions war, the Gita's duty of the kshatriya and Manu's heaven for kings who fall in battle (minus 1); coercion, Manu's banishment of heretics and corporal penalties on Shudras (minus 1); and caste, with the Shudra created to serve (minus 1). Untouchability has been disavowed by many acharyas, but caste itself stands in its law and in the pronouncements of some of its heads, so no reversal holds. Five."
 sources:
   - "Wendy Doniger, The Hindus: An Alternative History (2009)"
   - "Gavin Flood, An Introduction to Hinduism (1996)"
@@ -31,6 +31,8 @@ sources:
   - "Ian Stevenson, Twenty Cases Suggestive of Reincarnation (1966), and critiques by Paul Edwards, Reincarnation: A Critical Examination (1996)"
   - "Vagheesh M. Narasimhan et al., The formation of human populations in South and Central Asia, Science 365 (2019)"
   - "Kanak Bikram Thapa, Religion and Law in Nepal, BYU Law Review (2010)"
+  - "Patrick Olivelle, Manu's Code of Law (2005)"
+  - "Amit Thorat and Omkar Joshi, The Continuing Practice of Untouchability in India, Economic and Political Weekly 55 (2020)"
 ---
 
 Hinduism is hard to score because it is not one thing. It includes philosophers who hold that only one impersonal reality exists, devotees of a personal God not far from the Christian picture, and ritual traditions that take no position on either. What they share is the frame: a cyclical universe, many lives, actions that carry forward, and release as the goal.

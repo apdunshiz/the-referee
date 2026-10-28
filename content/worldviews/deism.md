@@ -21,15 +21,16 @@ scores:
     confidence: 70
     why: "Exposure 2: a creator could be disconfirmed only by showing the universe necessary. It makes no checkable claims after the creation, so nothing has held or failed. Two."
   - criterion: moral
-    score: 5
+    score: 7
     confidence: 55
-    why: "Its best expression is an ethic of reason and tolerance, but it has no communities and no record to credit or debit, so the rule's no-record value applies. Five."
+    why: "Start at 8: an ethic of reason, benevolence and tolerance, from Herbert to Paine, extends to everyone. Its canonical statements command no war, no coercion and no exclusion. The one state that professed it by decree, the French republic under the decree of 18 Floréal 1794, ran the Great Terror under the Law of 22 Prairial five weeks later, which counts for coercion only (minus 1). Nothing to reverse, so no reform credit. Seven."
 sources:
   - "Antony Flew, There Is a God (2007)"
   - "Thomas Paine, The Age of Reason (1794)"
   - "Peter Byrne, Natural Religion and the Nature of Religion (1989)"
   - "Matthew Tindal, Christianity as Old as the Creation (1730)"
   - "Edward Herbert of Cherbury, De Veritate (1624)"
+  - "Jonathan Smyth, Robespierre and the Festival of the Supreme Being (2016)"
 ---
 
 Deism is where the evidence "for" lists point if you accept them and the evidence "against" lists point if you accept those too: a creator, because something has to explain the order and the existence of things, who does not intervene, because intervention is exactly what the world fails to show. Flew, the best-known atheist philosopher of his generation, ended up here on the strength of the fine-tuning and origin-of-life arguments.

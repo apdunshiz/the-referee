@@ -55,7 +55,7 @@ Seven reports, one per worldview, each applying the five written rules to source
 - moral 5→7: "no communities and no record" is false; the Jacobin state decreed deism in 1794 and ran the Terror under it, so it is scored on its record like the others. (Contestable.)
 
 ## Rule problems every report flagged (not scored)
-1. The moral rule punishes traditions that held state power longer (scale bias); stateless stances get a free pass or a flat 5.
+1. The moral rule punishes traditions that held state power longer (scale bias); stateless stances get a free pass or a flat 5. Fixed 2026-10-28: the rule now scores what a tradition's texts and law sanction, with one credit for a reversal from within; see MORAL-RULE.md and moral-rescore.md.
 2. "Inherited cosmology counts as an answer for everyone" gives the lawful-cosmos point to traditions that explicitly refuse the question (Buddhism's unanswered questions).
 3. Testability rewards exposure and then takes it back for every failed kind, so the most checkable tradition can score lowest.
 4. History credits and debits the same facts across files inconsistently; each report found the same kind of fact scored differently in another file.

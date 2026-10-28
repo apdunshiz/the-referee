@@ -21,9 +21,9 @@ scores:
     confidence: 65
     why: "Exposure 3: its central claims are about experience, that craving produces suffering and disciplined attention reduces it, which practitioners can test. Held, plus 1: meditation research partly supports them, with weaker effects after the replication critiques. Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer, which its devotional scriptures and the common religion of Japan do. Rebirth-memory cases are unconfirmed, which is neutral for every tradition that makes the claim. Three."
   - criterion: moral
-    score: 5
-    confidence: 65
-    why: "Start at 8: compassion for all sentient beings extends to every creature. Wars and nationalist violence in its name (minus 1); persecution of minorities by Buddhist movements and states in Myanmar and Sri Lanka (minus 1); the eight rules that subordinate nuns to monks in every monastic code, an exclusion written into its structure (minus 1), contested from within, which the rule does not restore. Five."
+    score: 7
+    confidence: 60
+    why: "Start at 8: compassion for all sentient beings extends to every creature. Its canon and Vinaya command no war and no coercion of dissenters; the Mahayana texts that let a king fight in defence are minor and hedged. The eight garudhammas, which subordinate every nun to every monk in every surviving Vinaya, are an exclusion written into its structure (minus 1). The bhikkhuni revival argues from the Vinaya but is rejected by the Thai, Burmese and Sri Lankan hierarchies, so it does not yet hold in the mainstream and earns no credit. Seven."
 sources:
   - "Walpola Rahula, What the Buddha Taught (1959)"
   - "Richard Gombrich, What the Buddha Thought (2009)"
@@ -31,6 +31,8 @@ sources:
   - "Robert Wright, Why Buddhism Is True (2017)"
   - "Ian Reader and George Tanabe, Practically Religious: Worldly Benefits and the Common Religion of Japan (1998)"
   - "Bhikkhu Analayo, The Revival of the Bhikkhuni Order and the Decline of the Sasana, Journal of Buddhist Ethics 20 (2013)"
+  - "Peter Harvey, An Introduction to Buddhist Ethics (2000)"
+  - "Stephen Jenkins, Making Merit through Warfare, in Buddhist Warfare (2010)"
 ---
 
 Buddhism is the one major tradition that does not need God and does not argue for one. It begins from an observation anyone can check, that wanting things to be other than they are is painful, and builds a practice on it. Much of what it says about attention and craving has been borrowed wholesale by secular psychology, which is a kind of confirmation.
