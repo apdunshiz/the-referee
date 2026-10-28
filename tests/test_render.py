@@ -268,10 +268,13 @@ def test_matrix_sorted_by_total_with_right_totals(tmp_path):
     full = read(out, "worldviews/index.html")
     assert full.index('href="/worldviews/naturalism/"') < full.index('href="/worldviews/christianity/"')
     assert "26/30" in full and "16/30" in full and "80%" in full  # avg confidence of naturalism
+    # home shows a ranked list with a bar per worldview; the full matrix lives on /worldviews/
+    assert '<span class="rank-track" aria-hidden="true"><i style="width:87%"></i></span>' in html
+    assert 'class="matrix"' not in html
     # confidence is visible in every matrix cell, not only in a title attribute
     cell = '<b>9</b><span class="cell-conf"><span class="vh">confidence </span>80%</span>'
-    assert cell in html and cell in full
-    assert "<caption>" in html and "<caption>" in full and "<caption>" in read(out, "worldviews/naturalism/index.html")
+    assert cell in full
+    assert "<caption>" in full and "<caption>" in read(out, "worldviews/naturalism/index.html")
     assert 'aria-label="score 9 out of 10"' in read(out, "worldviews/naturalism/index.html")
     assert 'percent confidence in this score' in read(out, "evidence/for-01/index.html")
     assert "Historical evidence" in full and "How well do its founding claims survive historical scrutiny?" in full
@@ -362,6 +365,7 @@ def test_proof_percentage_and_primary_reasons(tmp_path):
     assert '<span class="side-num">60%</span>' in html and '<span class="side-num">80%</span>' in html
     assert 'Evidence for God <span class="col-pct">60%</span>' in html
     assert "Primary reasons for" in html and "Primary reasons against" in html
+    assert "The two sides weigh about the same." in html and "How these numbers are made" in html
     assert html.index("The universe had a beginning</a> <span class=\"pct\">6/10") > html.index("Primary reasons for")
 
 
