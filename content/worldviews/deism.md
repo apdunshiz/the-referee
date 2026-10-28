@@ -19,7 +19,7 @@ scores:
   - criterion: testability
     score: 3
     confidence: 50
-    why: "Exposure 4: a historical finding of reliable divine action, a controlled experiment showing an answered prayer, or an observation open to anyone today of a public miracle would refute the no-intervention half; a logical demonstration that the universe is necessary would refute the creator half; it makes no dated prediction. Nothing is credited as held: that no miracle has been confirmed and that the prayer trials were null are absences, not claims it staked and won. Failed, minus 1: its claim that no organism could make itself, answered by natural selection. Three."
+    why: "Exposure 4: a historical finding of reliable divine action, a controlled experiment showing an answered prayer, or an observation open to anyone today of a public miracle would refute the no-intervention half; a logical demonstration that the universe is necessary would refute the creator half; it makes no dated prediction. Held: none, by the owner's ruling that absences such as null prayer trials and unconfirmed miracles earn it no credit. Failed, minus 1: a historical finding, the fossil and genetic record, answered Paine's claim that no organism could make itself. Three."
   - criterion: moral
     score: 7
     confidence: 55

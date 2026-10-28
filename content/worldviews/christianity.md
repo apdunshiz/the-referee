@@ -36,7 +36,7 @@ sources:
   - "Dale Tuggy, Trinity, Stanford Encyclopedia of Philosophy (2024)"
 ---
 
-Christianity is the religion the deep dives on this site examine most closely, because it was the subject of the Reddit thread they came from and because it makes the most checkable claim of any major faith: that a particular man rose from the dead in a particular decade. That exposure is its strength and its risk. If the resurrection happened, the rest follows and the other criteria matter less. If it did not, Christianity is a moral tradition with a false founding story.
+Christianity is the religion the deep dives on this site examine most closely, because it was the subject of the Reddit thread they came from and because it makes one of the most checkable claims of any major faith: that a particular man rose from the dead in a particular decade. That exposure is its strength and its risk. If the resurrection happened, the rest follows and the other criteria matter less. If it did not, Christianity is a moral tradition with a false founding story.
 
 Historians of every stripe grant more of the core than outsiders expect: the crucifixion, the early appearance claims, the conversion of Paul and the leadership of James, whose earlier unbelief many historians accept and some doubt. They divide sharply on what caused the appearance beliefs, and that division follows their prior views about God almost exactly, which tells you where the real argument is.
 

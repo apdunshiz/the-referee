@@ -50,3 +50,7 @@ Alternative: early means stable since first fixing, whenever that was, with the 
 | Judaism | 25 | 24 |
 
 The spread narrows from 6 points to 4, mostly because testability stops rewarding a hand-set exposure number. That is the honest result of the fix, not its aim.
+
+## Rulings applied (Alex, 2026-10-28)
+
+All three recommended fixes were chosen. On the contested calls in testability-rescore.md: Christianity's church-survival promise counts as an open observation (as Judaism's extinction does) and Mark 13's temple prediction is a held kind (as Islam's Rome prophecy is), so Christianity's testability is 4, not the report's 2; Deism's claim that no organism could make itself is charged as a failed kind, so Deism's testability is 3, not 4; everything else as proposed. Shipped totals: Naturalism 29, Buddhism 28, Christianity 28, Deism 28, Islam 27, Hinduism 26, Judaism 25. The Christianity and Deism `why` lines in the worldview files are the ruled versions, not the report's drafts.
