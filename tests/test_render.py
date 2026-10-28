@@ -268,10 +268,13 @@ def test_matrix_sorted_by_total_with_right_totals(tmp_path):
     full = read(out, "worldviews/index.html")
     assert full.index('href="/worldviews/naturalism/"') < full.index('href="/worldviews/christianity/"')
     assert "26/30" in full and "16/30" in full and "80%" in full  # avg confidence of naturalism
+    # home shows a ranked list with a bar per worldview; the full matrix lives on /worldviews/
+    assert '<span class="rank-track" aria-hidden="true"><i style="width:87%"></i></span>' in html
+    assert 'class="matrix"' not in html
     # confidence is visible in every matrix cell, not only in a title attribute
     cell = '<b>9</b><span class="cell-conf"><span class="vh">confidence </span>80%</span>'
-    assert cell in html and cell in full
-    assert "<caption>" in html and "<caption>" in full and "<caption>" in read(out, "worldviews/naturalism/index.html")
+    assert cell in full
+    assert "<caption>" in full and "<caption>" in read(out, "worldviews/naturalism/index.html")
     assert 'aria-label="score 9 out of 10"' in read(out, "worldviews/naturalism/index.html")
     assert 'percent confidence in this score' in read(out, "evidence/for-01/index.html")
     assert "Historical evidence" in full and "How well do its founding claims survive historical scrutiny?" in full
@@ -362,7 +365,34 @@ def test_proof_percentage_and_primary_reasons(tmp_path):
     assert '<span class="side-num">60%</span>' in html and '<span class="side-num">80%</span>' in html
     assert 'Evidence for God <span class="col-pct">60%</span>' in html
     assert "Primary reasons for" in html and "Primary reasons against" in html
+    assert "The two sides weigh about the same." in html and "How these numbers are made" in html
+    assert "6 of 10 possible strength" in html and "8 of 10 possible strength" in html
     assert html.index("The universe had a beginning</a> <span class=\"pct\">6/10") > html.index("Primary reasons for")
+
+
+def test_verdict_call_follows_the_share_of_weight(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    out = tmp_path / "_site"
+    strong = dict(summary="A strong line used to tilt the share.", confidence=70, status="Accepted by both sides for the test.", best_objection="There is no real objection here.", best_reply="There is no reply needed here.")
+    content.save_evidence(tmp_path, Evidence(id="for-02", side=EvidenceSide.FOR, title="Extra for", strength=5, **strong))
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    assert 'aria-label="58 percent">58%</span>' in html and "The evidence leans toward God." in html  # 11 of 19, on the boundary
+    content.save_evidence(tmp_path, Evidence(id="against-02", side=EvidenceSide.AGAINST, title="Extra against", strength=10, **strong))
+    content.save_evidence(tmp_path, Evidence(id="against-03", side=EvidenceSide.AGAINST, title="More against", strength=10, **strong))
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    assert 'aria-label="28 percent">28%</span>' in html and "The evidence leans against God." in html  # 11 of 39
+
+
+def test_home_handles_one_empty_side(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    (tmp_path / "content" / "evidence" / "against-01.md").unlink()
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    html = read(out, "index.html")
+    assert "None%" not in html and "width:None" not in html
+    assert '<span class="side-num">60%</span>' in html and "1 line of evidence" in html
 
 
 def test_proof_is_fifty_when_columns_weigh_the_same():

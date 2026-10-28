@@ -2,53 +2,60 @@
 {% import "_macros.html.j2" as m %}
 {% block content %}
 <h1>Is there a God? Here is the evidence, both ways.</h1>
-<p class="lede">Every line below is weighed with the same rubric by the same referee: a strength from 0 to 10 for the best defensible version of the argument, and a confidence % in that score. Disagree with any line and you can open it to see exactly why it was scored that way, then argue with it on GitHub.</p>
+{% set n_lines = evidence_for | length + evidence_against | length %}<p class="lede">{{ n_lines }} line{{ "s" if n_lines != 1 }} of evidence and {{ worldviews | length }} worldview{{ "s" if worldviews | length != 1 }}, each scored 0 to 10 by one referee with one public rubric. Open any line to see exactly why it got its number.</p>
 
 <section id="proof" class="proof" aria-labelledby="proof-h">
+  <p class="step">Step 1 · The verdict so far</p>
   <h2 id="proof-h">Proof of God, as a percentage</h2>
   {% if proof.pct is not none %}
   <div class="proof-row">
     <p class="proof-pct"><span class="proof-num" aria-label="{{ proof.pct }} percent">{{ proof.pct }}%</span><span class="proof-cap">of the evidence weight points to God</span></p>
-    <div class="proof-how">
-      <p>How it is made: every line below gets a strength from 0 to 10 for its best version; this number is the "for" total divided by both totals ({{ proof.sum_for }} for, {{ proof.sum_against }} against). 50% means the two columns weigh the same. The referee's average confidence across the lines is {{ proof.confidence }}%.</p>
-      <p class="small">A percentage of evidence weight is not a probability that God exists; one decisive line would outweigh several weak ones. Change any line's strength on GitHub and this number moves with it.</p>
+    <div class="proof-sides">
+      <p class="verdict-call">{% if proof.pct >= 58 %}The evidence leans toward God.{% elif proof.pct <= 42 %}The evidence leans against God.{% else %}The two sides weigh about the same.{% endif %}</p>
+      {% for side, pct, items, heading, got, most in [("for", proof.pct_for, proof.top_for, "Case for God", proof.sum_for, proof.max_for), ("against", proof.pct_against, proof.top_against, "Case against God", proof.sum_against, proof.max_against)] %}
+      <div class="case case-{{ side }}">
+        {% if pct is not none %}
+        <p class="side-head"><span>{{ heading }}</span><span class="side-num">{{ pct }}%</span></p>
+        <div class="bar-track" aria-hidden="true"><i style="width:{{ pct }}%"></i></div>
+        <p class="side-cap">{{ got }} of {{ most }} possible strength; the headline percentage is the share of all the weight</p>
+        {% else %}
+        <p class="side-head"><span>{{ heading }}</span></p>
+        <p class="empty">None written yet.</p>
+        {% endif %}
+        {% if items %}
+        <h3>Primary reasons {{ side }}</h3>
+        <ol>{% for e in items %}<li><a href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a> <span class="pct">{{ e.strength }}/10</span></li>{% endfor %}</ol>
+        {% endif %}
+      </div>
+      {% endfor %}
     </div>
   </div>
-  <div class="proof-sides">
-    <p class="side-score side-for"><span class="side-num">{{ proof.pct_for }}%</span><span class="side-cap">Case for God: {{ proof.sum_for }} of {{ proof.max_for }} possible strength across {{ evidence_for | length }} lines</span></p>
-    <p class="side-score side-against"><span class="side-num">{{ proof.pct_against }}%</span><span class="side-cap">Case against God: {{ proof.sum_against }} of {{ proof.max_against }} possible strength across {{ evidence_against | length }} lines</span></p>
-  </div>
-  <div class="proof-reasons">
-    <div>
-      <h3>Primary reasons for</h3>
-      <ol>{% for e in proof.top_for %}<li><a href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a> <span class="pct">{{ e.strength }}/10</span></li>{% endfor %}</ol>
-    </div>
-    <div>
-      <h3>Primary reasons against</h3>
-      <ol>{% for e in proof.top_against %}<li><a href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a> <span class="pct">{{ e.strength }}/10</span></li>{% endfor %}</ol>
-    </div>
-  </div>
+  <details class="how">
+    <summary>How these numbers are made</summary>
+    <p>Every line below gets a strength from 0 to 10 for its best version. The big number is the "for" total divided by both totals ({{ proof.sum_for }} for, {{ proof.sum_against }} against); 50% means the two columns weigh the same. Each side's own score is its total out of the most it could have ({{ proof.sum_for }} of {{ proof.max_for }} for, {{ proof.sum_against }} of {{ proof.max_against }} against). The referee's average confidence across the lines is {{ proof.confidence }}%.</p>
+    <p class="small">A percentage of evidence weight is not a probability that God exists; one decisive line would outweigh several weak ones. Change any line's strength on GitHub and these numbers move with it.</p>
+  </details>
   {% else %}
   <p class="empty">No evidence written yet.</p>
   {% endif %}
 </section>
 
 <section id="evidence" aria-labelledby="evidence-h">
+  <p class="step">Step 2 · Weigh it yourself</p>
   <h2 id="evidence-h">The evidence</h2>
+  <p class="small">Strongest first. Tap a line to read what it claims; open it for the best objection, the best reply and the sources.</p>
   <div class="evidence-grid">
     {% for side, items, heading in [("for", evidence_for, "Evidence for God"), ("against", evidence_against, "Evidence against God")] %}
     <div class="ev-col ev-{{ side }}">
       <h3>{{ heading }} <span class="col-pct">{{ (proof.pct_for if side == 'for' else proof.pct_against) ~ '%' if (proof.pct_for if side == 'for' else proof.pct_against) is not none else '' }}</span></h3>
       {% if items %}
-      <ol class="ev-list">
       {% for e in items %}
-        <li class="ev-item">
-          <a class="ev-title" href="{{ base }}evidence/{{ e.id }}/">{{ e.title }}</a>
-          <div class="ev-meta">{{ m.meter(e.strength) }} {{ m.conf(e.confidence, 'this score') }}</div>
-          <p class="ev-summary">{{ e.summary }}</p>
-        </li>
+      <details class="ev-item">
+        <summary><span class="ev-title">{{ e.title }}</span><span class="ev-meta">{{ m.meter(e.strength) }} {{ m.conf(e.confidence, 'this score') }}</span></summary>
+        <p class="ev-summary">{{ e.summary }}</p>
+        <p class="small"><a href="{{ base }}evidence/{{ e.id }}/">Open this line: objection, reply, sources</a></p>
+      </details>
       {% endfor %}
-      </ol>
       {% else %}
       <p class="empty">None written yet.</p>
       {% endif %}
@@ -59,59 +66,43 @@
 </section>
 
 <section id="worldviews" aria-labelledby="worldviews-h">
+  <p class="step">Step 3 · Compare the answers</p>
   <h2 id="worldviews-h">Which religion makes the most sense?</h2>
   {% if worldviews %}
-  <div class="scroll">
-  <table class="matrix">
-    <caption>Worldviews scored 0–10 on {{ criteria | length }} criteria; totals weight them equally. Each cell shows the score and, below it, the referee's confidence in that score.</caption>
-    <thead><tr><th scope="col">Worldview</th>{% for c in criteria %}<th scope="col" title="{{ c.question }}">{{ c.name }}</th>{% endfor %}<th scope="col" class="total">Total</th></tr></thead>
-    <tbody>
+  <p class="small">Each worldview is scored 0 to 10 on the same {{ criteria | length }} criteria ({% for c in criteria %}{{ c.name | lower }}{{ ", " if not loop.last }}{% endfor %}), ranked by total. <a href="{{ base }}worldviews/">See every score and how the criteria work</a>.</p>
+  <ol class="rank" role="list">
     {% for w in worldviews %}
-    <tr>
-      <th scope="row"><a href="{{ base }}worldviews/{{ w.id }}/">{{ w.name }}</a></th>
-      {% for c in criteria %}{% set sc = w.by_criterion[c.id] %}<td class="score" title="{{ c.question }}"><b>{{ sc.score }}</b><span class="cell-conf"><span class="vh">confidence </span>{{ sc.confidence }}%</span></td>{% endfor %}
-      <td class="total">{{ w.total }}/{{ w.max_total }}</td>
-    </tr>
+    <li>
+      <a href="{{ base }}worldviews/{{ w.id }}/">{{ w.name }}</a>
+      <span class="rank-track" aria-hidden="true"><i style="width:{{ (100 * w.total / w.max_total) | round | int if w.max_total else 0 }}%"></i></span>
+      <span class="rank-total">{{ w.total }}/{{ w.max_total }}</span>
+      <span class="rank-line">{{ w.one_line }}</span>
+    </li>
     {% endfor %}
-    </tbody>
-  </table>
-  </div>
-  <p class="small">Scores are 0–10 per criterion with the confidence % under each; open a worldview for the reasoning behind every number. <a href="{{ base }}worldviews/">Full comparison with the criteria explained</a>.</p>
+  </ol>
   {% else %}
   <p class="empty">None written yet.</p>
   {% endif %}
   {% if site.worldview_note %}<p class="note">{{ site.worldview_note }}</p>{% endif %}
 </section>
 
-<div class="grid">
-<div>
+<div class="more">
+  <section aria-labelledby="questions-h" id="questions">
+    <h2 id="questions-h">Deep dives</h2>
+    <p class="small">{{ questions | length }} questions ruled one at a time, every claim graded with sources. <a href="{{ base }}questions/">All questions and the scoreboard</a>.</p>
+  </section>
   <section aria-labelledby="today-h">
     <h2 id="today-h">Today from r/DebateAChristian <span class="tag">auto-matched</span></h2>
     {% if today.no_runs %}
-    <p class="empty">No runs yet.</p>
+    <p class="small">No runs yet.</p>
     {% else %}
     <p class="small">{% if today.groups %}{{ today.count }} comments matched existing rulings today.{% else %}Nothing new matched today.{% endif %} <a href="{{ base }}today/">Full Today page</a></p>
     {% endif %}
   </section>
-</div>
-
-<aside>
-  <section aria-labelledby="questions-h" id="questions">
-    <h2 id="questions-h">Deep dives</h2>
-    <p class="small">The question-by-question rulings behind the evidence, with every claim graded. <a href="{{ base }}questions/">All questions and the scoreboard</a>.</p>
-    <ul class="qlist">
-    {% for q in questions %}
-      <li><a href="{{ base }}q/{{ q.id }}/"><span class="qn">Q{{ q.n }}</span> <span class="qt">{{ q.title }}</span></a> <span class="pct">{{ q.confidence }}%</span></li>
-    {% endfor %}
-    </ul>
-    <p class="small">% = how confident the referee is that the ruling is right, not that the claim is true.</p>
-  </section>
-
   <section aria-labelledby="rubric-h">
     <h2 id="rubric-h">How it's graded</h2>
     <p class="badges">{% for row in legend %}{{ m.badge(row.verdict) }} {% endfor %}</p>
-    <p class="small">The rubric is public and fixed. The daily job only matches new posts to existing rulings; it never invents a verdict. <a href="{{ base }}rubric/">Read the rubric</a>.</p>
+    <p class="small">The rubric is public and fixed; the daily job never invents a verdict. <a href="{{ base }}rubric/">Read the rubric</a>.</p>
   </section>
-</aside>
 </div>
 {% endblock %}
