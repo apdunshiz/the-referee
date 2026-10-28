@@ -43,4 +43,4 @@ That frame explains some things well. Suffering has a cause in every case, the u
 
 Its historical claims are few, and the ones it does make, the epic chronology and an unbroken line from the Indus cities, conflict with the record; its claims about the structure of reality are large and hard to refute, though its contemplative claims and the coherence of its metaphysics can be checked. Western-style apologetics barely exist for it, and when they do, they tend to borrow the cosmological arguments that work equally well for any creator.
 
-An outsider notices that Hinduism's pluralism is a real intellectual virtue, that its karma doctrine is the most complete answer to suffering on offer and also the least verifiable, and that its score suffers mainly on consistency, where its family of systems is held to one account, and on its moral record.
+An outsider notices that Hinduism's pluralism is a real intellectual virtue, that its karma doctrine is the most complete answer to suffering on offer and also the least verifiable, and that its score suffers mainly on testability, on consistency, where its family of systems is held to one account, and on its moral record.
