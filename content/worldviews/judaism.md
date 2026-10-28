@@ -6,29 +6,32 @@ core_claim: The God of Abraham revealed himself in history and in the Torah; the
 scores:
   - criterion: history
     score: 6
-    confidence: 65
-    why: "Start at 5. Foundations that hold: a continuous, documented community of 2,500 years (plus 1); the kingdom of Israel attested from the ninth century BCE by the Tel Dan and Mesha stelae and Judah from the eighth by Assyrian annals (plus 1). Gone against: the patriarchs, Exodus and conquest have little or no archaeological support in the form the texts describe (minus 1). Six."
+    confidence: 55
+    why: "Start at 5. Foundations that hold: a continuous, documented community of 2,500 years (plus 1); an early, stable text, complete by the Persian period and transmitted without change since (plus 1). The kingdoms of Israel and Judah are attested from the ninth century BCE by the Tel Dan and Mesha stelae, so the Kings narrative draws no deduction. Gone against: the patriarchs, Exodus and conquest have little or no archaeological support in the form the texts describe (minus 1); the founder and patriarchs are known only from texts written centuries later with legend (minus 1). Six."
   - criterion: consistency
-    score: 7
-    confidence: 60
-    why: "Start at 8. One tension needs careful definition: a universal creator who makes a covenant with one particular people. Seven."
+    score: 6
+    confidence: 50
+    why: "Start at 8. Two tensions need careful definition: a universal creator who makes a covenant with one particular people (minus 1); divine foreknowledge alongside free choice, which Akiva and Maimonides state as beyond comprehension, the tension charged to Islam (minus 1). Six."
   - criterion: explanation
+    score: 6
+    confidence: 70
+    why: "Start at 2. Answers a lawful cosmos and moral obligation through a creator and lawgiver, minds through the soul, and suffering through trial, recompense in the world to come and evil as privation, the answers of Saadia, the Talmud and Maimonides: plus 4. Job's refusal to explain is one voice, not the tradition's best statement. No distinctive-resource bonus. Six."
+  - criterion: testability
+    score: 2
+    confidence: 55
+    why: "Exposure 3: a permanent covenant could have failed visibly. Held: none that is not a foundation claim already scored under history or a conditional, undated promise; the people's survival is the continuous community credited there, and the rule forbids scoring it twice. Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer. Two."
+  - criterion: moral
     score: 5
     confidence: 60
-    why: "Start at 2. Answers a lawful cosmos and moral obligation through a creator and lawgiver, and minds through the soul: plus 3. On suffering, Job declines to explain and offers God instead, which is an honest refusal, not an answer. No distinctive-resource bonus. Five."
-  - criterion: testability
-    score: 3
-    confidence: 60
-    why: "Exposure 3: a permanent covenant could have failed visibly. Held, plus 1: the people's survival and return to the land, a promise rather than a foundation claim. Failed, minus 1: prayer trials, counted once against every tradition that promises answered prayer. Three."
-  - criterion: moral
-    score: 7
-    confidence: 65
-    why: "Start at 8: the prophetic ethic of justice for the poor and the stranger extends to outsiders. Wars and conquest commanded in its own texts and carried out by its ancient states (minus 1); as a minority faith for most of its history it has little record of persecuting others, and no exclusion is written into its structure. Seven."
+    why: "Start at 8: the prophetic ethic of justice for the poor and the stranger extends to outsiders. Wars and conquest commanded in its own texts and carried out by its ancient and modern states (minus 1); persecution or legal coercion by states built on it, the Hasmonean forced circumcisions, Himyar, and the military government over Arab citizens of Israel from 1948 to 1966 (minus 1); permanent slavery of foreigners sanctioned from Leviticus 25 and the subordinate legal status of women in halakha, exclusions written into its structure (minus 1). Five."
 sources:
   - "Israel Finkelstein and Neil Asher Silberman, The Bible Unearthed (2001)"
   - "Abraham Joshua Heschel, God in Search of Man (1955)"
   - "Jon Levenson, Creation and the Persistence of Evil (1988)"
   - "Shaye Cohen, From the Maccabees to the Mishnah (1987)"
+  - "Moses Maimonides, The Guide for the Perplexed, Part III"
+  - "Flavius Josephus, Antiquities of the Jews 13"
+  - "Shira Robinson, Citizen Strangers (2013)"
 ---
 
 Judaism is the root of the two largest religions and is oddly absent from most debates about God, partly because it does not seek converts and partly because its claims are about a people rather than about everyone. Scored on its own terms it is a religion of practice: what you do matters more than what you believe, and the arguments that fill Christian and Muslim apologetics barely appear.
