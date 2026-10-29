@@ -2,7 +2,7 @@
 
 Four reports, one per topic: [evidence-cosmos.md](evidence-cosmos.md), [evidence-mind.md](evidence-mind.md), [evidence-religion.md](evidence-religion.md), [evidence-evil.md](evidence-evil.md). Each scored its lines under the draft strength rule in [EVIDENCE-BRIEF.md](EVIDENCE-BRIEF.md). This file reconciles the four, because the agents read three clauses differently.
 
-Headline now: 42 for, 42 against, 50%.
+Headline before this pass: 42 for, 42 against, 50%. After it (see the Re-check section): 48 for, 46 against, 51%.
 
 ## Every line
 
