@@ -27,4 +27,4 @@ Everitt sharpens it: the Abrahamic scriptures as traditionally read describe a s
 
 The theist's answer is that nothing in the idea of a creator fixes the size of the creation, and that physics requires a universe this large and this old to make the carbon we are built from. The deeper point many theists make is that the argument confuses "made for us" with "made only for us".
 
-What an outsider should take from it: a weak argument against God in general, a fair one against taking ancient cosmologies as literal revelation. It belongs on the list because people find it moving; few philosophers have developed it at length, and its best form targets ancient cosmologies more than God.
+What an outsider should take from it: a modest argument against God in general, a fair one against taking ancient cosmologies as literal revelation. It belongs on the list because people find it moving; few philosophers have developed it at length, and its best form targets ancient cosmologies more than God.

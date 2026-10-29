@@ -6,7 +6,7 @@ Headline now: 42 for, 42 against, 50%.
 
 ## Every line
 
-| Line | Now | Reports | After calibration (recommended rulings) | Why |
+| Line | Now | Reports | After calibration (recommended rulings; superseded for 8 lines by the Re-check section below) | Why |
 |---|---|---|---|---|
 | for-01 beginning | 6 | 5 | 5 | Only 24% of physicists surveyed say the Big Bang was an absolute beginning (d); cause to personal God is a further step (f) |
 | for-02 fine-tuning | 7 | 7 | 7 | Mainstream sensitivity, live in SEP, an atheist (Monton) grants some force; 42% of physicists favour a non-design explanation (e) |
@@ -43,7 +43,7 @@ Totals: reports as returned 43 for, 41 against, 51%. After the recommended rulin
 
 ## Text fixes (applied with the scores, reviewed in the PR)
 
-Each report lists replacement text for sentences that are unsourced, overstated or false after the change: against-03 (agency detection lacks empirical support, Maij et al. 2019), against-05 ("most philosophers consider it weak" is unsourced), against-06 (remove against-08's datum), against-08 (disease and madness history overstated), for-05 (its objection uses against-07's datum), against-04 (its reply borrows hiddenness), and any body sentence a new number makes false, such as against-01's "the heaviest item on the against side" (still true at 6, tied with against-07).
+Each report lists replacement text for sentences that are unsourced, overstated or false after the change: against-03 (agency detection lacks empirical support, Maij et al. 2019), against-05 ("most philosophers consider it weak" is unsourced), against-06 (remove against-08's datum), against-08 (disease and madness history overstated), for-05 (its objection uses against-07's datum), against-04 (its reply borrows hiddenness), and any body sentence a new number makes false, such as against-01's "the heaviest item on the against side" (still true after the re-check: against-01 is 7, alone at the top).
 
 ## Rulings applied (Alex, 2026-10-29)
 

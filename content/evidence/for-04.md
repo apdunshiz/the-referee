@@ -14,7 +14,7 @@ sources:
   - "J. L. Mackie, Ethics: Inventing Right and Wrong (1977)"
   - "Erik Wielenberg, Robust Ethics (2014)"
   - "David Baggett and Jerry Walls, Good God (2011)"
-  - "PhilPapers survey of professional philosophers (2020): moral realism accepted or leaned toward by about 62%"
+  - "PhilPapers survey of professional philosophers (2020): moral realism accepted or leaned toward by about 62%, theism by about 19%"
   - "J. L. Mackie, The Miracle of Theism (1982), pages 115-116"
   - "C. Stephen Evans and David Baggett, Moral Arguments for the Existence of God, Stanford Encyclopedia of Philosophy (2022)"
   - "David Enoch, Taking Morality Seriously (2011)"
