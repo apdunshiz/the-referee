@@ -3,9 +3,9 @@ id: against-04
 side: against
 title: The world's religions contradict each other, and belief follows birthplace
 summary: Thousands of religions make incompatible claims about God, each backed by scripture, miracle reports and sincere experience; where you are born predicts which one you hold; on their own terms at most one can be right, and the evidence each offers is the same kind the others offer.
-strength: 5
+strength: 6
 confidence: 50
-why: "Start at 5. (a) That religions contradict each other and are passed on by family and culture is undisputed (Basinger 2025) (+1). (b) does not hold: Alston's concession is about Christian belief, not God. (c) Live in the SEP entry on religious diversity (Basinger 2025) (+1). (e) Many philosophers of religion accept that one revelation is true and the others partial (Plantinga 2000; Basinger 2025) (−1). (f) From at most one religion being right to no God is a further step; Hick reads the same facts as many responses to one reality (Hick 1989) (−1). Five."
+why: "Start at 5. (a) That religions contradict each other and are passed on by family and culture is undisputed (Basinger 2025) (+1). (b) does not hold: Alston's concession is about Christian belief, not God. (c) Live in the SEP entry on religious diversity (Basinger 2025) (+1). (e) does not hold: the SEP sets out exclusivist and inclusivist replies but does not say they are widely accepted. (f) From at most one religion being right to no God is a further step; Hick reads the same facts as many responses to one reality (Hick 1989) (−1). Six."
 status: The facts are undisputed; theists answer that one revelation can be true while others are partial or mistaken, and that the geography of belief is a fact about people, not about God.
 best_objection: Disagreement does not mean everyone is wrong; scientific and moral views also vary by time and place without being false, and a God who revealed himself gradually or to one people first would produce exactly this pattern.
 best_reply: "Scientific disagreements get settled by shared evidence and converge over time, while religious ones have not, and each tradition's support is the same kind its rivals offer: scripture, miracle reports and inner conviction."

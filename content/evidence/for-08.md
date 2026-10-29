@@ -3,9 +3,9 @@ id: for-08
 side: for
 title: The earliest followers of Jesus sincerely believed they saw him alive after his death
 summary: "Jesus was crucified; within a few years his followers were proclaiming that he had appeared to them, and a persecutor joined them, as, on many historians' reading, did a brother who had not followed him; if a resurrection happened, it is strong evidence for the Christian God in particular."
-strength: 6
+strength: 7
 confidence: 45
-why: "Start at 5. (a) That the first followers sincerely believed Jesus appeared to them is near-universal among historians, sceptics included (Ehrman 2014; Habermas 2005) (+1). (c) Live in the SEP entry on miracles (McGrew and Larmer 2024) (+1). (d) does not hold: the SEP calls the refusal to infer miracles one side of a divided field, not the majority. (e) Many historians accept visions or grief experiences as the explanation (Ehrman 2014; Lüdemann 1994; Habermas 2005) (−1). Six."
+why: "Start at 5. (a) That the first followers sincerely believed Jesus appeared to them is near-universal among historians, sceptics included (Ehrman 2014; Habermas 2005) (+1). (c) Live in the SEP entry on miracles (McGrew and Larmer 2024) (+1). (d) does not hold: the SEP calls the refusal to infer miracles one side of a divided field, not the majority. (e) does not hold: no survey or reference work says many historians accept visions or grief experiences as the explanation. Seven."
 status: The crucifixion, the early appearance claims and Paul's conversion are accepted by most historians of every persuasion, and James's earlier unbelief by many; what caused the appearance beliefs is where historians divide, with most non-Christian scholars favouring visions or grief experiences.
 best_objection: "Sincere belief in appearances is not evidence of a resurrection: bereaved people report seeing the dead, group enthusiasm spreads fast, the accounts were written decades later by believers, and every other religion's founding miracles are rejected on exactly this kind of evidence."
 best_reply: The appearance claims are early, multiple and include hostile witnesses, which sets them apart from most legend; a vision theory must explain the empty tomb tradition, the conversion of enemies and the transformation of a defeated movement, and it does so only with several independent coincidences.

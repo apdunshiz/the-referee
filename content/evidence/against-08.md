@@ -3,9 +3,9 @@ id: against-08
 side: against
 title: Natural explanations keep winning, and God keeps retreating
 summary: Lightning, disease, the diversity of life, the motion of the planets and the origin of species were all once explained by God and are now explained without him; the pattern suggests that the remaining gaps will close the same way, and that God was never the explanation.
-strength: 5
+strength: 6
 confidence: 65
-why: "Start at 5. (a) Domain after domain once explained by God is now explained naturally (Papineau 2020) (+1). (c) Live in the SEP entry on naturalism and in Draper's Oxford Handbook chapter (Papineau 2020; Draper 2005) (+1). (d) and (e) are one disagreement, charged once: many accept that God acts through natural causes, so theism expects them (Plantinga 2011; Numbers 2009) (−1). (f) From God not being needed inside science to no God needs the further, contested step that why there are laws is a gap of the same kind (Plantinga 2011) (−1). Five."
+why: "Start at 5. (a) Domain after domain once explained by God is now explained naturally (Papineau 2020) (+1). (c) Live in the SEP entry on naturalism and in Draper's Oxford Handbook chapter (Papineau 2020; Draper 2005) (+1). (d) and (e) do not hold: the SEP calls only the conflict model a minority position, and Draper argues from the same history without it (De Cruz 2022). (f) From God not being needed inside science to no God needs the further, contested step that why there are laws is a gap of the same kind (Plantinga 2011) (−1). Six."
 status: The historical pattern is real and theists mostly agree that "God of the gaps" reasoning is bad; they deny that the main arguments for God are gap arguments.
 best_objection: The best arguments for God are not about gaps in science but about things science presupposes, such as why there are laws at all, why they are mathematical, and why anything exists; a complete physics would leave those questions exactly where they are.
 best_reply: "Every past retreat was defended in the same words at the time, and some questions once called beyond science, such as the fit of living things to their world, turned out not to be; the induction from four centuries is that waiting has worked better than invoking, though whether it reaches why there are laws at all is the open question."
@@ -18,6 +18,7 @@ sources:
   - "David Papineau, Naturalism, Stanford Encyclopedia of Philosophy (2020)"
   - "Jerome Kroll and Bernard Bachrach, Sin and mental illness in the Middle Ages, Psychological Medicine (1984)"
   - "Ronald Numbers (editor), Galileo Goes to Jail and Other Myths about Science and Religion (2009)"
+  - "Helen De Cruz, Religion and Science, Stanford Encyclopedia of Philosophy (2022)"
 related_questions: [q01, q02, q03]
 related_claims: []
 ---

@@ -3,9 +3,9 @@ id: for-06
 side: for
 title: Nature is intelligible, and mathematics describes it uncannily well
 summary: The universe runs on laws that human minds can discover and that abstract mathematics predicts in advance; a rational creator would explain why a world is orderly and knowable, where a mindless one need not be.
-strength: 4
+strength: 5
 confidence: 50
-why: "Start at 5. (a) That mathematics describes physical law with great precision is uncontroversial (Wigner 1960) (+1). (c) does not hold: the SEP lists the intelligibility of nature among problematic proposals (Ratzsch and Koperski 2023). (e) Selection-effect and structuralist accounts are standard non-theistic treatments (Pincock, IEP) (−1). (f) From an intelligible world to a personal creator is a further contested step (Steiner 1998) (−1). Four."
+why: "Start at 5. (a) That mathematics describes physical law with great precision is uncontroversial (Wigner 1960) (+1). (c) does not hold: the SEP lists the intelligibility of nature among problematic proposals (Ratzsch and Koperski 2023). (e) does not hold: the IEP describes non-theistic accounts such as structuralism but does not say they are widely accepted (Pincock, IEP). (f) From an intelligible world to a personal creator is a further contested step (Steiner 1998) (−1). Five."
 status: The applicability of mathematics is a recognised puzzle, but it has several non-theistic treatments and few philosophers treat it as a strong argument on its own.
 best_objection: Any universe stable enough to contain observers must have some regularities, and we evolved to track the ones we can; mathematics fits nature partly because we built mathematics to describe nature, and much of it fits nothing at all.
 best_reply: Selection explains why we can count predators, not why abstract group theory discovered for its own sake turns out to govern particle physics; the depth and precision of the fit outruns anything evolution would need.

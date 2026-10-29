@@ -29,4 +29,4 @@ The live question is what to make of it. Four answers are on the table. A design
 
 The sharpest objection is technical. To say a range is improbable you need a probability distribution over the possible values, and nobody has one for the constants of nature. Defenders reply that physicists already reason this way when they call the cosmological constant "unnaturally" small.
 
-What an outsider should take from it: this is, with the moral argument, the strongest piece of evidence on the "for" side, it is taken seriously across the spectrum, and it supports a designer only as one of three live explanations.
+What an outsider should take from it: this is, with the moral argument and the resurrection appearances, the strongest piece of evidence on the "for" side, it is taken seriously across the spectrum, and it supports a designer only as one of three live explanations.

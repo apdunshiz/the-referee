@@ -3,9 +3,9 @@ id: against-06
 side: against
 title: Where God's action should be detectable, it is not
 summary: "Controlled studies of intercessory prayer find no effect, and no miracle claim has been confirmed to the satisfaction of skeptical investigators; a God who acts in the world in answer to prayer should leave traces where they are looked for, and none have been found."
-strength: 4
+strength: 5
 confidence: 60
-why: "Start at 5. (a) Controlled prayer trials find no effect (Benson 2006; Masters 2006; Cochrane 2009) (+1). (d) and (e) are one disagreement, charged once: the SEP entry on petitionary prayer and the trial team reject the premise that God would show up in tests (Davison 2026) (−1). (f) It rules out only a God who intervenes visibly; a deist creator is untouched, and the trial team says its results do not bear on God's existence (Benson 2006) (−1). No reference work treats it as a standing argument. Four."
+why: "Start at 5. (a) Controlled prayer trials find no effect (Benson 2006; Masters 2006; Cochrane 2009) (+1). (d) and (e) do not hold: the SEP entry on petitionary prayer says only that some judge such tests flawed, since God is taken to be a free person (Davison 2026). (f) It rules out only a God who intervenes visibly; a deist creator is untouched, and the trial team says its results do not bear on God's existence (Benson 2006) (−1). No reference work treats it as a standing argument. Five."
 status: "The large prayer trials and meta-analyses found no effect; small earlier positive studies are disputed. Lourdes lists 72 cures as unexplained; skeptics find none shown to exceed nature. Whether God would show up in tests is the contested premise, and a God who never intervenes is untouched."
 best_objection: A God is not a lab effect to be summoned by a protocol; the studies test whether God grants anonymous requests on demand, which almost no theology predicts, and the absence of proof of miracles is not proof of their absence.
 best_reply: "Believers do claim that prayer heals and that miracles happen, and when such claims are checked by investigators without a stake in the outcome, none has been shown to exceed what natural processes can do; a God whose actions are indistinguishable from chance is, for every practical purpose, indistinguishable from no God."

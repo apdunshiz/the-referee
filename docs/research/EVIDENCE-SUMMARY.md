@@ -54,3 +54,9 @@ Each report lists replacement text for sentences that are unsourced, overstated 
 5. Site note: rewritten to say the headline is the "for" share of total strength under the published rule; the rule is published on the home page, on the worldviews page beside the five criteria, and each line shows its arithmetic.
 
 Result: 46 for, 40 against, 53%.
+
+## Re-check after the PR review (Alex, 2026-10-29)
+
+The PR review found (d) and (e) charged on named scholars in some lines and refused for want of a survey in others. Alex ruled the published standard holds: (d) or (e) needs a survey or a standard reference work saying so. Re-checked line by line in [evidence-de-recheck.md](evidence-de-recheck.md); Alex applied all eight changes. Mackie's conditional concession keeps for-04's (b); the research confidences stand.
+
+for-06 5, for-08 7, against-01 7, against-03 6, against-04 6, against-05 5, against-06 5, against-08 6. for-03, for-04 and against-02 keep their scores on new sources. Result: 48 for, 46 against, 51%.

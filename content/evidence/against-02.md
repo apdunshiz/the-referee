@@ -5,7 +5,7 @@ title: If God wanted to be known, he could make it obvious
 summary: A loving God would want a relationship with every person who was open to one, and would make his existence clear enough that no such person failed to believe; yet many sincere seekers do not believe, which is what we would expect if there were no God.
 strength: 5
 confidence: 60
-why: "Start at 5. (a) Most critics grant that some people open to God do not believe (Howard-Snyder and Green 2022) (+1). (b) does not hold: Swinburne finds it leaves God's probability unchanged. (c) Live in the SEP entry on divine hiddenness (Howard-Snyder and Green 2022) (+1). (e) Freedom-based explanations of hiddenness are accepted by many specialists (Swinburne 2004; Howard-Snyder and Green 2022) (−1). (f) It rules out only a perfectly loving God (Schellenberg 2015) (−1). Five."
+why: "Start at 5. (a) Most critics grant that some people open to God do not believe (Howard-Snyder and Green 2022) (+1). (b) does not hold: Swinburne finds it leaves God's probability unchanged. (c) Live in the SEP entry on divine hiddenness (Howard-Snyder and Green 2022) (+1). (e) The IEP reports that the most common response is that God permits such nonbelief for a greater good, such as free choice (Teeninga, IEP) (−1). (f) It rules out only a perfectly loving God (Schellenberg 2015) (−1). Five."
 status: "A major argument in philosophy of religion since 1993, taken seriously by theists who answer it with reasons God might stay hidden or deny that belief is needed to begin a relationship; it targets a perfectly loving God and leaves an indifferent creator untouched."
 best_objection: God may keep a distance so that belief is free and not coerced, so that people seek him rather than merely acknowledge him, or because clear knowledge of God would change the moral stakes of every choice in ways that harm us.
 best_reply: Clear evidence does not coerce love, as the biblical characters who knew God and still rebelled show, and the proposed reasons for hiding would apply to a child of God in the same way, where we would not accept them from a parent.
@@ -17,6 +17,7 @@ sources:
   - "Daniel Howard-Snyder and Adam Green, Hiddenness of God, Stanford Encyclopedia of Philosophy (2022)"
   - "J. L. Schellenberg, The Hiddenness Argument (2015)"
   - "Richard Swinburne, The Existence of God, 2nd edition (2004), chapter 11"
+  - "Jonathan Teeninga, Divine Hiddenness Argument against God's Existence, Internet Encyclopedia of Philosophy"
 related_questions: []
 related_claims: []
 ---
