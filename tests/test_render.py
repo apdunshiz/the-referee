@@ -325,6 +325,8 @@ def test_nav_links_carry_base(tmp_path):
     ev = read(out, "evidence/for-01/index.html")
     assert 'href="/the-referee/q/q01/"' in ev and 'href="/the-referee/claims/q01-c02/"' in ev
     assert 'href="/the-referee/worldviews/"' in read(out, "worldviews/naturalism/index.html")
+    assert 'href="/the-referee/worldviews/#evidence-rule"' in ev
+    assert 'href="/the-referee/#evidence"' in read(out, "worldviews/index.html")
 
 
 def test_validate_tree_flags_misnamed_files_and_missing_criterion(tmp_path):

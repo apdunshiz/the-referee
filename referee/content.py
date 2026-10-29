@@ -619,7 +619,7 @@ class Evidence(Strict):
     side: EvidenceSide
     title: str = Field(min_length=3, max_length=120)
     summary: str = Field(min_length=10, max_length=400, description="The argument in neutral words.")
-    strength: int = Field(ge=0, le=10, description="Weight of the best defensible version as evidence, 0-10.")
+    strength: int = Field(ge=0, le=10, description="Weight of the argument as its summary states it, 0-10, under the site's evidence rule.")
     confidence: int = Field(ge=0, le=100, description="How confident the referee is in that strength.")
     why: str = Field(default="", max_length=600, description="The site's evidence rule applied to this line, as arithmetic that reaches the strength.")
     status: str = Field(min_length=10, max_length=300, description="Where experts stand, one or two sentences.")

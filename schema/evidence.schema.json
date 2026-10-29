@@ -75,7 +75,7 @@
       "type": "string"
     },
     "strength": {
-      "description": "Weight of the best defensible version as evidence, 0-10.",
+      "description": "Weight of the argument as its summary states it, 0-10, under the site's evidence rule.",
       "maximum": 10,
       "minimum": 0,
       "title": "Strength",

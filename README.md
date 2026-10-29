@@ -19,7 +19,7 @@ uv venv .venv && uv pip install --python .venv/bin/python -r requirements.txt
 - `content/claims/qNN-cNN.md`: one locked ruling per claim. The first claims under each question are the original post's own lines; the rest are commenter claims, paraphrased with no usernames (decision D15) and no stored quotes (D27).
 - `content/claims/new/`: drafts the bot could not match; they carry no verdict (D28).
 - `content/sightings/<fullname>.json`: id, permalink, claim id, match confidence and time; nothing else.
-- `content/evidence/<for|against>-NN.md`: one line of evidence for or against God. `strength` (0–10) weighs the best defensible version of the argument as evidence; `confidence` (%) is how sure the referee is of that weight. The two columns are not summed; the note on the home page says why.
+- `content/evidence/<for|against>-NN.md`: one line of evidence for or against God. `strength` (0–10) weighs the argument, as its summary states it, under the rule in `content/site.json` (`evidence_rule`), and `why` shows that arithmetic; `confidence` (%) is how sure the referee is of that weight. The home-page headline is the "for" column's share of the total strength.
 - `content/worldviews/<id>.md`: one religion or non-religious stance, scored 0–10 with a confidence % on every criterion in `content/site.json` (`criteria`). The comparison page sorts by the summed score; the reasoning behind each number is on the worldview's page. These records change only by human PR, like rulings.
 - `schema/*.json`: exported from the pydantic models in `referee/content.py`; CI fails when stale.
 

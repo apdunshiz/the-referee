@@ -18,6 +18,7 @@ sources:
   - "Leanne Roberts, Irshad Ahmed and Andrew Davison, Intercessory prayer for the alleviation of ill health, Cochrane Database of Systematic Reviews (2009)"
   - "Scott Davison, Petitionary Prayer, Stanford Encyclopedia of Philosophy (2026)"
   - "John Earman, Hume's Abject Failure: The Argument Against Miracles (2000)"
+  - "Lourdes announces 72nd miracle: Italian pilgrim cured of degenerative disease, Catholic World Report (2025)"
 related_questions: [q12]
 related_claims: []
 ---

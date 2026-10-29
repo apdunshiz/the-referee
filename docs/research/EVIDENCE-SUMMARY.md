@@ -32,7 +32,7 @@ Totals: reports as returned 43 for, 41 against, 51%. After the recommended rulin
 1. **One disagreement charged once.** The evil report charged a needed premise (d) and the rival that simply denies it (e) once; the mind report charged both. Even treatment: once. Effect: for-04 6→7, for-05 5→6. Alternative: charge both everywhere, which leaves against-06 and against-08 at 3 and 4.
 2. **Concessions about an intermediate claim.** The religion report counted Alston's concession about Christian belief under (b) for against-04; the mind report refused theists' concession about the soul for against-07. Even treatment, by the rule's plain text ("evidence for this side", meaning God or no God): neither counts. Effect: against-04 stays 5. Alternative: both count, against-04 6 and against-07 7.
 3. **A rival explanation that is its own line on the other side.** for-07 loses a point for natural explanations of religion, which against-03 also scores for the other side. "Each datum counts once across both columns" says charge it once. Effect: for-07 5→6. Alternative: keep the charge, for-07 5.
-4. **Rule clarifications with no score effect** (all four reports asked for them): "God" means a personal creator, so an argument that rules out only a perfectly good or intervening God takes (f); a refusal to explain (brute fact, skeptical theism) is not a rival explanation; where no survey or reference-work statement exists, (d) and (e) do not hold; score the line as its summary states it.
+4. **Rule clarifications** (all four reports asked for them; the PR review found the survey-or-reference-work test is not yet applied evenly, see below): "God" means a personal creator, so an argument that rules out only a perfectly good or intervening God takes (f); a refusal to explain (brute fact, skeptical theism) is not a rival explanation; where no survey or reference-work statement exists, (d) and (e) do not hold; score the line as its summary states it.
 5. **The site note contradicts the headline.** `evidence_note` says the columns "are not meant to be added up", but the headline percentage adds them, and it claims "one rubric" that did not exist until this rule. Recommended: rewrite the note to say the headline is the share of total strength under the published rule, and publish the rule beside the five worldview rules.
 
 ## Not recommended (named for completeness)
@@ -50,6 +50,7 @@ Each report lists replacement text for sentences that are unsourced, overstated 
 1. One disagreement charged once: yes. for-04 7, for-05 6.
 2. Concessions about a narrower claim count under (b): no. against-04 5, against-07 6.
 3. A rival that is its own line on the other side is charged once: yes. for-07 6.
-4. Site note: rewritten to say the headline is the "for" share of total strength under the published rule; the rule is published on the home page, on the worldviews page beside the five criteria, and each line shows its arithmetic.
+4. Rule clarifications: adopted with the rule (God means a personal creator; a refusal is not a rival; no survey or reference-work statement, no (d) or (e); score the line as written).
+5. Site note: rewritten to say the headline is the "for" share of total strength under the published rule; the rule is published on the home page, on the worldviews page beside the five criteria, and each line shows its arithmetic.
 
 Result: 46 for, 40 against, 53%.
