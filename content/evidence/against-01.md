@@ -3,9 +3,10 @@ id: against-01
 side: against
 title: The amount and distribution of suffering
 summary: A world made by an all-powerful, all-good God should not contain the quantity of pointless-looking suffering this one does, from childhood cancers to hundreds of millions of years of animal pain before any human existed.
-strength: 7
-confidence: 80
-status: The strongest and most discussed argument against God; the logical version (evil and God are incompatible) is widely considered answered, while the evidential version (the actual amount of evil is strong evidence against God) remains the main live objection.
+strength: 6
+confidence: 60
+why: "Start at 5. (a) The amount of suffering, including animal suffering over deep time, is granted by both sides (Tooley 2015) (+1). (b) Swinburne, a theist, grants that evil lowers the probability of God (Swinburne 2004) (+1). (c) Live in the SEP entry on the problem of evil (Tooley 2015) (+1). (e) Greater-goods theodicies are accepted as adequate by many specialists (Swinburne 2004; Tooley 2015) (−1). (f) It rules out only a perfectly good God; an indifferent creator is untouched (Davies 2006) (−1). Six."
+status: "The most discussed argument against God. The logical version (evil and God cannot both exist) is widely considered answered; the evidential version is live, and theist Richard Swinburne grants that evil lowers the probability of God, though not by much in his view."
 best_objection: God may have reasons we cannot see, such as free will, the value of a lawlike world, or goods that require suffering; our inability to think of a reason is weak evidence that none exists, given how little we understand.
 best_reply: The appeal to unknown reasons can excuse any evidence at all, and much suffering, especially animal suffering over deep time, has no plausible link to free will or human growth; a God who hides his reasons so completely is hard to tell apart from no God.
 sources:
@@ -14,6 +15,9 @@ sources:
   - "Paul Draper, Pain and pleasure: an evidential problem for theists, Nous (1989)"
   - "Peter van Inwagen, The Problem of Evil (2006)"
   - "Michael Murray, Nature Red in Tooth and Claw (2008)"
+  - "Richard Swinburne, The Existence of God, 2nd edition (2004), chapter 11"
+  - "Michael Tooley, The Problem of Evil, Stanford Encyclopedia of Philosophy (2015)"
+  - "Brian Davies, The Reality of God and the Problem of Evil (2006)"
 related_questions: [q05]
 related_claims: []
 ---
@@ -24,4 +28,4 @@ Theists reply in two ways. Some offer reasons, called theodicies: free will, the
 
 Critics find the theodicies partial at best, since most of the suffering in the history of life touches no free agent and builds no character, and they argue that skeptical theism proves too much: if we cannot read God's reasons from the world, we cannot read his goodness from it either.
 
-What an outsider should take from it: this is the heaviest item on the "against" side and nearly every theist philosopher treats it as the serious objection. Whether it outweighs the arguments for God is the real question, and honest people land on both sides.
+What an outsider should take from it: this is, with the dependence of mind on brain, the heaviest item on the "against" side; most theist philosophers of religion treat it as the serious objection, and some, like Swinburne, grant that it counts against God while denying that it counts for much. Whether it outweighs the arguments for God is the real question, and honest people land on both sides.

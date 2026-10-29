@@ -168,6 +168,13 @@
       "title": "Evidence Note",
       "type": "string"
     },
+    "evidence_rule": {
+      "default": "",
+      "description": "How every evidence strength is assigned, stated once and applied to both columns.",
+      "maxLength": 900,
+      "title": "Evidence Rule",
+      "type": "string"
+    },
     "history": {
       "items": {
         "$ref": "#/$defs/HistoryFact"

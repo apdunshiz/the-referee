@@ -11,6 +11,7 @@
   {{ m.conf(e.confidence, 'this score') }}
 </div>
 <p class="lede">{{ e.summary }}</p>
+{% if e.why %}<p class="small"><b>How this strength was reached:</b> {{ e.why }} <a href="{{ base }}worldviews/#evidence-rule">The rule</a>.</p>{% endif %}
 {% for p in e.body | paragraphs %}<p>{{ p }}</p>{% endfor %}
 
 <section class="verdict">

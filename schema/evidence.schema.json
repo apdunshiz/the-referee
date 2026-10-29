@@ -93,6 +93,13 @@
       "minLength": 3,
       "title": "Title",
       "type": "string"
+    },
+    "why": {
+      "default": "",
+      "description": "The site's evidence rule applied to this line, as arithmetic that reaches the strength.",
+      "maxLength": 600,
+      "title": "Why",
+      "type": "string"
     }
   },
   "required": [
