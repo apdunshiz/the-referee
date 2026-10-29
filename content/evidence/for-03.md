@@ -3,8 +3,9 @@ id: for-03
 side: for
 title: Something exists rather than nothing, and the universe does not explain itself
 summary: Everything we know of could have failed to exist; a chain of such things does not explain why any of it exists, so there must be something that exists necessarily, and that is close to what theists mean by God.
-strength: 6
-confidence: 70
+strength: 5
+confidence: 55
+why: "Start at 5. (a) That the physical world is contingent and its laws and constants unexplained is the standard view (Reichenbach 2026) (+1). (c) Live in the SEP entry on the cosmological argument (Reichenbach 2026) (+1). (d) It needs the principle of sufficient reason, a minority view: 36% of philosophers accept it and 46% reject it (PhilPapers 2020) (−1). (f) From a necessary being to a personal creator is a further contested step (Oppy 2006) (−1). A brute fact is a refusal to explain, not a rival. Five."
 status: A central argument in philosophy of religion since Leibniz; it stands or falls on whether every contingent fact needs an explanation, which philosophers dispute.
 best_objection: Perhaps the universe, or its basic physical stuff, simply exists necessarily or as a brute fact; demanding an explanation for everything is a principle that may not hold at the level of the whole.
 best_reply: A brute fact is a stopping point without a reason, and the same move would let anyone refuse any explanation; and nothing about matter or spacetime looks necessary, since physics describes how they could have been otherwise.
@@ -13,6 +14,10 @@ sources:
   - "Alexander Pruss, The Leibnizian cosmological argument, in The Blackwell Companion to Natural Theology (2009)"
   - "J. L. Mackie, The Miracle of Theism (1982), chapter 5"
   - "Bertrand Russell and Frederick Copleston, BBC debate on the existence of God (1948)"
+  - "Bruce Reichenbach, Cosmological Argument, Stanford Encyclopedia of Philosophy (2026)"
+  - "Yitzhak Melamed and Martin Lin, Principle of Sufficient Reason, Stanford Encyclopedia of Philosophy (2023)"
+  - "Graham Oppy, Arguing about Gods (2006)"
+  - "PhilPapers Survey 2020, principle of sufficient reason (2020)"
 related_questions: [q01, q02]
 related_claims: []
 ---
@@ -21,6 +26,6 @@ This is the classic form of the cosmological argument that does not depend on th
 
 Critics attack the demand for explanation. Russell's answer to Copleston was blunt: the universe is just there, and that is all. Modern versions say the universe as a whole may be necessary, or that the principle "every contingent fact has an explanation" is not self-evident and may fail for the totality.
 
-Defenders answer that accepting brute facts is the end of inquiry, and that nothing in physics looks necessary; the laws and constants are described as contingent by the same scientists who study them.
+Defenders answer that accepting brute facts is the end of inquiry, and that nothing in physics looks necessary; current physics leaves the values of the laws and constants unexplained and gives no sign that they hold of necessity.
 
 What an outsider should take from it: the argument is valid in form and the disagreement is about one premise. If you grant that everything contingent needs an explanation, you get a necessary being. Whether that being is a mind, let alone a particular God, is a further step the argument does not take by itself.

@@ -36,4 +36,10 @@
   </tbody>
 </table>
 {% if not criteria %}<p class="empty">None written yet.</p>{% endif %}
+
+{% if site.evidence_rule %}
+<h2 id="evidence-rule">The evidence rule</h2>
+<p>Every line of evidence for or against God on the <a href="{{ base }}#evidence">home page</a> gets its strength from one rule, applied the same way to both columns.</p>
+<p class="small">{{ site.evidence_rule }}</p>
+{% endif %}
 {% endblock %}

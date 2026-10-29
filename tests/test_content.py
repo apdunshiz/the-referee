@@ -247,3 +247,16 @@ def test_criterion_rule_rejects_usernames():
     Criterion(id="history", name="History", question="Does it hold up?", rule="Start at 5.")
     with pytest.raises(ValidationError):
         Criterion(id="history", name="History", question="Does it hold up?", rule="As u/someone argued.")
+
+
+NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
+
+
+def test_shipped_evidence_shows_arithmetic_that_reaches_its_strength():
+    lines = content.load_evidence(ROOT)
+    assert lines, "no evidence files found"
+    for e in lines:
+        assert e.why.startswith("Start at 5."), e.id
+        total = 5 + e.why.count("(+1)") - e.why.count("(−1)")
+        assert total == e.strength, f"{e.id}: why adds to {total}, strength is {e.strength}"
+        assert e.why.rstrip().endswith(NUMBER_WORDS[e.strength] + "."), e.id

@@ -3,15 +3,20 @@ id: against-05
 side: against
 title: The universe is vast, old and almost entirely hostile to life
 summary: A cosmos of hundreds of billions to trillions of galaxies, empty and lethal nearly everywhere, running for 13.8 billion years before a brief window of life on one planet, looks like an accident rather than a home built for us.
-strength: 4
-confidence: 65
-status: A common intuition more than a developed argument; most philosophers on both sides consider it weak on its own, since nothing about theism as philosophers state it predicts a small universe, whatever traditional readings of scripture assumed.
+strength: 5
+confidence: 60
+why: "Start at 5. (a) The size, age and emptiness of the universe are mainstream cosmology (Dicke 1961) (+1). (e) does not hold: the SEP describes Dicke's account of why observers find an old universe but does not say it is the accepted answer to this argument (Friederich 2026). (f) From a universe not built mainly for humans to no God needs a contested premise about God's purposes (Dumsday 2019) (−1). No reference work treats it as live, and no theist grants it. Five."
+status: "A common intuition more than a developed argument. Theist philosophers answer that nothing in theism predicts a small universe and that life needs a vast, old one; some philosophers (Everitt, Thomas) count it against theism as traditionally held."
 best_objection: Theism never claimed the universe was built to be comfortable or compact; a vast cosmos is what you would expect from a creator of unlimited power, and the size of the universe is also what the physics of star formation requires for life to appear at all.
 best_reply: "The reply concedes the point: once any observation is compatible with God, the vastness is no evidence for him either, and the mismatch with how the Abrahamic scriptures, as traditionally read, picture the world, small, central and made for humans, is at least evidence against those readings."
 sources:
   - "Carl Sagan, Pale Blue Dot (1994)"
   - "Nicholas Everitt, The Non-Existence of God (2004), chapter 11"
   - "Robin Collins, The teleological argument, in The Blackwell Companion to Natural Theology (2009), on why a life-permitting universe must be large"
+  - "Robert Dicke, Dirac's cosmology and Mach's principle, Nature (1961)"
+  - "Emily Thomas, Does the size of the universe prove God doesn't exist?, The Conversation (2017)"
+  - "Travis Dumsday, Is the cosmos fine-tuned for life, or for the possibility of life?, Faith and Philosophy (2019)"
+  - "Simon Friederich, Fine-Tuning, Stanford Encyclopedia of Philosophy (2026)"
 related_questions: [q03]
 related_claims: []
 ---
@@ -22,4 +27,4 @@ Everitt sharpens it: the Abrahamic scriptures as traditionally read describe a s
 
 The theist's answer is that nothing in the idea of a creator fixes the size of the creation, and that physics requires a universe this large and this old to make the carbon we are built from. The deeper point many theists make is that the argument confuses "made for us" with "made only for us".
 
-What an outsider should take from it: a weak argument against God in general, a fair one against taking ancient cosmologies as literal revelation. It belongs on the list because people find it moving, not because philosophers rate it highly.
+What an outsider should take from it: a modest argument against God in general, a fair one against taking ancient cosmologies as literal revelation. It belongs on the list because people find it moving; few philosophers have developed it at length, and its best form targets ancient cosmologies more than God.

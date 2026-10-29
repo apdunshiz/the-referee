@@ -46,7 +46,7 @@ def fixture_tree(root: Path, status: Status | None = None) -> None:
     site["evidence_note"] = "The columns are not meant to be added up."
     site["worldview_note"] = "Totals are sums of criterion scores, not a ranking of truth."
     (root / "content" / "site.json").write_text(json.dumps(site, indent=2), encoding="utf-8")
-    content.save_evidence(root, Evidence(id="for-01", side=EvidenceSide.FOR, title="The universe had a beginning", summary="Whatever begins to exist has a cause, and the universe began.", strength=6, confidence=70, status="A beginning is a live position in cosmology, not an established finding.", best_objection="Quantum gravity may remove the boundary <script>alert(1)</script>.", best_reply="The theorem still favours a boundary on average.", sources=["Borde, Guth and Vilenkin (2003)"], related_questions=["q01"], related_claims=["q01-c02"], body="A longer treatment.\n\nSecond paragraph."))
+    content.save_evidence(root, Evidence(id="for-01", side=EvidenceSide.FOR, title="The universe had a beginning", summary="Whatever begins to exist has a cause, and the universe began.", strength=6, confidence=70, why="Start at 5. (a) The hot big bang is mainstream (+1). Six.", status="A beginning is a live position in cosmology, not an established finding.", best_objection="Quantum gravity may remove the boundary <script>alert(1)</script>.", best_reply="The theorem still favours a boundary on average.", sources=["Borde, Guth and Vilenkin (2003)"], related_questions=["q01"], related_claims=["q01-c02"], body="A longer treatment.\n\nSecond paragraph."))
     content.save_evidence(root, Evidence(id="against-01", side=EvidenceSide.AGAINST, title="The problem of evil", summary="Gratuitous suffering is hard to square with an all-good, all-powerful God.", strength=8, confidence=80, status="The logical version is widely thought answered; the evidential version is live.", best_objection="Skeptical theism says we cannot judge what reasons God might have.", best_reply="That reply also undercuts our ability to read God's goodness from anything.", related_questions=["q02"]))
     content.save_worldview(root, Worldview(id="naturalism", name="Naturalism", one_line="Only the physical world exists; no gods.", core_claim="Nature is all there is and all explanations are ultimately physical.", scores=[CriterionScore(criterion="history", score=9, confidence=80, why="It makes no historical founding claims to defend."), CriterionScore(criterion="coherence", score=8, confidence=75, why="Internally consistent, though consciousness is a strain <script>alert(1)</script>."), CriterionScore(criterion="testable", score=9, confidence=85, why="Its claims are checkable in principle.")], sources=["Papineau, Naturalism (2020)"]))
     content.save_worldview(root, Worldview(id="christianity", name="Christianity", one_line="Jesus of Nazareth rose from the dead and is God incarnate.", core_claim="One God, revealed in Jesus, whose resurrection vindicates his claims.", scores=[CriterionScore(criterion="history", score=6, confidence=70, why="Crucifixion and early belief in appearances are well attested; the rest is contested."), CriterionScore(criterion="coherence", score=6, confidence=60, why="Trinity and incarnation are coherent on some readings and strained on others."), CriterionScore(criterion="testable", score=4, confidence=65, why="Most claims are historical, a few are checkable.")]))
@@ -296,6 +296,21 @@ def test_evidence_and_worldview_pages_render_escaped(tmp_path):
     assert "<script>alert(1)</script>" not in read(out, "index.html")
 
 
+def test_evidence_rule_is_published_with_each_lines_arithmetic(tmp_path):
+    fixture_tree(tmp_path, success_status())
+    rule = content.load_site_data(tmp_path).evidence_rule
+    assert rule.startswith("Strength is how far the line")
+    out = tmp_path / "_site"
+    render.render(tmp_path, out, now=NOW)
+    assert rule in read(out, "index.html")
+    wv = read(out, "worldviews/index.html")
+    assert 'id="evidence-rule"' in wv and rule in wv
+    ev = read(out, "evidence/for-01/index.html")
+    assert "How this strength was reached:</b> Start at 5. (a) The hot big bang is mainstream (+1). Six." in ev
+    assert 'href="/worldviews/#evidence-rule"' in ev
+    assert "How this strength was reached" not in read(out, "evidence/against-01/index.html")
+
+
 def test_nav_links_carry_base(tmp_path):
     fixture_tree(tmp_path, success_status())
     out = tmp_path / "_site"
@@ -310,6 +325,8 @@ def test_nav_links_carry_base(tmp_path):
     ev = read(out, "evidence/for-01/index.html")
     assert 'href="/the-referee/q/q01/"' in ev and 'href="/the-referee/claims/q01-c02/"' in ev
     assert 'href="/the-referee/worldviews/"' in read(out, "worldviews/naturalism/index.html")
+    assert 'href="/the-referee/worldviews/#evidence-rule"' in ev
+    assert 'href="/the-referee/#evidence"' in read(out, "worldviews/index.html")
 
 
 def test_validate_tree_flags_misnamed_files_and_missing_criterion(tmp_path):

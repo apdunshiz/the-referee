@@ -75,7 +75,7 @@
       "type": "string"
     },
     "strength": {
-      "description": "Weight of the best defensible version as evidence, 0-10.",
+      "description": "Weight of the argument as its summary states it, 0-10, under the site's evidence rule.",
       "maximum": 10,
       "minimum": 0,
       "title": "Strength",
@@ -92,6 +92,13 @@
       "maxLength": 120,
       "minLength": 3,
       "title": "Title",
+      "type": "string"
+    },
+    "why": {
+      "default": "",
+      "description": "The site's evidence rule applied to this line, as arithmetic that reaches the strength.",
+      "maxLength": 600,
+      "title": "Why",
       "type": "string"
     }
   },

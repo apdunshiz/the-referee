@@ -575,10 +575,11 @@ class SiteData(Strict):
     legend: list[LegendRow] = Field(min_length=1, max_length=12)
     history: list[HistoryFact] = Field(default_factory=list, max_length=12)
     criteria: list[Criterion] = Field(default_factory=list, max_length=8)
+    evidence_rule: str = Field(default="", max_length=900, description="How every evidence strength is assigned, stated once and applied to both columns.")
     evidence_note: str = Field(default="", max_length=800, description="How to read the evidence lists. No verdict.")
     worldview_note: str = Field(default="", max_length=800, description="How to read the worldview comparison. No verdict.")
 
-    @field_validator("evidence_note", "worldview_note")
+    @field_validator("evidence_rule", "evidence_note", "worldview_note")
     @classmethod
     def _notes_no_usernames(cls, v):
         return _no_usernames(v)
@@ -618,8 +619,9 @@ class Evidence(Strict):
     side: EvidenceSide
     title: str = Field(min_length=3, max_length=120)
     summary: str = Field(min_length=10, max_length=400, description="The argument in neutral words.")
-    strength: int = Field(ge=0, le=10, description="Weight of the best defensible version as evidence, 0-10.")
+    strength: int = Field(ge=0, le=10, description="Weight of the argument as its summary states it, 0-10, under the site's evidence rule.")
     confidence: int = Field(ge=0, le=100, description="How confident the referee is in that strength.")
+    why: str = Field(default="", max_length=600, description="The site's evidence rule applied to this line, as arithmetic that reaches the strength.")
     status: str = Field(min_length=10, max_length=300, description="Where experts stand, one or two sentences.")
     best_objection: str = Field(min_length=10, max_length=600)
     best_reply: str = Field(min_length=10, max_length=600)
@@ -628,7 +630,7 @@ class Evidence(Strict):
     related_claims: list[str] = Field(default_factory=list)
     body: str = ""
 
-    @field_validator("title", "summary", "status", "best_objection", "best_reply", "sources", "body")
+    @field_validator("title", "summary", "why", "status", "best_objection", "best_reply", "sources", "body")
     @classmethod
     def _evidence_no_usernames(cls, v):
         return _no_usernames(v)
