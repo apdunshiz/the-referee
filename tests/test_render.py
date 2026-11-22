@@ -408,7 +408,8 @@ def test_home_handles_one_empty_side(tmp_path):
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
     assert "None%" not in html and "width:None" not in html
-    assert "For God · 6 of 10" in html and "Against · 0 of 0" in html and "rotate(-15.0 380 40)" in html and "1 line of evidence" in html
+    assert "For God · 6 of 10" in html and "Against · 0 of 0" in html and "rotate(-15.0 380 40)" in html
+    assert 'viewBox="-10 -40 780 370"' in html  # headroom: at 15 degrees the raised beam end reaches y = 40 - 270*sin(15) = -30 and "1 line of evidence" in html
 
 
 def test_proof_is_fifty_when_columns_weigh_the_same():

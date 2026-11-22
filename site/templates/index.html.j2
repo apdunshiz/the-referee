@@ -6,7 +6,7 @@
   {% set n_lines = evidence_for | length + evidence_against | length %}<p class="lede">{{ n_lines }} line{{ "s" if n_lines != 1 }} of evidence, each weighed 0 to 10 with one public rule.</p>
   {% if proof.pct is not none %}
   {% set tilt = ((50 - proof.pct) * 0.3) | round(1) %}
-  <svg class="scale" viewBox="0 0 760 330" role="img" aria-label="{{ proof.pct }} percent of the evidence weight points to God, {{ 100 - proof.pct }} percent points away">
+  <svg class="scale" viewBox="-10 -40 780 370" role="img" aria-label="{{ proof.pct }} percent of the evidence weight points to God, {{ 100 - proof.pct }} percent points away">
     <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
       <path d="M380 40V290M300 300h160" stroke-width="6"/>
       <circle cx="380" cy="40" r="9" fill="currentColor"/>
@@ -44,7 +44,7 @@
       {% if items %}
       {% for e in items %}
       <details class="ev-item">
-        <summary><span class="wt-slot"><b class="wt" style="--s:{{ e.strength }}" aria-label="strength {{ e.strength }} out of 10">{{ e.strength }}</b></span><span class="ev-title">{{ e.title }}<span class="ev-conf">{{ e.confidence }}% confident in this score</span></span></summary>
+        <summary><span class="wt-slot"><b class="wt" role="img" style="--s:{{ e.strength }}" aria-label="strength {{ e.strength }} out of 10">{{ e.strength }}</b></span><span class="ev-title">{{ e.title }}<span class="ev-conf">{{ e.confidence }}% confident in this score</span></span></summary>
         <p class="ev-summary">{{ e.summary }}</p>
         <p class="small"><a href="{{ base }}evidence/{{ e.id }}/">Open this line: objection, reply, sources</a></p>
       </details>
