@@ -377,10 +377,10 @@ def test_proof_percentage_and_primary_reasons(tmp_path):
     # fixture: for 6, against 8 -> 43% of the weight points to God
     assert 'aria-label="43 percent of the evidence weight points to God, 57 percent points away"' in html
     assert '<text class="pan-num" x="110" y="222">43%</text>' in html and '<text class="pan-num" x="650" y="222">57%</text>' in html
-    assert 'rotate(10 380 40)' in html  # the scale tips toward the heavier pan, capped at 10 degrees
+    assert 'rotate(2.1 380 40)' in html  # 0.3 degrees per point from 50; positive lifts the lighter 'for' pan
     assert "(6 for, 8 against)" in html
     # each pan's caption: strength over the most it could have (one line each in the fixture)
-    assert "FOR GOD · 6 of 10" in html and "AGAINST · 8 of 10" in html
+    assert "For God · 6 of 10" in html and "Against · 8 of 10" in html
     assert 'Evidence for God <span class="col-sum">6</span>' in html
     assert "The two sides weigh about the same." in html and "How these numbers are made" in html
     assert 'style="--s:6" aria-label="strength 6 out of 10">6</b>' in html
@@ -393,12 +393,12 @@ def test_verdict_call_follows_the_share_of_weight(tmp_path):
     content.save_evidence(tmp_path, Evidence(id="for-02", side=EvidenceSide.FOR, title="Extra for", strength=5, **strong))
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
-    assert 'y="222">58%</text>' in html and "The evidence leans toward God." in html  # 11 of 19, on the boundary
+    assert 'y="222">58%</text>' in html and "rotate(-2.4 380 40)" in html and "The evidence leans toward God." in html  # 11 of 19, on the boundary
     content.save_evidence(tmp_path, Evidence(id="against-02", side=EvidenceSide.AGAINST, title="Extra against", strength=10, **strong))
     content.save_evidence(tmp_path, Evidence(id="against-03", side=EvidenceSide.AGAINST, title="More against", strength=10, **strong))
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
-    assert 'y="222">28%</text>' in html and "The evidence leans against God." in html  # 11 of 39
+    assert 'y="222">28%</text>' in html and "rotate(6.6 380 40)" in html and "The evidence leans against God." in html  # 11 of 39
 
 
 def test_home_handles_one_empty_side(tmp_path):
@@ -408,7 +408,7 @@ def test_home_handles_one_empty_side(tmp_path):
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
     assert "None%" not in html and "width:None" not in html
-    assert "FOR GOD · 6 of 10" in html and "AGAINST · 0 of 0" in html and "1 line of evidence" in html
+    assert "For God · 6 of 10" in html and "Against · 0 of 0" in html and "rotate(-15.0 380 40)" in html and "1 line of evidence" in html
 
 
 def test_proof_is_fifty_when_columns_weigh_the_same():

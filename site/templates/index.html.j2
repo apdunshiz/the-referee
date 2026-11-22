@@ -5,8 +5,8 @@
   <h1 id="proof-h">Is there a God? Here is the evidence, both ways.</h1>
   {% set n_lines = evidence_for | length + evidence_against | length %}<p class="lede">{{ n_lines }} line{{ "s" if n_lines != 1 }} of evidence, each weighed 0 to 10 with one public rule.</p>
   {% if proof.pct is not none %}
-  {% set tilt = [[(50 - proof.pct) * 2.2, -10] | max, 10] | min %}
-  <svg class="scale" viewBox="0 0 760 310" role="img" aria-label="{{ proof.pct }} percent of the evidence weight points to God, {{ 100 - proof.pct }} percent points away">
+  {% set tilt = ((50 - proof.pct) * 0.3) | round(1) %}
+  <svg class="scale" viewBox="0 0 760 330" role="img" aria-label="{{ proof.pct }} percent of the evidence weight points to God, {{ 100 - proof.pct }} percent points away">
     <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
       <path d="M380 40V290M300 300h160" stroke-width="6"/>
       <circle cx="380" cy="40" r="9" fill="currentColor"/>
@@ -19,9 +19,8 @@
         <text class="pan-num" x="650" y="222">{{ 100 - proof.pct }}%</text>
       </g>
     </g>
-    <text class="pan-cap cap-for" x="110" y="296">FOR GOD · {{ proof.sum_for }} of {{ proof.max_for }}</text>
-    <text class="pan-cap cap-against" x="650" y="296">AGAINST · {{ proof.sum_against }} of {{ proof.max_against }}</text>
   </svg>
+  <p class="pan-caps"><span class="cap-for">For God · {{ proof.sum_for }} of {{ proof.max_for }}</span><span class="cap-against">Against · {{ proof.sum_against }} of {{ proof.max_against }}</span></p>
   <p class="verdict-call">{% if proof.pct >= 58 %}The evidence leans toward God.{% elif proof.pct <= 42 %}The evidence leans against God.{% else %}The two sides weigh about the same.{% endif %}</p>
   <p class="hero-cap">Not a probability that God exists. A scorecard you can check.</p>
   <details class="how">
