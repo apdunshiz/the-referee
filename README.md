@@ -32,6 +32,8 @@ The site is static HTML rendered by Python; no Node toolchain.
 .venv/bin/python site/render.py --out _site --base /the-referee/ # as served at https://apdunshiz.github.io/the-referee/
 ```
 
+It is published twice on every push to `main`: to GitHub Pages (`.github/workflows/pages.yml`) and to an Azure Static Web App on the Free plan at https://witty-glacier-0ac9f4910.8.azurestaticapps.net/ (`.github/workflows/azure.yml`, resource group `the-referee-prod`, deploy token in the `AZURE_STATIC_WEB_APPS_API_TOKEN` secret).
+
 - `site/render.py`: loads `content/` and `status.json` through the models and writes one page per question, claim, line of evidence and worldview plus `/worldviews/`, `/questions/`, `/today/`, `/about/`, `/rubric/`, `/404.html` and a copy of `status.json`.
 - `site/templates/*.html.j2`: Jinja2 templates with autoescaping on; no content field is ever marked safe.
 - `site/static/tokens.css`: the visual system (navy and gold, text badges, segmented meters), ported from the October 2026 review PDF; `site/static/fonts/` holds the local Inter and Source Serif 4 files.
