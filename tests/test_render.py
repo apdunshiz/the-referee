@@ -264,12 +264,12 @@ def test_matrix_sorted_by_total_with_right_totals(tmp_path):
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
     assert html.index("Naturalism") < html.index("Christianity")
-    assert "26/30" in html and "16/30" in html
+    assert "26<small>/30</small>" in html and "16<small>/30</small>" in html
     full = read(out, "worldviews/index.html")
     assert full.index('href="/worldviews/naturalism/"') < full.index('href="/worldviews/christianity/"')
     assert "26/30" in full and "16/30" in full and "80%" in full  # avg confidence of naturalism
-    # home shows a ranked list with a bar per worldview; the full matrix lives on /worldviews/
-    assert '<span class="rank-track" aria-hidden="true"><i style="width:87%"></i></span>' in html
+    # home shows one card per worldview; the full matrix lives on /worldviews/
+    assert '<span class="wv-total">26<small>/30</small></span>' in html
     assert 'class="matrix"' not in html
     # confidence is visible in every matrix cell, not only in a title attribute
     cell = '<b>9</b><span class="cell-conf"><span class="vh">confidence </span>80%</span>'
@@ -375,16 +375,15 @@ def test_proof_percentage_and_primary_reasons(tmp_path):
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
     # fixture: for 6, against 8 -> 43% of the weight points to God
-    assert "Proof of God, as a percentage" in html
-    assert 'aria-label="43 percent">43%</span>' in html
+    assert 'aria-label="43 percent of the evidence weight points to God, 57 percent points away"' in html
+    assert '<text class="pan-num" x="110" y="222">43%</text>' in html and '<text class="pan-num" x="650" y="222">57%</text>' in html
+    assert 'rotate(2.1 380 40)' in html  # 0.3 degrees per point from 50; positive lifts the lighter 'for' pan
     assert "(6 for, 8 against)" in html
-    # each side's own score: strength over the most it could have (one line each in the fixture)
-    assert '<span class="side-num">60%</span>' in html and '<span class="side-num">80%</span>' in html
-    assert 'Evidence for God <span class="col-pct">60%</span>' in html
-    assert "Primary reasons for" in html and "Primary reasons against" in html
+    # each pan's caption: strength over the most it could have (one line each in the fixture)
+    assert "For God · 6 of 10" in html and "Against · 8 of 10" in html
+    assert 'Evidence for God <span class="col-sum">6</span>' in html
     assert "The two sides weigh about the same." in html and "How these numbers are made" in html
-    assert "6 of 10 possible strength" in html and "8 of 10 possible strength" in html
-    assert html.index("The universe had a beginning</a> <span class=\"pct\">6/10") > html.index("Primary reasons for")
+    assert 'style="--s:6" aria-label="strength 6 out of 10">6</b>' in html
 
 
 def test_verdict_call_follows_the_share_of_weight(tmp_path):
@@ -394,12 +393,12 @@ def test_verdict_call_follows_the_share_of_weight(tmp_path):
     content.save_evidence(tmp_path, Evidence(id="for-02", side=EvidenceSide.FOR, title="Extra for", strength=5, **strong))
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
-    assert 'aria-label="58 percent">58%</span>' in html and "The evidence leans toward God." in html  # 11 of 19, on the boundary
+    assert 'y="222">58%</text>' in html and "rotate(-2.4 380 40)" in html and "The evidence leans toward God." in html  # 11 of 19, on the boundary
     content.save_evidence(tmp_path, Evidence(id="against-02", side=EvidenceSide.AGAINST, title="Extra against", strength=10, **strong))
     content.save_evidence(tmp_path, Evidence(id="against-03", side=EvidenceSide.AGAINST, title="More against", strength=10, **strong))
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
-    assert 'aria-label="28 percent">28%</span>' in html and "The evidence leans against God." in html  # 11 of 39
+    assert 'y="222">28%</text>' in html and "rotate(6.6 380 40)" in html and "The evidence leans against God." in html  # 11 of 39
 
 
 def test_home_handles_one_empty_side(tmp_path):
@@ -409,7 +408,9 @@ def test_home_handles_one_empty_side(tmp_path):
     render.render(tmp_path, out, now=NOW)
     html = read(out, "index.html")
     assert "None%" not in html and "width:None" not in html
-    assert '<span class="side-num">60%</span>' in html and "1 line of evidence" in html
+    assert "For God · 6 of 10" in html and "Against · 0 of 0" in html and "rotate(-15.0 380 40)" in html and "1 line of evidence" in html
+    # headroom: at 15 degrees the raised beam end reaches y = 40 - 270*sin(15) = -30
+    assert 'viewBox="-10 -40 780 370"' in html
 
 
 def test_proof_is_fifty_when_columns_weigh_the_same():
