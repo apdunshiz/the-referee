@@ -1,4 +1,4 @@
-> Research input, 2026-11-22. Not yet applied to any score or ruling. The citations were checked against online sources on 2026-11-22: no reference is made up or mis-numbered, but 11 are imprecise (two of them cite a verse that does not support the claim), three more carry smaller notes, and two are unverified. Read the [citation check](#citation-check-2026-11-22) before any of this moves a score in `content/worldviews/christianity.md` or `content/worldviews/islam.md`. The debate record below is left as the agents wrote it.
+> Research input, 2026-11-22. Not yet applied to any score or ruling. The citations were checked against online sources on 2026-11-22: every reference exists, but 11 need a correction or caveat (two of them cite a verse that does not support the claim), three more carry smaller notes, and two are unverified. Most historical claims were checked second-hand, against reference works. Read the [citation check](#citation-check-2026-11-22) before any of this moves a score in `content/worldviews/christianity.md` or `content/worldviews/islam.md`. The debate record below is left as the agents wrote it.
 
 # Christian vs. Muslim debate: full summary (for handoff to another agent)
 
@@ -110,7 +110,7 @@ Important: none of the citations were checked with web search during the debates
 
 ## Citation check (2026-11-22)
 
-Two reviewers fetched every citation above from online sources: 102 Bible and Qur'an references (World English Bible; Sahih International) and 50 historical and source claims (mostly Wikipedia and the sources it cites, plus New Advent and quranx). No reference number or date is made up or mis-numbered. The points below are imprecise as written, and in two scripture rows the cited verse does not support the claim; read each with its correction. The check is second-hand for most historical claims: it confirms what reference works say, not the underlying books.
+Two reviewers fetched every citation above from online sources: 102 Bible and Qur'an references (World English Bible; Sahih International) and 50 historical and source claims (mostly Wikipedia and the sources it cites, plus New Advent and quranx). Every reference exists. The points below need a correction or caveat, and in two scripture rows the cited verse does not support the claim; read each with its correction. The check is second-hand for most historical claims: it confirms what reference works say, not the underlying books.
 
 ### Scripture
 
