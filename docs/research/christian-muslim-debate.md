@@ -1,4 +1,4 @@
-> Research input, 2026-11-22. Not yet applied to any score or ruling. Every citation below is from model memory and unverified; check each one before it moves a score in `content/worldviews/christianity.md` or `content/worldviews/islam.md`.
+> Research input, 2026-11-22. Not yet applied to any score or ruling. The citations were checked against online sources on 2026-11-22: every reference exists, but 11 need a correction or caveat (two of them cite a verse that does not support the claim), three more carry smaller notes, and two are unverified. Most historical claims were checked second-hand, against reference works. Read the [citation check](#citation-check-2026-11-22) before any of this moves a score in `content/worldviews/christianity.md` or `content/worldviews/islam.md`. The debate record below is left as the agents wrote it.
 
 # Christian vs. Muslim debate: full summary (for handoff to another agent)
 
@@ -104,6 +104,42 @@ Important: none of the citations were checked with web search during the debates
 ## Suggested follow-ups
 
 - Run a neutral third agent as judge over both transcripts.
-- Verify the citations (for example Bukhari 4987, the Birmingham dating, Tacitus, Josephus, the Comma Johanneum).
+- ~~Verify the citations.~~ Done 2026-11-22; see the citation check below.
 - Add topics not yet covered: the Qur'an's claim of inimitability, the status of women and law, the problem of hell, the development of the canon, and the early Christian and Islamic communities' own self-understanding.
 - Reverse the framing to a non-historical-critical standard and see whether the scorecard changes.
+
+## Citation check (2026-11-22)
+
+Two reviewers fetched every citation above from online sources: 102 Bible and Qur'an references (World English Bible; Sahih International) and 50 historical and source claims (mostly Wikipedia and the sources it cites, plus New Advent and quranx). Every reference exists. The points below need a correction or caveat, and in two scripture rows the cited verse does not support the claim; read each with its correction. The check is second-hand for most historical claims: it confirms what reference works say, not the underlying books.
+
+### Scripture
+
+| Reference | As written | Correction |
+|---|---|---|
+| Q 2:23, 17:88 | "The Qur'an is preserved and inimitable" | Both verses are the inimitability challenge only. The preservation verse is 15:9. |
+| Mark 10:17-19 | "Jesus ties forgiveness to repentance" | The passage is about inheriting eternal life by keeping the commandments. Luke 18:13-14 does support the claim. |
+| Q 7:156 | "God's mercy reaches all in this life" | The verse says "My mercy encompasses all things" and then decrees it for believers. "In this life" is a commentators' reading. |
+
+Smaller notes: in Q 43:61 "Jesus" is supplied by translators (the mainstream Sunni reading); "the Lamb's book of life" is Rev 21:27, and 20:15 says only "the book of life"; the clear worship scene is Rev 5:13-14, not 7:10.
+
+### History and sources
+
+| As written | Correction |
+|---|---|
+| "Earliest Muhammad biography (Ibn Ishaq, d. c. 767)" | His text survives only in later recensions, chiefly Ibn Hisham (d. 833). Earlier maghazi material existed but is lost or fragmentary. |
+| Palm tree (Q 19:23-26) as a parallel with Christian apocrypha | The parallel is in Pseudo-Matthew, dated c. 600-800 and set on the Flight to Egypt. It is too late to be a secure source; both may draw on an older shared tradition. |
+| Mara bar Serapion as a witness | The letter never names Jesus (it says the Jews' "wise king"), and its date is disputed (after 73 CE, possibly much later). |
+| "Doctrina Jacobi (c. 634-640)" as a reference to Muhammad | It mentions an unnamed prophet among the Saracens, and some scholars date it decades later. Sebeos (660s) names him. |
+| Revelation "written c. 95 CE under imperial pressure" | c. 95 under Domitian is the majority date. How much real persecution lay behind it is debated. |
+| "Only the Gnostic Basilides denies the crucifixion early on" | The attribution comes from Irenaeus and is disputed, and the Second Treatise of the Great Seth is a second early docetic text. |
+| The Ta'if prayer | It comes through Ibn Ishaq and al-Tabarani, and hadith scholars grade its chain weak. |
+| Newton listed among believing scientists | Context, not a citation error: Newton was devout but rejected the Trinity, so he does not support orthodox Christianity. |
+
+### Still unverified
+
+- **Q 23:12-14 embryology "parallels Galen".** Attributed to Basim Musallam, *Sex and Society in Islam* (1983), but only seen quoted second-hand. Treat it as argued by critics until the book is checked.
+- **"The Mahdi is not in Bukhari or Muslim."** Correct by name. Sahih Muslim has reports of an unnamed end-times caliph that later scholars read as the Mahdi; that nuance was not checked.
+
+### Confirmed as written
+
+Tacitus, Annals 15.44; Josephus, Antiquities 18.3 (partly authentic on the majority view) and 20.9; Pliny, Letters 10.96 (early worship of Christ, not the crucifixion); the clay birds in the Infancy Gospel of Thomas; P52, the Chester Beatty papyri and the Great Isaiah Scroll; the Birmingham dating (568-645 CE, parchment only; the date of writing is disputed); the Sana'a palimpsest; Bukhari 4987 (Uthman's compilation); the Dajjal being absent from the Qur'an; isnad criticism as a later science; the longer ending of Mark, John 7:53-8:11 and the Comma Johanneum as later additions; Markan priority and Gospel anonymity; 1 Cor 15:3-7 as an early creed; the Pilate Stone, Caiaphas ossuary and the pools of Siloam and Bethesda; 666 as Nero; Eastern hesitation over Revelation; Nicaea 325, Constantinople 381 and Chalcedon on impassibility; Orthodoxy on ancestral sin; al-Ghazali and the kalam argument; Kepler, Mendel, Lemaître, Ibn al-Haytham and al-Khwarizmi.

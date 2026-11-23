@@ -160,7 +160,7 @@ details.how p { margin: .6rem 0 0; font: 400 .95rem/1.55 var(--serif); }
 .qlist li { display: flex; align-items: center; gap: .6rem; border-bottom: 1px solid var(--line); }
 .qlist a { flex: 1; display: flex; gap: .5rem; align-items: baseline; padding: .7rem 0; min-height: 44px; text-decoration: none; color: var(--ink); font: 400 .95rem/1.4 var(--sans); }
 .qlist a:hover .qt { text-decoration: underline; }
-.qlist .qn { font: 800 .85rem var(--sans); color: var(--gold); min-width: 2.2rem; }
+.qlist .qn { font: 800 .85rem var(--sans); color: #8a5c12; min-width: 2.2rem; }
 .qlist .qt { font-weight: 600; color: var(--navy); }
 .badges .badge { margin: 0 .25rem .35rem 0; }
 
